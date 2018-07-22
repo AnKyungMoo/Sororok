@@ -3,9 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Sororok.iml" filepath="$PROJECT_DIR$/Sororok.iml" />
-      <module fileurl="file://C:\Users\Hanbin Ju\Documents\Sororok\Sororok.iml" filepath="C:\Users\Hanbin Ju\Documents\Sororok\Sororok.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\Users\Hanbin Ju\Documents\Sororok\app\app.iml" filepath="C:\Users\Hanbin Ju\Documents\Sororok\app\app.iml" />
     </modules>
   </component>
 </project>
