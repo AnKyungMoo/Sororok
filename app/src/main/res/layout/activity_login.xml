@@ -19,7 +19,7 @@
             android:layout_marginBottom="8dp"
             android:text="어서와요!"
             android:textSize="25sp"
-            android:paddingLeft="30dp"></TextView>
+            android:paddingLeft="30dp" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -63,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@id/ivMainName"
                 android:background="@android:color/transparent"
-                android:hint="이름" />
+                android:hint="이름이 뭐에요?" />
 
         </RelativeLayout>
 
@@ -85,18 +85,19 @@
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@id/ivMainMail"
                 android:background="@android:color/transparent"
-                android:hint="이메일 주소" />
+                android:hint="이메일이 뭐에요?" />
 
         </RelativeLayout>
 
 
     </LinearLayout>
-    <ImageView
+
+    <Button
+        android:id="@+id/loginButton"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:src="@drawable/graybox"
-        android:scaleType="fitXY"/>
+        android:text="로그인" />
 
 
 </RelativeLayout>
