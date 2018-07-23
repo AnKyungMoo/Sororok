@@ -5,6 +5,10 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+/**
+ * 스플래시 액티비티
+ * 메인 액티비티로 이동함
+ */
 public class SplashActivity extends AppCompatActivity {
 
     @Override
