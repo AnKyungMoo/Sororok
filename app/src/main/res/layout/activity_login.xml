@@ -10,7 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:paddingTop="100dp">
+        android:paddingTop="100dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true" >
 
         <TextView
             android:id="@+id/textView2"
@@ -36,6 +38,7 @@
 
             <EditText
                 android:id="@+id/etMainPhone"
+                android:inputType="phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@id/ivMainPhone"

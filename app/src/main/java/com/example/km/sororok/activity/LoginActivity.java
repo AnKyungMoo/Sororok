@@ -1,10 +1,15 @@
 package com.example.km.sororok.activity;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.telephony.PhoneNumberFormattingTextWatcher;
+import android.telephony.TelephonyManager;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.km.sororok.R;
 
@@ -15,22 +20,44 @@ import com.example.km.sororok.R;
  */
 public class LoginActivity extends AppCompatActivity {
 
+    EditText phoneEditText;
+    Button loginButton;
+
+    // 권한 체크하는거로 바꾸자
+    @SuppressLint({"MissingPermission", "HardwareIds"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        Button loginButton;
+        initializeViewField();
 
-        loginButton = (Button)findViewById(R.id.loginButton);
+        // 기기 번호 가져와서 EditText에 적용
+        String phoneNumber = null;
+        TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
 
+        assert telephonyManager != null;
+
+        phoneNumber = telephonyManager.getLine1Number();
+        phoneNumber = phoneNumber.replace("+82", "0");
+
+        phoneEditText.setText(phoneNumber);
+
+        // 로그인 버튼 클릭
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                /*TODO: 로그인 정보를 다음 Activity로 넘기기*/
                 Intent mainIntent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(mainIntent);
                 finish();
             }
         });
+    }
+
+    private void initializeViewField() {
+        phoneEditText = (EditText) findViewById(R.id.etMainPhone);
+        phoneEditText.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
+        loginButton = (Button) findViewById(R.id.loginButton);
     }
 }
