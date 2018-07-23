@@ -1,7 +1,9 @@
-package com.example.km.sororok;
+package com.example.km.sororok.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.km.sororok.R;
 
 /**
  * 메인 액티비티
