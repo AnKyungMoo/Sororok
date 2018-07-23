@@ -28,22 +28,14 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp">
 
-            <ImageView
-                android:id="@+id/ivMainPhone"
-                android:layout_width="250dp"
-                android:layout_height="30dp"
-                android:layout_centerInParent="true"
-                android:scaleType="fitXY"
-                android:src="@drawable/graybox" />
-
             <EditText
                 android:id="@+id/etMainPhone"
                 android:inputType="phone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@id/ivMainPhone"
-                android:background="@android:color/transparent"
-                android:hint="010-1234-5678" />
+                android:layout_width="250dp"
+                android:layout_height="40dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/border"
+                android:hint="010-1234-5678"/>
 
         </RelativeLayout>
 
@@ -52,20 +44,13 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp">
 
-            <ImageView
-                android:id="@+id/ivMainName"
-                android:layout_width="250dp"
-                android:layout_height="30dp"
-                android:layout_centerInParent="true"
-                android:scaleType="fitXY"
-                android:src="@drawable/graybox" />
 
             <EditText
                 android:id="@+id/etMainName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@id/ivMainName"
-                android:background="@android:color/transparent"
+                android:layout_width="250dp"
+                android:layout_height="40dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/border"
                 android:hint="이름이 뭐에요?" />
 
         </RelativeLayout>
@@ -74,20 +59,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/ivMainMail"
-                android:layout_width="250dp"
-                android:layout_height="30dp"
-                android:layout_centerInParent="true"
-                android:scaleType="fitXY"
-                android:src="@drawable/graybox" />
-
             <EditText
                 android:id="@+id/etMainMail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@id/ivMainMail"
-                android:background="@android:color/transparent"
+                android:layout_width="250dp"
+                android:layout_height="40dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/border"
                 android:hint="이메일이 뭐에요?" />
 
         </RelativeLayout>
