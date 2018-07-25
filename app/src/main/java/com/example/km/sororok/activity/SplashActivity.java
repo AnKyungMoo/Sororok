@@ -21,7 +21,7 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-
+        
         //권한 체크
         if(PermissionUtil.checkPermission(this, Manifest.permission.WRITE_CONTACTS)&&
                 PermissionUtil.checkPermission(this, Manifest.permission.READ_CONTACTS)&&
