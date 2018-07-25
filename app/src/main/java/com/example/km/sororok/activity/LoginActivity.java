@@ -10,6 +10,7 @@ import android.telephony.TelephonyManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import com.example.km.sororok.R;
 
@@ -21,6 +22,7 @@ import com.example.km.sororok.R;
 public class LoginActivity extends AppCompatActivity {
 
     EditText phoneEditText;
+    ImageButton xButton;
     Button loginButton;
 
     // 권한 체크하는거로 바꾸자
@@ -43,6 +45,20 @@ public class LoginActivity extends AppCompatActivity {
 
         phoneEditText.setText(phoneNumber);
 
+        phoneEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean isFocus) {
+                if (isFocus)
+                {
+                    xButton.setVisibility(View.GONE);
+                }
+                else
+                {
+                    xButton.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
         // 로그인 버튼 클릭
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,7 +73,9 @@ public class LoginActivity extends AppCompatActivity {
 
     private void initializeViewField() {
         phoneEditText = (EditText) findViewById(R.id.etMainPhone);
+        // 010-1234-5678의 형태를 유지하게 해줌
         phoneEditText.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
+        xButton = (ImageButton) findViewById(R.id.xButton);
         loginButton = (Button) findViewById(R.id.loginButton);
     }
 }
