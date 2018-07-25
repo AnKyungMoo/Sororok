@@ -45,6 +45,7 @@ public class LoginActivity extends AppCompatActivity {
 
         phoneEditText.setText(phoneNumber);
 
+        // EditText에 Focus가 들어가면 x버튼이 사라짐
         phoneEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean isFocus) {
@@ -56,6 +57,16 @@ public class LoginActivity extends AppCompatActivity {
                 {
                     xButton.setVisibility(View.VISIBLE);
                 }
+            }
+        });
+
+        /*TODO: x버튼 클릭하면 editText 비우기*/
+        xButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                phoneEditText.setText("");
+                phoneEditText.setFocusableInTouchMode(true);
+                phoneEditText.requestFocus();
             }
         });
 
