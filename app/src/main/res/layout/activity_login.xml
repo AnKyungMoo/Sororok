@@ -37,6 +37,13 @@
                 android:background="@drawable/phone_text_states"
                 android:hint="010-1234-5678"/>
 
+            <ImageButton
+                android:id="@+id/xButton"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/xbutton"
+                android:layout_alignRight="@id/etMainPhone" />
+
         </RelativeLayout>
 
         <RelativeLayout
@@ -47,6 +54,7 @@
 
             <EditText
                 android:id="@+id/etMainName"
+                android:inputType="text"
                 android:layout_width="250dp"
                 android:layout_height="40dp"
                 android:layout_centerInParent="true"
@@ -63,6 +71,7 @@
                 android:id="@+id/etMainMail"
                 android:layout_width="250dp"
                 android:layout_height="40dp"
+                android:inputType="textEmailAddress"
                 android:layout_centerInParent="true"
                 android:background="@drawable/edittext_normal"
                 android:hint="이메일이 뭐에요?" />
