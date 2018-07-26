@@ -2,6 +2,7 @@ package com.example.km.sororok.adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -66,10 +67,14 @@ public class GalleryAdapter extends BaseAdapter {
         if (view == null)
             view = inflater.inflate(R.layout.gridview_item, viewGroup, false);//Inflate layout
 
-        final ImageView imageView = (ImageView) view.findViewById(R.id.img_user_gallery);
+        final ImageView imageView = view.findViewById(R.id.img_user_gallery);
 
         ImageLoader.getInstance().init(ImageLoaderConfiguration.createDefault(this.context)); //추가
-        ImageLoader.getInstance().displayImage("file://" + imageUrls.get(position), imageView, options);
+
+        if(position==0)
+            ImageLoader.getInstance().displayImage("drawable://"+R.drawable.camera, imageView, options);
+        else
+            ImageLoader.getInstance().displayImage("file://" + imageUrls.get(position), imageView, options);
 
         return view;
     }

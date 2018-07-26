@@ -15,17 +15,24 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.GridView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.km.sororok.R;
 import com.example.km.sororok.adapter.GalleryAdapter;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class UserGalleryActivity extends AppCompatActivity {
 
+    private static TextView totalImageCount;
     private static GridView gridGallery;
+    private static Button backButton;
     private static GalleryAdapter galleryAdapter;
     private static ArrayList<String> galleryImageUrls;
 
@@ -34,7 +41,7 @@ public class UserGalleryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.acrivity_user_gallery);
 
-        Intent intent = getIntent();
+        //Intent intent = getIntent();
 
         if (checkPermissionREAD_EXTERNAL_STORAGE(this)) {
             initComponent();
@@ -61,6 +68,7 @@ public class UserGalleryActivity extends AppCompatActivity {
              galleryImageUrls.add(imgCursor.getString(dataColumnIndex));//get Image from column index
              System.out.println("Array path : " + galleryImageUrls.get(i));
         }
+        totalImageCount.setText("전체보기("+galleryImageUrls.size()+")");
     }
 
     private void setUpGridView() {
@@ -70,10 +78,18 @@ public class UserGalleryActivity extends AppCompatActivity {
 
     public void initComponent(){
         gridGallery = (GridView)findViewById(R.id.grid_user_gallery);
+        totalImageCount = (TextView)findViewById(R.id.txt_total_image_count);
+        backButton = (Button)findViewById(R.id.btn_back);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
 
-    //일정 수준의 버전 확인
+    //버전 확인
     public boolean checkPermissionREAD_EXTERNAL_STORAGE(
             final Context context) {
         int currentAPIVersion = Build.VERSION.SDK_INT;

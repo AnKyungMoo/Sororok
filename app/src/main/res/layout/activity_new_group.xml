@@ -39,6 +39,7 @@
             android:gravity="center">
 
             <ImageView
+                android:id="@+id/img_new_group"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:src="@drawable/user_icon"/>

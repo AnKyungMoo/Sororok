@@ -21,11 +21,11 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <ImageView
+            <Button
                 android:id="@+id/btn_back"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:src="@drawable/backbutton"/>
+                android:background="@drawable/backbutton"/>
 
             <TextView
                 android:id="@+id/txt_total_image_count"
@@ -49,8 +49,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:numColumns="5"
-        android:horizontalSpacing="3dp"
-        android:verticalSpacing="3dp">
+        android:horizontalSpacing="2dp"
+        android:verticalSpacing="2dp">
 
     </GridView>
 
