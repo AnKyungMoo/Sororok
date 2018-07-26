@@ -132,7 +132,7 @@
                 android:layout_height="match_parent"
                 android:textSize="15pt"
                 android:text="10W93F"
-                android:textColor="black"
+                android:textColor="@android:color/black"
                 android:enabled="false"/>
 
         </LinearLayout>
