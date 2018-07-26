@@ -3,10 +3,12 @@ package com.example.km.sororok.activity;
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,7 +17,9 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
@@ -49,7 +53,6 @@ public class UserGalleryActivity extends AppCompatActivity {
             setUpGridView();
         }
 
-
     }
 
     private void fetchGalleryImages() {
@@ -74,6 +77,32 @@ public class UserGalleryActivity extends AppCompatActivity {
     private void setUpGridView() {
         galleryAdapter = new GalleryAdapter(UserGalleryActivity.this, galleryImageUrls);
         gridGallery.setAdapter(galleryAdapter);
+        gridGallery.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                if(i==0){
+                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivity(intent);
+                    /*Intent i2 = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                    try {
+                        PackageManager pm = getPackageManager();
+
+                        final ResolveInfo mInfo = pm.resolveActivity(i2, 0);
+
+                        Intent intent = new Intent();
+                        intent.setComponent(new ComponentName(mInfo.activityInfo.packageName, mInfo.activityInfo.name));
+                        intent.setAction(Intent.ACTION_MAIN);
+                        intent.addCategory(Intent.CATEGORY_LAUNCHER);
+
+                        startActivity(intent);
+                    } catch (Exception e){
+                        Log.i("TAG", "Unable to launch camera: " + e);
+                        }*/
+                }else{
+                    Toast.makeText(getApplicationContext(), i+"", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     public void initComponent(){

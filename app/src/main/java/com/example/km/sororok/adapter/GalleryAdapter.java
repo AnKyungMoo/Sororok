@@ -16,7 +16,7 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 import java.util.ArrayList;
 
-public class GalleryAdapter extends BaseAdapter {
+public class GalleryAdapter extends BaseAdapter{
 
     private Context context;
     private ArrayList<String> imageUrls;
@@ -52,14 +52,15 @@ public class GalleryAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int i) {
-        return imageUrls.get(i);
+    public Object getItem(int position) {
+        return imageUrls.get(position);
     }
 
     @Override
-    public long getItemId(int i) {
-        return i;
+    public long getItemId(int position) {
+        return position;
     }
+
 
     @Override
     public View getView(int position, View view, ViewGroup viewGroup) {
@@ -68,7 +69,6 @@ public class GalleryAdapter extends BaseAdapter {
             view = inflater.inflate(R.layout.gridview_item, viewGroup, false);//Inflate layout
 
         final ImageView imageView = view.findViewById(R.id.img_user_gallery);
-
         ImageLoader.getInstance().init(ImageLoaderConfiguration.createDefault(this.context)); //추가
 
         if(position==0)
@@ -78,4 +78,5 @@ public class GalleryAdapter extends BaseAdapter {
 
         return view;
     }
+
 }
