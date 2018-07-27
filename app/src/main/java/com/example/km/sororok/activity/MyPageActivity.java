@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class MyPageActivity extends AppCompatActivity {
 
@@ -19,7 +21,6 @@ public class MyPageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_page);
         initComponent();
-
         imgUserPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -35,7 +36,12 @@ public class MyPageActivity extends AppCompatActivity {
     }
 
     @Override
-    public void startActivityForResult(Intent intent, int requestCode) {
-        super.startActivityForResult(intent, requestCode);
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == 1 && resultCode == RESULT_OK){
+            Intent intent = getIntent();
+            String photo_path = intent.getExtras().getString("photo_path");
+            Log.i("photo_path: ", photo_path);
+            Toast.makeText(getApplicationContext(),photo_path ,Toast.LENGTH_SHORT).show();
+        }
     }
 }

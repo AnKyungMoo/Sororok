@@ -10,12 +10,17 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -30,6 +35,9 @@ import com.example.km.sororok.adapter.GalleryAdapter;
 
 import org.w3c.dom.Text;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class UserGalleryActivity extends AppCompatActivity {
@@ -81,26 +89,10 @@ public class UserGalleryActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 if(i==0){
-                    /*Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-                        startActivityForResult(takePictureIntent, 200);
-                    }*/
-                    Intent i2 = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                    try {
-                        PackageManager pm = getPackageManager();
-                        final ResolveInfo mInfo = pm.resolveActivity(i2, 0);
-
-                        Intent intent = new Intent();
-                        intent.setComponent(new ComponentName(mInfo.activityInfo.packageName, mInfo.activityInfo.name));
-                        intent.setAction(Intent.ACTION_MAIN);
-                        intent.addCategory(Intent.CATEGORY_LAUNCHER);
-
-                        startActivityForResult(intent,200);
-
-                    } catch (Exception e){
-                        Log.i("TAG", "Unable to launch camera: " + e);
-                        }
-                       //galleryAdapter.notifyDataSetChanged();
+                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    if(intent.resolveActivity(getPackageManager())!=null){
+                        startActivityForResult(intent, 200);
+                    }
 
                 }else{
                     Toast.makeText(getApplicationContext(), i+"", Toast.LENGTH_SHORT).show();
@@ -109,17 +101,35 @@ public class UserGalleryActivity extends AppCompatActivity {
         });
     }
 
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == 200 && resultCode == RESULT_OK){
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    Toast.makeText(getApplicationContext(), "close", Toast.LENGTH_SHORT).show();
-                    galleryAdapter.notifyDataSetChanged();
-                }
-            });
+            Bundle extras = data.getExtras();
+            Bitmap imageB = (Bitmap)extras.get("data");
+            Uri tempUri = getImageUri(getApplicationContext(), imageB);
+            File finalFile = new File(getRealPathFromURI(tempUri));
+           // Toast.makeText(getApplicationContext(), finalFile.getPath(), Toast.LENGTH_LONG).show();
+
+            Intent intent = new Intent(getApplicationContext(), MyPageActivity.class);
+            intent.putExtra("photo_path", finalFile.getPath());
+            startActivity(intent);
+            finish();
         }
+    }
+
+    public Uri getImageUri(Context inContext, Bitmap inImage) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Sororok", null);
+        return Uri.parse(path);
+    }
+
+    public String getRealPathFromURI(Uri uri) {
+        Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+        cursor.moveToFirst();
+        int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+        return cursor.getString(idx);
     }
 
     public void initComponent(){
@@ -133,7 +143,6 @@ public class UserGalleryActivity extends AppCompatActivity {
             }
         });
     }
-
 
     //버전 확인
     public boolean checkPermissionREAD_EXTERNAL_STORAGE(
