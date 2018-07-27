@@ -26,6 +26,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.LoginActivity"></activity>
+        <activity android:name=".activity.MemberListActivity"></activity>
         <activity android:name=".activity.NewGroupActivity"></activity>
         <activity android:name=".activity.UserGalleryActivity"></activity>
         <activity android:name=".activity.MyPageActivity"></activity>
