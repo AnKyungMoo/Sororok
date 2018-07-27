@@ -1,9 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.MemberListActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_back"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="@drawable/backbutton"
+                android:layout_alignParentLeft="true"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="10pt"
+                android:text="LIST 01"
+                android:layout_toRightOf="@id/btn_back"
+                android:layout_marginLeft="20dp"/>
+
+            <Button
+                android:id="@+id/btn_download"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@drawable/download_button"
+                android:layout_toLeftOf="@id/btn_setting"
+                android:layout_marginRight="20dp"/>
+
+            <Button
+                android:id="@+id/btn_setting"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@drawable/setting_button"
+                android:layout_alignParentRight="true"/>
+
+        </RelativeLayout>
+
+        <EditText
+            android:id="@+id/edit_find_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="찾으시는 성함/번호를 입력해주세요"
+            android:textSize="7pt"
+            android:layout_margin="15dp"/>
+
+        <ListView
+            android:id="@+id/list_member"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:text="선택 저장"/>
+</RelativeLayout>
