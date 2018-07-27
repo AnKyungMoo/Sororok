@@ -49,8 +49,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:numColumns="5"
-        android:horizontalSpacing="2dp"
-        android:verticalSpacing="2dp">
+        android:layout_margin="2dp"
+        android:horizontalSpacing="5dp"
+        android:verticalSpacing="5dp">
 
     </GridView>
 

@@ -76,11 +76,12 @@
             android:layout_height="wrap_content"
             android:hint="example@gmail.com"/>
 
-        <TextView
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="참고 사항을 적어주세요(썬택)"
-            android:textSize="6pt"
+            android:gravity="top"
+            android:textSize="7pt"
             android:background="#EAEAEA"
             android:layout_marginTop="15dp"/>
 
