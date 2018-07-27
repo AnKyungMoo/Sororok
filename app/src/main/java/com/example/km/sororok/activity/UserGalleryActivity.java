@@ -81,12 +81,13 @@ public class UserGalleryActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 if(i==0){
-                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    startActivity(intent);
-                    /*Intent i2 = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                    /*Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+                        startActivityForResult(takePictureIntent, 200);
+                    }*/
+                    Intent i2 = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
                     try {
                         PackageManager pm = getPackageManager();
-
                         final ResolveInfo mInfo = pm.resolveActivity(i2, 0);
 
                         Intent intent = new Intent();
@@ -94,15 +95,31 @@ public class UserGalleryActivity extends AppCompatActivity {
                         intent.setAction(Intent.ACTION_MAIN);
                         intent.addCategory(Intent.CATEGORY_LAUNCHER);
 
-                        startActivity(intent);
+                        startActivityForResult(intent,200);
+
                     } catch (Exception e){
                         Log.i("TAG", "Unable to launch camera: " + e);
-                        }*/
+                        }
+                       //galleryAdapter.notifyDataSetChanged();
+
                 }else{
                     Toast.makeText(getApplicationContext(), i+"", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == 200 && resultCode == RESULT_OK){
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(getApplicationContext(), "close", Toast.LENGTH_SHORT).show();
+                    galleryAdapter.notifyDataSetChanged();
+                }
+            });
+        }
     }
 
     public void initComponent(){
