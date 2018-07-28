@@ -3,26 +3,20 @@ package com.example.km.sororok.activity;
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -33,11 +27,8 @@ import android.widget.Toast;
 import com.example.km.sororok.R;
 import com.example.km.sororok.adapter.GalleryAdapter;
 
-import org.w3c.dom.Text;
-
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class UserGalleryActivity extends AppCompatActivity {
@@ -86,6 +77,7 @@ public class UserGalleryActivity extends AppCompatActivity {
         galleryAdapter = new GalleryAdapter(UserGalleryActivity.this, galleryImageUrls);
         gridGallery.setAdapter(galleryAdapter);
         gridGallery.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            //Intent intent;
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 if(i==0){
@@ -95,7 +87,10 @@ public class UserGalleryActivity extends AppCompatActivity {
                     }
 
                 }else{
-                    Toast.makeText(getApplicationContext(), i+"", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent();
+                    intent.putExtra("photo_path", "file//....");
+                    setResult(RESULT_OK, intent);
+                    finish();
                 }
             }
         });
@@ -109,13 +104,16 @@ public class UserGalleryActivity extends AppCompatActivity {
             Bitmap imageB = (Bitmap)extras.get("data");
             Uri tempUri = getImageUri(getApplicationContext(), imageB);
             File finalFile = new File(getRealPathFromURI(tempUri));
-           // Toast.makeText(getApplicationContext(), finalFile.getPath(), Toast.LENGTH_LONG).show();
-
-            Intent intent = new Intent(getApplicationContext(), MyPageActivity.class);
-            intent.putExtra("photo_path", finalFile.getPath());
-            startActivity(intent);
-            finish();
+            sendFirstPhotoPath(finalFile);
         }
+    }
+
+    public void sendFirstPhotoPath(File filePath){
+        Intent intent = new Intent();
+        intent.putExtra("photo_path", filePath.getPath());
+        setResult(RESULT_OK,intent);
+        finish();
+        //startActivity(intent);
     }
 
     public Uri getImageUri(Context inContext, Bitmap inImage) {

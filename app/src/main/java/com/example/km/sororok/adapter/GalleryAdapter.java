@@ -2,13 +2,13 @@ package com.example.km.sororok.adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+
 import com.example.km.sororok.R;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -78,5 +78,6 @@ public class GalleryAdapter extends BaseAdapter{
 
         return view;
     }
+
 
 }

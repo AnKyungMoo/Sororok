@@ -44,7 +44,8 @@
                 android:id="@+id/img_user_photo"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:src="@drawable/user_icon"/>
+                android:src="@drawable/user_icon"
+                android:scaleType="centerCrop"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
