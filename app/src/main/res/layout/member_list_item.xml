@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:paddingTop="30dp"
+        android:paddingBottom="30dp">
+
+        <ImageView
+            android:id="@+id/ivMemberList"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentLeft="true"
+            android:paddingLeft="10dp"/>
+
+        <TextView
+            android:id="@+id/tvMemberList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/ivMemberList"
+            android:paddingLeft="10dp" />
+
+        <ImageView
+            android:id="@+id/ivCall"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:paddingRight="10dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/blackbutton" />
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

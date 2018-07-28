@@ -46,8 +46,8 @@
                 android:id="@+id/btn_setting"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:background="@drawable/setting_button"
-                android:layout_alignParentRight="true"/>
+                android:layout_alignParentRight="true"
+                android:background="@drawable/setting_button" />
 
         </RelativeLayout>
 
@@ -62,7 +62,7 @@
         <ListView
             android:id="@+id/list_member"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
 
     </LinearLayout>
     <Button
