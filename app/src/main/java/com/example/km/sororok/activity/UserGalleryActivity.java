@@ -3,6 +3,7 @@ package com.example.km.sororok.activity;
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -17,6 +18,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -80,6 +82,10 @@ public class UserGalleryActivity extends AppCompatActivity {
             //Intent intent;
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                Uri uri = Uri.parse(galleryAdapter.getItem(i).toString());
+               // File file = new File(galleryAdapter.getItem(i).toString());
+
                 if(i==0){
                     Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                     if(intent.resolveActivity(getPackageManager())!=null){
@@ -87,13 +93,39 @@ public class UserGalleryActivity extends AppCompatActivity {
                     }
 
                 }else{
-                    Intent intent = new Intent();
-                    intent.putExtra("photo_path", "file//....");
+                    cropImage(uri);
+                    /*Intent intent = new Intent("com.android.camera.action.CROP");
+                    intent.putExtra("photo_path", galleryAdapter.getItem(i).toString());
                     setResult(RESULT_OK, intent);
-                    finish();
+                    finish();*/
                 }
             }
         });
+    }
+
+    public void cropImage(Uri uri){
+        try{
+            Intent CropIntent = new Intent("com.android.camera.action.CROP");
+            CropIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            CropIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+
+            CropIntent.setDataAndType(uri, "image/*");
+            Toast.makeText(getApplicationContext(), uri.toString(), Toast.LENGTH_LONG).show();
+            CropIntent.putExtra("crop", "true");
+            CropIntent.putExtra("outputX", 180);
+            CropIntent.putExtra("outputY", 180);
+            CropIntent.putExtra("aspectX", 3);
+            CropIntent.putExtra("aspectY", 4);
+            CropIntent.putExtra("scaleUpIfNeeded", true);
+            CropIntent.putExtra("return-data", true);
+
+            startActivityForResult(CropIntent, 2);
+
+        }catch (ActivityNotFoundException e){
+            String errorMessage = "Whoops - your device doesn't support the crop action!";
+            Toast toast = Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT);
+            toast.show();
+        }
     }
 
 
@@ -105,6 +137,8 @@ public class UserGalleryActivity extends AppCompatActivity {
             Uri tempUri = getImageUri(getApplicationContext(), imageB);
             File finalFile = new File(getRealPathFromURI(tempUri));
             sendFirstPhotoPath(finalFile);
+        } else if(requestCode == 2){
+            Log.i("왔니","ㅔ");
         }
     }
 
@@ -113,7 +147,6 @@ public class UserGalleryActivity extends AppCompatActivity {
         intent.putExtra("photo_path", filePath.getPath());
         setResult(RESULT_OK,intent);
         finish();
-        //startActivity(intent);
     }
 
     public Uri getImageUri(Context inContext, Bitmap inImage) {
