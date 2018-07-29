@@ -32,10 +32,11 @@
                 android:textSize="10pt"/>
         </LinearLayout>
 
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+            android:layout_margin="25dp"
             android:gravity="center">
 
             <ImageView
@@ -50,11 +51,12 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="15dp"
             android:orientation="vertical">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="8pt"
                 android:text="그룹명"/>
             <EditText
                 android:id="@+id/edit_group_name"
@@ -64,87 +66,102 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="그룹설명"/>
-
-            <EditText
-                android:id="@+id/edit_group_explain"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="12dp"/>
+                android:orientation="vertical"
+                android:layout_marginBottom="15dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="8pt"
+                    android:text="그룹설명"/>
 
-        </LinearLayout>
+                <EditText
+                    android:id="@+id/edit_group_explain"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="12dp"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="15dp"
-            android:orientation="vertical">
+            </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:text="전체인원"/>
-
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="15dp"
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="최소 2명"
-                    android:textSize="5pt"
-                    android:layout_alignParentLeft="true"/>
-                <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="전체인원"
+                    android:textSize="8pt"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="최소 2명"
+                        android:textSize="4pt"
+                        android:layout_alignParentLeft="true"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="최대 300명"
+                        android:textSize="4pt"
+                        android:layout_alignParentRight="true"/>
+
+                    <TextView
+                        android:id="@+id/txt_seek_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:text="2명"
+                        android:textSize="6.5pt"
+                        android:textColor="#000000"/>
+                </RelativeLayout>
+
+                <SeekBar
+                    android:id="@+id/seek_total_member"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="최대 300명"
-                    android:textSize="5pt"
-                    android:layout_alignParentRight="true"/>
-            </RelativeLayout>
+                    android:layout_marginRight="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:progress="8"
+                    android:max="300"
+                    android:min="2"
+                    android:progressDrawable="@drawable/seek_bar"
+                    android:thumb="@drawable/seek_thumb"/>
 
-            <SeekBar
-                android:id="@+id/seek_total_member"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:progress="5"
-                android:max="300"
-                android:min="2"/>
+              </LinearLayout>
 
-          </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="코드번호 생성"/>
-
-            <Button
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textSize="15pt"
-                android:text="10W93F"
-                android:textColor="@android:color/black"
-                android:enabled="false"/>
+                android:orientation="vertical">
 
-        </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="코드번호 생성"
+                    android:textSize="8pt"
+                    android:layout_marginBottom="15dp"/>
 
-
-    </LinearLayout>
-
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:textSize="15pt"
+                    android:text="10W93F"
+                    android:textColor="@android:color/black"
+                    android:enabled="false"/>
+            </LinearLayout>
+         </LinearLayout>
     <Button
         android:id="@+id/btn_new_group_complete"
         android:layout_width="match_parent"

@@ -2,11 +2,10 @@ package com.example.km.sororok.activity;
 
 import android.Manifest;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
 
 import com.example.km.sororok.R;
 import com.example.km.sororok.util.PermissionUtil;
@@ -36,7 +35,7 @@ public class SplashActivity extends AppCompatActivity {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    Intent mainIntent = new Intent(SplashActivity.this, MemberListActivity.class);
+                    Intent mainIntent = new Intent(SplashActivity.this, NewGroupActivity.class);
                     SplashActivity.this.startActivity(mainIntent);
                     SplashActivity.this.finish();
                 }

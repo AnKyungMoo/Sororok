@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SeekBar;
+import android.widget.TextView;
 
 import com.example.km.sororok.R;
 
@@ -22,6 +23,7 @@ public class NewGroupActivity extends AppCompatActivity {
     private static final int REQUEST_USER_GALLERY = 1;
     private ImageView imgGroupPhoto;
     private EditText groupName, groupExplain;
+    private TextView seekValue;
     private Button completeBtn;
     private SeekBar totalMemberSeek;
 
@@ -47,6 +49,7 @@ public class NewGroupActivity extends AppCompatActivity {
         groupExplain = (EditText)findViewById(R.id.edit_group_explain);
         completeBtn = (Button)findViewById(R.id.btn_new_group_complete);
         totalMemberSeek = (SeekBar)findViewById(R.id.seek_total_member);
+        seekValue = (TextView)findViewById(R.id.txt_seek_value);
         imgGroupPhoto.setBackground(new ShapeDrawable(new OvalShape()));
         if(Build.VERSION.SDK_INT >= 21) {
             imgGroupPhoto.setClipToOutline(true);
@@ -56,13 +59,14 @@ public class NewGroupActivity extends AppCompatActivity {
     public void seekListener(){
         totalMemberSeek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
-            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
+                int val = (progress * (seekBar.getWidth() - 2 * seekBar.getThumbOffset())) / seekBar.getMax();
+                seekValue.setText(progress+"명");
+                seekValue.setX(seekBar.getX() + val-18+ seekBar.getThumbOffset() / 2);
             }
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-
             }
 
             @Override
