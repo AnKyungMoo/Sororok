@@ -3,7 +3,8 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="seek_bar_background">#919191</color>
-    <color name="seek_bar_progress">#D1D1D1</color>
-    <color name="seek_bar_secondary_progress">#919191</color>
+
+    <color name="seek_bar_background">#969696</color>
+    <color name="seek_bar_progress">#969696</color>
+    <color name="seek_bar_thumb">#D8D8D8</color>
 </resources>
