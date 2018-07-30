@@ -30,6 +30,8 @@
         <activity android:name=".activity.NewGroupActivity"></activity>
         <activity android:name=".activity.UserGalleryActivity"></activity>
         <activity android:name=".activity.MyPageActivity"></activity>
+        <activity android:name=".activity.SettingActivity"></activity>
+        <activity android:name=".activity.CropImageActivity"></activity>
     </application>
 
 </manifest>

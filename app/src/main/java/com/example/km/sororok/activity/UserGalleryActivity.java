@@ -18,7 +18,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -83,9 +82,6 @@ public class UserGalleryActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                Uri uri = Uri.parse(galleryAdapter.getItem(i).toString());
-               // File file = new File(galleryAdapter.getItem(i).toString());
-
                 if(i==0){
                     Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                     if(intent.resolveActivity(getPackageManager())!=null){
@@ -93,11 +89,9 @@ public class UserGalleryActivity extends AppCompatActivity {
                     }
 
                 }else{
-                    cropImage(uri);
-                    /*Intent intent = new Intent("com.android.camera.action.CROP");
-                    intent.putExtra("photo_path", galleryAdapter.getItem(i).toString());
-                    setResult(RESULT_OK, intent);
-                    finish();*/
+                    Intent intent = new Intent(getApplicationContext(), CropImageActivity.class);
+                    intent.putExtra("crop_image_path", galleryAdapter.getItem(i).toString());
+                    startActivityForResult(intent,100);
                 }
             }
         });
@@ -131,15 +125,34 @@ public class UserGalleryActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == 200 && resultCode == RESULT_OK){
-            Bundle extras = data.getExtras();
-            Bitmap imageB = (Bitmap)extras.get("data");
-            Uri tempUri = getImageUri(getApplicationContext(), imageB);
-            File finalFile = new File(getRealPathFromURI(tempUri));
-            sendFirstPhotoPath(finalFile);
-        } else if(requestCode == 2){
-            Log.i("왔니","ㅔ");
+
+        if(resultCode == RESULT_OK){
+            switch (requestCode){
+                case 200:
+                    Bundle extras = data.getExtras();
+                    Bitmap imageB = (Bitmap)extras.get("data");
+                    Uri tempUri = getImageUri(getApplicationContext(), imageB);
+                    File finalFile = new File(getRealPathFromURI(tempUri));
+
+                    /*Intent intent = new Intent(getApplicationContext(), CropImageActivity.class);
+                    intent.putExtra("crop_image_path", finalFile.toString());
+                    startActivityForResult(intent,100);*/
+
+                    sendFirstPhotoPath(finalFile);
+                    break;
+                case 100:
+                    String imagePath = data.getExtras().getString("crop_result");
+                    sendCropPhotoPath(imagePath);
+                    break;
+            }
         }
+    }
+
+    public void sendCropPhotoPath(String imagePath){
+        Intent intent = new Intent();
+        intent.putExtra("photo_path", imagePath);
+        setResult(RESULT_OK, intent);
+        finish();
     }
 
     public void sendFirstPhotoPath(File filePath){

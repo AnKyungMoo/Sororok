@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <com.naver.android.helloyako.imagecrop.view.ImageCropView
+        android:id="@+id/layout_image_crop"
+        xmlns:imagecrop="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        imagecrop:setInnerGridMode="on"
+        imagecrop:gridInnerStroke="1dp"
+        imagecrop:gridInnerColor="#ffffff"
+        imagecrop:setOuterGridMode="on"
+        imagecrop:gridOuterStroke="1dp"
+        imagecrop:gridOuterColor="#ffffff"
+        android:layout_centerInParent="true"
+        android:layout_above="@id/layout_ratio"/>
+
+    <LinearLayout
+        android:id="@+id/layout_ratio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_above="@id/layout_btn"
+        android:weightSum="1">
+
+        <Button
+            android:id="@+id/btn_ratio1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4:3"
+            android:layout_weight="0.2"/>
+        <Button
+            android:id="@+id/btn_ratio2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1:1"
+            android:layout_weight="0.2"/>
+        <Button
+            android:id="@+id/btn_ratio3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3:4"
+            android:layout_weight="0.2"/>
+        <Button
+            android:id="@+id/btn_ratio4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2:3"
+            android:layout_weight="0.2"/>
+
+        <Button
+            android:id="@+id/btn_ratio5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="9:16"
+            android:layout_weight="0.2"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:weightSum="1">
+        <Button
+            android:id="@+id/btn_crop_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="취소"
+            android:layout_weight="0.5"/>
+        <Button
+            android:id="@+id/btn_crop_save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="저장"
+            android:layout_weight="0.5"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

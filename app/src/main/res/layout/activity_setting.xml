@@ -88,8 +88,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="5pt"
-                android:text="개인정보와 기록 뿐만 아니라\n
-                소로록에 저장되어 있는 모든 번호가 지워집니다."/>
+                android:text="개인정보와 기록 뿐만 아니라\n소로록에 저장되어 있는 모든 번호가 지워집니다."/>
         </LinearLayout>
 
         <LinearLayout
