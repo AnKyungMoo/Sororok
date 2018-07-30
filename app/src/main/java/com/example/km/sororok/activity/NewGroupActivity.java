@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.km.sororok.R;
 
 
@@ -26,6 +27,7 @@ public class NewGroupActivity extends AppCompatActivity {
     private TextView seekValue;
     private Button completeBtn;
     private SeekBar totalMemberSeek;
+    private String photoPath;
 
 
     @Override
@@ -41,6 +43,19 @@ public class NewGroupActivity extends AppCompatActivity {
             }
         });
         seekListener();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode == RESULT_OK){
+            switch (requestCode){
+                case REQUEST_USER_GALLERY:
+                    photoPath = data.getStringExtra("photo_path");
+                    if(photoPath!=null)
+                        Glide.with(this).load(photoPath).into(imgGroupPhoto);
+                    break;
+            }
+        }
     }
 
     public void initComponent(){

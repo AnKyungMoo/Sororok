@@ -44,8 +44,6 @@ public class UserGalleryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.acrivity_user_gallery);
 
-        //Intent intent = getIntent();
-
         if (checkPermissionREAD_EXTERNAL_STORAGE(this)) {
             initComponent();
             fetchGalleryImages();

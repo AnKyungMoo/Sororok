@@ -10,7 +10,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.example.km.sororok.R;
 import com.naver.android.helloyako.imagecrop.view.ImageCropView;
@@ -146,7 +145,7 @@ public class CropImageActivity extends AppCompatActivity{
                     runOnUiThread(new Runnable() {
                         @Override
                         public  void run() {
-                            Toast.makeText(getApplicationContext(), "file saved", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(getApplicationContext(), "file saved", Toast.LENGTH_LONG).show();
                         }
                     });
                 }
