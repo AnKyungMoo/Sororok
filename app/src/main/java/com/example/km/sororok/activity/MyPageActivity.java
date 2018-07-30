@@ -3,7 +3,6 @@ package com.example.km.sororok.activity;
 import android.content.Intent;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.example.km.sororok.R;
 
 public class MyPageActivity extends AppCompatActivity {
@@ -48,7 +48,8 @@ public class MyPageActivity extends AppCompatActivity {
         if (requestCode == 1 && resultCode == RESULT_OK) {
             photoPath = data.getStringExtra("photo_path");
             if(photoPath!=null){
-                imgUserPhoto.setImageURI(Uri.parse(photoPath));
+                Glide.with(this).load(photoPath).into(imgUserPhoto);
+                //imgUserPhoto.setImageURI(Uri.parse(photoPath));
             }
         }
     }

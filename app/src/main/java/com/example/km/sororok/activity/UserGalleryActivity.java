@@ -3,7 +3,6 @@ package com.example.km.sororok.activity;
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -95,31 +94,6 @@ public class UserGalleryActivity extends AppCompatActivity {
                 }
             }
         });
-    }
-
-    public void cropImage(Uri uri){
-        try{
-            Intent CropIntent = new Intent("com.android.camera.action.CROP");
-            CropIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            CropIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-
-            CropIntent.setDataAndType(uri, "image/*");
-            Toast.makeText(getApplicationContext(), uri.toString(), Toast.LENGTH_LONG).show();
-            CropIntent.putExtra("crop", "true");
-            CropIntent.putExtra("outputX", 180);
-            CropIntent.putExtra("outputY", 180);
-            CropIntent.putExtra("aspectX", 3);
-            CropIntent.putExtra("aspectY", 4);
-            CropIntent.putExtra("scaleUpIfNeeded", true);
-            CropIntent.putExtra("return-data", true);
-
-            startActivityForResult(CropIntent, 2);
-
-        }catch (ActivityNotFoundException e){
-            String errorMessage = "Whoops - your device doesn't support the crop action!";
-            Toast toast = Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT);
-            toast.show();
-        }
     }
 
 
