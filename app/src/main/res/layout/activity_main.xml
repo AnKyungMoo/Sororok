@@ -6,124 +6,135 @@
     android:layout_height="match_parent"
     tools:context=".activity.MainActivity">
 
-    <LinearLayout
+    <com.sothree.slidinguppanel.SlidingUpPanelLayout
+        xmlns:sothree="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/sliding_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="50dp">
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/blackbutton"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="70dp"
-                android:scaleType="fitXY"/>
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/blackbutton"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="30dp"
-                android:scaleType="fitXY"/>
-
-        </RelativeLayout>
+        android:gravity="bottom"
+        sothree:umanoPanelHeight="68dp"
+        sothree:umanoFadeColor="@android:color/transparent"
+        sothree:umanoShadowHeight="0dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/blackbutton"
-                android:scaleType="fitXY"
-                android:layout_marginLeft="30dp"
-                android:layout_gravity="center_vertical"/>
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="희은님\n안녕하세요!"
-                android:textSize="25sp"
-                android:paddingLeft="30dp"></TextView>
-        </LinearLayout>
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:layout_marginLeft="30dp"
-            android:text="초대받은신 코드번호를 알려주세요"
-            android:textSize="16sp"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="50dp">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/blackbutton"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="70dp"
+                    android:scaleType="fitXY"/>
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/blackbutton"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="30dp"
+                    android:scaleType="fitXY"/>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/blackbutton"
+                    android:scaleType="fitXY"
+                    android:layout_marginLeft="30dp"
+                    android:layout_gravity="center_vertical"/>
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="희은님\n안녕하세요!"
+                    android:textSize="25sp"
+                    android:paddingLeft="30dp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="30dp"
+                android:text="초대받은신 코드번호를 알려주세요"
+                android:textSize="16sp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/ivCodeNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginTop="20dp"
+                    android:src="@drawable/graybox"
+                    android:scaleType="fitXY" />
+
+                <EditText
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/ivCodeNumber"
+                    android:layout_alignTop="@id/ivCodeNumber"
+                    android:hint="코드번호"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@android:color/transparent"
+                    android:textSize="16sp"/>
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:scaleType="fitXY"
+                    android:layout_alignRight="@id/ivCodeNumber"
+                    android:layout_marginRight="10dp"
+                    android:layout_alignTop="@id/ivCodeNumber"
+                    android:layout_marginTop="15dp"
+                    android:src="@drawable/blackbutton"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="450dp">
 
-            <ImageView
-                android:id="@+id/ivCodeNumber"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginTop="20dp"
-                android:src="@drawable/graybox"
-                android:scaleType="fitXY">
-
-            </ImageView>
-            <EditText
-                android:layout_width="200dp"
+            <TextView
+                android:id="@+id/idtext"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@id/ivCodeNumber"
-                android:layout_alignTop="@id/ivCodeNumber"
-                android:hint="코드번호"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
-                android:background="@android:color/transparent"
-                android:textSize="16sp"/>
+                android:layout_centerHorizontal="true"
+                android:text="희은님의 주소록"
+                android:textSize="16sp" />
 
             <ImageView
                 android:layout_width="15dp"
                 android:layout_height="15dp"
-                android:scaleType="fitXY"
-                android:layout_alignRight="@id/ivCodeNumber"
-                android:layout_marginRight="10dp"
-                android:layout_alignTop="@id/ivCodeNumber"
-                android:layout_marginTop="15dp"
-                android:src="@drawable/blackbutton"/>
+                android:src="@drawable/blackbutton"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/idtext"/>
+
         </RelativeLayout>
 
-
-    </LinearLayout>
-
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_alignParentBottom="true"
-    android:orientation="vertical"
-    android:layout_marginBottom="30dp">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:text="희은님의 주소록"
-        android:layout_gravity="center_horizontal"/>
-
-    <ImageView
-        android:layout_width="15dp"
-        android:layout_height="15dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/blackbutton"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"/>
-</LinearLayout>
-
-
+    </com.sothree.slidinguppanel.SlidingUpPanelLayout>
 
 </RelativeLayout>

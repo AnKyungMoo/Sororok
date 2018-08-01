@@ -60,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        /*TODO: x버튼 클릭하면 editText 비우기*/
+        // x 버튼 클릭하면 EditText를 비우고 Focus를 EditText에 맞춤
         xButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
