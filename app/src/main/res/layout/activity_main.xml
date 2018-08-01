@@ -50,13 +50,14 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <ImageView
+                <ImageButton
+                    android:id="@+id/profileButton"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:src="@drawable/blackbutton"
-                    android:scaleType="fitXY"
                     android:layout_marginLeft="30dp"
                     android:layout_gravity="center_vertical"/>
+
                 <TextView
                     android:id="@+id/textView2"
                     android:layout_width="wrap_content"
@@ -119,7 +120,7 @@
             android:layout_height="450dp">
 
             <TextView
-                android:id="@+id/idtext"
+                android:id="@+id/panelText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -131,7 +132,7 @@
                 android:layout_height="15dp"
                 android:src="@drawable/blackbutton"
                 android:layout_centerHorizontal="true"
-                android:layout_below="@+id/idtext"/>
+                android:layout_below="@+id/panelText"/>
 
         </RelativeLayout>
 
