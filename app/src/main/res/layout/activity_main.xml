@@ -27,18 +27,19 @@
                 android:orientation="horizontal"
                 android:layout_marginTop="50dp">
 
-                <ImageView
+                <Button
+                    android:id="@+id/btn_history"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/blackbutton"
+                    android:background="@drawable/backbutton"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="70dp"
                     android:scaleType="fitXY"/>
 
-                <ImageView
+                <Button
+                    android:background="@drawable/blackbutton"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/blackbutton"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="30dp"
                     android:scaleType="fitXY"/>
