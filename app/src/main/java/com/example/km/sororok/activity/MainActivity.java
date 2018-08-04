@@ -25,10 +25,14 @@ public class MainActivity extends AppCompatActivity {
         profileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent newGroupIntent = new Intent(MainActivity.this, NewGroupActivity.class);
-                startActivity(newGroupIntent);
-                finish();
+                Intent newGroupIntent = new Intent(MainActivity.this, MyPageActivity.class);
+                startActivityForResult(newGroupIntent,100);
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

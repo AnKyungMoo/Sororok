@@ -25,7 +25,7 @@ public class NewGroupActivity extends AppCompatActivity {
     private ImageView imgGroupPhoto;
     private EditText groupName, groupExplain;
     private TextView seekValue;
-    private Button completeBtn;
+    private Button completeBtn,backBtn;
     private SeekBar totalMemberSeek;
     private String photoPath;
 
@@ -65,6 +65,13 @@ public class NewGroupActivity extends AppCompatActivity {
         completeBtn = (Button)findViewById(R.id.btn_new_group_complete);
         totalMemberSeek = (SeekBar)findViewById(R.id.seek_total_member);
         seekValue = (TextView)findViewById(R.id.txt_seek_value);
+        backBtn = (Button)findViewById(R.id.btn_back);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         imgGroupPhoto.setBackground(new ShapeDrawable(new OvalShape()));
         if(Build.VERSION.SDK_INT >= 21) {
             imgGroupPhoto.setClipToOutline(true);

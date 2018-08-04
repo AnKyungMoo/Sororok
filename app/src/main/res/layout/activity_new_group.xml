@@ -19,10 +19,11 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <ImageView
+            <Button
+                android:id="@+id/btn_back"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:src="@drawable/backbutton"/>
+                android:background="@drawable/backbutton"/>
 
             <TextView
                 android:layout_width="wrap_content"
