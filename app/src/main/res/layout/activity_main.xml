@@ -7,13 +7,44 @@
     tools:context=".activity.MainActivity"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <ListView
-        android:id="@+id/list_drawer"
+    <RelativeLayout
+        android:id="@+id/layout_linear"
         android:layout_width="220dp"
         android:layout_height="match_parent"
-        android:background="#A9E2F3"
-        android:orientation="vertical"
-        android:layout_gravity="right"/>
+        android:layout_gravity="right"
+        android:background="#A9E2F3">
+
+        <RelativeLayout
+            android:id="@+id/layout_update"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="소식"
+                android:textSize="12pt"
+                android:layout_alignParentLeft="true"/>
+
+            <Button
+                android:id="@+id/btn_history_close"
+                android:layout_width="30dp"
+                android:layout_height="20dp"
+                android:background="@drawable/blackbutton"
+                android:layout_alignParentRight="true"/>
+
+        </RelativeLayout>
+
+        <ListView
+            android:id="@+id/list_drawer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/layout_update"
+            android:orientation="vertical"
+            android:background="#FAAC58"/>
+
+    </RelativeLayout>
 
     <FrameLayout
         android:id="@+id/frame_main"

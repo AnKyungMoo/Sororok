@@ -7,8 +7,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 import com.example.km.sororok.R;
+import com.example.km.sororok.adapter.HistoryAdapter;
 
 /**
  * 메인 액티비티
@@ -18,7 +20,9 @@ public class MainActivity extends AppCompatActivity{
     private Button profileButton;
     private Button historyBtn;
     private DrawerLayout drawerLayout;
-    private ListView listView;
+    private ListView historyListView;
+    private HistoryAdapter historyAdapter;
+    private RelativeLayout relativeLayout;
 
 
     @Override
@@ -26,14 +30,16 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initComponent();
+        setAdapter();
 
 
         historyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                drawerLayout.openDrawer(listView);
+                drawerLayout.openDrawer(relativeLayout);
             }
         });
+
         profileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -44,9 +50,15 @@ public class MainActivity extends AppCompatActivity{
 
     }
 
+    public void setAdapter(){
+        historyAdapter = new HistoryAdapter(this);
+        historyListView.setAdapter(historyAdapter);
+    }
+
     public void initComponent(){
+        relativeLayout = (RelativeLayout) findViewById(R.id.layout_linear);
         drawerLayout = (DrawerLayout)findViewById(R.id.layout_drawer);
-        listView = (ListView)findViewById(R.id.list_drawer);
+        historyListView = (ListView)findViewById(R.id.list_drawer);
         historyBtn = (Button)findViewById(R.id.btn_history);
         profileButton = (Button) findViewById(R.id.profileButton);
     }
