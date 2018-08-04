@@ -5,7 +5,6 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_above="@id/check_open_info"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -34,89 +33,81 @@
 
         </RelativeLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:orientation="vertical"
-            android:gravity="center">
 
-            <ImageView
-                android:id="@+id/img_user_photo"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@drawable/user_icon"
-                android:scaleType="centerCrop"/>
-
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAlignment="center">
-                <EditText
-                    android:id="@+id/txt_user_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="곽희은"
-                    android:textSize="10pt"
-                    android:layout_centerHorizontal="true"/>
+                android:layout_margin="20dp"
+                android:orientation="vertical"
+                android:gravity="center">
+
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="25dp"
-                    android:src="@drawable/pencil_icon"
-                    android:layout_toRightOf="@id/txt_user_name"/>
-            </RelativeLayout>
+                    android:id="@+id/img_user_photo"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/user_icon"
+                    android:scaleType="centerCrop"/>
 
-        </LinearLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center">
+                    <EditText
+                        android:id="@+id/txt_user_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="곽희은"
+                        android:textSize="10pt"
+                        android:layout_centerHorizontal="true"/>
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/pencil_icon"
+                        android:layout_toRightOf="@id/txt_user_name"/>
+                </RelativeLayout>
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:hint="010-0000-0000" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:weightSum="5"
+                android:layout_margin="20dp">
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="example@gmail.com"
-            android:layout_marginBottom="10dp"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:hint="성"
+                    android:layout_weight="1"/>
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="참고 사항을 적어주세요(썬택)"
-            android:gravity="top"
-            android:textSize="7pt"
-            android:background="#EAEAEA"
-            android:layout_marginTop="15dp"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:hint="이름"
+                    android:layout_weight="1"/>
 
-    </LinearLayout>
+               <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:hint="010-0000-0000"
+                   android:layout_weight="1"/>
 
-    <LinearLayout
-        android:id="@+id/check_open_info"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:orientation="vertical"
-        android:layout_alignParentBottom="true">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="정보공개 여부"
-            android:textSize="7pt"
-            android:layout_alignParentLeft="true"/>
-            <Switch
-                android:layout_width="100dp"
-                android:layout_height="30dp"
-                android:layout_alignParentRight="true"/>
-        </RelativeLayout>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="5pt"
-            android:text="이름과 전화번호 이외의 정보를 제공하지 않습니다."/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="example@gmail.com"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="1"/>
 
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:hint="직장"
+                    android:layout_weight="1"/>
+            </LinearLayout>
     </LinearLayout>
 </RelativeLayout>
