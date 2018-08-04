@@ -34,10 +34,6 @@
         <activity android:name=".activity.MyPageActivity" />
         <activity android:name=".activity.SettingActivity" />
         <activity android:name=".activity.CropImageActivity" />
-        <activity
-            android:name=".activity.DrawerActivity"
-            android:label="@string/title_activity_drawer"
-            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>
