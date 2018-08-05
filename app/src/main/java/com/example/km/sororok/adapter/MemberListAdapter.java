@@ -65,5 +65,6 @@ public class MemberListAdapter extends BaseAdapter {
         item.setMemberName(name);
 
         lvMember.add(item);
+        notifyDataSetChanged();
     }
 }

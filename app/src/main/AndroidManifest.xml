@@ -34,6 +34,8 @@
         <activity android:name=".activity.MyPageActivity" />
         <activity android:name=".activity.SettingActivity" />
         <activity android:name=".activity.CropImageActivity" />
+        <activity android:name=".activity.MemberSettingActivity"/>
+        <activity android:name=".activity.EditMemberActivity"/>
     </application>
 
 </manifest>
