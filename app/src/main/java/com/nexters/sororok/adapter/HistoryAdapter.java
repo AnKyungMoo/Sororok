@@ -13,25 +13,30 @@ import java.util.ArrayList;
 public class HistoryAdapter extends BaseAdapter {
 
     private Context context;
-    private ArrayList<String> textNotice;
+    private ArrayList<String> historyContent = new ArrayList<>();
 
     public HistoryAdapter(Context context){
+        super();
         this.context = context;
+    }
+    public HistoryAdapter(Context context, ArrayList<String> historyContent){
+        this.context = context;
+        this.historyContent = historyContent;
     }
 
     @Override
     public int getCount() {
-        return 0;
+        return historyContent.size();
     }
 
     @Override
-    public Object getItem(int i) {
-        return null;
+    public Object getItem(int position) {
+        return historyContent.get(position);
     }
 
     @Override
-    public long getItemId(int i) {
-        return 0;
+    public long getItemId(int position) {
+        return position;
     }
 
     @Override
@@ -42,5 +47,10 @@ public class HistoryAdapter extends BaseAdapter {
         }
 
         return view;
+    }
+
+    public void addHistory(String history){
+        historyContent.add(history);
+        notifyDataSetChanged();
     }
 }

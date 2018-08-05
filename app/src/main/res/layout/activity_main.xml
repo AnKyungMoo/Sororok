@@ -29,13 +29,12 @@
 
             <Button
                 android:id="@+id/btn_history_close"
-                android:layout_width="30dp"
-                android:layout_height="20dp"
-                android:background="@drawable/blackbutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="닫기"
                 android:layout_alignParentRight="true"/>
 
         </RelativeLayout>
-
         <ListView
             android:id="@+id/list_drawer"
             android:layout_width="match_parent"
@@ -73,7 +72,7 @@
                     android:layout_marginTop="50dp">
 
                     <Button
-                        android:id="@+id/btn_history"
+                        android:id="@+id/btn_go_history"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:background="@drawable/backbutton"
@@ -82,6 +81,7 @@
                         android:scaleType="fitXY"/>
 
                     <Button
+                        android:id="@+id/btn_go_setting"
                         android:background="@drawable/blackbutton"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
