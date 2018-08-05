@@ -29,9 +29,7 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
         initComponent();
         setAdapter();
-        historyAdapter.addHistory("넥스터즈 13기 그룹의 곽희은 님의 번호가 변경되었습니다.");
-        historyAdapter.addHistory("소로록이 새롭게 업데이트가 되었습니다.");
-        historyAdapter.addHistory("넥터 13기 그룹이 새롭게 추가 되었습니다.");
+
 
 
         historyBtn.setOnClickListener(new View.OnClickListener() {
@@ -56,6 +54,10 @@ public class MainActivity extends AppCompatActivity{
     public void setAdapter(){
         historyAdapter = new HistoryAdapter(this);
         historyListView.setAdapter(historyAdapter);
+
+        historyAdapter.addHistory("넥스터즈 13기 그룹의 곽희은 님의 번호가 변경되었습니다.");
+        historyAdapter.addHistory("소로록이 새롭게 업데이트가 되었습니다.");
+        historyAdapter.addHistory("넥터 13기 그룹이 새롭게 추가 되었습니다.");
     }
 
     public void initComponent(){

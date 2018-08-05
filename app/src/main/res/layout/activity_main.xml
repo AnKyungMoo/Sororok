@@ -9,10 +9,10 @@
 
     <RelativeLayout
         android:id="@+id/layout_linear"
-        android:layout_width="220dp"
+        android:layout_width="280dp"
         android:layout_height="match_parent"
         android:layout_gravity="right"
-        android:background="#A9E2F3">
+        android:background="#ffffff">
 
         <RelativeLayout
             android:id="@+id/layout_update"
@@ -29,9 +29,9 @@
 
             <Button
                 android:id="@+id/btn_history_close"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="닫기"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:text="X"
                 android:layout_alignParentRight="true"/>
 
         </RelativeLayout>
@@ -41,7 +41,7 @@
             android:layout_height="match_parent"
             android:layout_below="@id/layout_update"
             android:orientation="vertical"
-            android:background="#FAAC58"/>
+            android:background="#FAFAFA"/>
 
     </RelativeLayout>
 

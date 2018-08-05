@@ -1,59 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="20dp"
     android:orientation="vertical">
 
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <TextView
+            android:id="@+id/txt_welcome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="어서와요!"
-            android:textSize="30sp"
-            android:padding="25dp"/>
+            android:layout_marginTop="20dp"
+            android:textSize="12pt"
+            android:layout_alignParentTop="true"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_centerInParent="true">
+
+            <Button
+                android:id="@+id/btn_google_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="구글로 간편 로그인"
+                android:gravity="left"
+                android:layout_marginBottom="8dp"/>
+            <Button
+                android:id="@+id/btn_naver_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="네이버로 간편 로그인"
+                android:gravity="left"
+                android:layout_marginBottom="8dp"/>
+            <Button
+                android:id="@+id/btn_kakao_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="카카오로 간편 로그인(일단 메인으로감)"
+                android:gravity="left"
+                android:layout_marginBottom="8dp"/>
+        </LinearLayout>
 
     </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
-        <ImageButton
-            android:id="@+id/google_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/graybox"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="구글"
-            android:layout_alignTop="@+id/google_button"
-            android:layout_margin="30dp"/>
 
-        <ImageButton
-            android:id="@+id/naver_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/graybox"
-            android:layout_below="@+id/google_button"/>
-
-        <ImageButton
-            android:id="@+id/kakao_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/graybox"
-            android:layout_below="@+id/naver_button"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="이거 누르면 메인 가여"
-            android:layout_alignTop="@+id/kakao_button"
-            android:layout_margin="30dp"/>
-    </RelativeLayout>
 
 </LinearLayout>
