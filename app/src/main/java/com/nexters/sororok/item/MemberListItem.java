@@ -1,4 +1,4 @@
-package com.example.km.sororok.item;
+package com.nexters.sororok.item;
 
 
 import android.graphics.drawable.Drawable;

@@ -1,4 +1,4 @@
-package com.example.km.sororok;
+package com.nexters.sororok;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

@@ -1,4 +1,4 @@
-package com.example.km.sororok.activity;
+package com.nexters.sororok.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -12,14 +12,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-import com.example.km.sororok.R;
+import com.nexters.sororok.R;
 
 /**
  *
  * 로그인 액티비티
  * 메인 액티비티에서 전화번호 정보가 서버에 없으면 로그인 액티비티로 이동함
  */
-public class LoginActivity extends AppCompatActivity {
+public class PreviousLoginActivity extends AppCompatActivity {
 
     EditText phoneEditText;
     ImageButton xButton;
@@ -30,7 +30,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_login_previous);
 
         initializeViewField();
 
@@ -75,7 +75,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 /*TODO: 로그인 정보를 다음 Activity로 넘기기*/
-                Intent mainIntent = new Intent(LoginActivity.this, MainActivity.class);
+                Intent mainIntent = new Intent(PreviousLoginActivity.this, MainActivity.class);
                 startActivity(mainIntent);
                 finish();
             }

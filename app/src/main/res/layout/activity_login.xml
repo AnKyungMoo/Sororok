@@ -1,92 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.LoginActivity">
+    android:layout_margin="20dp"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingTop="100dp"
-        android:focusable="true"
-        android:focusableInTouchMode="true" >
+        android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/txt_welcome"
             android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:layout_marginBottom="8dp"
+            android:layout_height="wrap_content"
             android:text="어서와요!"
-            android:textSize="25sp"
-            android:paddingLeft="30dp" />
+            android:layout_marginTop="20dp"
+            android:textSize="12pt"
+            android:layout_alignParentTop="true"/>
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp">
+            android:orientation="vertical"
+            android:layout_centerInParent="true">
 
-            <EditText
-                android:id="@+id/etMainPhone"
-                android:inputType="phone"
-                android:layout_width="250dp"
-                android:layout_height="40dp"
-                android:layout_centerInParent="true"
-                android:background="@drawable/phone_text_states"
-                android:hint="010-1234-5678"/>
+            <Button
+                android:id="@+id/btn_google_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="구글로 간편 로그인"
+                android:gravity="left"
+                android:layout_marginBottom="8dp"/>
+            <Button
+                android:id="@+id/btn_naver_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="네이버로 간편 로그인"
+                android:gravity="left"
+                android:layout_marginBottom="8dp"/>
+            <Button
+                android:id="@+id/btn_kakao_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="카카오로 간편 로그인(일단 메인으로감)"
+                android:gravity="left"
+                android:layout_marginBottom="8dp"/>
+        </LinearLayout>
 
-            <ImageButton
-                android:id="@+id/xButton"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:src="@drawable/xbutton"
-                android:layout_alignRight="@id/etMainPhone" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp">
-
-
-            <EditText
-                android:id="@+id/etMainName"
-                android:inputType="text"
-                android:layout_width="250dp"
-                android:layout_height="40dp"
-                android:layout_centerInParent="true"
-                android:background="@drawable/edittext_normal"
-                android:hint="이름이 뭐에요?" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/etMainMail"
-                android:layout_width="250dp"
-                android:layout_height="40dp"
-                android:inputType="textEmailAddress"
-                android:layout_centerInParent="true"
-                android:background="@drawable/edittext_normal"
-                android:hint="이메일이 뭐에요?" />
-
-        </RelativeLayout>
+    </RelativeLayout>
 
 
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/loginButton"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:text="로그인" />
 
 
-</RelativeLayout>
+
+</LinearLayout>

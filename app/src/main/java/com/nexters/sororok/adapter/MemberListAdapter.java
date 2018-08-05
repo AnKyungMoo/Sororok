@@ -1,4 +1,4 @@
-package com.example.km.sororok.adapter;
+package com.nexters.sororok.adapter;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -10,8 +10,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.km.sororok.R;
-import com.example.km.sororok.item.MemberListItem;
+import com.nexters.sororok.R;
+import com.nexters.sororok.item.MemberListItem;
 
 import java.util.ArrayList;
 import java.util.TreeSet;

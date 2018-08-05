@@ -1,10 +1,10 @@
-package com.example.km.sororok.activity;
+package com.nexters.sororok.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import com.example.km.sororok.R;
+import com.nexters.sororok.R;
 
 public class SettingActivity extends AppCompatActivity{
     @Override
