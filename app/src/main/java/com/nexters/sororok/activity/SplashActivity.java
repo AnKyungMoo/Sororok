@@ -1,4 +1,4 @@
-package com.example.km.sororok.activity;
+package com.nexters.sororok.activity;
 
 import android.Manifest;
 import android.content.Intent;
@@ -7,8 +7,8 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 
-import com.example.km.sororok.R;
-import com.example.km.sororok.util.PermissionUtil;
+import com.nexters.sororok.R;
+import com.nexters.sororok.util.PermissionUtil;
 
 /**
  * 스플래시 액티비티

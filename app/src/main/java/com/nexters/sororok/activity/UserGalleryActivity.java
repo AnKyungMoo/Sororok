@@ -1,4 +1,4 @@
-package com.example.km.sororok.activity;
+package com.nexters.sororok.activity;
 
 import android.Manifest;
 import android.app.Activity;
@@ -24,8 +24,8 @@ import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.km.sororok.R;
-import com.example.km.sororok.adapter.GalleryAdapter;
+import com.nexters.sororok.R;
+import com.nexters.sororok.adapter.GalleryAdapter;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;

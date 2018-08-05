@@ -1,4 +1,4 @@
-package com.example.km.sororok.activity;
+package com.nexters.sororok.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,8 +9,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
-import com.example.km.sororok.R;
-import com.example.km.sororok.adapter.HistoryAdapter;
+import com.nexters.sororok.R;
+import com.nexters.sororok.adapter.HistoryAdapter;
 
 /**
  * 메인 액티비티

@@ -1,4 +1,4 @@
-package com.example.km.sororok.activity;
+package com.nexters.sororok.activity;
 
 import android.content.Intent;
 import android.graphics.drawable.ShapeDrawable;
@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.example.km.sororok.R;
+import com.nexters.sororok.R;
 
 public class MyPageActivity extends AppCompatActivity {
 

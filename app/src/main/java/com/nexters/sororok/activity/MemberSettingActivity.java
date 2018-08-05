@@ -1,9 +1,9 @@
-package com.example.km.sororok.activity;
+package com.nexters.sororok.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.example.km.sororok.R;
+import com.nexters.sororok.R;
 
 /**
  *

@@ -1,4 +1,4 @@
-package com.example.km.sororok.activity;
+package com.nexters.sororok.activity;
 
 import android.content.Intent;
 import android.graphics.drawable.ShapeDrawable;
@@ -15,7 +15,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.km.sororok.R;
+import com.nexters.sororok.R;
 
 
 //그룹 생성 화면

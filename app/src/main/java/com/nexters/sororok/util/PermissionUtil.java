@@ -1,4 +1,4 @@
-package com.example.km.sororok.util;
+package com.nexters.sororok.util;
 
 import android.Manifest;
 import android.app.Activity;

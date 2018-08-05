@@ -1,4 +1,4 @@
-package com.example.km.sororok.activity;
+package com.nexters.sororok.activity;
 
 import android.graphics.drawable.Drawable;
 import android.media.Image;
@@ -7,9 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListView;
 
-import com.example.km.sororok.R;
-import com.example.km.sororok.adapter.MemberListAdapter;
-import com.example.km.sororok.item.MemberListItem;
+import com.nexters.sororok.R;
+import com.nexters.sororok.adapter.MemberListAdapter;
+import com.nexters.sororok.item.MemberListItem;
 
 import java.util.ArrayList;
 
