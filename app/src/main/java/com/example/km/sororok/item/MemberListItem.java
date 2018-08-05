@@ -7,6 +7,11 @@ public class MemberListItem{
     private Drawable memberProfile;
     private String memberName;
 
+    public MemberListItem(Drawable memberProfile, String memberName){
+        this.memberName = memberName;
+        this.memberProfile = memberProfile;
+    }
+
     public Drawable getMemberProfile() {
         return memberProfile;
     }
