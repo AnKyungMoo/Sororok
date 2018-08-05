@@ -12,12 +12,13 @@
 
         <TextView
             android:id="@+id/txt_welcome"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="어서와요!"
             android:layout_marginTop="20dp"
-            android:textSize="12pt"
-            android:layout_alignParentTop="true"/>
+            android:text="어서와요!"
+            android:textColor="#000000"
+            android:layout_alignParentTop="true"
+            android:textSize="12pt"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -28,21 +29,21 @@
             <Button
                 android:id="@+id/btn_google_login"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:text="구글로 간편 로그인"
                 android:gravity="left"
                 android:layout_marginBottom="8dp"/>
             <Button
                 android:id="@+id/btn_naver_login"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:text="네이버로 간편 로그인"
                 android:gravity="left"
                 android:layout_marginBottom="8dp"/>
             <Button
                 android:id="@+id/btn_kakao_login"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:text="카카오로 간편 로그인(일단 메인으로감)"
                 android:gravity="left"
                 android:layout_marginBottom="8dp"/>
