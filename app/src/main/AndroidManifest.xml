@@ -38,6 +38,13 @@
         <activity android:name=".activity.CropImageActivity" />
         <activity android:name=".activity.MemberSettingActivity"/>
         <activity android:name=".activity.EditMemberActivity"/>
+        <receiver android:name=".service.CallBroadcastReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.PHONE_STATE"/>
+            </intent-filter>
+        </receiver>
+        <service android:name=".service.CallService"/>
     </application>
+
 
 </manifest>
