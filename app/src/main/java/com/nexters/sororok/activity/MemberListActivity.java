@@ -1,10 +1,8 @@
 package com.nexters.sororok.activity;
 
-import android.graphics.drawable.Drawable;
-import android.media.Image;
+import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.widget.ListView;
 
 import com.nexters.sororok.R;
@@ -23,6 +21,7 @@ public class MemberListActivity extends AppCompatActivity {
 
     ListView listView;
     MemberListAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
