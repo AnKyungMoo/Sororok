@@ -62,12 +62,15 @@
         <ListView
             android:id="@+id/list_member"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_marginBottom="50dp"/>
+
+
 
     </LinearLayout>
     <Button
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:text="선택 저장"/>
+        android:text="선택 저장" />
 </RelativeLayout>

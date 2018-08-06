@@ -9,6 +9,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="History1"
-        android:textSize="8pt"/>
+        android:layout_margin="30dp"
+        android:textColor="#000000"
+        android:textSize="9pt"/>
 
 </RelativeLayout>

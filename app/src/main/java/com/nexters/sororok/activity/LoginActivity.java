@@ -24,7 +24,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import com.nexters.sororok.R;
 
 public class LoginActivity extends AppCompatActivity{
-
+    
     private static final String TAG = LoginActivity.class.getSimpleName();
     private static final int RC_SIGN_IN = 9001;
 
