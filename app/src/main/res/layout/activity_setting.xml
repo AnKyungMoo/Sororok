@@ -50,6 +50,32 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="연락처 업데이트"
+                    android:textSize="7pt"
+                    android:layout_alignParentLeft="true"/>
+                <Button
+                    android:layout_width="35dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"/>
+            </RelativeLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="5pt"
+                android:text="내장 주소록에 등록되어있는 번호와\n소로록에 등록되어있는 번호를 업데이트 시킵니다."/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_margin="20dp"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="알림"
                     android:textSize="7pt"
                     android:layout_alignParentLeft="true"/>
@@ -89,6 +115,32 @@
                 android:layout_height="wrap_content"
                 android:textSize="5pt"
                 android:text="개인정보와 기록 뿐만 아니라\n소로록에 저장되어 있는 모든 번호가 지워집니다."/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_margin="20dp"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="로그아웃"
+                    android:textSize="7pt"
+                    android:layout_alignParentLeft="true"/>
+                <Button
+                    android:layout_width="35dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"/>
+            </RelativeLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="5pt"
+                android:text="개인정보와 기록은 지워지지 않습니다."/>
         </LinearLayout>
 
         <LinearLayout

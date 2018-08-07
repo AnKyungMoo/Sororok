@@ -17,7 +17,7 @@ import com.nexters.sororok.adapter.HistoryAdapter;
  */
 public class MainActivity extends AppCompatActivity{
 
-    private Button profileButton,historyBtn,historyCloseBtn,settingBtn;
+    private Button profileButton,historyBtn,historyCloseBtn,settingBtn,addGroupBtn;
     private DrawerLayout drawerLayout;
     private ListView historyListView;
     private HistoryAdapter historyAdapter;
@@ -48,6 +48,23 @@ public class MainActivity extends AppCompatActivity{
             }
         });
 
+        settingBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent settingIntent = new Intent(MainActivity.this, SettingActivity.class);
+                startActivityForResult(settingIntent,200);
+
+            }
+        });
+
+        addGroupBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent newGroupIntent = new Intent(MainActivity.this, NewGroupActivity.class);
+                startActivityForResult(newGroupIntent, 300);
+            }
+        });
+
 
     }
 
@@ -68,13 +85,14 @@ public class MainActivity extends AppCompatActivity{
         }
 
 
-        relativeLayout = (RelativeLayout) findViewById(R.id.layout_linear);
-        drawerLayout = (DrawerLayout)findViewById(R.id.layout_drawer);
-        historyListView = (ListView)findViewById(R.id.list_drawer);
-        historyBtn = (Button)findViewById(R.id.btn_go_history);
-        settingBtn = (Button)findViewById(R.id.btn_go_setting);
-        profileButton = (Button) findViewById(R.id.profileButton);
-        historyCloseBtn = (Button)findViewById(R.id.btn_history_close);
+        relativeLayout = findViewById(R.id.layout_linear);
+        drawerLayout = findViewById(R.id.layout_drawer);
+        historyListView = findViewById(R.id.list_drawer);
+        historyBtn = findViewById(R.id.btn_go_history);
+        settingBtn = findViewById(R.id.btn_go_setting);
+        profileButton = findViewById(R.id.profileButton);
+        historyCloseBtn = findViewById(R.id.btn_history_close);
+        addGroupBtn = findViewById(R.id.btn_add_new_group);
 
     }
 

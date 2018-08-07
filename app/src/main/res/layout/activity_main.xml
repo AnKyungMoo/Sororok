@@ -67,7 +67,7 @@
                     android:layout_height="30dp"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="70dp"
-                    android:background="@drawable/backbutton"
+                    android:background="@drawable/blackbutton"
                     android:scaleType="fitXY" />
 
                 <Button
@@ -152,5 +152,17 @@
 
         </LinearLayout>
     </FrameLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="30dp">
+        <Button
+            android:id="@+id/btn_add_new_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:text="그룹 추가"/>
+    </RelativeLayout>
 
 </android.support.v4.widget.DrawerLayout>

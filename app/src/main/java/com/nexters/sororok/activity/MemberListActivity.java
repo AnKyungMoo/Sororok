@@ -1,8 +1,10 @@
 package com.nexters.sororok.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.nexters.sororok.R;
@@ -21,12 +23,15 @@ public class MemberListActivity extends AppCompatActivity {
 
     ListView listView;
     MemberListAdapter adapter;
+    private Button groupManageBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_member_list);
-
+        groupManageBtn = findViewById(R.id.btn_setting);
+        Intent groupSettingIntent = new Intent(MemberListActivity.this, MemberSettingActivity.class);
+        startActivityForResult(groupSettingIntent, 400);
 
         listView=(ListView)findViewById(R.id.list_member);
 
