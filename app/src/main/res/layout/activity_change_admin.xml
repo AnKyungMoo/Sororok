@@ -40,6 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/admin_change_title"
+        android:layout_above="@id/btn_admin_update"
         android:layout_margin="20dp">
 
         <EditText
@@ -116,5 +117,12 @@
 
             </RelativeLayout>
     </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_admin_update"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="변경하기"
+        android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>
