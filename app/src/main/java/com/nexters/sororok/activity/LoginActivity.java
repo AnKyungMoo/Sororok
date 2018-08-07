@@ -1,5 +1,6 @@
 package com.nexters.sororok.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -22,17 +23,27 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.nexters.sororok.R;
+import com.nhn.android.naverlogin.OAuthLogin;
+import com.nhn.android.naverlogin.OAuthLoginHandler;
+
+import java.lang.ref.WeakReference;
 
 public class LoginActivity extends AppCompatActivity{
-    
+
+    // google
     private static final String TAG = LoginActivity.class.getSimpleName();
     private static final int RC_SIGN_IN = 9001;
 
-    ImageButton googleButton;
-    ImageButton kakaoButton;
-
     private FirebaseAuth mAuth;
     private GoogleSignInClient mGoogleSignInClient;
+
+    //naver
+    public static OAuthLogin mOAuthLoginModule;
+
+    // view
+    ImageButton googleButton;
+    ImageButton naverButton;
+    ImageButton kakaoButton;
 
 
     @Override
@@ -46,17 +57,38 @@ public class LoginActivity extends AppCompatActivity{
                 .requestEmail()
                 .build();
 
+        // google
         mAuth = FirebaseAuth.getInstance();
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
+        // naver
+        mOAuthLoginModule = OAuthLogin.getInstance();
+        mOAuthLoginModule.init(
+                LoginActivity.this,
+                "mmelSUnAaeJAGWhIYNQG",
+                "nVlJHMh6vf",
+                "Sororok"
+        );
+
         googleButton = findViewById(R.id.google_button);
+        naverButton = findViewById(R.id.naver_button);
         kakaoButton = findViewById(R.id.kakao_button);
 
         googleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 signIn();
+            }
+        });
+
+        naverButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mOAuthLoginModule.startOauthLoginActivity(LoginActivity.this, mOAuthLoginHandler);
+                Intent intent = new Intent(LoginActivity.this, LoginInfoActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
 
@@ -82,6 +114,36 @@ public class LoginActivity extends AppCompatActivity{
     private void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
+
+    // naver
+    private OAuthLoginHandler mOAuthLoginHandler = new NaverLoginHandler(this);
+
+    // handler를 그냥 사용하면 메모리 누수가 있을 수 있으니 static으로 만들어서 사용
+    private static class NaverLoginHandler extends OAuthLoginHandler {
+        private final WeakReference<LoginActivity> mActivity;
+
+        public NaverLoginHandler(LoginActivity activity) {
+            mActivity = new WeakReference<LoginActivity>(activity);
+        }
+
+
+        @Override
+        public void run(boolean success) {
+            LoginActivity activity = mActivity.get();
+
+            if (success) {
+                String accessToken = mOAuthLoginModule.getAccessToken(activity);
+                String refreshToken = mOAuthLoginModule.getRefreshToken(activity);
+                long expiresAt = mOAuthLoginModule.getExpiresAt(activity);
+                String tokenType = mOAuthLoginModule.getTokenType(activity);
+            } else {
+                String errorCode = mOAuthLoginModule.getLastErrorCode(activity).getCode();
+                String errorDesc = mOAuthLoginModule.getLastErrorDesc(activity);
+                Toast.makeText(activity, "errorCode:" + errorCode
+                        + ", errorDesc:" + errorDesc, Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     @Override

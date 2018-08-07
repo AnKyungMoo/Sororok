@@ -41,6 +41,13 @@
             android:src="@drawable/graybox"
             android:layout_below="@+id/google_button"/>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="네이버"
+            android:layout_alignTop="@+id/naver_button"
+            android:layout_margin="30dp"/>
+
         <ImageButton
             android:id="@+id/kakao_button"
             android:layout_width="wrap_content"

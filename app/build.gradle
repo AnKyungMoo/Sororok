@@ -35,6 +35,11 @@ dependencies {
     repositories {
         mavenCentral()
     }
+    implementation 'com.naver.nid:naveridlogin-android-sdk:4.2.0'
+    implementation files ('libs/naveridlogin_android_sdk_4.2.0.aar')
+    implementation 'com.android.support:support-core-utils:26.1.0'
+    implementation 'com.android.support:customtabs:26.1.0'
+    implementation 'com.android.support:support-v4:26.1.0'
     implementation 'com.android.support:recyclerview-v7:26.1.0'
 }
 
