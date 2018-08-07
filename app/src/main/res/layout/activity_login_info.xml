@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="30dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="하단의 정보가 정확한지 확인해주세요!"
+            android:textSize="20sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="20dp"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp">
+
+            <ImageButton
+                android:id="@+id/login_profile_button"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/user_icon"
+                android:background="@android:color/transparent"
+                android:scaleType="fitXY"
+                android:layout_centerHorizontal="true"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+
+            <EditText
+                android:id="@+id/edit_login_name"
+                android:layout_width="250dp"
+                android:layout_height="40dp"
+                android:background="@drawable/edittext_normal"
+                android:layout_centerHorizontal="true"
+                android:hint="이름"/>
+
+            <ImageButton
+                android:id="@+id/login_name_xbutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/temp_xbutton"
+                android:background="@android:color/transparent"
+                android:layout_alignRight="@+id/edit_login_name"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+
+            <EditText
+                android:id="@+id/edit_login_phone"
+                android:layout_width="250dp"
+                android:layout_height="40dp"
+                android:background="@drawable/edittext_normal"
+                android:layout_centerHorizontal="true"
+                android:hint="010-1234-5678"/>
+
+            <ImageButton
+                android:id="@+id/login_phone_xbutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/temp_xbutton"
+                android:background="@android:color/transparent"
+                android:layout_alignRight="@+id/edit_login_phone"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/edit_login_email"
+                android:layout_width="250dp"
+                android:layout_height="40dp"
+                android:background="@drawable/edittext_normal"
+                android:layout_centerHorizontal="true"
+                android:hint="1234@gmail.com"/>
+
+            <ImageButton
+                android:id="@+id/login_email_xbutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/temp_xbutton"
+                android:background="@android:color/transparent"
+                android:layout_alignRight="@+id/edit_login_email"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/login_config_button"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"/>
+</RelativeLayout>
