@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
+    android:id="@+id/layout_main"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -166,58 +167,68 @@
 
     </LinearLayout>
 
-    <RelativeLayout
-        android:id="@+id/layout_when_click_remove_info"
+   <!-- <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="invisible">
-            <LinearLayout
-                android:id="@+id/layout_slide_down"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_alignParentTop="true"
-                android:background="#8C505050"
-                android:orientation="horizontal"
-                android:layout_above="@id/layout_sure_txt"/>
-            <LinearLayout
-                android:id="@+id/layout_sure_txt"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/layout_when_click_remove_info"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+                &lt;!&ndash;<LinearLayout
+                    android:id="@+id/layout_slide_down"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:background="#8C505050"
+                    android:orientation="horizontal"
+                    android:layout_above="@id/layout_sure_txt"/>&ndash;&gt;-->
+            <RelativeLayout
+                android:id="@+id/layout_animation"
                 android:layout_width="match_parent"
                 android:layout_height="240dp"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:background="#ffffff"
-                android:layout_above="@id/layout_select_button">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="정말 계정을 삭제하시려구요?"
-                    android:textColor="#000000"
-                    android:textSize="8pt"
-                    android:paddingBottom="30dp"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="해당 계정 삭제시 어쩌고저쩌꿎주\n얄리얄리얄라셩얄라리얄라"/>
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/layout_select_button"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
-            android:layout_alignParentBottom="true"
-            android:weightSum="1">
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="로그아웃"
-                android:layout_weight="0.5"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="계정삭제"
-                android:layout_weight="0.5"/>
+                android:layout_alignParentBottom="true"
+                android:visibility="invisible">
+                <LinearLayout
+                    android:id="@+id/layout_sure_txt"
+                    android:layout_width="match_parent"
+                    android:layout_height="240dp"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:background="#ffffff"
+                    android:layout_above="@id/layout_select_button">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="정말 계정을 삭제하시려구요?"
+                        android:textColor="#000000"
+                        android:textSize="8pt"
+                        android:paddingBottom="30dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="해당 계정 삭제시 어쩌고저쩌꿎주\n얄리얄리얄라셩얄라리얄라"/>
+                 </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/layout_select_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal"
+                    android:layout_alignParentBottom="true"
+                    android:weightSum="1">
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="로그아웃"
+                        android:layout_weight="0.5"/>
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="계정삭제"
+                        android:layout_weight="0.5"/>
+                </LinearLayout>
+            </RelativeLayout>
 
-        </LinearLayout>
-
-    </RelativeLayout>
+       <!-- </RelativeLayout>
+    </RelativeLayout>-->
 </RelativeLayout>
