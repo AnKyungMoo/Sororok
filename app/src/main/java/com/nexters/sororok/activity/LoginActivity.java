@@ -23,10 +23,12 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.nexters.sororok.R;
+import com.nexters.sororok.asynctask.NaverTokenTask;
 import com.nhn.android.naverlogin.OAuthLogin;
 import com.nhn.android.naverlogin.OAuthLoginHandler;
 
 import java.lang.ref.WeakReference;
+import java.util.concurrent.ExecutionException;
 
 public class LoginActivity extends AppCompatActivity{
 
@@ -44,7 +46,6 @@ public class LoginActivity extends AppCompatActivity{
     ImageButton googleButton;
     ImageButton naverButton;
     ImageButton kakaoButton;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,9 +87,6 @@ public class LoginActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 mOAuthLoginModule.startOauthLoginActivity(LoginActivity.this, mOAuthLoginHandler);
-                Intent intent = new Intent(LoginActivity.this, LoginInfoActivity.class);
-                startActivity(intent);
-                finish();
             }
         });
 
@@ -137,6 +135,26 @@ public class LoginActivity extends AppCompatActivity{
                 String refreshToken = mOAuthLoginModule.getRefreshToken(activity);
                 long expiresAt = mOAuthLoginModule.getExpiresAt(activity);
                 String tokenType = mOAuthLoginModule.getTokenType(activity);
+
+                NaverTokenTask tokenTask = new NaverTokenTask();
+
+                tokenTask.execute(accessToken);
+
+                try {
+                    String token = tokenTask.get();
+
+                    Intent intent = new Intent(activity, LoginInfoActivity.class);
+
+                    intent.putExtra("loginType", "naver");
+                    intent.putExtra("naverToken", token);
+
+                    activity.startActivity(intent);
+                    activity.finish();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
             } else {
                 String errorCode = mOAuthLoginModule.getLastErrorCode(activity).getCode();
                 String errorDesc = mOAuthLoginModule.getLastErrorDesc(activity);
@@ -180,6 +198,7 @@ public class LoginActivity extends AppCompatActivity{
                             Log.d("CompleteEmail: ", user.getEmail());
 
                             Intent intent = new Intent(LoginActivity.this, LoginInfoActivity.class);
+                            intent.putExtra("loginType", "google");
                             startActivity(intent);
                             finish();
                         } else {
