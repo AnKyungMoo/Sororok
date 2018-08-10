@@ -59,7 +59,7 @@
             android:textSize="7pt"
             android:layout_margin="15dp"/>
 
-        <ListView
+        <com.nexters.sororok.adapter.MemberListwithAdapter
             android:id="@+id/list_member"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

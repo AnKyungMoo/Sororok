@@ -9,6 +9,7 @@ import android.widget.ListView;
 
 import com.nexters.sororok.R;
 import com.nexters.sororok.adapter.MemberListAdapter;
+import com.nexters.sororok.adapter.MemberListwithAdapter;
 import com.nexters.sororok.item.MemberListItem;
 
 import java.util.ArrayList;
@@ -21,8 +22,7 @@ import java.util.ArrayList;
 
 public class MemberListActivity extends AppCompatActivity {
 
-    ListView listView;
-    MemberListAdapter adapter;
+    private MemberListwithAdapter listView;
     private Button groupManageBtn;
 
     @Override
@@ -31,15 +31,12 @@ public class MemberListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_member_list);
         groupManageBtn = findViewById(R.id.btn_setting);
         Intent groupSettingIntent = new Intent(MemberListActivity.this, MemberSettingActivity.class);
-        startActivityForResult(groupSettingIntent, 400);
+//        startActivityForResult(groupSettingIntent, 400);
 
-        listView=(ListView)findViewById(R.id.list_member);
+        listView=findViewById(R.id.list_member);
 
 
 
-        adapter = new MemberListAdapter(this);
-
-        String[] consonant = {"ㄱ","ㄴ","ㄷ","ㄹ","ㅁ","ㅂ","ㅅ","ㅇ","ㅈ","ㅊ","ㅋ","ㅌ","ㅍ","ㅎ"};
         ArrayList<String> name = new ArrayList<>();
         name.add("강문정");
         name.add("곽희은");
@@ -49,23 +46,29 @@ public class MemberListActivity extends AppCompatActivity {
         name.add("안경무");
         name.add("주한빈");
         name.add("한희영");
+        MemberListwithAdapter.MemberlistAdapter mAdapter= new MemberListwithAdapter.MemberlistAdapter(this);
+        String consonant[] = listView.setKeywordList(name);
+
+
         int i = 0;
         int j = 0;
         while(j<name.size()) {
-            if (Direct(name.get(j)) == consonant[i]) {
-                adapter.addHeaderItem(new MemberListItem(null, consonant[i]));
-                adapter.addItem(new MemberListItem(ContextCompat.getDrawable(this, R.drawable.blackbutton), name.get(j)));
+            if (Direct(name.get(j)).equals(consonant[i])) {
+                mAdapter.addHeaderItem(new MemberListItem(null, consonant[i]));
+                mAdapter.addItem(new MemberListItem(ContextCompat.getDrawable(this, R.drawable.blackbutton), name.get(j)));
+                if(i<consonant.length-1)
                 i++;
                 j++;
             } else if(Direct(name.get(j)).compareTo(consonant[i])<0){
-                adapter.addItem(new MemberListItem(ContextCompat.getDrawable(this, R.drawable.blackbutton), name.get(j)));
+                mAdapter.addItem(new MemberListItem(ContextCompat.getDrawable(this, R.drawable.blackbutton), name.get(j)));
                 j++;
             } else {
                 i++;
             }
         }
 
-        listView.setAdapter(adapter);
+
+        listView.setAdapter(mAdapter);
 
 
     }
