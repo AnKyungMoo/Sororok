@@ -319,7 +319,7 @@ public class MemberListwithAdapter extends ListView{
                         int currentPosition = (int) Math.floor(y / indexSize);
                         section = sections[currentPosition];
                         showLetter = true;
-                        this.setSelection(((SectionIndexer) getAdapter()).getPositionForSection(currentPosition));
+                        this.setSelection(((SectionIndexer) getAdapter()).getPositionForSection(currentPosition)+currentPosition);
                     } catch (Exception e) {
                  }
                 }
@@ -336,7 +336,7 @@ public class MemberListwithAdapter extends ListView{
                         int currentPosition = (int) Math.floor(y / indexSize);
                         section = sections[currentPosition];
                         showLetter = true;
-                        this.setSelection(((SectionIndexer) getAdapter()).getPositionForSection(currentPosition));
+                        this.setSelection(((SectionIndexer) getAdapter()).getPositionForSection(currentPosition)+currentPosition);
                     } catch (Exception e) {
 
                     }
@@ -416,11 +416,11 @@ public class MemberListwithAdapter extends ListView{
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            MemberListAdapter.ViewHolder holder = null;
+            MemberlistAdapter.ViewHolder holder = null;
             int rowType = getItemViewType(position);
 
             if(convertView == null){
-                holder = new MemberListAdapter.ViewHolder();
+                holder = new MemberlistAdapter.ViewHolder();
                 switch (rowType) {
                     case TYPE_ITEM:
                         convertView = mInfalater.inflate(R.layout.member_list_item, null);
@@ -434,7 +434,7 @@ public class MemberListwithAdapter extends ListView{
                 }
                 convertView.setTag(holder);
             } else {
-                holder = (MemberListAdapter.ViewHolder)convertView.getTag();
+                holder = (MemberlistAdapter.ViewHolder)convertView.getTag();
             }
 
             if(rowType == TYPE_ITEM){
@@ -461,6 +461,11 @@ public class MemberListwithAdapter extends ListView{
         @Override
         public int getSectionForPosition(int i) {
             return 0;
+        }
+
+        public static class ViewHolder{
+            public TextView textView;
+            public ImageView imageView;
         }
     }
 

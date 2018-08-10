@@ -8,11 +8,13 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.nexters.sororok.R;
-import com.nexters.sororok.adapter.MemberListAdapter;
 import com.nexters.sororok.adapter.MemberListwithAdapter;
 import com.nexters.sororok.item.MemberListItem;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * 멤버리스트 액티비티
@@ -37,15 +39,8 @@ public class MemberListActivity extends AppCompatActivity {
 
 
 
-        ArrayList<String> name = new ArrayList<>();
-        name.add("강문정");
-        name.add("곽희은");
-        name.add("김혜리");
-        name.add("남수민");
-        name.add("신상훈");
-        name.add("안경무");
-        name.add("주한빈");
-        name.add("한희영");
+        ArrayList<String> name = new ArrayList<String>(Arrays.asList("강문정","한희영","곽희은","안경무","김혜리","주한빈","신상훈","Apple","2주남음","Nexters","살려주세요","index","Android","!!!!"));
+
         MemberListwithAdapter.MemberlistAdapter mAdapter= new MemberListwithAdapter.MemberlistAdapter(this);
         String consonant[] = listView.setKeywordList(name);
 
@@ -53,13 +48,17 @@ public class MemberListActivity extends AppCompatActivity {
         int i = 0;
         int j = 0;
         while(j<name.size()) {
-            if (Direct(name.get(j)).equals(consonant[i])) {
+            String firstString =name.get(j).substring(0,1);
+            char firstChar = firstString.charAt(0);
+            if(isKorean(firstChar))
+                firstString=Direct(firstString);
+            if (firstString.equals(consonant[i])) {
                 mAdapter.addHeaderItem(new MemberListItem(null, consonant[i]));
                 mAdapter.addItem(new MemberListItem(ContextCompat.getDrawable(this, R.drawable.blackbutton), name.get(j)));
                 if(i<consonant.length-1)
                 i++;
                 j++;
-            } else if(Direct(name.get(j)).compareTo(consonant[i])<0){
+            } else if(firstString.compareTo(consonant[i])<0){
                 mAdapter.addItem(new MemberListItem(ContextCompat.getDrawable(this, R.drawable.blackbutton), name.get(j)));
                 j++;
             } else {
@@ -71,6 +70,10 @@ public class MemberListActivity extends AppCompatActivity {
         listView.setAdapter(mAdapter);
 
 
+    }
+
+    private boolean isKorean(char ch) {
+        return ch >= Integer.parseInt("AC00", 16) && ch <= Integer.parseInt("D7A3", 16);
     }
 
     public String Direct(String name){
