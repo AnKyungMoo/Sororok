@@ -4,17 +4,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Button;
-import android.widget.ListView;
 
 import com.nexters.sororok.R;
 import com.nexters.sororok.adapter.MemberListwithAdapter;
 import com.nexters.sororok.item.MemberListItem;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * 멤버리스트 액티비티
@@ -32,8 +30,14 @@ public class MemberListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_member_list);
         groupManageBtn = findViewById(R.id.btn_setting);
-        Intent groupSettingIntent = new Intent(MemberListActivity.this, MemberSettingActivity.class);
-//        startActivityForResult(groupSettingIntent, 400);
+        groupManageBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent groupSettingIntent = new Intent(MemberListActivity.this, MemberSettingActivity.class);
+                startActivityForResult(groupSettingIntent, 400);
+            }
+        });
+
 
         listView=findViewById(R.id.list_member);
 
