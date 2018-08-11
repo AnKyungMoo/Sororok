@@ -19,6 +19,7 @@ public class SettingActivity extends AppCompatActivity{
     private Switch noticeSwitch;
     private Animation slideUpAnimation, slideDownAnimation;
     private RelativeLayout layoutMain, layoutMove;
+    private CustomDialog customDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,6 +40,17 @@ public class SettingActivity extends AppCompatActivity{
                 layoutMain.setBackgroundColor(Color.argb(80,50,50,50));
                 layoutMove.setVisibility(View.VISIBLE);
                // offBtn();
+            }
+        });
+
+        logoutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                customDialog = new CustomDialog(SettingActivity.this);
+                customDialog.getWindow().getAttributes().windowAnimations = R.style.DialogAni;
+                customDialog.show();
+                customDialog.setTitle("로그아웃 하시겠습니까?");
+
             }
         });
         layoutMain.setOnClickListener(new View.OnClickListener() {
