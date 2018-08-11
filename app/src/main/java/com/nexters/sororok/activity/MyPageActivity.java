@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.nexters.sororok.R;
@@ -18,9 +19,11 @@ public class MyPageActivity extends AppCompatActivity {
 
     private static final int REQUEST_USER_GALLERY = 1;
 
-    private Button backBtn;
+    private Button backBtn,logoutBtn;
     private ImageView imgUserPhoto;
+    private TextView saveText;
     private String photoPath;
+    private CustomDialog customDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -34,17 +37,36 @@ public class MyPageActivity extends AppCompatActivity {
                 startActivityForResult(intent, REQUEST_USER_GALLERY);
             }
         });
+
+        logoutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                customDialog = new CustomDialog(MyPageActivity.this);
+                customDialog.getWindow().getAttributes().windowAnimations = R.style.DialogAni;
+                customDialog.show();
+                customDialog.setTitle("로그아웃 하시겠습니까?");
+            }
+        });
+
+        saveText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     public void initComponent(){
-        backBtn = (Button)findViewById(R.id.btn_back);
+        backBtn = findViewById(R.id.btn_back);
+        logoutBtn = findViewById(R.id.btn_logout);
+        saveText = findViewById(R.id.txt_save);
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
-        imgUserPhoto = (ImageView)findViewById(R.id.img_user_photo);
+        imgUserPhoto = findViewById(R.id.img_user_photo);
         imgUserPhoto.setBackground(new ShapeDrawable(new OvalShape()));
         if(Build.VERSION.SDK_INT >= 21) {
             imgUserPhoto.setClipToOutline(true);

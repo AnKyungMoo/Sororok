@@ -23,13 +23,20 @@ import java.util.Arrays;
 public class MemberListActivity extends AppCompatActivity {
 
     private MemberListwithAdapter listView;
-    private Button groupManageBtn;
+    private Button groupManageBtn,backBtn ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_member_list);
         groupManageBtn = findViewById(R.id.btn_setting);
+        backBtn = findViewById(R.id.btn_back);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         groupManageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -76,6 +83,7 @@ public class MemberListActivity extends AppCompatActivity {
 
     }
 
+    //크 멋졍
     private boolean isKorean(char ch) {
         return ch >= Integer.parseInt("AC00", 16) && ch <= Integer.parseInt("D7A3", 16);
     }

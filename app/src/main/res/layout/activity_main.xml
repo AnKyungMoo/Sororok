@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layout_drawer"
     android:layout_width="match_parent"
@@ -149,6 +150,12 @@
                     android:src="@drawable/blackbutton" />
 
             </RelativeLayout>
+
+            <Button
+                android:id="@+id/btn_go_group"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:text="일단 리스트뷰 대체(누르면 다이얼로그뜸)" />
 
         </LinearLayout>
     </FrameLayout>

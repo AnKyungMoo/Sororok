@@ -1,7 +1,9 @@
 package com.nexters.sororok.activity;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -12,15 +14,21 @@ import android.widget.TextView;
 
 import com.nexters.sororok.R;
 
-public class CustomDialog extends AlertDialog {
+public class CustomDialog extends AlertDialog{
 
     private Button okBtn, cancelBtn;
     private EditText editText;
     private TextView textView;
-    String title = null;
+    private int flag = 1;
+    private Activity activity;
 
     public CustomDialog(@NonNull Context context) {
         super(context);
+    }
+
+    public CustomDialog(Activity activity){
+        super(activity);
+        this.activity = activity;
     }
 
     @Override
@@ -34,7 +42,11 @@ public class CustomDialog extends AlertDialog {
         okBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dismiss();
+                if(getFlag() == 1){
+                    Intent intent = new Intent(getContext(), MemberListActivity.class);
+                    activity.startActivity(intent);
+                }else
+                    dismiss();
             }
         });
         cancelBtn.setOnClickListener(new View.OnClickListener() {
@@ -45,8 +57,24 @@ public class CustomDialog extends AlertDialog {
         });
     }
 
+    public int getFlag() {
+        return flag;
+    }
+
+    public void setFlag(int flag) {
+        this.flag = flag;
+    }
+
     public void setTitle(String title){
         textView.setText(title);
+    }
+
+    public EditText getEditText() {
+        return editText;
+    }
+
+    public void setEditText(EditText editText) {
+        this.editText = editText;
     }
 
     public void initComponent(){
