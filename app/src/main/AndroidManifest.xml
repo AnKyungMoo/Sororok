@@ -22,7 +22,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activity.MainActivity" />
-        <activity android:name=".activity.SplashActivity">
+        <!--android:theme="@style/Theme.AppCompat"-->
+        <activity android:name=".activity.SplashActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -41,6 +43,7 @@
         <activity android:name=".activity.MemberSettingActivity"/>
         <activity android:name=".activity.EditMemberActivity"/>
         <activity android:name=".activity.ChangeAdminActivity"/>
+        <activity android:name=".activity.Main2Activity"/>
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"
