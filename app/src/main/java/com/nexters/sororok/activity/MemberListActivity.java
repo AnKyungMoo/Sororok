@@ -31,7 +31,7 @@ public class MemberListActivity extends AppCompatActivity {
     private Button groupManageBtn,backBtn,saveSelectedBtn,selectAllBtn;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_member_list);
         groupManageBtn = findViewById(R.id.btn_setting);
@@ -65,9 +65,8 @@ public class MemberListActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),listchecked.toString(),Toast.LENGTH_SHORT).show();
             }
         });
-
-
-        ArrayList<String> name = new ArrayList<String>(Arrays.asList("강문정","한희영","곽희은","안경무","김혜리","주한빈","신상훈","Apple","2주남음","Nexters","살려주세요","index","Android","!!!!"));
+        
+        ArrayList<String> name = new ArrayList<String>(Arrays.asList("강문정","한희영","남수민","곽희은","안경무","김혜리","주한빈","신상훈","Apple","2주남음","Nexters","살려주세요","index","Android","!!!!"));
         final int namesize = name.size();
 
         final MemberListwithAdapter.MemberlistAdapter mAdapter= new MemberListwithAdapter.MemberlistAdapter(this);
@@ -85,11 +84,14 @@ public class MemberListActivity extends AppCompatActivity {
                             listchecked.add((mAdapter.getItem(i).getMemberID()));
                         mAdapter.getItem(i).setChecked(true);
                     }
+                    saveSelectedBtn.setVisibility(View.VISIBLE);
+                    saveSelectedBtn.setText("전체 저장");
                 } else {
                     for(int i =0 ; i<listSize; i++){
                         if(mAdapter.getItemViewType(i)==0)
                             listchecked.remove(mAdapter.getItem(i).getMemberID());
                         mAdapter.getItem(i).setChecked(false);
+                        saveSelectedBtn.setVisibility(View.GONE);
                     }
                 }
                 mAdapter.notifyDataSetChanged();
@@ -105,19 +107,27 @@ public class MemberListActivity extends AppCompatActivity {
                 if(adapterView.getAdapter().getItemViewType(position) == 0)
                 {
                     MemberListItem item = (MemberListItem) adapterView.getAdapter().getItem(position);
-                    if(listchecked.contains(item.getMemberID())){
+                    if(listchecked.contains(item.getMemberID())&&item.isChecked()==true){
+                        if(listchecked.size()==namesize)
+                            saveSelectedBtn.setText("선택 저장");
                         listchecked.remove(item.getMemberID());
-                        if(item.isChecked()==true){
-                            item.setChecked(false);
-                            mAdapter.notifyDataSetChanged();
+                        item.setChecked(false);
+                        mAdapter.notifyDataSetChanged();
+                        if(listchecked.size()==0){
+                            saveSelectedBtn.setVisibility(View.GONE);
+                            }
+                    } else if(item.isChecked()==false) {
+                        if(listchecked.size()==0) {
+                            saveSelectedBtn.setVisibility(View.VISIBLE);
+                            saveSelectedBtn.setText("선택 저장");
                         }
-
-                    } else {
                         listchecked.add(item.getMemberID());
-                        if(item.isChecked()==false){
-                            item.setChecked(true);
-                            mAdapter.notifyDataSetChanged();
-                        }
+                        item.setChecked(true);
+                        mAdapter.notifyDataSetChanged();
+                        if(listchecked.size()==namesize){
+                            saveSelectedBtn.setText("전체 저장");
+                            }
+
 
                     }
 
@@ -145,10 +155,6 @@ public class MemberListActivity extends AppCompatActivity {
                 i++;
             }
         }
-
-
-
-
     }
 
     private boolean isKorean(char ch) {
