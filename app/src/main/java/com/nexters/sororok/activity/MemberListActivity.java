@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.nexters.sororok.R;
 import com.nexters.sororok.adapter.MemberListwithAdapter;
@@ -26,58 +27,126 @@ import java.util.TreeSet;
 
 public class MemberListActivity extends AppCompatActivity {
 
+    //리스트뷰를 커스텀 클래스로 정의함
     private MemberListwithAdapter listView;
-    private Button groupManageBtn;
+    private Button groupManageBtn,backBtn,saveSelectedBtn,selectAllBtn;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_member_list);
         groupManageBtn = findViewById(R.id.btn_setting);
+        backBtn = findViewById(R.id.btn_back);
+        selectAllBtn = findViewById(R.id.btn_select_all);
+
+
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         groupManageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent groupSettingIntent = new Intent(MemberListActivity.this, MemberSettingActivity.class);
-                startActivityForResult(groupSettingIntent, 400);
+                startActivityForResult(groupSettingIntent,400);
             }
         });
 
-
+        //리스트뷰 xml 연동
         listView=findViewById(R.id.list_member);
 
+        //리스트 중 체크된 것들이 무엇인지를 확인하는 트리셋. int형의 ID가 들어간다.
+        final TreeSet<Integer> listchecked = new TreeSet<>();
+
+        //저장 버튼. 선택상황에 따라 visibility와 문구가 바뀌어야 한다. 현재는 누르면 ID값들을 토스트로 띄우게 해놓음.
+        saveSelectedBtn = findViewById(R.id.btn_save_selected);
+        saveSelectedBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(),listchecked.toString(),Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        //테스트용 데이터 생성. 지금은 String으로 했지만 서버 연동 후 MemberListitem 형식으로 생성할 듯.
+        ArrayList<String> name = new ArrayList<String>(Arrays.asList("강문정","한희영","남수민","곽희은","안경무","김혜리","주한빈","신상훈","Apple","2주남음","Nexters","살려주세요","index","Android","!!!!"));
+        final int namesize = name.size();
 
 
-        ArrayList<String> name = new ArrayList<String>(Arrays.asList("강문정","한희영","곽희은","안경무","김혜리","주한빈","신상훈","Apple","2주남음","Nexters","살려주세요","index","Android","!!!!"));
+        //리스트뷰 어댑터 생성. 어댑터는 MemberListwithAdapter에 구현해 놓음.
+        final MemberListwithAdapter.MemberlistAdapter mAdapter= new MemberListwithAdapter.MemberlistAdapter(this);
 
-        MemberListwithAdapter.MemberlistAdapter mAdapter= new MemberListwithAdapter.MemberlistAdapter(this);
+        //인덱스용 키워드세팅. 이걸 해놔야 인덱스가 생성된다. setAdapter 이전에 해야함. 인덱스 생성하는 김에 초성리스트를 반환받아둔다. 나중에 섹션인덱스헤더 넣을 때 써먹음.
+        //여기서 데이터 정렬까지 함께 한다.
         String consonant[] = listView.setKeywordList(name);
 
         listView.setAdapter(mAdapter);
 
-        final TreeSet<Integer> checked = new TreeSet<>();
+        //전체선택 및 해제 버튼. 전체선택이 된 상태라면 전체해제하고 그 외 상황에는 전체선택한다. 저장버튼 속성 바꿔줘야함.
+        selectAllBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int listSize = mAdapter.getCount();
+                if(listchecked.size()!=namesize){
+                    for(int i = 0 ; i<listSize; i++){
+                        if(mAdapter.getItemViewType(i)==0)
+                            listchecked.add((mAdapter.getItem(i).getMemberID()));
+                        mAdapter.getItem(i).setChecked(true);
+                    }
+                    saveSelectedBtn.setVisibility(View.VISIBLE);
+                    saveSelectedBtn.setText("전체 저장");
+                } else {
+                    for(int i =0 ; i<listSize; i++){
+                        if(mAdapter.getItemViewType(i)==0)
+                            listchecked.remove(mAdapter.getItem(i).getMemberID());
+                        mAdapter.getItem(i).setChecked(false);
+                        saveSelectedBtn.setVisibility(View.GONE);
+                    }
+                }
+                mAdapter.notifyDataSetChanged();
+            }
+        });
 
+
+
+        //리스트뷰 아이템 클릭 리스너. 다중선택이 자꾸 이상하게 먹어서 listchecked와 item의 isChecked로 이중 확인함.
+        //체크 상태 변환 후 notify해주면 getview에서 색깔을 바꿔준다. 선택 상황에 따라 저장버튼 속성 바뀌어야 함.
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-
-
                 if(adapterView.getAdapter().getItemViewType(position) == 0)
                 {
                     MemberListItem item = (MemberListItem) adapterView.getAdapter().getItem(position);
-                    if(checked.contains(item.getMemberID())){
-                        checked.remove(item.getMemberID());
-                        RelativeLayout rlList = view.findViewById(R.id.rlMemberList);
-                        rlList.setBackgroundColor(Color.rgb(100,80,70));
-                    } else {
-                        checked.add(item.getMemberID());
-                        RelativeLayout rlList = view.findViewById(R.id.rlMemberList);
-                        rlList.setBackgroundColor(Color.rgb(255,255,255));
+                    if(listchecked.contains(item.getMemberID())&&item.isChecked()==true){
+                        if(listchecked.size()==namesize)
+                            saveSelectedBtn.setText("선택 저장");
+                        listchecked.remove(item.getMemberID());
+                        item.setChecked(false);
+                        mAdapter.notifyDataSetChanged();
+                        if(listchecked.size()==0){
+                            saveSelectedBtn.setVisibility(View.GONE);
+                            }
+                    } else if(item.isChecked()==false) {
+                        if(listchecked.size()==0) {
+                            saveSelectedBtn.setVisibility(View.VISIBLE);
+                            saveSelectedBtn.setText("선택 저장");
+                        }
+                        listchecked.add(item.getMemberID());
+                        item.setChecked(true);
+                        mAdapter.notifyDataSetChanged();
+                        if(listchecked.size()==namesize){
+                            saveSelectedBtn.setText("전체 저장");
+                        }
                     }
-
                 }
             }
         });
 
+
+        //생성한 데이터를 리스트뷰에 넣는 부분. 여기서 섹션 인덱스 헤더가 초성마다 들어간다. setKeywordList에서 받아놓은 consonant와 데이터의 초성을 비교해서 순서를 정한다.
+        //wile문으로 반복해서 리스트뷰에 집어 넣는데, i가 초성 consonant[]의 인덱스, j가 데이터 name의 인덱스이다.
         int i = 0;
         int j = 0;
         while(j<name.size()) {
@@ -86,28 +155,26 @@ public class MemberListActivity extends AppCompatActivity {
             if(isKorean(firstChar))
                 firstString=Direct(firstString);
             if (firstString.equals(consonant[i])) {
-                mAdapter.addHeaderItem(new MemberListItem(null, consonant[i]));
-                mAdapter.addItem(new MemberListItem(ContextCompat.getDrawable(this, R.drawable.blackbutton), name.get(j)));
+                mAdapter.addHeaderItem(new MemberListItem(null, consonant[i],0));
+                mAdapter.addItem(new MemberListItem(ContextCompat.getDrawable(this, R.drawable.blackbutton), name.get(j),j));
                 if(i<consonant.length-1)
                 i++;
                 j++;
             } else if(firstString.compareTo(consonant[i])<0){
-                mAdapter.addItem(new MemberListItem(ContextCompat.getDrawable(this, R.drawable.blackbutton), name.get(j)));
+                mAdapter.addItem(new MemberListItem(ContextCompat.getDrawable(this, R.drawable.blackbutton), name.get(j),j));
                 j++;
             } else {
                 i++;
             }
         }
-
-
-
-
     }
 
+    //한글 체크 함수. MemberListwithAdapter에서도 똑같이 구현되어 있지만 보기 좋으라고 여기에 씀.
     private boolean isKorean(char ch) {
         return ch >= Integer.parseInt("AC00", 16) && ch <= Integer.parseInt("D7A3", 16);
     }
 
+    //초성 발라내는 함수
     public String Direct(String name){
         char b =name.charAt(0);
         String chosung = null;

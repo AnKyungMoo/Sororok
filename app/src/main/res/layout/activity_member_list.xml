@@ -49,21 +49,27 @@
             android:layout_height="wrap_content"
             android:hint="찾으시는 성함/번호를 입력해주세요"
             android:textSize="7pt"
-            android:layout_margin="15dp"/>
+            android:layout_margin="10dp"/>
+
+        <Button
+            android:id="@+id/btn_select_all"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/blackbutton"/>
 
         <com.nexters.sororok.adapter.MemberListwithAdapter
             android:id="@+id/list_member"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="50dp"
-            android:choiceMode="multipleChoice"/>
+            android:layout_height="match_parent"/>
 
 
 
     </LinearLayout>
     <Button
+        android:id="@+id/btn_save_selected"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
+        android:visibility="gone"
         android:text="선택 저장" />
 </RelativeLayout>

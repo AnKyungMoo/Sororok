@@ -8,7 +8,7 @@ public class MemberListItem{
     private String memberName;
     private String memberNumber;
     private int memberID;
-    private boolean checked;
+    private boolean checked = false;
 
     public boolean isChecked() {
         return checked;
@@ -29,9 +29,10 @@ public class MemberListItem{
 
 
 
-    public MemberListItem(Drawable memberProfile, String memberName){
+    public MemberListItem(Drawable memberProfile, String memberName, int memberID){
         this.memberName = memberName;
         this.memberProfile = memberProfile;
+        this.memberID = memberID;
     }
 
     public Drawable getMemberProfile() {
