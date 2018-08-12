@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.nexters.sororok.R;
 import com.nexters.sororok.adapter.MemberListwithAdapter;
@@ -30,45 +31,75 @@ import java.util.TreeSet;
 public class MemberListActivity extends AppCompatActivity {
 
     private MemberListwithAdapter listView;
-    private Button groupManageBtn;
+    private Button groupManageBtn,backBtn;
+    private Button saveSelectedBtn;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_member_list);
         groupManageBtn = findViewById(R.id.btn_setting);
-        Intent groupSettingIntent = new Intent(MemberListActivity.this, MemberSettingActivity.class);
-//        startActivityForResult(groupSettingIntent, 400);
+        backBtn = findViewById(R.id.btn_back);
+
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+        groupManageBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent groupSettingIntent = new Intent(MemberListActivity.this, MemberSettingActivity.class);
+                startActivityForResult(groupSettingIntent,400);
+            }
+        });
 
         listView=findViewById(R.id.list_member);
 
 
+        final TreeSet<Integer> listchecked = new TreeSet<>();
+        saveSelectedBtn = findViewById(R.id.btn_save_selected);
+
+        saveSelectedBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(),listchecked.toString(),Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
         ArrayList<String> name = new ArrayList<String>(Arrays.asList("강문정","한희영","곽희은","안경무","김혜리","주한빈","신상훈","Apple","2주남음","Nexters","살려주세요","index","Android","!!!!"));
 
-        MemberListwithAdapter.MemberlistAdapter mAdapter= new MemberListwithAdapter.MemberlistAdapter(this);
+        final MemberListwithAdapter.MemberlistAdapter mAdapter= new MemberListwithAdapter.MemberlistAdapter(this);
         String consonant[] = listView.setKeywordList(name);
 
         listView.setAdapter(mAdapter);
 
-        final TreeSet<Integer> checked = new TreeSet<>();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
 
-
                 if(adapterView.getAdapter().getItemViewType(position) == 0)
                 {
                     MemberListItem item = (MemberListItem) adapterView.getAdapter().getItem(position);
-                    if(checked.contains(item.getMemberID())){
-                        checked.remove(item.getMemberID());
-                        RelativeLayout rlList = view.findViewById(R.id.rlMemberList);
-                        rlList.setBackgroundColor(Color.rgb(100,80,70));
+                    if(listchecked.contains(item.getMemberID())){
+                        listchecked.remove(item.getMemberID());
+                        if(item.isChecked()==true){
+                            item.setChecked(false);
+                            mAdapter.notifyDataSetChanged();
+                        }
+
                     } else {
-                        checked.add(item.getMemberID());
-                        RelativeLayout rlList = view.findViewById(R.id.rlMemberList);
-                        rlList.setBackgroundColor(Color.rgb(255,255,255));
+                        listchecked.add(item.getMemberID());
+                        if(item.isChecked()==false){
+                            item.setChecked(true);
+                            mAdapter.notifyDataSetChanged();
+                        }
+
                     }
 
                 }
@@ -83,13 +114,13 @@ public class MemberListActivity extends AppCompatActivity {
             if(isKorean(firstChar))
                 firstString=Direct(firstString);
             if (firstString.equals(consonant[i])) {
-                mAdapter.addHeaderItem(new MemberListItem(null, consonant[i]));
-                mAdapter.addItem(new MemberListItem(ContextCompat.getDrawable(this, R.drawable.blackbutton), name.get(j)));
+                mAdapter.addHeaderItem(new MemberListItem(null, consonant[i],0));
+                mAdapter.addItem(new MemberListItem(ContextCompat.getDrawable(this, R.drawable.blackbutton), name.get(j),j));
                 if(i<consonant.length-1)
                 i++;
                 j++;
             } else if(firstString.compareTo(consonant[i])<0){
-                mAdapter.addItem(new MemberListItem(ContextCompat.getDrawable(this, R.drawable.blackbutton), name.get(j)));
+                mAdapter.addItem(new MemberListItem(ContextCompat.getDrawable(this, R.drawable.blackbutton), name.get(j),j));
                 j++;
             } else {
                 i++;

@@ -3,6 +3,7 @@ package com.nexters.sororok.adapter;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.os.Handler;
@@ -22,6 +23,7 @@ import android.widget.TextView;
 
 import com.nexters.sororok.R;
 import com.nexters.sororok.item.MemberListItem;
+import com.nexters.sororok.activity.MemberListActivity;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -113,14 +115,15 @@ public class MemberListwithAdapter extends ListView{
     }
 
     private boolean detectClickScope(MotionEvent e) {
-        if (e.getAction() != MotionEvent.ACTION_DOWN)
+        if (e.getAction() != MotionEvent.ACTION_DOWN||e.getAction() != MotionEvent.ACTION_UP)
             return true;
 
         int position = pointToPosition((int) e.getX(), (int) e.getY());
 
-        if (position != ListView.INVALID_POSITION) {
-            performItemClick(getChildAt(position - getFirstVisiblePosition()), position, getItemIdAtPosition(position));
-        }
+
+//        if (position != ListView.INVALID_POSITION) {
+//            performItemClick(getChildAt(position - getFirstVisiblePosition()), position, getItemIdAtPosition(position));
+//        }
 
         return true;
     }
@@ -407,27 +410,35 @@ public class MemberListwithAdapter extends ListView{
         }
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+        public View getView(final int position, View convertView, final ViewGroup parent) {
             MemberlistAdapter.ViewHolder holder = null;
             int rowType = getItemViewType(position);
 
-            if(convertView == null){
+//            if(convertView == null){
                 holder = new MemberlistAdapter.ViewHolder();
                 switch (rowType) {
                     case TYPE_ITEM:
                         convertView = mInfalater.inflate(R.layout.member_list_item, null);
                         holder.textView = (TextView) convertView.findViewById(R.id.tvMemberList);
                         holder.imageView = (ImageView) convertView.findViewById(R.id.ivMemberList);
+
+                        if(getItem(position).isChecked()){
+                            convertView.setBackgroundColor(Color.rgb(100,70,80));
+                        }
+                        else{
+                            convertView.setBackgroundColor(Color.rgb(255,255,255));
+                        }
+
                         break;
                     case TYPE_HEADER:
                         convertView = mInfalater.inflate(R.layout.member_list_header, null);
                         holder.textView = (TextView) convertView.findViewById(R.id.tvHeader);
                         break;
                 }
-                convertView.setTag(holder);
-            } else {
-                holder = (MemberlistAdapter.ViewHolder)convertView.getTag();
-            }
+//                convertView.setTag(holder);
+//            } else {
+//                holder = (MemberlistAdapter.ViewHolder)convertView.getTag();
+//            }
 
             if(rowType == TYPE_ITEM){
                 holder.textView.setText(lvMember.get(position).getMemberName());

@@ -55,13 +55,13 @@
             android:id="@+id/list_member"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="50dp"
-            android:choiceMode="multipleChoice"/>
+            android:layout_marginBottom="50dp"/>
 
 
 
     </LinearLayout>
     <Button
+        android:id="@+id/btn_save_selected"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
