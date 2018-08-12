@@ -28,18 +28,16 @@ import java.util.TreeSet;
 public class MemberListActivity extends AppCompatActivity {
 
     private MemberListwithAdapter listView;
-    private Button groupManageBtn,backBtn;
-    private Button saveSelectedBtn;
-
-
+    private Button groupManageBtn,backBtn,saveSelectedBtn,selectAllBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_member_list);
         groupManageBtn = findViewById(R.id.btn_setting);
-
         backBtn = findViewById(R.id.btn_back);
+        selectAllBtn = findViewById(R.id.btn_select_all);
+
 
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,7 +56,6 @@ public class MemberListActivity extends AppCompatActivity {
 
         listView=findViewById(R.id.list_member);
 
-
         final TreeSet<Integer> listchecked = new TreeSet<>();
         saveSelectedBtn = findViewById(R.id.btn_save_selected);
 
@@ -71,11 +68,34 @@ public class MemberListActivity extends AppCompatActivity {
 
 
         ArrayList<String> name = new ArrayList<String>(Arrays.asList("강문정","한희영","곽희은","안경무","김혜리","주한빈","신상훈","Apple","2주남음","Nexters","살려주세요","index","Android","!!!!"));
+        final int namesize = name.size();
 
         final MemberListwithAdapter.MemberlistAdapter mAdapter= new MemberListwithAdapter.MemberlistAdapter(this);
         String consonant[] = listView.setKeywordList(name);
 
         listView.setAdapter(mAdapter);
+
+        selectAllBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int listSize = mAdapter.getCount();
+                if(listchecked.size()!=namesize){
+                    for(int i = 0 ; i<listSize; i++){
+                        if(mAdapter.getItemViewType(i)==0)
+                            listchecked.add((mAdapter.getItem(i).getMemberID()));
+                        mAdapter.getItem(i).setChecked(true);
+                    }
+                } else {
+                    for(int i =0 ; i<listSize; i++){
+                        if(mAdapter.getItemViewType(i)==0)
+                            listchecked.remove(mAdapter.getItem(i).getMemberID());
+                        mAdapter.getItem(i).setChecked(false);
+                    }
+                }
+                mAdapter.notifyDataSetChanged();
+            }
+        });
+
 
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
