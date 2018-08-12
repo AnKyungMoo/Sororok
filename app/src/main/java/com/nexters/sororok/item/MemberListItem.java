@@ -6,10 +6,28 @@ import android.graphics.drawable.Drawable;
 public class MemberListItem{
     private Drawable memberProfile;
     private String memberName;
-
-
-
     private String memberNumber;
+    private int memberID;
+    private boolean checked;
+
+    public boolean isChecked() {
+        return checked;
+    }
+
+    public void setChecked(boolean checked) {
+        this.checked = checked;
+    }
+
+
+    public int getMemberID() {
+        return memberID;
+    }
+
+    public void setMemberID(int memberID) {
+        this.memberID = memberID;
+    }
+
+
 
     public MemberListItem(Drawable memberProfile, String memberName){
         this.memberName = memberName;

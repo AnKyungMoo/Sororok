@@ -1,11 +1,15 @@
 package com.nexters.sororok.activity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 import com.nexters.sororok.R;
 import com.nexters.sororok.adapter.MemberListwithAdapter;
@@ -15,6 +19,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.TreeSet;
 
 /**
  * 멤버리스트 액티비티
@@ -44,6 +49,31 @@ public class MemberListActivity extends AppCompatActivity {
         MemberListwithAdapter.MemberlistAdapter mAdapter= new MemberListwithAdapter.MemberlistAdapter(this);
         String consonant[] = listView.setKeywordList(name);
 
+        listView.setAdapter(mAdapter);
+
+        final TreeSet<Integer> checked = new TreeSet<>();
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+
+
+                if(adapterView.getAdapter().getItemViewType(position) == 0)
+                {
+                    MemberListItem item = (MemberListItem) adapterView.getAdapter().getItem(position);
+                    if(checked.contains(item.getMemberID())){
+                        checked.remove(item.getMemberID());
+                        RelativeLayout rlList = view.findViewById(R.id.rlMemberList);
+                        rlList.setBackgroundColor(Color.rgb(100,80,70));
+                    } else {
+                        checked.add(item.getMemberID());
+                        RelativeLayout rlList = view.findViewById(R.id.rlMemberList);
+                        rlList.setBackgroundColor(Color.rgb(255,255,255));
+                    }
+
+                }
+            }
+        });
 
         int i = 0;
         int j = 0;
@@ -67,7 +97,6 @@ public class MemberListActivity extends AppCompatActivity {
         }
 
 
-        listView.setAdapter(mAdapter);
 
 
     }

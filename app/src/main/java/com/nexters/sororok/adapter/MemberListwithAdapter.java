@@ -16,13 +16,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.text.TextUtils;
 import android.annotation.SuppressLint;
-import android.text.TextUtils;
-import android.util.AttributeSet;
-import android.util.Log;
-import android.view.GestureDetector;
 import android.view.MotionEvent;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.SectionIndexer;
 import android.widget.TextView;
 
@@ -37,7 +31,6 @@ import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.lang.String;
 import java.util.TreeSet;
-import java.util.jar.Attributes;
 
 public class MemberListwithAdapter extends ListView{
 
@@ -311,19 +304,18 @@ public class MemberListwithAdapter extends ListView{
 
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN: {
-                if (x < leftPosition) {
-                    return super.onTouchEvent(event);
-                } else {
                     try {
                         float y = event.getY() - this.getPaddingTop() - getPaddingBottom();
                         int currentPosition = (int) Math.floor(y / indexSize);
-                        section = sections[currentPosition];
-                        showLetter = true;
-                        this.setSelection(((SectionIndexer) getAdapter()).getPositionForSection(currentPosition)+currentPosition);
-                    } catch (Exception e) {
-                 }
-                }
-
+                        if (x < leftPosition) {
+                            return super.onTouchEvent(event);
+                        } else {
+                            section = sections[currentPosition];
+                            showLetter = true;
+                            this.setSelection(((SectionIndexer) getAdapter()).getPositionForSection(currentPosition) + currentPosition);
+                        }
+                    }catch(Exception e){
+                        }
                 break;
             }
 
@@ -405,13 +397,13 @@ public class MemberListwithAdapter extends ListView{
         }
 
         @Override
-        public Object getItem(int i) {
-            return null;
+        public MemberListItem getItem(int i) {
+            return lvMember.get(i);
         }
 
         @Override
         public long getItemId(int i) {
-            return 0;
+            return lvMember.get(i).getMemberID();
         }
 
         @Override
