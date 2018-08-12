@@ -1,6 +1,5 @@
 package com.nexters.sororok.activity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -22,8 +21,10 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.kakao.auth.Session;
 import com.nexters.sororok.R;
 import com.nexters.sororok.asynctask.NaverTokenTask;
+import com.nexters.sororok.callback.SessionCallback;
 import com.nhn.android.naverlogin.OAuthLogin;
 import com.nhn.android.naverlogin.OAuthLoginHandler;
 
@@ -41,6 +42,9 @@ public class LoginActivity extends AppCompatActivity{
 
     //naver
     public static OAuthLogin mOAuthLoginModule;
+
+    // kakao
+    private SessionCallback kakaoCallback;
 
     // view
     ImageButton googleButton;
@@ -71,6 +75,10 @@ public class LoginActivity extends AppCompatActivity{
                 "nVlJHMh6vf",
                 "Sororok"
         );
+
+        // kakao
+        kakaoCallback = new SessionCallback();
+        Session.getCurrentSession().addCallback(kakaoCallback);
 
         googleButton = findViewById(R.id.google_button);
         naverButton = findViewById(R.id.naver_button);
