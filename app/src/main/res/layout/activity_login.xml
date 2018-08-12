@@ -63,4 +63,13 @@
             android:layout_margin="30dp"/>
     </RelativeLayout>
 
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <com.kakao.usermgmt.LoginButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+    </FrameLayout>
+
 </LinearLayout>

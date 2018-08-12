@@ -38,6 +38,7 @@ public class LoginInfoActivity extends AppCompatActivity {
 
         switch (type) {
             case "google":
+                loginFromGoogle(infoIntent);
                 break;
             case "naver":
                 loginFromNaver(infoIntent);
@@ -65,6 +66,14 @@ public class LoginInfoActivity extends AppCompatActivity {
         phoneEditText = findViewById(R.id.edit_login_phone);
         emailEditText = findViewById(R.id.edit_login_email);
         configButton = findViewById(R.id.login_config_button);
+    }
+
+    private void loginFromGoogle(Intent info) {
+        String name = info.getStringExtra("googleName");
+        String email = info.getStringExtra("googleEmail");
+
+        nameEditText.setText(name);
+        emailEditText.setText(email);
     }
 
     private void loginFromNaver(Intent info) {

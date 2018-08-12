@@ -1,7 +1,6 @@
 package com.nexters.sororok.adapter;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,10 +8,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.nexters.sororok.R;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 import java.util.ArrayList;
 
@@ -27,11 +25,11 @@ public class GalleryAdapter extends BaseAdapter{
         this.context = context;
         this.imageUrls = imageUrls;
         mSparseBooleanArray = new SparseBooleanArray();
-        options = new DisplayImageOptions.Builder()
+        /*options = new DisplayImageOptions.Builder()
                 .cacheInMemory(true)
                 .resetViewBeforeLoading(true).cacheOnDisk(true)
                 .considerExifParams(true).bitmapConfig(Bitmap.Config.RGB_565)
-                .build();
+                .build();*/
     }
 
     //Method to return selected Images
@@ -69,15 +67,18 @@ public class GalleryAdapter extends BaseAdapter{
             view = inflater.inflate(R.layout.gridview_item, viewGroup, false);//Inflate layout
 
         final ImageView imageView = view.findViewById(R.id.img_user_gallery);
-        ImageLoader.getInstance().init(ImageLoaderConfiguration.createDefault(this.context)); //추가
+       // ImageLoader.getInstance().init(ImageLoaderConfiguration.createDefault(this.context)); //추가
 
         if(position==0)
-            ImageLoader.getInstance().displayImage("drawable://"+R.drawable.camera, imageView, options);
+            Glide.with(context).load(R.drawable.camera).into(imageView);
+            //ImageLoader.getInstance().displayImage("drawable://"+R.drawable.camera, imageView, options);
         else
-            ImageLoader.getInstance().displayImage("file://" + imageUrls.get(position), imageView, options);
+            Glide.with(context).load("file://" + imageUrls.get(position)).into(imageView);
+           // ImageLoader.getInstance().displayImage("file://" + imageUrls.get(position), imageView, options);
 
         return view;
     }
+
 
 
 }

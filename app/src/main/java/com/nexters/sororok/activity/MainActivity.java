@@ -17,11 +17,12 @@ import com.nexters.sororok.adapter.HistoryAdapter;
  */
 public class MainActivity extends AppCompatActivity{
 
-    private Button profileButton,historyBtn,historyCloseBtn,settingBtn,addGroupBtn;
+    private Button profileButton,historyBtn,historyCloseBtn,settingBtn,addGroupBtn, goGroupBtn;
     private DrawerLayout drawerLayout;
     private ListView historyListView;
     private HistoryAdapter historyAdapter;
     private RelativeLayout relativeLayout;
+    private CustomDialog customDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +30,6 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
         initComponent();
         setAdapter();
-
-
 
         historyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,7 +42,7 @@ public class MainActivity extends AppCompatActivity{
         profileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent newGroupIntent = new Intent(MainActivity.this, NewGroupActivity.class);
+                Intent newGroupIntent = new Intent(MainActivity.this, MyPageActivity.class);
                 startActivityForResult(newGroupIntent,100);
             }
         });
@@ -62,6 +61,19 @@ public class MainActivity extends AppCompatActivity{
             public void onClick(View view) {
                 Intent newGroupIntent = new Intent(MainActivity.this, NewGroupActivity.class);
                 startActivityForResult(newGroupIntent, 300);
+            }
+        });
+
+        goGroupBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                customDialog = new CustomDialog(MainActivity.this);
+                customDialog.getWindow().getAttributes().windowAnimations = R.style.DialogAni;
+                customDialog.show();
+                customDialog.setFlag(1);
+                customDialog.getEditText().setVisibility(View.VISIBLE);
+                customDialog.setTitle("그룹코드를 입력해주세요.");
+
             }
         });
 
@@ -93,6 +105,8 @@ public class MainActivity extends AppCompatActivity{
         profileButton = findViewById(R.id.profileButton);
         historyCloseBtn = findViewById(R.id.btn_history_close);
         addGroupBtn = findViewById(R.id.btn_add_new_group);
+
+        goGroupBtn = findViewById(R.id.btn_go_group);
 
     }
 

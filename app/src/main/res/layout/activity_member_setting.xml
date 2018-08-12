@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
+    android:id="@+id/layout_main"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -37,6 +38,66 @@
             android:layout_below="@id/new_group_title"/>
 
         <LinearLayout
+            android:id="@+id/layout_click_share_group"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_below="@id/new_group_title"
+            android:layout_margin="20dp"
+            android:visibility="invisible">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="그룹 공유하기"
+                        android:textSize="7pt"/>
+                    <Button
+                        android:id="@+id/btn_group_share2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"/>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="그룹 나가기"
+                        android:textSize="7pt"/>
+                    <Button
+                        android:id="@+id/btn_exit_group"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"/>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:id="@+id/layout_default_screen"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -59,10 +120,12 @@
                         android:textSize="7pt"/>
                     <Button
                         android:layout_width="match_parent"
-                        android:layout_height="120dp"
+                        android:layout_height="130dp"
                         android:text="10W93F"
                         android:textSize="15pt"
                         android:layout_marginTop="10dp"
+                        android:enabled="false"
+                        android:textColor="#000000"
                         android:layout_below="@id/txt_code_change"/>
                 </RelativeLayout>
             </LinearLayout>
@@ -171,4 +234,68 @@
             </LinearLayout>
 
         </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_animation"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_alignParentBottom="true"
+        android:visibility="invisible">
+        <LinearLayout
+            android:id="@+id/layout_sure_txt"
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="#ffffff"
+            android:layout_above="@id/layout_select_button">
+            <TextView
+                android:id="@+id/txt_menu_main_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="정말 그룹을 폭파하시려구요?"
+                android:textColor="#000000"
+                android:textSize="8pt"
+                android:paddingBottom="30dp"/>
+            <TextView
+                android:id="@+id/txt_menu_sub_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="그룹에 저장된 모든 번호가 삭제됩니다.\n그룹장을 다른사람에게 넘기는 것을 추천합니다."/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/layout_select_button1"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true"
+            android:weightSum="1">
+            <Button
+                android:id="@+id/btn_menu_1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="인수인계"
+                android:layout_weight="0.5"/>
+            <Button
+                android:id="@+id/btn_menu_2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="그룹삭제"
+                android:layout_weight="0.5"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_select_button2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true">
+            <Button
+                android:id="@+id/btn_menu_3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="그룹나가기"
+                android:visibility="invisible"/>
+        </LinearLayout>
+    </RelativeLayout>
+
 </RelativeLayout>
