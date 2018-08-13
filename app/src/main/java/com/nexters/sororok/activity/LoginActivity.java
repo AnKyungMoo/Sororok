@@ -67,6 +67,9 @@ public class LoginActivity extends AppCompatActivity{
     /*TODO: 임시로 메인으로 가는 버튼이니 키 해시 문제가 해결되면 제거하자*/
     Button tempButton;
 
+    /*TODO: 카카오 중복 success 해결방안을 찾을 때까지 임시 방편 boolean*/
+    boolean isSuccess;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,6 +112,8 @@ public class LoginActivity extends AppCompatActivity{
         naverButton = findViewById(R.id.naver_button);
         kakaoButton = findViewById(R.id.kakao_button);
         tempButton = findViewById(R.id.temp_main_button);
+
+        isSuccess = false;
 
         googleButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -207,16 +212,20 @@ public class LoginActivity extends AppCompatActivity{
             @Override
             public void onSuccess(UserProfile userProfile) {
                 //String profileUrl = userProfile.getProfileImagePath();
-                String userName = userProfile.getNickname();
+                /*TODO: 카카오 중복 success 다른 해결방안을 찾아보자..*/
+                if (!isSuccess) {
+                    isSuccess = true;
+                    String userName = userProfile.getNickname();
 
-                Log.d("kakaoName: ", userName);
+                    Log.d("kakaoName: ", userName);
 
-                Intent intent = new Intent(LoginActivity.this, LoginInfoActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, LoginInfoActivity.class);
 
-                intent.putExtra("loginType", "kakao");
-                intent.putExtra("kakaoName", userName);
-                startActivity(intent);
-                finish();
+                    intent.putExtra("loginType", "kakao");
+                    intent.putExtra("kakaoName", userName);
+                    startActivity(intent);
+                    finish();
+                }
             }
 
             @Override
