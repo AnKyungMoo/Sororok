@@ -44,6 +44,7 @@ public class LoginInfoActivity extends AppCompatActivity {
                 loginFromNaver(infoIntent);
                 break;
             case "kakao":
+                loginFromKakao(infoIntent);
                 break;
             default:
                 break;
@@ -93,6 +94,11 @@ public class LoginInfoActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    private void loginFromKakao(Intent info) {
+        String name = info.getStringExtra("kakaoName");
+        nameEditText.setText(name);
     }
 
     @SuppressLint({"MissingPermission", "HardwareIds"})

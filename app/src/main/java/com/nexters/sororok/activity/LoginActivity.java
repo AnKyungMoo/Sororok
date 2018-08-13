@@ -1,11 +1,16 @@
 package com.nexters.sororok.activity;
 
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -21,14 +26,22 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.kakao.auth.AuthType;
+import com.kakao.auth.ISessionCallback;
 import com.kakao.auth.Session;
+import com.kakao.network.ErrorResult;
+import com.kakao.usermgmt.UserManagement;
+import com.kakao.usermgmt.callback.MeResponseCallback;
+import com.kakao.usermgmt.response.model.UserProfile;
+import com.kakao.util.exception.KakaoException;
 import com.nexters.sororok.R;
 import com.nexters.sororok.asynctask.NaverTokenTask;
-import com.nexters.sororok.callback.SessionCallback;
 import com.nhn.android.naverlogin.OAuthLogin;
 import com.nhn.android.naverlogin.OAuthLoginHandler;
 
 import java.lang.ref.WeakReference;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.concurrent.ExecutionException;
 
 public class LoginActivity extends AppCompatActivity{
@@ -51,10 +64,29 @@ public class LoginActivity extends AppCompatActivity{
     ImageButton naverButton;
     ImageButton kakaoButton;
 
+    /*TODO: 임시로 메인으로 가는 버튼이니 키 해시 문제가 해결되면 제거하자*/
+    Button tempButton;
+
+    /*TODO: 카카오 중복 success 해결방안을 찾을 때까지 임시 방편 boolean*/
+    boolean isSuccess;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        try {
+            PackageInfo info = getPackageManager().getPackageInfo("com.example.sororok", PackageManager.GET_SIGNATURES);
+            for (Signature signature : info.signatures) {
+                MessageDigest md = MessageDigest.getInstance("SHA");
+                md.update(signature.toByteArray());
+                Log.d("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
 
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -76,13 +108,12 @@ public class LoginActivity extends AppCompatActivity{
                 "Sororok"
         );
 
-        // kakao
-        kakaoCallback = new SessionCallback();
-        Session.getCurrentSession().addCallback(kakaoCallback);
-
         googleButton = findViewById(R.id.google_button);
         naverButton = findViewById(R.id.naver_button);
         kakaoButton = findViewById(R.id.kakao_button);
+        tempButton = findViewById(R.id.temp_main_button);
+
+        isSuccess = false;
 
         googleButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,9 +132,16 @@ public class LoginActivity extends AppCompatActivity{
         kakaoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                kakaoLogin();
+            }
+        });
+
+        tempButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
-                //finish();
+                finish();
             }
         });
 
@@ -124,6 +162,79 @@ public class LoginActivity extends AppCompatActivity{
 
     // naver
     private OAuthLoginHandler mOAuthLoginHandler = new NaverLoginHandler(this);
+
+    // kakao
+    private void kakaoLogin() {
+        kakaoCallback = new SessionCallback();
+        Session.getCurrentSession().addCallback(kakaoCallback);
+        Session.getCurrentSession().checkAndImplicitOpen();
+        Session.getCurrentSession().open(AuthType.KAKAO_TALK_EXCLUDE_NATIVE_LOGIN, LoginActivity.this);
+   }
+
+    private class SessionCallback implements ISessionCallback {
+        @Override
+        public void onSessionOpened() {
+            Log.d("SessionOpen" , "세션 오픈됨");
+            // 사용자 정보를 가져옴, 회원가입 미가입시 자동가입 시킴
+            kakaoRequestMe();
+        }
+
+        @Override
+        public void onSessionOpenFailed(KakaoException exception) {
+            if(exception != null) {
+                Log.d("SessionFail" , exception.getMessage());
+            }
+        }
+    }
+
+    /**
+     * 사용자의 상태를 알아 보기 위해 me API 호출을 한다.
+     */
+    protected void kakaoRequestMe() {
+        UserManagement.requestMe(new MeResponseCallback() {
+            @Override
+            public void onFailure(ErrorResult errorResult) {
+                int ErrorCode = errorResult.getErrorCode();
+                int ClientErrorCode = -777;
+
+                if (ErrorCode == ClientErrorCode) {
+                    Toast.makeText(getApplicationContext(), "카카오톡 서버의 네트워크가 불안정합니다. 잠시 후 다시 시도해주세요.", Toast.LENGTH_SHORT).show();
+                } else {
+                    Log.d("KakaoFailure" , "오류로 카카오로그인 실패");
+                }
+            }
+
+            @Override
+            public void onSessionClosed(ErrorResult errorResult) {
+                Log.d("SessionClosed" , "오류로 카카오로그인 실패 ");
+            }
+
+            @Override
+            public void onSuccess(UserProfile userProfile) {
+                //String profileUrl = userProfile.getProfileImagePath();
+                /*TODO: 카카오 중복 success 다른 해결방안을 찾아보자..*/
+                if (!isSuccess) {
+                    isSuccess = true;
+                    String userName = userProfile.getNickname();
+
+                    Log.d("kakaoName: ", userName);
+
+                    Intent intent = new Intent(LoginActivity.this, LoginInfoActivity.class);
+
+                    intent.putExtra("loginType", "kakao");
+                    intent.putExtra("kakaoName", userName);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+
+            @Override
+            public void onNotSignedUp() {
+                // 자동가입이 아닐경우 동의창
+                Log.d("SignedUp", "");
+            }
+        });
+    }
 
     // handler를 그냥 사용하면 메모리 누수가 있을 수 있으니 static으로 만들어서 사용
     private static class NaverLoginHandler extends OAuthLoginHandler {
@@ -175,6 +286,10 @@ public class LoginActivity extends AppCompatActivity{
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+        // kakao
+        if (Session.getCurrentSession().handleActivityResult(requestCode, resultCode, data))
+            return;
 
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {

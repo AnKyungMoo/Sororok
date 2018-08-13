@@ -58,18 +58,15 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="이거 누르면 메인 가여"
+            android:text="카카오"
             android:layout_alignTop="@+id/kakao_button"
             android:layout_margin="30dp"/>
+
+        <Button
+            android:id="@+id/temp_main_button"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:text="메인"
+            android:layout_below="@+id/kakao_button"/>
     </RelativeLayout>
-
-    <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <com.kakao.usermgmt.LoginButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
-    </FrameLayout>
-
 </LinearLayout>
