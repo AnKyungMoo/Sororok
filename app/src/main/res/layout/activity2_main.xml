@@ -1,56 +1,195 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
+<android.support.v4.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_drawer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    tools:context=".activity.MainActivity">
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/appbar"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:fitsSystemWindows="true"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+    <RelativeLayout
+        android:id="@+id/layout_linear"
+        android:layout_width="280dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="right"
+        android:background="#ffffff">
 
-        <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/collapsing_toolbar"
+        <RelativeLayout
+            android:id="@+id/layout_update"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="소식"
+                android:textSize="12pt" />
+
+            <Button
+                android:id="@+id/btn_history_close"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:text="X" />
+
+        </RelativeLayout>
+
+        <ListView
+            android:id="@+id/list_drawer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
-            app:contentScrim="?attr/colorPrimary"
-            app:expandedTitleMarginStart="@dimen/seek_bar_thickness"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+            android:layout_below="@id/layout_update"
+            android:background="#FAFAFA"
+            android:orientation="vertical" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:layout_gravity="top"
-                android:background="#58ACFA"
-                android:fitsSystemWindows="true"/>
+    </RelativeLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_gravity="bottom"
-                android:background="#FE2E9A"/>
-
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/anim_toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
-
-        </android.support.design.widget.CollapsingToolbarLayout>
-
-    </android.support.design.widget.AppBarLayout>
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/scrollableview"
+    <FrameLayout
+        android:id="@+id/frame_main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        android:layout_height="match_parent">
 
-</android.support.design.widget.CoordinatorLayout>
+        <android.support.design.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:fitsSystemWindows="true">
+            <android.support.design.widget.AppBarLayout
+                android:id="@+id/appbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fitsSystemWindows="true"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+                <android.support.design.widget.CollapsingToolbarLayout
+                    android:id="@+id/collapsing_toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:contentScrim="?attr/colorPrimary"
+                    app:expandedTitleMarginStart="@dimen/seek_bar_thickness"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+
+                   <!-- <ImageView
+                        android:id="@+id/header"
+                        android:layout_width="match_parent"
+                        android:layout_height="250dp"
+                        android:background="#FE642E"
+                        android:fitsSystemWindows="true"
+                        android:scaleType="centerCrop"
+                        app:layout_collapseMode="parallax"/>-->
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="250dp">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="20dp">
+                            <LinearLayout
+                                android:id="@+id/layout_big"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center|left"
+                                android:layout_above="@id/edit_big"
+                                android:layout_marginBottom="10dp">
+                                <ImageView
+                                    android:id="@+id/img_user_icon"
+                                    android:layout_width="85dp"
+                                    android:layout_height="85dp"
+                                    android:src="@drawable/user_icon"/>
+                                <TextView
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="희은님\n안녕하세요!"
+                                    android:textColor="#000000"
+                                    android:textSize="10pt"/>
+                            </LinearLayout>
+                            <EditText
+                                android:id="@+id/edit_big"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="#000000"
+                                android:layout_alignParentBottom="true"
+                                android:layout_marginBottom="10dp"/>
+                        </RelativeLayout>
+                    </RelativeLayout>
+
+                    <android.support.v7.widget.Toolbar
+                        android:id="@+id/anim_toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        app:layout_collapseMode="pin"
+                        android:layout_alignParentTop="true"
+                        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="20dp">
+                            <Button
+                                android:id="@+id/btn_go_history"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:background="@drawable/blackbutton"
+                                android:layout_toLeftOf="@id/btn_setting"
+                                android:layout_marginRight="10dp"/>
+                            <Button
+                                android:id="@+id/btn_setting"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:background="@drawable/blackbutton"
+                                android:layout_alignParentRight="true"/>
+
+                                <LinearLayout
+                                    android:id="@+id/layout_small"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:gravity="center|left"
+                                    android:visibility="invisible">
+                                    <ImageView
+                                        android:id="@+id/img_user_icon_small"
+                                        android:layout_width="40dp"
+                                        android:layout_height="40dp"
+                                        android:src="@drawable/user_icon"/>
+                                    <TextView
+                                        android:layout_marginLeft="10dp"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="희은님"
+                                        android:textColor="#000000"
+                                        android:textSize="8pt"/>
+                                </LinearLayout>
+                                <EditText
+                                    android:id="@+id/edit_main_small"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentBottom="true"
+                                    android:layout_marginTop="10dp"
+                                    android:visibility="invisible"/>
+                        </RelativeLayout>
+                    </android.support.v7.widget.Toolbar>
+
+                </android.support.design.widget.CollapsingToolbarLayout>
+            </android.support.design.widget.AppBarLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/scrollableview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            </android.support.v7.widget.RecyclerView>
+        </android.support.design.widget.CoordinatorLayout>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/btn_floating"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom|right"
+            android:layout_margin="30dp"/>
+    </FrameLayout>
+</android.support.v4.widget.DrawerLayout>

@@ -14,7 +14,7 @@ import java.util.List;
 
 public class DessertAdapter extends RecyclerView.Adapter<DessertAdapter.DessertVh> {
     private List<Dessert> desserts = new ArrayList<>();
-    private String[] arr = {"test","tool","bar","mmmm","ssssssssss","dddddddddddd","dddddddd","dddd","ddd","ddddd","dddd","dddd","sss","ddd"};
+    private String[] arr = {"activity2_main","tool","bar","mmmm","ssssssssss","dddddddddddd","dddddddd","dddd","ddd","ddddd","dddd","dddd","sss","ddd"};
     private String[] arr2 = arr;
     private Context context;
 
