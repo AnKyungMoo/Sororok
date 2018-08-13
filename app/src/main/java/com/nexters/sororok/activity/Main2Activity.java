@@ -11,7 +11,6 @@ import android.support.v7.graphics.Palette;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,7 +31,6 @@ public class Main2Activity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private DessertAdapter dessertAdapter;
     private boolean appBarExpanded = true;
-    private Menu collapsedMenu;
     private LinearLayout linearLayout,linearBig;
     private EditText editText,editBig;
     private Toolbar toolbar;
@@ -137,46 +135,6 @@ public class Main2Activity extends AppCompatActivity {
         historyAdapter.addHistory("소로록이 새롭게 업데이트가 되었습니다.");
         historyAdapter.addHistory("넥터 13기 그룹이 새롭게 추가 되었습니다.");
     }
-
-/*
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        if (collapsedMenu != null
-                && (!appBarExpanded || collapsedMenu.size() != 1)) {
-            //collapsed
-           *//* collapsedMenu.add("Add")
-                    .setIcon(R.drawable.blackbutton)
-                    .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);*//*
-            Toast.makeText(getApplicationContext(),"11",Toast.LENGTH_LONG).show();
-        } else {
-            //expanded
-            Toast.makeText(getApplicationContext(),"22",Toast.LENGTH_LONG).show();
-        }
-        return super.onPrepareOptionsMenu(collapsedMenu);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        //getMenuInflater().inflate(R.menu.menu_main, menu);
-        //collapsedMenu = menu;
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                finish();
-                return true;
-            case R.id.action_settings:
-                return true;
-        }
-        if (item.getTitle() == "Add") {
-            //Toast.makeText(this, "clicked add", Toast.LENGTH_SHORT).show();
-        }
-
-        return super.onOptionsItemSelected(item);
-    }*/
 
 
 }
