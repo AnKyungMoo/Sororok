@@ -35,6 +35,13 @@ public class MemberListItem{
         this.memberID = memberID;
     }
 
+    public MemberListItem(Drawable memberProfile, String memberName, int memberID, String memberNumber){
+        this.memberName = memberName;
+        this.memberProfile = memberProfile;
+        this.memberID = memberID;
+        this.memberNumber = memberNumber;
+    }
+
     public Drawable getMemberProfile() {
         return memberProfile;
     }
