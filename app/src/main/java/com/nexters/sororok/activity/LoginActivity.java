@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -63,6 +64,9 @@ public class LoginActivity extends AppCompatActivity{
     ImageButton naverButton;
     ImageButton kakaoButton;
 
+    /*TODO: 임시로 메인으로 가는 버튼이니 키 해시 문제가 해결되면 제거하자*/
+    Button tempButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,6 +108,7 @@ public class LoginActivity extends AppCompatActivity{
         googleButton = findViewById(R.id.google_button);
         naverButton = findViewById(R.id.naver_button);
         kakaoButton = findViewById(R.id.kakao_button);
+        tempButton = findViewById(R.id.temp_main_button);
 
         googleButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,9 +128,15 @@ public class LoginActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 kakaoLogin();
-                //Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                //startActivity(intent);
-                //finish();
+            }
+        });
+
+        tempButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
 
