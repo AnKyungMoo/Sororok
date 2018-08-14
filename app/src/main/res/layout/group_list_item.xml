@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="130dp"
+    android:layout_margin="25dp"
+    android:background="#F2F2F2">
+
+    <LinearLayout
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentLeft="true"
+        android:layout_centerInParent="true">
+        <TextView
+            android:id="@+id/txt_user_join"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="가입됨"
+            android:textSize="6pt"/>
+        <ImageView
+            android:id="@+id/img_user_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher"
+            android:layout_marginTop="5dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_centerInParent="true">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/txt_group_maintitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="넥스터즈 13기"
+                android:textSize="10pt"/>
+            <ImageView
+                android:id="@+id/img_user_boss"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@mipmap/ic_launcher"/>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/txt_group_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="넥터 주소로록팀"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:layout_alignParentRight="true"
+        android:layout_centerInParent="true">
+        <Button
+            android:id="@+id/btn_go_group"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="#000000"/>
+    </LinearLayout>
+</RelativeLayout>

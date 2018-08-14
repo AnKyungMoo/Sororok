@@ -134,10 +134,10 @@
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
                                 android:background="@drawable/blackbutton"
-                                android:layout_toLeftOf="@id/btn_setting"
+                                android:layout_toLeftOf="@id/btn_go_setting"
                                 android:layout_marginRight="10dp"/>
                             <Button
-                                android:id="@+id/btn_setting"
+                                android:id="@+id/btn_go_setting"
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
                                 android:background="@drawable/blackbutton"
@@ -179,7 +179,7 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/scrollableview"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             </android.support.v7.widget.RecyclerView>
@@ -187,8 +187,8 @@
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/btn_floating"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_gravity="bottom|right"
             android:layout_margin="30dp"/>
     </FrameLayout>
