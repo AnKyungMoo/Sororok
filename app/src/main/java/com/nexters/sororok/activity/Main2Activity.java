@@ -10,7 +10,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -40,6 +43,7 @@ public class Main2Activity extends AppCompatActivity {
     private HistoryAdapter historyAdapter;
     private DrawerLayout drawerLayout;
     private Button historyBtn, settingBtn;
+    private Animation slideUpAnimation,slideDownAnimation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,19 +97,44 @@ public class Main2Activity extends AppCompatActivity {
         appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                Log.i("111", String.valueOf(Math.abs(verticalOffset)));  //0
+               // Log.i("222", String.valueOf(appBarLayout.getTotalScrollRange())); //278
                 //  Vertical offset == 0 indicates appBar is fully expanded.
-                if (Math.abs(verticalOffset)-appBarLayout.getTotalScrollRange() == 0) {
+
+                if(Math.abs(verticalOffset)-appBarLayout.getTotalScrollRange() == 0){
+                    linearBig.setVisibility(View.GONE);
+                    editBig.setVisibility(View.GONE);
+
                     linearLayout.setVisibility(View.VISIBLE);
                     editText.setVisibility(View.VISIBLE);
+                    linearLayout.startAnimation(slideUpAnimation);
+                    editText.startAnimation(slideDownAnimation);
+                }
+
+               /* if (Math.abs(verticalOffset)-appBarLayout.getTotalScrollRange() == 0) {
+
+
+                  //  editText.startAnimation(slideUpAnimation);
+
+
+
+                    //Toast.makeText(getApplicationContext(), "111: "+String.valueOf(Math.abs(verticalOffset)),Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), "222: "+String.valueOf(appBarLayout.getTotalScrollRange()),Toast.LENGTH_SHORT).show();
+                  *//*  linearLayout.setVisibility(View.VISIBLE);
+                    editText.setVisibility(View.VISIBLE);
                     linearBig.setVisibility(View.INVISIBLE);
-                    editBig.setVisibility(View.INVISIBLE);
-                    /*appBarExpanded = false;
-                    invalidateOptionsMenu();*/
-                } else {
+                    editBig.setVisibility(View.INVISIBLE);*//*
+                    *//*appBarExpanded = false;
+                    invalidateOptionsMenu();*//*
+                } */else {
                     linearLayout.setVisibility(View.GONE);
                     editText.setVisibility(View.GONE);
                     linearBig.setVisibility(View.VISIBLE);
                     editBig.setVisibility(View.VISIBLE);
+                   /* linearLayout.setVisibility(View.GONE);
+                    editText.setVisibility(View.GONE);
+                    linearBig.setVisibility(View.VISIBLE);
+                    editBig.setVisibility(View.VISIBLE);*/
                     /*appBarExpanded = true;
                     invalidateOptionsMenu();*/
                 }
@@ -144,6 +173,9 @@ public class Main2Activity extends AppCompatActivity {
         settingBtn = findViewById(R.id.btn_go_setting);
         recyclerView = findViewById(R.id.scrollableview);
         addGroupBtn = findViewById(R.id.btn_floating);
+
+        slideUpAnimation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.toolbar_down);
+        slideDownAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.toolbar_up);
     }
 
 
