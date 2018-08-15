@@ -2,13 +2,21 @@ package com.nexters.sororok.activity;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Base64;
+import android.util.Log;
 
 import com.nexters.sororok.R;
 import com.nexters.sororok.util.PermissionUtil;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * 스플래시 액티비티
@@ -19,8 +27,18 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
-
+        setContentView(R.layout.activity_splash);try {
+            PackageInfo info = getPackageManager().getPackageInfo("com.nexters.sororok", PackageManager.GET_SIGNATURES);
+            for (Signature signature : info.signatures) {
+                MessageDigest md = MessageDigest.getInstance("SHA");
+                md.update(signature.toByteArray());
+                Log.d("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
         //권한 체크
         if(PermissionUtil.checkPermission(this, Manifest.permission.WRITE_CONTACTS)&&
                 PermissionUtil.checkPermission(this, Manifest.permission.READ_CONTACTS)&&
@@ -35,7 +53,7 @@ public class SplashActivity extends AppCompatActivity {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    Intent mainIntent = new Intent(SplashActivity.this,  MemberSettingActivity.class);
+                    Intent mainIntent = new Intent(SplashActivity.this,  LoginActivity.class);
                     SplashActivity.this.startActivity(mainIntent);
                     SplashActivity.this.finish();
                 }
