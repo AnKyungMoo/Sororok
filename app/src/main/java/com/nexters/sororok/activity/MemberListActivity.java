@@ -186,10 +186,6 @@ public class MemberListActivity extends AppCompatActivity {
                 i++;
             }
         }
-
-        if(mAdapter.getItem(0)!=null){
-
-        }
     }
 
     //한글 체크 함수. MemberListwithAdapter에서도 똑같이 구현되어 있지만 보기 좋으라고 여기에 씀.
