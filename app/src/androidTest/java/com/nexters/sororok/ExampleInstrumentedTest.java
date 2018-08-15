@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under activity2_main.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.km.sororok", appContext.getPackageName());
+        assertEquals("com.nexters.sororok", appContext.getPackageName());
     }
 }
