@@ -91,11 +91,23 @@ public class MemberSettingActivity extends AppCompatActivity {
         groupShareBtn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent sendIntent = new Intent();
-                sendIntent.setAction(Intent.ACTION_SEND);
-                sendIntent.putExtra(Intent.EXTRA_TEXT, groupCode.getText());
+                /*try {
+
+                    //https://developers.kakao.com/docs/android/kakaotalk-link#%EB%A9%94%EC%8B%9C%EC%A7%80-%ED%83%80%EC%9E%85-%EC%86%8C%EA%B0%9C
+                    KakaoLink kakaoLink = KakaoLink.getKakaoLink(getApplicationContext());
+                    KakaoTalkLinkMessageBuilder messageBuilder = kakaoLink.createKakaoTalkLinkMessageBuilder();
+                    messageBuilder.addText(groupCode.getText().toString());
+                    kakaoLink.sendMessage(messageBuilder,getApplicationContext());
+                } catch (KakaoParameterException e) {
+                    e.printStackTrace();
+                }*/
+                Intent sendIntent = new Intent(Intent.ACTION_SEND);
                 sendIntent.setType("text/plain");
-                startActivity(sendIntent);
+                //sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_SUBJECT,"넥스터즈 13기");
+                sendIntent.putExtra(Intent.EXTRA_TEXT, groupCode.getText());
+                Intent chooser = Intent.createChooser(sendIntent, "공유하기");
+                startActivity(chooser);
             }
         });
 
