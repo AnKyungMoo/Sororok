@@ -24,7 +24,7 @@ import java.util.ArrayList;
  */
 public class MainActivity extends AppCompatActivity{
 
-    private Button profileButton,historyBtn,historyCloseBtn,settingBtn,addGroupBtn, goGroupBtn;
+    private Button profileButton, historyBtn, historyCloseBtn, settingBtn, addGroupBtn, goGroupBtn;
     private DrawerLayout drawerLayout;
     private ListView historyListView;
     private HistoryAdapter historyAdapter;

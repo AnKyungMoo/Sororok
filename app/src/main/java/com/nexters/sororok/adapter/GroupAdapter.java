@@ -1,5 +1,6 @@
 package com.nexters.sororok.adapter;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nexters.sororok.R;
+import com.nexters.sororok.activity.MemberListActivity;
 import com.nexters.sororok.item.GroupListItem;
 
 import java.util.ArrayList;
@@ -38,6 +40,13 @@ public class GroupAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         groupViewHolder.groupName.setText(groupListItems.get(position).groupName);
         groupViewHolder.groupBossImage.setImageResource(groupListItems.get(position).groupSmallImage);
         groupViewHolder.groupContent.setText(groupListItems.get(position).groupContent);
+        groupViewHolder.goButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent (view.getContext(), MemberListActivity.class);
+                view.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override
