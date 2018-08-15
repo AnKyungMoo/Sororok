@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "198858075285",
+    "firebase_url": "https://sororok-5d59b.firebaseio.com",
+    "project_id": "sororok-5d59b",
+    "storage_bucket": "sororok-5d59b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:198858075285:android:2c131f33479256d1",
+        "android_client_info": {
+          "package_name": "com.nexters.sororok"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "198858075285-hrikiqc886sk3mkj9lhgc6i34u47t64u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHzoC23hD1hFkGpWt3IJ8k8MMyKBpvS7Y"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
