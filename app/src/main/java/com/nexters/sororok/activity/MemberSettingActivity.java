@@ -21,12 +21,12 @@ import com.nexters.sororok.R;
  */
 public class MemberSettingActivity extends AppCompatActivity {
 
-    private Button groupShareBtn, changeAdminBtn,groupManageBtn,groupRemoveBtn;
+    private Button groupShareBtn, changeAdminBtn,groupManageBtn,groupRemoveBtn,groupShareBtn2;
     private Button backBtn,exitGroupBtn,optionBtn1,optionBtn2,optionBtn3;
     private RelativeLayout animLayout,mainLayout;
     private Animation slideUpAnimation, slideDownAnimation;
     private LinearLayout defalutLayout, nextLayout;
-    private TextView mainTitle,subTitle;
+    private TextView mainTitle,subTitle,groupCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +88,17 @@ public class MemberSettingActivity extends AppCompatActivity {
             }
         });
 
+        groupShareBtn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, groupCode.getText());
+                sendIntent.setType("text/plain");
+                startActivity(sendIntent);
+            }
+        });
+
         exitGroupBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -107,6 +118,7 @@ public class MemberSettingActivity extends AppCompatActivity {
 
     public void initComponent(){
         groupShareBtn = findViewById(R.id.btn_group_share);
+        groupShareBtn2 = findViewById(R.id.btn_group_share2);
         changeAdminBtn = findViewById(R.id.btn_admin_change);
         groupManageBtn = findViewById(R.id.btn_members_manage);
         groupRemoveBtn = findViewById(R.id.btn_group_remove);
@@ -121,6 +133,7 @@ public class MemberSettingActivity extends AppCompatActivity {
         optionBtn3 = findViewById(R.id.btn_menu_3);
         mainTitle = findViewById(R.id.txt_menu_main_title);
         subTitle = findViewById(R.id.txt_menu_sub_title);
+        groupCode = findViewById(R.id.txt_group_code);
         slideUpAnimation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.slide_up_animation);
         slideDownAnimation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.slide_down_animation);
     }

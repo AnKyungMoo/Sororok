@@ -118,7 +118,22 @@
                         android:layout_height="wrap_content"
                         android:text="코드번호 변경"
                         android:textSize="7pt"/>
-                    <Button
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="130dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_below="@id/txt_code_change"
+                        android:background="#BDBDBD">
+                        <TextView
+                            android:id="@+id/txt_group_code"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="10W93F"
+                            android:gravity="center"
+                            android:textSize="15pt"
+                            android:textColor="#000000"/>
+                    </LinearLayout>
+                    <!--<Button
                         android:layout_width="match_parent"
                         android:layout_height="130dp"
                         android:text="10W93F"
@@ -126,7 +141,7 @@
                         android:layout_marginTop="10dp"
                         android:enabled="false"
                         android:textColor="#000000"
-                        android:layout_below="@id/txt_code_change"/>
+                        android:layout_below="@id/txt_code_change"/>-->
                 </RelativeLayout>
             </LinearLayout>
 

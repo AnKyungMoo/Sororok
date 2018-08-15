@@ -134,8 +134,8 @@
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
                                 android:background="@drawable/blackbutton"
-                                android:layout_toLeftOf="@id/btn_go_setting"
-                                android:layout_marginRight="10dp"/>
+                                android:layout_alignParentRight="true"
+                                android:layout_marginRight="40dp"/>
                             <Button
                                 android:id="@+id/btn_go_setting"
                                 android:layout_width="30dp"
