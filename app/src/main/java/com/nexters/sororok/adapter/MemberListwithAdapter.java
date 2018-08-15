@@ -363,6 +363,7 @@ public class MemberListwithAdapter extends ListView{
     public static class MemberlistAdapter extends BaseAdapter implements SectionIndexer{
         private static final int TYPE_ITEM = 0;
         private static final int TYPE_HEADER = 1;
+        private static final int TYPE_BOTTOM = 2;
 
         private ArrayList<MemberListItem> lvMember = new ArrayList<MemberListItem>();
         private TreeSet<Integer> header = new TreeSet<Integer>();
@@ -381,6 +382,11 @@ public class MemberListwithAdapter extends ListView{
         public void addHeaderItem(final MemberListItem item){
             lvMember.add(item);
             header.add(lvMember.size()-1);
+            notifyDataSetChanged();
+        }
+
+        public void addBottomItem(final MemberListItem item){
+            lvMember.add(item);
             notifyDataSetChanged();
         }
 
@@ -434,6 +440,9 @@ public class MemberListwithAdapter extends ListView{
                         convertView = mInfalater.inflate(R.layout.member_list_header, null);
                         holder.textView = (TextView) convertView.findViewById(R.id.tvHeader);
                         break;
+                    case TYPE_BOTTOM:
+                        convertView=mInfalater.inflate(R.layout.member_list_bottom,null);
+                        holder.textView = convertView.findViewById(R.id.tvBottom);
                 }
 //                convertView.setTag(holder);
 //            } else {
