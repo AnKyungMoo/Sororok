@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -72,6 +73,15 @@ public class MemberListActivity extends AppCompatActivity {
         memberList.add(new MemberListItem(ContextCompat.getDrawable(this,R.drawable.blackbutton),"신상훈",4,"01071500894"));
         memberList.add(new MemberListItem(ContextCompat.getDrawable(this,R.drawable.blackbutton),"안경무",5,"01028175670"));
         memberList.add(new MemberListItem(ContextCompat.getDrawable(this,R.drawable.blackbutton),"한희영",6,"01098105690"));
+        memberList.add(new MemberListItem(ContextCompat.getDrawable(this,R.drawable.blackbutton),"a",7,""));
+        memberList.add(new MemberListItem(ContextCompat.getDrawable(this,R.drawable.blackbutton),"b",8,""));
+        memberList.add(new MemberListItem(ContextCompat.getDrawable(this,R.drawable.blackbutton),"c",9,""));
+        memberList.add(new MemberListItem(ContextCompat.getDrawable(this,R.drawable.blackbutton),"d",10,""));
+        memberList.add(new MemberListItem(ContextCompat.getDrawable(this,R.drawable.blackbutton),"e",11,""));
+        memberList.add(new MemberListItem(ContextCompat.getDrawable(this,R.drawable.blackbutton),"f",12,""));
+        memberList.add(new MemberListItem(ContextCompat.getDrawable(this,R.drawable.blackbutton),"g",13,""));
+        memberList.add(new MemberListItem(ContextCompat.getDrawable(this,R.drawable.blackbutton),"h",14,""));
+        memberList.add(new MemberListItem(ContextCompat.getDrawable(this,R.drawable.blackbutton),"i",15,""));
         ArrayList<String> name = new ArrayList<String>();
         for(int i=0;i<memberList.size();i++){
             name.add(memberList.get(i).getMemberName());
@@ -134,7 +144,7 @@ public class MemberListActivity extends AppCompatActivity {
         //체크 상태 변환 후 notify해주면 getview에서 색깔을 바꿔준다. 선택 상황에 따라 저장버튼 속성 바뀌어야 함.
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+            public void onItemClick(final AdapterView<?> adapterView, View view, int position, long l) {
                 if(adapterView.getAdapter().getItemViewType(position) == 0)
                 {
                     MemberListItem item = (MemberListItem) adapterView.getAdapter().getItem(position);
@@ -159,6 +169,13 @@ public class MemberListActivity extends AppCompatActivity {
                             saveSelectedBtn.setText("전체 저장");
                         }
                     }
+                } else if(adapterView.getAdapter().getItemViewType(position) == 2){
+                    listView.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            listView.setSelection(0);
+                        }
+                    });
                 }
             }
         });
@@ -186,6 +203,7 @@ public class MemberListActivity extends AppCompatActivity {
                 i++;
             }
         }
+        mAdapter.addBottomItem(new MemberListItem(null,null,0,null));
     }
 
     //한글 체크 함수. MemberListwithAdapter에서도 똑같이 구현되어 있지만 보기 좋으라고 여기에 씀.

@@ -41,6 +41,7 @@ public class MemberListwithAdapter extends ListView{
 
     private boolean showLetter = true;
     private float leftPosition;
+    private float dx;
     private int indexSize;
     private float radius;
     private int indWidth;
@@ -57,6 +58,7 @@ public class MemberListwithAdapter extends ListView{
     private Paint textPaint;
     private Paint sectionTextPaint;
     private GestureDetector mGesture;
+    private int moreMargin = 100;
     private OnClickListener onClickListener;
     public MemberListwithAdapter(Context context, AttributeSet attrs){
         super(context, attrs);
@@ -85,7 +87,7 @@ public class MemberListwithAdapter extends ListView{
 
         TypedArray array = context.getTheme().obtainStyledAttributes(attrs, R.styleable.ListAttr,0,0);
 
-        int indexerBackground = array.getColor(R.styleable.ListAttr_indexerBackground, 0xffffffff);
+        int indexerBackground = array.getColor(R.styleable.ListAttr_indexerBackground, 0x00000000);
         int sectionBackground = array.getColor(R.styleable.ListAttr_sectionBackground, 0xffffffff);
         int indexerTextColor = array.getColor(R.styleable.ListAttr_indexerTextColor, 0xff000000);
         int sectionTextColor = array.getColor(R.styleable.ListAttr_sectionTextColor, 0xff000000);
@@ -134,7 +136,7 @@ public class MemberListwithAdapter extends ListView{
      * @param margin 설정할 여백 값
      */
     public void setIndexerMargin(int margin) {
-        this.indexerMargin = indexerMargin;
+        this.indexerMargin = margin;
     }
 
     /**
@@ -257,18 +259,18 @@ public class MemberListwithAdapter extends ListView{
 
         positionRect.left = leftPosition;
         positionRect.right = leftPosition + scaledWidth;
-        positionRect.top = this.getPaddingTop();
-        positionRect.bottom = this.getHeight() - this.getPaddingBottom();
+        positionRect.top = this.getPaddingTop()+moreMargin;
+        positionRect.bottom = this.getHeight() - this.getPaddingBottom()-moreMargin;
 
         canvas.drawRoundRect(positionRect, radius, radius, backgroundPaint);
-        indexSize = (this.getHeight() - this.getPaddingTop() - getPaddingBottom()) / sections.length;
+        indexSize = (this.getHeight() - this.getPaddingTop() -(moreMargin*2) - getPaddingBottom()) / sections.length;
 
         textPaint.setTextSize(scaledWidth / 2);
 
         for (int i = 0; i < sections.length; i++) {
             float x = leftPosition + (textPaint.getTextSize() / 2);
-            float calY = this.getHeight() - (scaledCompensation + (indexSize * i)) > 100 ? scaledCompensation + getPaddingTop()
-                    + indexerMargin + (indexSize * i) : scaledCompensation + getPaddingTop() + (indexSize * i);
+            float calY = this.getHeight() - (scaledCompensation + (indexSize * i)) > 100 ? scaledCompensation + getPaddingTop()+moreMargin
+                    + indexerMargin + (indexSize * i) : scaledCompensation + getPaddingTop()+moreMargin + (indexSize * i);
             canvas.drawText(sections[i].toUpperCase(), x, calY, textPaint);
         }
 
@@ -305,11 +307,13 @@ public class MemberListwithAdapter extends ListView{
         float x = event.getX();
         mGesture.onTouchEvent(event);
 
+
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN: {
+                dx = event.getX();
                     try {
-                        float y = event.getY() - this.getPaddingTop() - getPaddingBottom();
-                        int currentPosition = (int) Math.floor(y / indexSize);
+                        float y = event.getY() - this.getPaddingTop()-(moreMargin*2) - getPaddingBottom();
+                        int currentPosition = (int) Math.floor((y / indexSize));
                         if (x < leftPosition) {
                             return super.onTouchEvent(event);
                         } else {
@@ -323,7 +327,7 @@ public class MemberListwithAdapter extends ListView{
             }
 
             case MotionEvent.ACTION_MOVE: {
-                if (x < leftPosition) {
+                if (x < leftPosition||dx<leftPosition) {
                     return super.onTouchEvent(event);
                 } else {
                     try {
@@ -337,7 +341,6 @@ public class MemberListwithAdapter extends ListView{
                     }
                 }
                 break;
-
             }
 
             case MotionEvent.ACTION_UP: {
@@ -363,9 +366,11 @@ public class MemberListwithAdapter extends ListView{
     public static class MemberlistAdapter extends BaseAdapter implements SectionIndexer{
         private static final int TYPE_ITEM = 0;
         private static final int TYPE_HEADER = 1;
+        private static final int TYPE_BOTTOM = 2;
 
         private ArrayList<MemberListItem> lvMember = new ArrayList<MemberListItem>();
         private TreeSet<Integer> header = new TreeSet<Integer>();
+        public int bottom = -1;
 
         private LayoutInflater mInfalater;
 
@@ -384,14 +389,20 @@ public class MemberListwithAdapter extends ListView{
             notifyDataSetChanged();
         }
 
+        public void addBottomItem(final MemberListItem item){
+            lvMember.add(item);
+        }
+
         @Override
         public int getItemViewType(int position){
+            if(getCount()-1==position)
+                return TYPE_BOTTOM;
             return header.contains(position) ? TYPE_HEADER : TYPE_ITEM;
         }
 
         @Override
         public int getViewTypeCount(){
-            return 2;
+            return 3;
         }
 
         @Override
@@ -433,6 +444,9 @@ public class MemberListwithAdapter extends ListView{
                     case TYPE_HEADER:
                         convertView = mInfalater.inflate(R.layout.member_list_header, null);
                         holder.textView = (TextView) convertView.findViewById(R.id.tvHeader);
+                        break;
+                    case TYPE_BOTTOM:
+                        convertView = mInfalater.inflate(R.layout.member_list_bottom,null);
                         break;
                 }
 //                convertView.setTag(holder);
