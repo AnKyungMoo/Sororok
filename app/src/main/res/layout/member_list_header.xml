@@ -4,15 +4,16 @@
     android:layout_height="match_parent">
 <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="40dp"
-    android:background="@drawable/graybox">
+    android:layout_height="52dp"
+    android:background="#FFFFFF">
     <TextView
         android:id="@+id/tvHeader"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:textSize="15sp"
-        android:text=""
-        android:layout_marginLeft="10dp"/>
+        android:textColor="#575b63"
+        android:layout_marginTop="20dp"
+        android:textSize="16sp"
+        android:text="자음."
+        android:layout_marginLeft="30dp"/>
 </LinearLayout>
 </android.support.constraint.ConstraintLayout>

@@ -87,7 +87,7 @@ public class MemberListwithAdapter extends ListView{
 
         TypedArray array = context.getTheme().obtainStyledAttributes(attrs, R.styleable.ListAttr,0,0);
 
-        int indexerBackground = array.getColor(R.styleable.ListAttr_indexerBackground, 0x00000000);
+        int indexerBackground = array.getColor(R.styleable.ListAttr_indexerBackground, 0xc0ffffff);
         int sectionBackground = array.getColor(R.styleable.ListAttr_sectionBackground, 0xffffffff);
         int indexerTextColor = array.getColor(R.styleable.ListAttr_indexerTextColor, 0xff000000);
         int sectionTextColor = array.getColor(R.styleable.ListAttr_sectionTextColor, 0xff000000);
@@ -328,6 +328,7 @@ public class MemberListwithAdapter extends ListView{
 
             case MotionEvent.ACTION_MOVE: {
                 if (x < leftPosition||dx<leftPosition) {
+                    listHandler.postDelayed(showLetterRunnable, delayMillis);
                     return super.onTouchEvent(event);
                 } else {
                     try {
@@ -345,6 +346,7 @@ public class MemberListwithAdapter extends ListView{
 
             case MotionEvent.ACTION_UP: {
                 if (x < leftPosition){
+                    listHandler.postDelayed(showLetterRunnable, delayMillis);
                     return super.onTouchEvent(event);
                 } else{
                     listHandler.postDelayed(showLetterRunnable, delayMillis);
@@ -434,10 +436,10 @@ public class MemberListwithAdapter extends ListView{
                         holder.imageView = (ImageView) convertView.findViewById(R.id.ivMemberList);
 
                         if(getItem(position).isChecked()){
-                            convertView.setBackgroundColor(Color.rgb(100,70,80));
+                            convertView.findViewById(R.id.rlMemberList).setBackgroundColor(Color.rgb(242,242,250));
                         }
                         else{
-                            convertView.setBackgroundColor(Color.rgb(255,255,255));
+                            convertView.findViewById(R.id.rlMemberList).setBackgroundColor(Color.rgb(255,255,255));
                         }
 
                         break;

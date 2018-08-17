@@ -66,22 +66,22 @@ public class MemberListActivity extends AppCompatActivity {
 
         //테스트용 데이터 생성. 지금은 String으로 했지만 서버 연동 후 MemberListitem 형식으로 생성할 듯.
         final ArrayList<MemberListItem> memberList = new ArrayList<>();
-        memberList.add(new MemberListItem(ContextCompat.getDrawable(this,R.drawable.blackbutton),"강문정",0,"01025557464"));
-        memberList.add(new MemberListItem(ContextCompat.getDrawable(this,R.drawable.blackbutton),"곽희은",1,"01071849414"));
-        memberList.add(new MemberListItem(ContextCompat.getDrawable(this,R.drawable.blackbutton),"김혜리",2,"01043232426"));
-        memberList.add(new MemberListItem(ContextCompat.getDrawable(this,R.drawable.blackbutton),"남수민",3,"01032723956"));
-        memberList.add(new MemberListItem(ContextCompat.getDrawable(this,R.drawable.blackbutton),"신상훈",4,"01071500894"));
-        memberList.add(new MemberListItem(ContextCompat.getDrawable(this,R.drawable.blackbutton),"안경무",5,"01028175670"));
-        memberList.add(new MemberListItem(ContextCompat.getDrawable(this,R.drawable.blackbutton),"한희영",6,"01098105690"));
-        memberList.add(new MemberListItem(ContextCompat.getDrawable(this,R.drawable.blackbutton),"a",7,""));
-        memberList.add(new MemberListItem(ContextCompat.getDrawable(this,R.drawable.blackbutton),"b",8,""));
-        memberList.add(new MemberListItem(ContextCompat.getDrawable(this,R.drawable.blackbutton),"c",9,""));
-        memberList.add(new MemberListItem(ContextCompat.getDrawable(this,R.drawable.blackbutton),"d",10,""));
-        memberList.add(new MemberListItem(ContextCompat.getDrawable(this,R.drawable.blackbutton),"e",11,""));
-        memberList.add(new MemberListItem(ContextCompat.getDrawable(this,R.drawable.blackbutton),"f",12,""));
-        memberList.add(new MemberListItem(ContextCompat.getDrawable(this,R.drawable.blackbutton),"g",13,""));
-        memberList.add(new MemberListItem(ContextCompat.getDrawable(this,R.drawable.blackbutton),"h",14,""));
-        memberList.add(new MemberListItem(ContextCompat.getDrawable(this,R.drawable.blackbutton),"i",15,""));
+        memberList.add(new MemberListItem(null,"강문정",0,"01025557464"));
+        memberList.add(new MemberListItem(null,"곽희은",1,"01071849414"));
+        memberList.add(new MemberListItem(null,"김혜리",2,"01043232426"));
+        memberList.add(new MemberListItem(null,"남수민",3,"01032723956"));
+        memberList.add(new MemberListItem(null,"신상훈",4,"01071500894"));
+        memberList.add(new MemberListItem(null,"안경무",5,"01028175670"));
+        memberList.add(new MemberListItem(null,"한희영",6,"01098105690"));
+        memberList.add(new MemberListItem(null,"a",7,""));
+        memberList.add(new MemberListItem(null,"b",8,""));
+        memberList.add(new MemberListItem(null,"c",9,""));
+        memberList.add(new MemberListItem(null,"d",10,""));
+        memberList.add(new MemberListItem(null,"e",11,""));
+        memberList.add(new MemberListItem(null,"f",12,""));
+        memberList.add(new MemberListItem(null,"g",13,""));
+        memberList.add(new MemberListItem(null,"h",14,""));
+        memberList.add(new MemberListItem(null,"i",15,""));
         ArrayList<String> name = new ArrayList<String>();
         for(int i=0;i<memberList.size();i++){
             name.add(memberList.get(i).getMemberName());
@@ -191,13 +191,13 @@ public class MemberListActivity extends AppCompatActivity {
             if(isKorean(firstChar))
                 firstString=Direct(firstString);
             if (firstString.equals(consonant[i])) {
-                mAdapter.addHeaderItem(new MemberListItem(null, consonant[i],0));
-                mAdapter.addItem(new MemberListItem(ContextCompat.getDrawable(this, R.drawable.blackbutton), name.get(j),j,memberList.get(j).getMemberNumber()));
+                mAdapter.addHeaderItem(new MemberListItem(null, consonant[i]+".",0));
+                mAdapter.addItem(new MemberListItem(null, name.get(j),j,memberList.get(j).getMemberNumber()));
                 if(i<consonant.length-1)
                 i++;
                 j++;
             } else if(firstString.compareTo(consonant[i])<0){
-                mAdapter.addItem(new MemberListItem(ContextCompat.getDrawable(this, R.drawable.blackbutton), name.get(j),j,memberList.get(j).getMemberNumber()));
+                mAdapter.addItem(new MemberListItem(null, name.get(j),j,memberList.get(j).getMemberNumber()));
                 j++;
             } else {
                 i++;
