@@ -151,7 +151,7 @@ public class LoginActivity extends AppCompatActivity{
         tempButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this, LoginActivity.class);
+                Intent intent = new Intent(LoginActivity.this, TestActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -246,7 +246,7 @@ public class LoginActivity extends AppCompatActivity{
                     callRetrofit();
 
                     if (!id.equals("-1")) {
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        Intent intent = new Intent(LoginActivity.this, TestActivity.class);
                         startActivity(intent);
                         finish();
                     }
@@ -300,7 +300,7 @@ public class LoginActivity extends AppCompatActivity{
                     callRetrofit();
 
                     if (!id.equals("-1")) {
-                        Intent intent = new Intent(activity, MainActivity.class);
+                        Intent intent = new Intent(activity, TestActivity.class);
                         activity.startActivity(intent);
                         activity.finish();
                     } else {
@@ -369,7 +369,7 @@ public class LoginActivity extends AppCompatActivity{
                             callRetrofit();
 
                             if (!id.equals("-1")) {
-                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                Intent intent = new Intent(LoginActivity.this, TestActivity.class);
                                 startActivity(intent);
                                 finish();
                             } else {
