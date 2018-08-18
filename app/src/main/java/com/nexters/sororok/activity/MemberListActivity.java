@@ -106,7 +106,7 @@ public class MemberListActivity extends AppCompatActivity {
             listView.setAdapter(mAdapter);
 
             wholenum=findViewById(R.id.tvWholeMNum);
-            wholenum.setText(String.valueOf(namesize));
+            wholenum.setText("총 "+String.valueOf(namesize)+"명");
             toggle =findViewById(R.id.ivListToggle);
 
             selectedNumberBtn=findViewById(R.id.btn_select_number);
@@ -137,7 +137,7 @@ public class MemberListActivity extends AppCompatActivity {
                                 listchecked.add((mAdapter.getItem(i).getMemberID()));
                             mAdapter.getItem(i).setChecked(true);
                         }
-                        selectedNumberBtn.setText("총 "+String.valueOf(namesize)+"명");
+                        selectedNumberBtn.setText(String.valueOf(namesize));
                         toggle.setImageDrawable(getResources().getDrawable(R.drawable.icn_list_check_on));
                         saveSelectedBtn.setVisibility(View.VISIBLE);
                         selectedNumberBtn.setVisibility(View.VISIBLE);

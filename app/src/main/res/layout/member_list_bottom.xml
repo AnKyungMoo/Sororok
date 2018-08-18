@@ -16,10 +16,10 @@
 
         <ImageView
             android:layout_width="9dp"
-            android:layout_height="8dp"
+            android:layout_height="9dp"
             android:layout_marginTop="26dp"
             android:scaleType="fitXY"
-            android:src="@drawable/blackbutton" />
+            android:src="@drawable/list_slelect" />
 
         <TextView
             android:id="@+id/tvBottom"
