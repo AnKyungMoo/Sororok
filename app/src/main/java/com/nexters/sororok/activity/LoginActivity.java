@@ -35,14 +35,26 @@ import com.kakao.usermgmt.callback.MeResponseCallback;
 import com.kakao.usermgmt.response.model.UserProfile;
 import com.kakao.util.exception.KakaoException;
 import com.nexters.sororok.R;
+import com.nexters.sororok.asynctask.LoginAsyncTask;
 import com.nexters.sororok.asynctask.NaverTokenTask;
+import com.nexters.sororok.model.LoginRequestModel;
+import com.nexters.sororok.model.LoginResponseModel;
+import com.nexters.sororok.service.LoginService;
 import com.nhn.android.naverlogin.OAuthLogin;
 import com.nhn.android.naverlogin.OAuthLoginHandler;
 
+import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.concurrent.ExecutionException;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class LoginActivity extends AppCompatActivity{
 
@@ -63,6 +75,9 @@ public class LoginActivity extends AppCompatActivity{
     ImageButton googleButton;
     ImageButton naverButton;
     ImageButton kakaoButton;
+
+    // 변수
+    String id;
 
     /*TODO: 임시로 메인으로 가는 버튼이니 키 해시 문제가 해결되면 제거하자*/
     Button tempButton;
@@ -217,14 +232,36 @@ public class LoginActivity extends AppCompatActivity{
                     isSuccess = true;
                     String userName = userProfile.getNickname();
 
+                    Log.d("kakaoProfile: ", userProfile.getId() + "");
+                    Log.d("kakaoProfile: ", userProfile.getUUID() + "");
                     Log.d("kakaoName: ", userName);
 
-                    Intent intent = new Intent(LoginActivity.this, LoginInfoActivity.class);
+                    Retrofit loginRetrofit = new Retrofit.Builder()
+                            .baseUrl(LoginService.BASE_URL)
+                            .addConverterFactory(ScalarsConverterFactory.create())
+                            .addConverterFactory(GsonConverterFactory.create())
+                            .build();
 
-                    intent.putExtra("loginType", "kakao");
-                    intent.putExtra("kakaoName", userName);
-                    startActivity(intent);
-                    finish();
+                    LoginService loginService = loginRetrofit.create(LoginService.class);
+
+                    Call<LoginResponseModel> loginCall = loginService.login(new LoginRequestModel("1", "899582853"));
+
+                    callRetrofit();
+
+                    if (!id.equals("-1")) {
+                        Log.d("메인으로 넘어가자", "메인");
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                    else {
+                        Intent intent = new Intent(LoginActivity.this, LoginInfoActivity.class);
+
+                        intent.putExtra("loginType", "kakao");
+                        intent.putExtra("kakaoName", userName);
+                        startActivity(intent);
+                        finish();
+                    }
                 }
             }
 
@@ -261,6 +298,8 @@ public class LoginActivity extends AppCompatActivity{
 
                 try {
                     String token = tokenTask.get();
+
+                    Log.d("naverJSON: ", token);
 
                     Intent intent = new Intent(activity, LoginInfoActivity.class);
 
@@ -321,6 +360,8 @@ public class LoginActivity extends AppCompatActivity{
 
                             assert user != null;
 
+                            Log.d("googleUID", user.getUid());
+
                             Intent intent = new Intent(LoginActivity.this, LoginInfoActivity.class);
                             intent.putExtra("loginType", "google");
                             intent.putExtra("googleName", user.getDisplayName());
@@ -338,5 +379,49 @@ public class LoginActivity extends AppCompatActivity{
                         // ...
                     }
                 });
+    }
+
+    // 레트로핏을 이용하여서 서버에서 기존 로그인 정보 획득
+    private void callRetrofit() {
+
+        /* 비동기로 처리하면 id를 가져오는거보다 다른 작업이 먼저 처리되는 경우가 발생되므로
+         * 동기로 처리, 네트워크 통신 문제때문에 asyncTask에서 작업
+         */
+        LoginAsyncTask loginTask = new LoginAsyncTask();
+
+        loginTask.execute();
+
+        try {
+            id = loginTask.get();
+            Log.d("checkId", id);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        /* 비동기로 처리할 때
+        loginCall.enqueue(new Callback<LoginResponseModel>() {
+            @Override
+            public void onResponse(Call<LoginResponseModel> call, Response<LoginResponseModel> response) {
+                Log.d("start!!!", "start");
+                Log.d("response", response.code() + "");
+
+                LoginResponseModel loginResponseModel = response.body();
+
+                Log.d("loginBody: ", loginResponseModel.getId());
+                id = loginResponseModel.getId();
+                Log.d("loginEmail: ", loginResponseModel.getEmail());
+                Log.d("phone: ", loginResponseModel.getPhone());
+                Log.d("name: ", loginResponseModel.getName());
+                Log.d("end!!!", "end");
+            }
+
+            @Override
+            public void onFailure(Call<LoginResponseModel> call, Throwable t) {
+                Log.d("Splash Retrofit: ", "Fail");
+            }
+        });
+        */
     }
 }

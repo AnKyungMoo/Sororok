@@ -45,6 +45,9 @@ dependencies {
     implementation 'org.apache.commons:commons-lang3:3.6'
     implementation group: project.KAKAO_SDK_GROUP, name: 'usermgmt', version: project.KAKAO_SDK_VERSION
     implementation 'com.android.support:palette-v7:27.1.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-scalars:2.3.0'
 }
 
 apply plugin: 'com.google.gms.google-services'
