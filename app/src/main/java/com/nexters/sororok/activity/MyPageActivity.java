@@ -51,10 +51,10 @@ public class MyPageActivity extends AppCompatActivity {
         saveText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*Intent intent = new Intent();
+                Intent intent = new Intent();
                 intent.putExtra("photo_path", photoPath);
                // Toast.makeText(getApplicationContext(), photoPath+"1111", Toast.LENGTH_SHORT).show();
-                setResult(RESULT_OK, intent);*/
+                setResult(RESULT_OK, intent);
                 finish();
             }
         });

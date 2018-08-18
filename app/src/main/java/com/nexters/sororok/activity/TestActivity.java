@@ -146,10 +146,10 @@ public class TestActivity extends AppCompatActivity
     }
 
     public void addGroup(String groupName, String groupExplain){
-        /*groupListItems.add(new GroupListItem("가입됨", R.drawable.xbutton,
-                groupName, R.drawable.xbutton, groupExplain));*/
-        groupListItems.set(0, new GroupListItem("가입됨", R.drawable.xbutton,
+        groupListItems.add(0, new GroupListItem("가입됨", R.drawable.xbutton,
                 groupName, R.drawable.xbutton, groupExplain));
+        /*groupListItems.set(0, new GroupListItem("가입됨", R.drawable.xbutton,
+                groupName, R.drawable.xbutton, groupExplain));*/
         groupAdapter.notifyDataSetChanged();
     }
 
