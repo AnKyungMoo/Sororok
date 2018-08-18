@@ -43,15 +43,12 @@ import com.nexters.sororok.service.LoginService;
 import com.nhn.android.naverlogin.OAuthLogin;
 import com.nhn.android.naverlogin.OAuthLoginHandler;
 
-import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.concurrent.ExecutionException;
 
 import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
@@ -77,7 +74,7 @@ public class LoginActivity extends AppCompatActivity{
     ImageButton kakaoButton;
 
     // 변수
-    String id;
+    static String id;
 
     /*TODO: 임시로 메인으로 가는 버튼이니 키 해시 문제가 해결되면 제거하자*/
     Button tempButton;
@@ -154,7 +151,7 @@ public class LoginActivity extends AppCompatActivity{
         tempButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                Intent intent = new Intent(LoginActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -249,7 +246,6 @@ public class LoginActivity extends AppCompatActivity{
                     callRetrofit();
 
                     if (!id.equals("-1")) {
-                        Log.d("메인으로 넘어가자", "메인");
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(intent);
                         finish();
@@ -277,7 +273,7 @@ public class LoginActivity extends AppCompatActivity{
     private static class NaverLoginHandler extends OAuthLoginHandler {
         private final WeakReference<LoginActivity> mActivity;
 
-        public NaverLoginHandler(LoginActivity activity) {
+        private NaverLoginHandler(LoginActivity activity) {
             mActivity = new WeakReference<LoginActivity>(activity);
         }
 
@@ -301,13 +297,21 @@ public class LoginActivity extends AppCompatActivity{
 
                     Log.d("naverJSON: ", token);
 
-                    Intent intent = new Intent(activity, LoginInfoActivity.class);
+                    callRetrofit();
 
-                    intent.putExtra("loginType", "naver");
-                    intent.putExtra("naverToken", token);
+                    if (!id.equals("-1")) {
+                        Intent intent = new Intent(activity, MainActivity.class);
+                        activity.startActivity(intent);
+                        activity.finish();
+                    } else {
+                        Intent intent = new Intent(activity, LoginInfoActivity.class);
 
-                    activity.startActivity(intent);
-                    activity.finish();
+                        intent.putExtra("loginType", "naver");
+                        intent.putExtra("naverToken", token);
+
+                        activity.startActivity(intent);
+                        activity.finish();
+                    }
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } catch (ExecutionException e) {
@@ -362,12 +366,20 @@ public class LoginActivity extends AppCompatActivity{
 
                             Log.d("googleUID", user.getUid());
 
-                            Intent intent = new Intent(LoginActivity.this, LoginInfoActivity.class);
-                            intent.putExtra("loginType", "google");
-                            intent.putExtra("googleName", user.getDisplayName());
-                            intent.putExtra("googleEmail", user.getEmail());
-                            startActivity(intent);
-                            finish();
+                            callRetrofit();
+
+                            if (!id.equals("-1")) {
+                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                startActivity(intent);
+                                finish();
+                            } else {
+                                Intent intent = new Intent(LoginActivity.this, LoginInfoActivity.class);
+                                intent.putExtra("loginType", "google");
+                                intent.putExtra("googleName", user.getDisplayName());
+                                intent.putExtra("googleEmail", user.getEmail());
+                                startActivity(intent);
+                                finish();
+                            }
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
@@ -382,7 +394,7 @@ public class LoginActivity extends AppCompatActivity{
     }
 
     // 레트로핏을 이용하여서 서버에서 기존 로그인 정보 획득
-    private void callRetrofit() {
+    private static void callRetrofit() {
 
         /* 비동기로 처리하면 id를 가져오는거보다 다른 작업이 먼저 처리되는 경우가 발생되므로
          * 동기로 처리, 네트워크 통신 문제때문에 asyncTask에서 작업
