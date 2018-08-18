@@ -1,6 +1,5 @@
 package com.nexters.sororok.adapter;
 
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,17 +10,20 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nexters.sororok.R;
-import com.nexters.sororok.activity.MemberListActivity;
+import com.nexters.sororok.activity.CustomDialog;
 import com.nexters.sororok.item.GroupListItem;
 
 import java.util.ArrayList;
 
 public class GroupAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private ArrayList<GroupListItem> groupListItems = new ArrayList<GroupListItem>();
+    private ArrayList<GroupListItem> groupListItems;
+    private CustomDialog customDialog;
 
     public GroupAdapter(ArrayList<GroupListItem> groupListItems) {
         this.groupListItems = groupListItems;
+        //this.context = context;
+        //customDialog = new CustomDialog(context);
     }
 
     @NonNull
@@ -35,6 +37,7 @@ public class GroupAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         GroupViewHolder groupViewHolder = (GroupViewHolder) holder;
 
+
         groupViewHolder.signInText.setText(groupListItems.get(position).signInText);
         groupViewHolder.groupImage.setImageResource(groupListItems.get(position).groupImage);
         groupViewHolder.groupName.setText(groupListItems.get(position).groupName);
@@ -43,8 +46,16 @@ public class GroupAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         groupViewHolder.goButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent (view.getContext(), MemberListActivity.class);
-                view.getContext().startActivity(intent);
+                customDialog = new CustomDialog(view.getContext());
+                customDialog.getWindow().getAttributes().windowAnimations = R.style.DialogAni;
+                customDialog.show();
+                customDialog.setFlag(1);
+                customDialog.getEditText().setVisibility(View.VISIBLE);
+                customDialog.setTitle("그룹코드를 입력해주세요.");
+
+
+                /*Intent intent = new Intent (view.getContext(), MemberListActivity.class);
+                view.getContext().startActivity(intent);*/
             }
         });
     }

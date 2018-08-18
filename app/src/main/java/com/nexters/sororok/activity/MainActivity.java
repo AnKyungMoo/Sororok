@@ -12,7 +12,6 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 
 import com.nexters.sororok.R;
-import com.nexters.sororok.adapter.DessertAdapter;
 import com.nexters.sororok.adapter.GroupAdapter;
 import com.nexters.sororok.adapter.HistoryAdapter;
 import com.nexters.sororok.item.GroupListItem;
@@ -76,7 +75,7 @@ public class MainActivity extends AppCompatActivity{
         goGroupBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                customDialog = new CustomDialog(MainActivity.this);
+                customDialog = new CustomDialog(view.getContext());
                 customDialog.getWindow().getAttributes().windowAnimations = R.style.DialogAni;
                 customDialog.show();
                 customDialog.setFlag(1);

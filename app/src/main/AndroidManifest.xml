@@ -22,11 +22,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activity.MainActivity" />
-        <!--android:theme="@style/Theme.AppCompat"-->
-        <activity android:name=".activity.SplashActivity"
+        <!-- android:theme="@style/Theme.AppCompat" -->
+        <activity
+            android:name=".activity.SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -39,15 +41,17 @@
         <activity android:name=".activity.MyPageActivity" />
         <activity android:name=".activity.SettingActivity" />
         <activity android:name=".activity.CropImageActivity" />
-        <activity android:name=".activity.MemberSettingActivity"/>
-        <activity android:name=".activity.EditMemberActivity"/>
-        <activity android:name=".activity.ChangeAdminActivity"/>
-        <activity android:name=".activity.Main2Activity"/>
+        <activity android:name=".activity.MemberSettingActivity" />
+        <activity android:name=".activity.EditMemberActivity" />
+        <activity android:name=".activity.ChangeAdminActivity" />
+        <activity android:name=".activity.Main2Activity" />
+        <activity android:name=".activity.TestActivity" />
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/kakao_app_key" />
 
+        <activity android:name=".activity.MemberBan"></activity>
     </application>
 
 </manifest>
