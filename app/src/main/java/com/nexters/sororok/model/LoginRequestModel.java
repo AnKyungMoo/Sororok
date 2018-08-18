@@ -1,6 +1,11 @@
 package com.nexters.sororok.model;
 
 public class LoginRequestModel {
-    private String type;
-    private String uid;
+    private final String type;
+    private final String uid;
+
+    public LoginRequestModel(String type, String uid) {
+        this.type = type;
+        this.uid = uid;
+    }
 }

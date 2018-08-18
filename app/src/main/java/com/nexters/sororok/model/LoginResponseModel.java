@@ -8,6 +8,18 @@ public class LoginResponseModel {
     @Expose
     private String id;
 
+    @SerializedName("email")
+    @Expose
+    private String email;
+
+    @SerializedName("phone")
+    @Expose
+    private String phone;
+
+    @SerializedName("name")
+    @Expose
+    private String name;
+
     @SerializedName("message")
     @Expose
     private String message;
@@ -16,15 +28,19 @@ public class LoginResponseModel {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public String getMessage() {
         return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
     }
 }
