@@ -1,7 +1,6 @@
 package com.nexters.sororok.asynctask;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.nexters.sororok.model.LoginRequestModel;
 import com.nexters.sororok.model.LoginResponseModel;
