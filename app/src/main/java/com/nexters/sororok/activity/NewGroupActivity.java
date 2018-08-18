@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.nexters.sororok.R;
@@ -28,6 +29,7 @@ public class NewGroupActivity extends AppCompatActivity {
     private Button completeBtn,backBtn;
     private SeekBar totalMemberSeek;
     private String photoPath;
+    private int total_progress=2;
 
 
     @Override
@@ -45,6 +47,14 @@ public class NewGroupActivity extends AppCompatActivity {
         seekListener();
     }
 
+    public int getTotal_progress() {
+        return total_progress;
+    }
+
+    public void setTotal_progress(int total_progress) {
+        this.total_progress = total_progress;
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(resultCode == RESULT_OK){
@@ -58,14 +68,42 @@ public class NewGroupActivity extends AppCompatActivity {
         }
     }
 
+
+    public void sendGroupInfo(){
+        completeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(isEmpty()){ //전부 채워져있으면
+                    Intent intent = new Intent();
+                    intent.putExtra("group_name", groupName.getText().toString());
+                    intent.putExtra("group_explain", groupExplain.getText().toString());
+                    intent.putExtra("total_member", getTotal_progress());
+                    setResult(RESULT_OK, intent);
+                    finish();
+                }
+            }
+        });
+
+    }
+
+    public boolean isEmpty(){
+        if(groupName.getText().toString().length() == 0 || groupExplain.getText().toString().length() == 0){
+            Toast.makeText(getApplicationContext(), "모든 정보를 채워주세요", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;
+    }
+
     public void initComponent(){
-        imgGroupPhoto = (ImageView)findViewById(R.id.img_new_group);
-        groupName = (EditText)findViewById(R.id.edit_group_name);
-        groupExplain = (EditText)findViewById(R.id.edit_group_explain);
-        completeBtn = (Button)findViewById(R.id.btn_new_group_complete);
-        totalMemberSeek = (SeekBar)findViewById(R.id.seek_total_member);
-        seekValue = (TextView)findViewById(R.id.txt_seek_value);
-        backBtn = (Button)findViewById(R.id.btn_back);
+        imgGroupPhoto = findViewById(R.id.img_new_group);
+        groupName = findViewById(R.id.edit_group_name); //그룹 이름
+        groupExplain = findViewById(R.id.edit_group_explain); //그룹 설명
+        completeBtn = findViewById(R.id.btn_new_group_complete);
+        sendGroupInfo();
+        totalMemberSeek = findViewById(R.id.seek_total_member);
+        seekValue = findViewById(R.id.txt_seek_value);
+        backBtn = findViewById(R.id.btn_back);
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -84,6 +122,7 @@ public class NewGroupActivity extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
                 int val = (progress * (seekBar.getWidth() - 2 * seekBar.getThumbOffset())) / seekBar.getMax();
                 seekValue.setText(progress+"명");
+                setTotal_progress(progress); //전체인원
                 seekValue.setX(seekBar.getX() + val-18+ seekBar.getThumbOffset() / 2);
             }
 

@@ -56,6 +56,7 @@ public class CustomDialog extends AlertDialog{
         });
     }
 
+
     public int getFlag() {
         return flag;
     }

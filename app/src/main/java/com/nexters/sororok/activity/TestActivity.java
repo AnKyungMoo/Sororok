@@ -45,6 +45,7 @@ public class TestActivity extends AppCompatActivity
     private RelativeLayout relativeLayout;
     private FloatingActionButton floatingActionButton;
     private ImageView userImage;
+    private ArrayList<GroupListItem> groupListItems;
 
 
     @Override
@@ -116,6 +117,30 @@ public class TestActivity extends AppCompatActivity
             }
         });
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode == RESULT_OK){
+            switch (requestCode){
+                //그룹생성
+                case 200:
+                    String groupName = data.getExtras().getString("group_name");
+                    String groupExplain = data.getExtras().getString("group_explain");
+                    int totalMember = data.getExtras().getInt("total_member");
+                    addGroup(groupName, groupExplain);
+                    break;
+            }
+        }
+    }
+
+    public void addGroup(String groupName, String groupExplain){
+        /*groupListItems.add(new GroupListItem("가입됨", R.drawable.xbutton,
+                groupName, R.drawable.xbutton, groupExplain));*/
+        groupListItems.set(0, new GroupListItem("가입됨", R.drawable.xbutton,
+                groupName, R.drawable.xbutton, groupExplain));
+        groupAdapter.notifyDataSetChanged();
+    }
+
     public void setAdapter(){
         historyAdapter = new HistoryAdapter(this);
         historyListView.setAdapter(historyAdapter);
@@ -128,7 +153,7 @@ public class TestActivity extends AppCompatActivity
         recyclerView.setLayoutManager(linearLayoutManager);
 
         /*TODO: 서버에서 데이터를 받아올 때 까지 사용할 더미 데이터*/
-        ArrayList<GroupListItem> groupListItems = new ArrayList<>();
+        groupListItems = new ArrayList<>();
         groupListItems.add(new GroupListItem("가입됨", R.drawable.xbutton,
                 "넥스터즈 13기", R.drawable.xbutton, "1번방"));
         groupListItems.add(new GroupListItem("가입됨", R.drawable.xbutton,
