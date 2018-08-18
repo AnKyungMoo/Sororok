@@ -88,7 +88,7 @@ public class MemberListwithAdapter extends ListView{
         TypedArray array = context.getTheme().obtainStyledAttributes(attrs, R.styleable.ListAttr,0,0);
 
         int indexerBackground = array.getColor(R.styleable.ListAttr_indexerBackground, 0xc0ffffff);
-        int sectionBackground = array.getColor(R.styleable.ListAttr_sectionBackground, 0xffffffff);
+        int sectionBackground = array.getColor(R.styleable.ListAttr_sectionBackground, 0xffeeeeee);
         int indexerTextColor = array.getColor(R.styleable.ListAttr_indexerTextColor, 0xff000000);
         int sectionTextColor = array.getColor(R.styleable.ListAttr_sectionTextColor, 0xff000000);
         float indexerRadius = array.getFloat(R.styleable.ListAttr_indexerRadius, 60f);
