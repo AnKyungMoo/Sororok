@@ -8,9 +8,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nexters.sororok.R;
@@ -32,8 +34,11 @@ public class MemberListActivity extends AppCompatActivity {
 
         //리스트뷰를 커스텀 클래스로 정의함
         private MemberListwithAdapter listView;
-        private Button groupManageBtn,backBtn,saveSelectedBtn;
+        private Button groupManageBtn,backBtn,saveSelectedBtn, selectedNumberBtn;
         private LinearLayout llSelectAll;
+        private TextView wholenum;
+        private ImageView toggle;
+
 
         @Override
         protected void onCreate(final Bundle savedInstanceState) {
@@ -100,6 +105,12 @@ public class MemberListActivity extends AppCompatActivity {
 
             listView.setAdapter(mAdapter);
 
+            wholenum=findViewById(R.id.tvWholeMNum);
+            wholenum.setText(String.valueOf(namesize));
+            toggle =findViewById(R.id.ivListToggle);
+
+            selectedNumberBtn=findViewById(R.id.btn_select_number);
+
             //저장 버튼. 선택상황에 따라 visibility와 문구가 바뀌어야 한다. 현재는 누르면 ID값들을 토스트로 띄우게 해놓음.
             saveSelectedBtn = findViewById(R.id.btn_save_selected);
             saveSelectedBtn.setOnClickListener(new View.OnClickListener() {
@@ -126,14 +137,18 @@ public class MemberListActivity extends AppCompatActivity {
                                 listchecked.add((mAdapter.getItem(i).getMemberID()));
                             mAdapter.getItem(i).setChecked(true);
                         }
+                        selectedNumberBtn.setText("총 "+String.valueOf(namesize)+"명");
+                        toggle.setImageDrawable(getResources().getDrawable(R.drawable.icn_list_check_on));
                         saveSelectedBtn.setVisibility(View.VISIBLE);
-                        saveSelectedBtn.setText("전체 저장");
+                        selectedNumberBtn.setVisibility(View.VISIBLE);
                     } else {
                         for(int i =0 ; i<listSize; i++){
                             if(mAdapter.getItemViewType(i)==0)
                                 listchecked.remove(mAdapter.getItem(i).getMemberID());
                             mAdapter.getItem(i).setChecked(false);
+                            toggle.setImageDrawable(getResources().getDrawable(R.drawable.icn_list_check_off));
                             saveSelectedBtn.setVisibility(View.GONE);
+                            selectedNumberBtn.setVisibility(View.GONE);
                         }
                     }
                     mAdapter.notifyDataSetChanged();
@@ -151,25 +166,25 @@ public class MemberListActivity extends AppCompatActivity {
                     {
                         MemberListItem item = (MemberListItem) adapterView.getAdapter().getItem(position);
                         if(listchecked.contains(item.getMemberID())&&item.isChecked()==true){
-                            if(listchecked.size()==namesize)
-                                saveSelectedBtn.setText("선택 저장");
+//                            if(listchecked.size()==namesize)
+//                                saveSelectedBtn.setText("선택 저장");
                             listchecked.remove(item.getMemberID());
+                            selectedNumberBtn.setText(String.valueOf(listchecked.size()));
                             item.setChecked(false);
                             mAdapter.notifyDataSetChanged();
                             if(listchecked.size()==0){
                                 saveSelectedBtn.setVisibility(View.GONE);
+                                selectedNumberBtn.setVisibility(View.GONE);
                                 }
                         } else if(item.isChecked()==false) {
                             if(listchecked.size()==0) {
                                 saveSelectedBtn.setVisibility(View.VISIBLE);
-                                saveSelectedBtn.setText("선택 저장");
+                                selectedNumberBtn.setVisibility(View.VISIBLE);
                             }
                             listchecked.add(item.getMemberID());
+                            selectedNumberBtn.setText(String.valueOf(listchecked.size()));
                             item.setChecked(true);
                             mAdapter.notifyDataSetChanged();
-                            if(listchecked.size()==namesize){
-                                saveSelectedBtn.setText("전체 저장");
-                            }
                         }
                     } else if(adapterView.getAdapter().getItemViewType(position) == 2){
                         listView.post(new Runnable() {

@@ -20,24 +20,25 @@
                 android:background="#343acf">
                 <Button
                     android:id="@+id/btn_back"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:layout_marginTop="33dp"
                     android:layout_marginLeft="16dp"
-                    android:background="@drawable/backbutton"
+                    android:background="@drawable/btn_comm_back_wh"
                     android:layout_alignParentLeft="true"/>
                 <Button
                     android:id="@+id/btn_setting"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
                     android:layout_marginTop="33dp"
                     android:layout_marginRight="16dp"
                     android:layout_alignParentRight="true"
-                    android:background="@drawable/setting_button" />
+                    android:background="@drawable/g_btn_comm_list_set_bl" />
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="73dp"
+                android:background="#FFFFFF"
                 android:layout_below="@id/ll_blue">
                 <LinearLayout
                     android:id="@+id/btn_select_all"
@@ -47,9 +48,10 @@
                     android:layout_marginLeft="34dp"
                     android:orientation="horizontal" >
                     <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:src="@drawable/blackbutton"
+                        android:id="@+id/ivListToggle"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/icn_list_check_off"
                         android:layout_gravity="center_vertical"
                         android:scaleType="fitXY" />
                     <TextView
@@ -61,6 +63,7 @@
                         android:text="전체선택"/>
                 </LinearLayout>
                 <TextView
+                    android:id="@+id/tvWholeMNum"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="38dp"
@@ -79,14 +82,14 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:background="#888888"
+                android:background="@drawable/search_bar_bg"
                 android:layout_marginLeft="24dp"
                 android:layout_marginRight="24dp"
                 android:layout_marginTop="84dp">
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/blackbutton"
+                    android:src="@drawable/btn_comm_search_check_bl"
                     android:scaleType="fitXY"
                     android:layout_alignParentRight="true"
                     android:layout_marginTop="12dp"
@@ -94,15 +97,27 @@
             </RelativeLayout>
         </RelativeLayout>
 
-        <com.nexters.sororok.adapter.MemberListwithAdapter
-            android:id="@+id/list_member"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:divider="@null"/>
-
-
-
+    <com.nexters.sororok.adapter.MemberListwithAdapter
+        android:id="@+id/list_member"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@null"/>
     </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btn_select_number"
+        android:background="@drawable/bg_numbering"
+        android:scaleType="fitXY"
+        android:text="0"
+        android:textColor="#FFFFFF"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="75dp"
+        android:visibility="gone"
+        android:layout_width="48dp"
+        android:layout_height="24dp" />
+
     <Button
         android:id="@+id/btn_save_selected"
         android:layout_width="match_parent"
@@ -112,5 +127,5 @@
         android:visibility="gone"
         android:textSize="20dp"
         android:textColor="#FFFFFF"
-        android:text="선택 저장" />
+        android:text="저장" />
 </RelativeLayout>
