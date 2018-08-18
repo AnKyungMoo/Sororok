@@ -1,6 +1,9 @@
 package com.nexters.sororok.activity;
 
 import android.content.Intent;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.OvalShape;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -16,6 +19,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.nexters.sororok.R;
 import com.nexters.sororok.adapter.GroupAdapter;
 import com.nexters.sororok.adapter.HistoryAdapter;
@@ -73,6 +77,10 @@ public class TestActivity extends AppCompatActivity
         relativeLayout = findViewById(R.id.layout_linear);
         floatingActionButton = findViewById(R.id.btn_floating);
         userImage = findViewById(R.id.imgAvatar);
+        userImage.setBackground(new ShapeDrawable(new OvalShape()));
+        if(Build.VERSION.SDK_INT >= 21) {
+            userImage.setClipToOutline(true);
+        }
     }
 
     public void buttonConnect(){
@@ -128,6 +136,10 @@ public class TestActivity extends AppCompatActivity
                     String groupExplain = data.getExtras().getString("group_explain");
                     int totalMember = data.getExtras().getInt("total_member");
                     addGroup(groupName, groupExplain);
+                    break;
+                case 300:
+                    String photoPath = data.getExtras().getString("photo_path");
+                    Glide.with(this).load(photoPath).into(userImage);
                     break;
             }
         }

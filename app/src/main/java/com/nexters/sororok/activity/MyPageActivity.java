@@ -51,6 +51,10 @@ public class MyPageActivity extends AppCompatActivity {
         saveText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                /*Intent intent = new Intent();
+                intent.putExtra("photo_path", photoPath);
+               // Toast.makeText(getApplicationContext(), photoPath+"1111", Toast.LENGTH_SHORT).show();
+                setResult(RESULT_OK, intent);*/
                 finish();
             }
         });
@@ -60,6 +64,7 @@ public class MyPageActivity extends AppCompatActivity {
         backBtn = findViewById(R.id.btn_back);
         logoutBtn = findViewById(R.id.btn_logout);
         saveText = findViewById(R.id.txt_save);
+       // photoPath = "drawable://"+R.drawable.user_icon;
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,10 +82,14 @@ public class MyPageActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 1 && resultCode == RESULT_OK) {
-            photoPath = data.getStringExtra("photo_path");
-            if(photoPath!=null){
+            photoPath = data.getStringExtra("photo_path"); //사진경로
+           // Toast.makeText(getApplicationContext(), photoPath+"2222", Toast.LENGTH_SHORT).show();
+            if(photoPath!=""){
                 Glide.with(this).load(photoPath).into(imgUserPhoto);
                 //imgUserPhoto.setImageURI(Uri.parse(photoPath));
+            }else{
+                Glide.with(this).load(R.drawable.user_icon).into(imgUserPhoto);
+                photoPath = "drawable://"+R.drawable.user_icon;
             }
         }
     }

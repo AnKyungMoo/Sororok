@@ -155,6 +155,9 @@ public class UserGalleryActivity extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                /*Intent intent = new Intent();
+                intent.putExtra("photo_path", "");
+                setResult(RESULT_OK, intent);*/
                 finish();
             }
         });

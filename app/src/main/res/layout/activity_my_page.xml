@@ -41,6 +41,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 android:orientation="vertical"
+                android:paddingTop="40dp"
                 android:gravity="center">
 
                 <ImageView
@@ -71,24 +72,11 @@
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="150dp"
                 android:orientation="vertical"
-                android:weightSum="5"
+                android:weightSum="2"
                 android:layout_margin="15dp">
 
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:hint="성"
-                    android:layout_weight="1"/>
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:hint="이름"
-                    android:layout_weight="1"/>
 
                <EditText
                     android:layout_width="match_parent"
