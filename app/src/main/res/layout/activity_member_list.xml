@@ -13,72 +13,86 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="183dp">
-            <LinearLayout
+            <RelativeLayout
                 android:id="@+id/ll_blue"
                 android:layout_width="match_parent"
                 android:layout_height="108dp"
-                android:orientation="horizontal"
-                android:background="#343acf"></LinearLayout>
+                android:background="#343acf">
+                <Button
+                    android:id="@+id/btn_back"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="33dp"
+                    android:layout_marginLeft="16dp"
+                    android:background="@drawable/backbutton"
+                    android:layout_alignParentLeft="true"/>
+                <Button
+                    android:id="@+id/btn_setting"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="33dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/setting_button" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="73dp"
+                android:layout_below="@id/ll_blue">
+                <LinearLayout
+                    android:id="@+id/btn_select_all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginLeft="34dp"
+                    android:orientation="horizontal" >
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/blackbutton"
+                        android:layout_gravity="center_vertical"
+                        android:scaleType="fitXY" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="4dp"
+                        android:textColor="#2b2e38"
+                        android:text="전체선택"/>
+                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="38dp"
+                    android:layout_marginRight="29dp"
+                    android:layout_alignParentRight="true"
+                    android:text="총 0명"/>
+            </RelativeLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="75dp"
+                android:layout_height="2dp"
                 android:orientation="horizontal"
-                android:layout_below="@id/ll_blue">
-                <ImageView
-                    android:layout_width="16dp"
-                    android:layout_height="16dp" />
+                android:background="#979797"
+                android:layout_alignParentBottom="true">
+
             </LinearLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
+                android:background="#888888"
                 android:layout_marginLeft="24dp"
                 android:layout_marginRight="24dp"
-                android:layout_marginTop="84dp"></RelativeLayout>
+                android:layout_marginTop="84dp">
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/blackbutton"
+                    android:scaleType="fitXY"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginRight="16dp"/>
+            </RelativeLayout>
         </RelativeLayout>
-
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/btn_back"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:background="@drawable/backbutton"
-                android:layout_alignParentLeft="true"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="10pt"
-                android:text="LIST 01"
-                android:layout_toRightOf="@id/btn_back"
-                android:layout_marginLeft="20dp"/>
-
-            <Button
-                android:id="@+id/btn_setting"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_alignParentRight="true"
-                android:background="@drawable/setting_button" />
-
-        </RelativeLayout>
-
-        <EditText
-            android:id="@+id/edit_find_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="찾으시는 성함/번호를 입력해주세요"
-            android:textSize="7pt"
-            android:layout_margin="10dp"/>
-
-        <Button
-            android:id="@+id/btn_select_all"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="@drawable/blackbutton"/>
 
         <com.nexters.sororok.adapter.MemberListwithAdapter
             android:id="@+id/list_member"

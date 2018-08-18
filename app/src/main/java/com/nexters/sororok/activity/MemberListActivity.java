@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -31,7 +32,8 @@ public class MemberListActivity extends AppCompatActivity {
 
     //리스트뷰를 커스텀 클래스로 정의함
     private MemberListwithAdapter listView;
-    private Button groupManageBtn,backBtn,saveSelectedBtn,selectAllBtn;
+    private Button groupManageBtn,backBtn,saveSelectedBtn;
+    private LinearLayout llSelectAll;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -39,7 +41,7 @@ public class MemberListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_member_list);
         groupManageBtn = findViewById(R.id.btn_setting);
         backBtn = findViewById(R.id.btn_back);
-        selectAllBtn = findViewById(R.id.btn_select_all);
+        llSelectAll = findViewById(R.id.btn_select_all);
 
 
         backBtn.setOnClickListener(new View.OnClickListener() {
@@ -114,7 +116,7 @@ public class MemberListActivity extends AppCompatActivity {
         });
 
         //전체선택 및 해제 버튼. 전체선택이 된 상태라면 전체해제하고 그 외 상황에는 전체선택한다. 저장버튼 속성 바꿔줘야함.
-        selectAllBtn.setOnClickListener(new View.OnClickListener() {
+        llSelectAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int listSize = mAdapter.getCount();
