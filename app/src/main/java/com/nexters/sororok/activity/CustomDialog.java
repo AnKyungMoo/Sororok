@@ -1,6 +1,5 @@
 package com.nexters.sororok.activity;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -20,16 +19,15 @@ public class CustomDialog extends AlertDialog{
     private EditText editText;
     private TextView textView;
     private int flag = 1;
-    private Activity activity;
 
     public CustomDialog(@NonNull Context context) {
         super(context);
     }
 
-    public CustomDialog(Activity activity){
-        super(activity);
-        this.activity = activity;
-    }
+    /*public CustomDialog(Context context){
+        super(context);
+    }*/
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +41,9 @@ public class CustomDialog extends AlertDialog{
             @Override
             public void onClick(View view) {
                 if(getFlag() == 1){
-                    Intent intent = new Intent(getContext(), MemberListActivity.class);
-                    activity.startActivity(intent);
+                    Intent intent = new Intent(view.getContext(), MemberListActivity.class);
+                    view.getContext().startActivity(intent);
+                    //activity.startActivity(intent);
                 }else
                     dismiss();
             }
