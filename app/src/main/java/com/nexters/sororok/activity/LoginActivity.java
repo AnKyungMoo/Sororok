@@ -148,10 +148,12 @@ public class LoginActivity extends AppCompatActivity{
             }
         });
 
+        /* TODO: 테스트 용 이후에 지우자 */
         tempButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this, TestActivity.class);
+                Intent intent = new Intent(LoginActivity.this, LoginInfoActivity.class);
+                intent.putExtra("loginType", "google");
                 startActivity(intent);
                 finish();
             }
@@ -233,16 +235,6 @@ public class LoginActivity extends AppCompatActivity{
                     Log.d("kakaoProfile: ", userProfile.getUUID() + "");
                     Log.d("kakaoName: ", userName);
 
-                    Retrofit loginRetrofit = new Retrofit.Builder()
-                            .baseUrl(LoginService.BASE_URL)
-                            .addConverterFactory(ScalarsConverterFactory.create())
-                            .addConverterFactory(GsonConverterFactory.create())
-                            .build();
-
-                    LoginService loginService = loginRetrofit.create(LoginService.class);
-
-                    Call<LoginResponseModel> loginCall = loginService.login(new LoginRequestModel("1", "899582853"));
-
                     callRetrofit();
 
                     if (!id.equals("-1")) {
@@ -255,6 +247,7 @@ public class LoginActivity extends AppCompatActivity{
 
                         intent.putExtra("loginType", "kakao");
                         intent.putExtra("kakaoName", userName);
+                        intent.putExtra("loginUid", userProfile.getId() + "");
                         startActivity(intent);
                         finish();
                     }
@@ -377,6 +370,7 @@ public class LoginActivity extends AppCompatActivity{
                                 intent.putExtra("loginType", "google");
                                 intent.putExtra("googleName", user.getDisplayName());
                                 intent.putExtra("googleEmail", user.getEmail());
+                                intent.putExtra("loginUid", user.getUid());
                                 startActivity(intent);
                                 finish();
                             }
@@ -401,6 +395,7 @@ public class LoginActivity extends AppCompatActivity{
          */
         LoginAsyncTask loginTask = new LoginAsyncTask();
 
+        /*TODO: 현재 유저의 정보로 바꾸기*/
         loginTask.execute(new LoginRequestModel("1","899582853"));
 
         try {

@@ -15,9 +15,14 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.nexters.sororok.R;
+import com.nexters.sororok.asynctask.LoginInfoTask;
+import com.nexters.sororok.model.LoginResponseModel;
+import com.nexters.sororok.model.LoginUserInfo;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.concurrent.ExecutionException;
 
 public class LoginInfoActivity extends AppCompatActivity {
 
@@ -25,6 +30,8 @@ public class LoginInfoActivity extends AppCompatActivity {
     EditText phoneEditText;
     EditText emailEditText;
     ImageButton configButton;
+
+    String loginType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,14 +43,22 @@ public class LoginInfoActivity extends AppCompatActivity {
 
         String type = infoIntent.getStringExtra("loginType");
 
+        /*
+        * UID 가져오는데 네이버는 Token으로 가져오기 때문에 네이버에서 토큰 가져오는걸
+        * 로그인할 때 미리 풀어서 정보만 가져오는걸로 바꾸자
+        * */
+
         switch (type) {
             case "google":
+                loginType = "0";
                 loginFromGoogle(infoIntent);
                 break;
             case "naver":
+                loginType = "2";
                 loginFromNaver(infoIntent);
                 break;
             case "kakao":
+                loginType = "1";
                 loginFromKakao(infoIntent);
                 break;
             default:
@@ -55,6 +70,8 @@ public class LoginInfoActivity extends AppCompatActivity {
         configButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                sendLoginInfoToServer();
+
                 Intent intent = new Intent(LoginInfoActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
@@ -114,5 +131,27 @@ public class LoginInfoActivity extends AppCompatActivity {
         phoneNumber = phoneNumber.replace("+82", "0");
 
         phoneEditText.setText(phoneNumber);
+    }
+
+    private void sendLoginInfoToServer() {
+        /* TODO: UID 받아와서 적용하자 */
+        LoginUserInfo loginUserInfo = new LoginUserInfo(phoneEditText.getText().toString(),
+                nameEditText.getText().toString(),
+                emailEditText.getText().toString(),
+                loginType,
+                "test"
+        );
+
+        LoginInfoTask loginInfoTask = new LoginInfoTask();
+
+        loginInfoTask.execute(loginUserInfo);
+
+        try {
+            LoginResponseModel responseModel = loginInfoTask.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
     }
 }
