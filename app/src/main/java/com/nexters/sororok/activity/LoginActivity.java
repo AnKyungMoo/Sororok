@@ -43,6 +43,9 @@ import com.nexters.sororok.service.LoginService;
 import com.nhn.android.naverlogin.OAuthLogin;
 import com.nhn.android.naverlogin.OAuthLoginHandler;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.lang.ref.WeakReference;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -86,19 +89,6 @@ public class LoginActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        try {
-            PackageInfo info = getPackageManager().getPackageInfo("com.example.sororok", PackageManager.GET_SIGNATURES);
-            for (Signature signature : info.signatures) {
-                MessageDigest md = MessageDigest.getInstance("SHA");
-                md.update(signature.toByteArray());
-                Log.d("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
-            }
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
 
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -245,9 +235,11 @@ public class LoginActivity extends AppCompatActivity{
                     else {
                         Intent intent = new Intent(LoginActivity.this, LoginInfoActivity.class);
 
-                        intent.putExtra("loginType", "kakao");
-                        intent.putExtra("kakaoName", userName);
+                        intent.putExtra("loginType", "1");  // kakao = 1
                         intent.putExtra("loginUid", userProfile.getId() + "");
+                        // 카카오는 받아올 이메일이 없어서 빈 문자열을 넘김
+                        intent.putExtra("email", "");
+                        intent.putExtra("name", userName);
                         startActivity(intent);
                         finish();
                     }
@@ -290,6 +282,14 @@ public class LoginActivity extends AppCompatActivity{
 
                     Log.d("naverJSON: ", token);
 
+                    JSONObject naverJson = new JSONObject(token);
+
+                    JSONObject naverResponseJson = naverJson.getJSONObject("response");
+
+                    String naverId = naverResponseJson.getString("id");
+                    String name = naverResponseJson.getString("name");
+                    String email = naverResponseJson.getString("email");
+
                     callRetrofit();
 
                     if (!id.equals("-1")) {
@@ -299,8 +299,10 @@ public class LoginActivity extends AppCompatActivity{
                     } else {
                         Intent intent = new Intent(activity, LoginInfoActivity.class);
 
-                        intent.putExtra("loginType", "naver");
-                        intent.putExtra("naverToken", token);
+                        intent.putExtra("loginType", "2");  // naver = 2
+                        intent.putExtra("loginUid", naverId);
+                        intent.putExtra("name", name);
+                        intent.putExtra("email", email);
 
                         activity.startActivity(intent);
                         activity.finish();
@@ -308,6 +310,8 @@ public class LoginActivity extends AppCompatActivity{
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
                     e.printStackTrace();
                 }
             } else {
@@ -367,10 +371,10 @@ public class LoginActivity extends AppCompatActivity{
                                 finish();
                             } else {
                                 Intent intent = new Intent(LoginActivity.this, LoginInfoActivity.class);
-                                intent.putExtra("loginType", "google");
-                                intent.putExtra("googleName", user.getDisplayName());
-                                intent.putExtra("googleEmail", user.getEmail());
+                                intent.putExtra("loginType", "0");  // google = 0
                                 intent.putExtra("loginUid", user.getUid());
+                                intent.putExtra("name", user.getDisplayName());
+                                intent.putExtra("email", user.getEmail());
                                 startActivity(intent);
                                 finish();
                             }

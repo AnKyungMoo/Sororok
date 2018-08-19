@@ -32,6 +32,9 @@ public class LoginInfoActivity extends AppCompatActivity {
     ImageButton configButton;
 
     String loginType;
+    String name;
+    String email;
+    String id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,29 +44,23 @@ public class LoginInfoActivity extends AppCompatActivity {
 
         Intent infoIntent = getIntent();
 
-        String type = infoIntent.getStringExtra("loginType");
+        /* loginType
+         * google = "0"
+         * kakao = "1"
+         * naver = "2"
+         * */
+        loginType = infoIntent.getStringExtra("loginType");
+        id = infoIntent.getStringExtra("loginUid");
+        name = infoIntent.getStringExtra("name");
+        email = infoIntent.getStringExtra("email");
 
-        /*
-        * UID 가져오는데 네이버는 Token으로 가져오기 때문에 네이버에서 토큰 가져오는걸
-        * 로그인할 때 미리 풀어서 정보만 가져오는걸로 바꾸자
-        * */
+        Log.d("aaa", loginType);
+        Log.d("bbb", id);
+        Log.d("ccc", name);
+        Log.d("asdf", email);
 
-        switch (type) {
-            case "google":
-                loginType = "0";
-                loginFromGoogle(infoIntent);
-                break;
-            case "naver":
-                loginType = "2";
-                loginFromNaver(infoIntent);
-                break;
-            case "kakao":
-                loginType = "1";
-                loginFromKakao(infoIntent);
-                break;
-            default:
-                break;
-        }
+        nameEditText.setText(name);
+        emailEditText.setText(email);
 
         setPhoneNumber();
 
@@ -86,38 +83,6 @@ public class LoginInfoActivity extends AppCompatActivity {
         configButton = findViewById(R.id.login_config_button);
     }
 
-    private void loginFromGoogle(Intent info) {
-        String name = info.getStringExtra("googleName");
-        String email = info.getStringExtra("googleEmail");
-
-        nameEditText.setText(name);
-        emailEditText.setText(email);
-    }
-
-    private void loginFromNaver(Intent info) {
-        try {
-            JSONObject naverJson = new JSONObject(info.getStringExtra("naverToken"));
-
-            JSONObject naverResponseJson = naverJson.getJSONObject("response");
-
-            String name = naverResponseJson.getString("name");
-
-            String email = naverResponseJson.getString("email");
-
-            nameEditText.setText(name);
-
-            emailEditText.setText(email);
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void loginFromKakao(Intent info) {
-        String name = info.getStringExtra("kakaoName");
-        nameEditText.setText(name);
-    }
-
     @SuppressLint({"MissingPermission", "HardwareIds"})
     private void setPhoneNumber() {
         // 기기 번호 가져와서 EditText에 적용
@@ -134,12 +99,11 @@ public class LoginInfoActivity extends AppCompatActivity {
     }
 
     private void sendLoginInfoToServer() {
-        /* TODO: UID 받아와서 적용하자 */
         LoginUserInfo loginUserInfo = new LoginUserInfo(phoneEditText.getText().toString(),
                 nameEditText.getText().toString(),
                 emailEditText.getText().toString(),
                 loginType,
-                "test"
+                id
         );
 
         LoginInfoTask loginInfoTask = new LoginInfoTask();
