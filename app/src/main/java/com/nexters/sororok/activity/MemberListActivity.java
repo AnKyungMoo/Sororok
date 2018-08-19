@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.nexters.sororok.R;
 import com.nexters.sororok.adapter.MemberListwithAdapter;
+import com.nexters.sororok.item.ContactItem;
 import com.nexters.sororok.item.MemberListItem;
 import com.nexters.sororok.util.ContactsUtil;
 
@@ -80,15 +81,6 @@ public class MemberListActivity extends AppCompatActivity {
             memberList.add(new MemberListItem(null,"신상훈",4,"01071500894"));
             memberList.add(new MemberListItem(null,"안경무",5,"01028175670"));
             memberList.add(new MemberListItem(null,"한희영",6,"01098105690"));
-            memberList.add(new MemberListItem(null,"a",7,""));
-            memberList.add(new MemberListItem(null,"b",8,""));
-            memberList.add(new MemberListItem(null,"c",9,""));
-            memberList.add(new MemberListItem(null,"d",10,""));
-            memberList.add(new MemberListItem(null,"e",11,""));
-            memberList.add(new MemberListItem(null,"f",12,""));
-            memberList.add(new MemberListItem(null,"g",13,""));
-            memberList.add(new MemberListItem(null,"h",14,""));
-            memberList.add(new MemberListItem(null,"i",15,""));
             ArrayList<String> name = new ArrayList<String>();
             for(int i=0;i<memberList.size();i++){
                 name.add(memberList.get(i).getMemberName());
@@ -116,13 +108,16 @@ public class MemberListActivity extends AppCompatActivity {
             saveSelectedBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    int j=0;
+                    ArrayList<String> myMember = ContactsUtil.getNumberList(getApplicationContext());
                     for(int i=0;i<namesize;i++){
-                        if(listchecked.contains(i)){
-     //                     주소록에 번호저장 함수. 테스트하다가 저장되면 정신건강에 안좋으니 일단 주석처리
-    //                       ContactsUtil.savePhoneNumber(getApplicationContext(),memberList.get(i).getMemberName(),memberList.get(i).getMemberNumber());
+                        if(listchecked.contains(i)&&!(myMember.contains(memberList.get(i).getMemberNumber()))){
+//                          주소록에 번호저장 함수. 테스트하다가 저장되면 정신건강에 안좋으니 일단 주석처리
+//                          ContactsUtil.savePhoneNumber(getApplicationContext(),memberList.get(i).getMemberName(),memberList.get(i).getMemberNumber());
+                            j++;
                         }
                     }
-                    Toast.makeText(getApplicationContext(),"저장 완료",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),j+"저장 완료",Toast.LENGTH_SHORT).show();
                 }
             });
 
