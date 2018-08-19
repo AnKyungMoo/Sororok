@@ -78,6 +78,8 @@ public class LoginActivity extends AppCompatActivity{
 
     // 변수
     static String id;
+    static String loginType;
+    static String uid;
 
     /*TODO: 임시로 메인으로 가는 버튼이니 키 해시 문제가 해결되면 제거하자*/
     Button tempButton;
@@ -142,8 +144,7 @@ public class LoginActivity extends AppCompatActivity{
         tempButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this, LoginInfoActivity.class);
-                intent.putExtra("loginType", "google");
+                Intent intent = new Intent(LoginActivity.this, TestActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -225,6 +226,10 @@ public class LoginActivity extends AppCompatActivity{
                     Log.d("kakaoProfile: ", userProfile.getUUID() + "");
                     Log.d("kakaoName: ", userName);
 
+                    // kakao = 1
+                    loginType = "1";
+                    uid = userProfile.getId() + "";
+
                     callRetrofit();
 
                     if (!id.equals("-1")) {
@@ -235,8 +240,8 @@ public class LoginActivity extends AppCompatActivity{
                     else {
                         Intent intent = new Intent(LoginActivity.this, LoginInfoActivity.class);
 
-                        intent.putExtra("loginType", "1");  // kakao = 1
-                        intent.putExtra("loginUid", userProfile.getId() + "");
+                        intent.putExtra("loginType", loginType);
+                        intent.putExtra("loginUid", uid);
                         // 카카오는 받아올 이메일이 없어서 빈 문자열을 넘김
                         intent.putExtra("email", "");
                         intent.putExtra("name", userName);
@@ -290,6 +295,10 @@ public class LoginActivity extends AppCompatActivity{
                     String name = naverResponseJson.getString("name");
                     String email = naverResponseJson.getString("email");
 
+                    // naver = 2
+                    loginType = "2";
+                    uid = naverId;
+
                     callRetrofit();
 
                     if (!id.equals("-1")) {
@@ -299,8 +308,8 @@ public class LoginActivity extends AppCompatActivity{
                     } else {
                         Intent intent = new Intent(activity, LoginInfoActivity.class);
 
-                        intent.putExtra("loginType", "2");  // naver = 2
-                        intent.putExtra("loginUid", naverId);
+                        intent.putExtra("loginType", loginType);
+                        intent.putExtra("loginUid", uid);
                         intent.putExtra("name", name);
                         intent.putExtra("email", email);
 
@@ -363,6 +372,10 @@ public class LoginActivity extends AppCompatActivity{
 
                             Log.d("googleUID", user.getUid());
 
+                            // google = 0
+                            loginType = "0";
+                            uid = user.getUid();
+
                             callRetrofit();
 
                             if (!id.equals("-1")) {
@@ -371,8 +384,8 @@ public class LoginActivity extends AppCompatActivity{
                                 finish();
                             } else {
                                 Intent intent = new Intent(LoginActivity.this, LoginInfoActivity.class);
-                                intent.putExtra("loginType", "0");  // google = 0
-                                intent.putExtra("loginUid", user.getUid());
+                                intent.putExtra("loginType", loginType);
+                                intent.putExtra("loginUid", uid);
                                 intent.putExtra("name", user.getDisplayName());
                                 intent.putExtra("email", user.getEmail());
                                 startActivity(intent);
@@ -399,8 +412,7 @@ public class LoginActivity extends AppCompatActivity{
          */
         LoginAsyncTask loginTask = new LoginAsyncTask();
 
-        /*TODO: 현재 유저의 정보로 바꾸기*/
-        loginTask.execute(new LoginRequestModel("1","899582853"));
+        loginTask.execute(new LoginRequestModel(loginType, uid));
 
         try {
             LoginResponseModel loginResponseModel = loginTask.get();
