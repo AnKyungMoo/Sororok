@@ -10,90 +10,140 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="183dp">
+            
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="19dp"
+                android:orientation="horizontal"
+                android:layout_marginLeft="54dp"
+                android:layout_marginTop="52dp"></LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/topOfTop"
+                android:layout_width="match_parent"
+                android:layout_height="24dp"
+                android:background="#272b8e"
+                android:orientation="horizontal">
+
+            </LinearLayout>
+
             <RelativeLayout
                 android:id="@+id/ll_blue"
                 android:layout_width="match_parent"
-                android:layout_height="108dp"
-                android:background="#343acf">
+                android:layout_height="84dp"
+                android:layout_below="@+id/topOfTop"
+                android:background="#4b50df">
+
                 <Button
                     android:id="@+id/btn_back"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_marginTop="33dp"
+                    android:layout_alignParentLeft="true"
                     android:layout_marginLeft="16dp"
-                    android:background="@drawable/btn_comm_back_wh"
-                    android:layout_alignParentLeft="true"/>
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/btn_comm_back_wh" />
+
+                <TextView
+                    android:id="@+id/list_head_line"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_toRightOf="@id/btn_back"
+                    android:text="넥스터즈 13기"
+                    android:textColor="#ffffff"
+                    android:textSize="24sp" />
+
                 <Button
                     android:id="@+id/btn_setting"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
-                    android:layout_marginTop="33dp"
-                    android:layout_marginRight="16dp"
                     android:layout_alignParentRight="true"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="16dp"
                     android:background="@drawable/g_btn_comm_list_set_bl" />
             </RelativeLayout>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="73dp"
-                android:background="#FFFFFF"
-                android:layout_below="@id/ll_blue">
+                android:layout_below="@id/ll_blue"
+                android:background="#FFFFFF">
+
                 <LinearLayout
                     android:id="@+id/btn_select_all"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="40dp"
                     android:layout_marginLeft="34dp"
-                    android:orientation="horizontal" >
+                    android:layout_marginTop="38dp"
+                    android:orientation="horizontal">
+
                     <ImageView
                         android:id="@+id/ivListToggle"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/icn_list_check_off"
+                        android:layout_width="27dp"
+                        android:layout_height="22dp"
                         android:layout_gravity="center_vertical"
-                        android:scaleType="fitXY" />
+                        android:scaleType="fitXY"
+                        android:src="@drawable/icn_list_check_off" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="4dp"
-                        android:textColor="#2b2e38"
-                        android:text="전체선택"/>
+                        android:text="전체선택"
+                        android:textColor="#2b2e38" />
                 </LinearLayout>
+
                 <TextView
                     android:id="@+id/tvWholeMNum"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="38dp"
-                    android:layout_marginRight="29dp"
                     android:layout_alignParentRight="true"
-                    android:text="총 0명"/>
+                    android:layout_marginRight="29dp"
+                    android:layout_marginTop="38dp"
+                    android:text="총 0명" />
             </RelativeLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:orientation="horizontal"
+                android:layout_alignParentBottom="true"
                 android:background="#979797"
-                android:layout_alignParentBottom="true">
+                android:orientation="horizontal">
 
             </LinearLayout>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:background="@drawable/search_bar_bg"
                 android:layout_marginLeft="24dp"
                 android:layout_marginRight="24dp"
-                android:layout_marginTop="84dp">
+                android:layout_marginTop="84dp"
+                android:background="@drawable/search_bar_bg">
+
+                <EditText
+                    android:layout_width="320dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@android:color/transparent"
+                    android:hint="누굴 찾으시나요?"
+                    android:textSize="14sp" />
+
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/btn_comm_search_check_bl"
-                    android:scaleType="fitXY"
                     android:layout_alignParentRight="true"
+                    android:layout_marginRight="16dp"
                     android:layout_marginTop="12dp"
-                    android:layout_marginRight="16dp"/>
+                    android:scaleType="fitXY"
+                    android:src="@drawable/btn_comm_search_check_bl" />
             </RelativeLayout>
         </RelativeLayout>
 
@@ -122,7 +172,7 @@
         android:id="@+id/btn_save_selected"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="#80343acf"
+        android:background="#995f63e6"
         android:layout_alignParentBottom="true"
         android:visibility="gone"
         android:textSize="20dp"
