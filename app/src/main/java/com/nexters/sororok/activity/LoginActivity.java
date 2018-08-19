@@ -401,10 +401,11 @@ public class LoginActivity extends AppCompatActivity{
          */
         LoginAsyncTask loginTask = new LoginAsyncTask();
 
-        loginTask.execute();
+        loginTask.execute(new LoginRequestModel("1","899582853"));
 
         try {
-            id = loginTask.get();
+            LoginResponseModel loginResponseModel = loginTask.get();
+            id = loginResponseModel.getId();
             Log.d("checkId", id);
         } catch (InterruptedException e) {
             e.printStackTrace();

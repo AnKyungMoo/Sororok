@@ -10,17 +10,17 @@ import java.io.IOException;
 
 import retrofit2.Call;
 
-public class LoginAsyncTask extends AsyncTask<Void, Void, String> {
+public class LoginAsyncTask extends AsyncTask<LoginRequestModel, Void, LoginResponseModel> {
 
     @Override
-    protected String doInBackground(Void... voids) {
+    protected LoginResponseModel doInBackground(LoginRequestModel... loginRequestModels) {
 
         LoginService loginService = LoginService.loginRetrofit.create(LoginService.class);
 
-        Call<LoginResponseModel> loginCall = loginService.login(new LoginRequestModel("1","899582853"));
+        Call<LoginResponseModel> loginCall = loginService.login(loginRequestModels[0]);
 
         try {
-            return loginCall.execute().body().getId();
+            return loginCall.execute().body();
         } catch (IOException e) {
             e.printStackTrace();
         }
