@@ -117,7 +117,7 @@ public class MemberListActivity extends AppCompatActivity {
                             j++;
                         }
                     }
-                    Toast.makeText(getApplicationContext(),j+"저장 완료",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),j+"개 저장 완료",Toast.LENGTH_SHORT).show();
                 }
             });
 
