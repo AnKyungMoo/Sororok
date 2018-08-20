@@ -81,7 +81,8 @@
             android:textSize="14sp"
             android:textColor="@android:color/white"
             android:layout_marginLeft="77.5dp"
-            android:layout_marginStart="77.5dp" />
+            android:layout_marginStart="77.5dp"
+            android:includeFontPadding="false"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -93,7 +94,8 @@
             android:textSize="14sp"
             android:textColor="@android:color/white"
             android:layout_marginLeft="12.5dp"
-            android:layout_marginStart="12.5dp" />
+            android:layout_marginStart="12.5dp"
+            android:includeFontPadding="false"/>
     </RelativeLayout>
 
     <Button
