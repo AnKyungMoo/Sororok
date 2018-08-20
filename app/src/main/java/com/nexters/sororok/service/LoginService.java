@@ -3,6 +3,7 @@ package com.nexters.sororok.service;
 import com.nexters.sororok.model.LoginRequestModel;
 import com.nexters.sororok.model.LoginResponseModel;
 
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -28,6 +29,7 @@ public interface LoginService {
     @POST("member/login")
     Call<LoginResponseModel> login(@Body LoginRequestModel body);
 
+    // 이미지 없이 필수 요건들만 들어간 경우
     @Multipart
     @PUT("member/join")
     Call<LoginResponseModel> signUp(@Part("phone") String phone,
@@ -35,6 +37,27 @@ public interface LoginService {
                                     @Part("email") String email,
                                     @Part("loginType") String loginType,
                                     @Part("loginUid") String loginUid
-                                    );
+    );
 
+    // 이미지가 파일인 경우
+    @Multipart
+    @PUT("member/join")
+    Call<LoginResponseModel> signUp(@Part("phone") String phone,
+                                    @Part("name") String name,
+                                    @Part("email") String email,
+                                    @Part("loginType") String loginType,
+                                    @Part("loginUid") String loginUid,
+                                    @Part("memberImage") MultipartBody.Part image
+    );
+
+    // 이미지가 URL인 경우
+    @Multipart
+    @PUT("member/join")
+    Call<LoginResponseModel> signUp(@Part("phone") String phone,
+                                    @Part("name") String name,
+                                    @Part("email") String email,
+                                    @Part("loginType") String loginType,
+                                    @Part("loginUid") String loginUid,
+                                    @Part("imageUrl") String imageUrl
+    );
 }
