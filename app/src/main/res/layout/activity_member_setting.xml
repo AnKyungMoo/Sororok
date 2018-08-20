@@ -18,22 +18,26 @@
                 android:id="@+id/btn_back"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
+                android:background="@drawable/btn_comm_back_bl"
                 android:layout_alignParentLeft="true"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/btn_back"
-                android:layout_marginLeft="20dp"
-                android:text="그룹 관리"
-                android:textSize="10pt"/>
+                <TextView
+                    android:id="@+id/txt_group_setting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#0b0d0f"
+                    android:textStyle="bold"
+                    android:text="그룹설정"
+                    android:layout_toRightOf="@id/btn_back"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="24sp"/>
 
         </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#000000"
+            android:background="#5a5cf1"
             android:layout_below="@id/new_group_title"/>
 
         <LinearLayout
@@ -47,21 +51,23 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:orientation="horizontal">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="match_parent">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="그룹 공유하기"
-                        android:textSize="7pt"/>
+                        android:textColor="#0b0d0f"
+                        android:textSize="16sp"/>
                     <Button
                         android:id="@+id/btn_group_share2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:background="@drawable/icn_comm_enter_bk"
                         android:layout_alignParentRight="true"/>
 
                 </RelativeLayout>
@@ -71,21 +77,23 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:orientation="horizontal">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="match_parent">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="그룹 나가기"
-                        android:textSize="7pt"/>
+                        android:textColor="#0b0d0f"
+                        android:textSize="16sp"/>
                     <Button
                         android:id="@+id/btn_exit_group"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:background="@drawable/icn_comm_enter_bk"
                         android:layout_alignParentRight="true"/>
 
                 </RelativeLayout>
@@ -100,14 +108,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_below="@id/new_group_title"
-            android:layout_margin="20dp">
+            android:visibility="visible"
+            android:layout_below="@id/new_group_title">
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_margin="20dp">
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -116,132 +125,175 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="코드번호 변경"
-                        android:textSize="7pt"/>
-                    <LinearLayout
+                        android:textColor="#0b0d0f"
+                        android:textSize="16sp"/>
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="130dp"
+                        android:layout_height="110dp"
                         android:layout_marginTop="10dp"
                         android:layout_below="@id/txt_code_change"
-                        android:background="#BDBDBD">
+                        android:background="#80e9ebef">
+                        <Button
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_margin="15dp"
+                            android:background="@drawable/btn_comm_refresh_bk"/>
                         <TextView
                             android:id="@+id/txt_group_code"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:text="10W93F"
-                            android:gravity="center"
-                            android:textSize="15pt"
-                            android:textColor="#000000"/>
-                    </LinearLayout>
-                    <!--<Button
-                        android:layout_width="match_parent"
-                        android:layout_height="130dp"
-                        android:text="10W93F"
-                        android:textSize="15pt"
-                        android:layout_marginTop="10dp"
-                        android:enabled="false"
-                        android:textColor="#000000"
-                        android:layout_below="@id/txt_code_change"/>-->
+                            android:layout_centerInParent="true"
+                            android:textSize="30sp"
+                            android:textStyle="bold"
+                            android:textColor="#4b50df"/>
+                    </RelativeLayout>
                 </RelativeLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_height="6dp"
+                android:background="#80e9ebef"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_marginTop="10dp">
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="vertical"
+                    android:layout_margin="20dp">
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="그룹 공유하기"
-                            android:textSize="7pt"/>
-                        <Button
-                            android:id="@+id/btn_group_share"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"/>
-
-                    </RelativeLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <RelativeLayout
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="관리자 변경"
-                            android:textSize="7pt"/>
-                        <Button
-                            android:id="@+id/btn_admin_change"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"/>
+                        android:orientation="horizontal">
 
-                    </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="그룹 공유하기"
+                                android:textColor="#0b0d0f"
+                                android:textSize="16sp"/>
+                            <Button
+                                android:id="@+id/btn_group_share"
+                                android:background="@drawable/icn_comm_enter_bk"
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:layout_alignParentRight="true"/>
+
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="324dp"
+                        android:layout_height="1dp"
+                        android:layout_gravity="center_horizontal"
+                        android:background="#e7e7e7"
+                        android:layout_margin="20dp"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="그룹원 관리"
+                                android:textColor="#0b0d0f"
+                                android:textSize="16sp"/>
+                            <Button
+                                android:id="@+id/btn_members_manage"
+                                android:background="@drawable/icn_comm_enter_bk"
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:layout_alignParentRight="true"/>
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="10dp">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="그룹원 관리"
-                            android:textSize="7pt"/>
-                        <Button
-                            android:id="@+id/btn_members_manage"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"/>
-
-                    </RelativeLayout>
-
-                </LinearLayout>
+                    android:layout_height="6dp"
+                    android:background="#80e9ebef"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="10dp">
+                    android:orientation="vertical"
+                    android:layout_margin="20dp">
 
-                    <RelativeLayout
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="그룹 폭파"
-                            android:textSize="7pt"/>
-                        <Button
-                            android:id="@+id/btn_group_remove"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"/>
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
-                    </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="관리자 변경"
+                                android:textColor="#0b0d0f"
+                                android:textSize="16sp"/>
+                            <Button
+                                android:id="@+id/btn_admin_change"
+                                android:background="@drawable/icn_comm_enter_bk"
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:layout_alignParentRight="true"/>
+
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="324dp"
+                        android:layout_height="1dp"
+                        android:layout_gravity="center_horizontal"
+                        android:background="#e7e7e7"
+                        android:layout_margin="20dp"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="그룹 폭파"
+                                android:textColor="#0b0d0f"
+                                android:textSize="16sp"/>
+                            <Button
+                                android:id="@+id/btn_group_remove"
+                                android:background="@drawable/icn_comm_enter_bk"
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:layout_alignParentRight="true"/>
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
