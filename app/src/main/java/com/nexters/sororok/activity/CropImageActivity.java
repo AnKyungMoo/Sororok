@@ -76,15 +76,12 @@ public class CropImageActivity extends AppCompatActivity{
         }
     }
 
-
     public void cropImageIntent(String crop_result){
         Intent intent = new Intent();
         intent.putExtra("crop_result",crop_result);
         setResult(RESULT_OK,intent);
         finish();
     }
-
-
 
     public void initComponent(){
         cropBtn = (Button)findViewById(R.id.btn_crop_save);
