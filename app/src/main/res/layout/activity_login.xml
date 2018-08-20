@@ -2,71 +2,103 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#4b50df">
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
         <TextView
+            android:layout_width="126dp"
+            android:layout_height="18dp"
+            android:background="#ffa1be"
+            android:layout_alignTop="@+id/login_main_text"
+            android:layout_marginTop="27dp"
+            android:layout_marginLeft="24dp"/>
+
+        <TextView
+            android:id="@+id/login_main_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="어서와요!"
+            android:fontFamily="@font/notosanscjkkr_bold"
+            android:text="Sororok에\n어서와요!\n:)"
             android:textSize="30sp"
-            android:padding="25dp"/>
+            android:textColor="@android:color/white"
+            android:layout_marginTop="108dp"
+            android:layout_marginLeft="29dp"
+            android:includeFontPadding="false"/>
 
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="67dp">
 
         <ImageButton
             android:id="@+id/google_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/graybox"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="구글"
-            android:layout_alignTop="@+id/google_button"
-            android:layout_margin="30dp"/>
+            android:src="@drawable/login_google"
+            android:background="@android:color/transparent"
+            android:layout_marginLeft="24dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginBottom="12dp"/>
 
         <ImageButton
             android:id="@+id/naver_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/graybox"
-            android:layout_below="@+id/google_button"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="네이버"
-            android:layout_alignTop="@+id/naver_button"
-            android:layout_margin="30dp"/>
+            android:src="@drawable/login_naver"
+            android:background="@android:color/transparent"
+            android:layout_below="@+id/google_button"
+            android:layout_marginLeft="24dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginBottom="12dp"/>
 
         <ImageButton
             android:id="@+id/kakao_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/graybox"
-            android:layout_below="@+id/naver_button"/>
+            android:src="@drawable/login_kakao"
+            android:background="@android:color/transparent"
+            android:layout_below="@+id/naver_button"
+            android:layout_marginLeft="24dp"
+            android:layout_marginStart="24dp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp">
+        <TextView
+            android:id="@+id/question"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/notosanscjkkr_medium"
+            android:text="이미 회원이신가요?"
+            android:textSize="14sp"
+            android:textColor="@android:color/white"
+            android:layout_marginLeft="77.5dp"
+            android:layout_marginStart="77.5dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="카카오"
-            android:layout_alignTop="@+id/kakao_button"
-            android:layout_margin="30dp"/>
-
-        <Button
-            android:id="@+id/temp_main_button"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:text="메인"
-            android:layout_below="@+id/kakao_button"/>
+            android:fontFamily="@font/notosanscjkkr_regular"
+            android:text="로그인 하기"
+            android:layout_toRightOf="@+id/question"
+            android:layout_toEndOf="@+id/question"
+            android:textSize="14sp"
+            android:textColor="@android:color/white"
+            android:layout_marginLeft="12.5dp"
+            android:layout_marginStart="12.5dp" />
     </RelativeLayout>
+
+    <Button
+        android:id="@+id/temp_main_button"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:text="메인"/>
 </LinearLayout>
