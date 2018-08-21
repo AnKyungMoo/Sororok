@@ -22,13 +22,13 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp">
 
-            <ImageButton
-                android:id="@+id/login_profile_button"
+            <ImageView
+                android:id="@+id/login_user_image"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:src="@drawable/user_icon"
                 android:background="@android:color/transparent"
-                android:scaleType="fitXY"
+                android:scaleType="centerCrop"
                 android:layout_centerHorizontal="true"/>
 
         </RelativeLayout>
