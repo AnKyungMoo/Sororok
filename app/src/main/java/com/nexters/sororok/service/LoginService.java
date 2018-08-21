@@ -47,7 +47,7 @@ public interface LoginService {
                                     @Part("email") String email,
                                     @Part("loginType") String loginType,
                                     @Part("loginUid") String loginUid,
-                                    @Part("memberImage") MultipartBody.Part image
+                                    @Part MultipartBody.Part image
     );
 
     // 이미지가 URL인 경우
