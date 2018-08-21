@@ -3,6 +3,9 @@ package com.nexters.sororok.activity;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.OvalShape;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.TelephonyManager;
@@ -10,13 +13,24 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.nexters.sororok.R;
 import com.nexters.sororok.asynctask.LoginInfoTask;
 import com.nexters.sororok.model.LoginResponseModel;
 import com.nexters.sororok.model.LoginUserInfo;
+import com.nexters.sororok.service.LoginService;
 
+import java.io.File;
 import java.util.concurrent.ExecutionException;
+
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LoginInfoActivity extends AppCompatActivity {
 
@@ -24,6 +38,7 @@ public class LoginInfoActivity extends AppCompatActivity {
     EditText phoneEditText;
     EditText emailEditText;
     ImageButton configButton;
+    ImageView userImage;
 
     String loginType;
     String name;
@@ -58,6 +73,14 @@ public class LoginInfoActivity extends AppCompatActivity {
 
         setPhoneNumber();
 
+        userImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), UserGalleryActivity.class);
+                startActivityForResult(intent,300);
+            }
+        });
+
         configButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,6 +98,12 @@ public class LoginInfoActivity extends AppCompatActivity {
         phoneEditText = findViewById(R.id.edit_login_phone);
         emailEditText = findViewById(R.id.edit_login_email);
         configButton = findViewById(R.id.login_config_button);
+        userImage = findViewById(R.id.login_user_image);
+        // 가져온 이미지를 원래 이미지의 모양(원)으로 만듦
+        userImage.setBackground(new ShapeDrawable(new OvalShape()));
+        if(Build.VERSION.SDK_INT >= 21) {
+            userImage.setClipToOutline(true);
+        }
     }
 
     @SuppressLint({"MissingPermission", "HardwareIds"})
@@ -110,6 +139,19 @@ public class LoginInfoActivity extends AppCompatActivity {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode == RESULT_OK){
+            switch (requestCode){
+                // 300은 갤러리에서 사진 선택하고 난 뒤의 경우
+                case 300:
+                    String photoPath = data.getExtras().getString("photo_path");
+                    Glide.with(this).load(photoPath).into(userImage);
+                    break;
+            }
         }
     }
 }
