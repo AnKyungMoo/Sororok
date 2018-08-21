@@ -161,7 +161,7 @@ public class LoginInfoActivity extends AppCompatActivity {
         Log.d("파일", file.getName());
 
         // create RequestBody instance from file
-        RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+        RequestBody requestFile = RequestBody.create(MediaType.parse("image/*"), file);
 
         MultipartBody.Part body =
                 MultipartBody.Part.createFormData("memberImage", file.getName(), requestFile);
