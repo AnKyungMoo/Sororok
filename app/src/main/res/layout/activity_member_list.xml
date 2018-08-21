@@ -20,7 +20,7 @@
                 android:layout_height="19dp"
                 android:orientation="horizontal"
                 android:layout_marginLeft="54dp"
-                android:layout_marginTop="52dp"></LinearLayout>
+                android:layout_marginTop="52dp"/>
 
             <LinearLayout
                 android:id="@+id/topOfTop"

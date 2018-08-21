@@ -9,6 +9,7 @@
     android:layout_height="match_parent"
     tools:context=".activity.TestActivity">
 
+    <!--History Layout-->
     <RelativeLayout
         android:id="@+id/layout_linear"
         android:layout_width="280dp"
@@ -48,133 +49,107 @@
 
     </RelativeLayout>
 
+    <!--Main Layout-->
     <FrameLayout
         android:id="@+id/frame_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <!--for below recyclerview-->
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context=".activity.TestActivity">
+            android:layout_height="match_parent">
 
-
-            <LinearLayout
-                android:layout_centerInParent="true"
+            <RelativeLayout
+                android:id="@+id/layout_user_view"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="290dp"
                 android:orientation="vertical">
 
                 <android.support.design.widget.CoordinatorLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="match_parent">
 
                     <android.support.design.widget.AppBarLayout
                         android:id="@+id/appBarLayout"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-
+                        android:layout_height="match_parent">
 
                         <android.support.design.widget.CollapsingToolbarLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
-                            <RelativeLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
-                                <Button
-                                    android:id="@+id/btn_history_1"
-                                    android:layout_width="50dp"
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                                <RelativeLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+
+                                    <Button
+                                        android:id="@+id/btn_history_1"
+                                        android:layout_width="32dp"
+                                        android:layout_height="32dp"
+                                        android:background="@drawable/icn_comm_notice"
+                                        android:layout_margin="10dp"
+                                        android:layout_toLeftOf="@id/btn_setting_1"/>
+
+                                    <Button
+                                        android:id="@+id/btn_setting_1"
+                                        android:layout_width="32dp"
+                                        android:layout_height="32dp"
+                                        android:background="@drawable/icn_comm_setting"
+                                        android:layout_gravity="right"
+                                        android:layout_margin="10dp"
+                                        android:layout_alignParentRight="true"/>
+                                </RelativeLayout>
+
+
+                                <ImageView
+                                    android:layout_width="match_parent"
                                     android:layout_height="30dp"
-                                    android:background="@drawable/blackbutton"
-                                    android:layout_margin="10dp"
-                                    android:layout_toLeftOf="@id/btn_setting_1"/>
-
-                                <Button
-                                    android:id="@+id/btn_setting_1"
-                                    android:layout_width="50dp"
-                                    android:layout_height="30dp"
-                                    android:background="@drawable/blackbutton"
-                                    android:layout_gravity="right"
-                                    android:layout_margin="10dp"
-                                    android:layout_alignParentRight="true"/>
-                            </RelativeLayout>
-
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="280dp"
-                                android:scaleType="centerCrop"
-                                android:tint="#11000000"
-                                app:layout_collapseMode="parallax"
-                                app:layout_collapseParallaxMultiplier="0.9" />
-
-                            <TextView
-                                android:id="@+id/txt_user_title"
-                                android:layout_width="wrap_content"
-                                android:layout_height="100dp"
-                                android:text="희은님\n안녕하세요!"
-                                android:layout_marginLeft="150dp"
-                                android:layout_marginTop="100dp"
-                                android:textSize="10pt" />
+                                    android:background="#ffffff"
+                                    android:layout_alignParentBottom="true"
+                                    android:tint="#11000000"
+                                    app:layout_collapseMode="parallax"
+                                    app:layout_collapseParallaxMultiplier="0.9" />
+                                </RelativeLayout>
 
 
 
                             <FrameLayout
                                 android:id="@+id/frameLayout"
                                 android:layout_width="match_parent"
-                                android:layout_height="70dp"
+                                android:layout_height="20dp"
                                 android:layout_gravity="bottom"
+                                android:background="#fffff"
                                 app:layout_collapseMode="parallax"
                                 app:layout_collapseParallaxMultiplier="0.3">
-
-                               <!-- <LinearLayout
-                                    android:id="@+id/linearLayout"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:background="#bdbdbd"
-                                    android:orientation="horizontal">-->
-
-
-
-                                    <!--<TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="희은님 안녕하세요"
-                                        android:textSize="10pt" />-->
-                              <!--  </LinearLayout>-->
                             </FrameLayout>
 
                         </android.support.design.widget.CollapsingToolbarLayout>
                     </android.support.design.widget.AppBarLayout>
 
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/recyclerview"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-                    </android.support.v7.widget.RecyclerView>
 
                     <android.support.v7.widget.Toolbar
+                        android:id="@+id/toolbar"
                         android:layout_width="match_parent"
                         android:layout_height="123dp"
-                        android:background="@color/colorPrimary"
-                        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
                         app:layout_anchor="@id/frameLayout">
 
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
+
                             <RelativeLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_alignParentTop="true">
+                                android:layout_height="match_parent">
                                 <Space
                                     android:id="@+id/space"
-                                    android:layout_width="60dp"
-                                    android:layout_height="60dp"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
                                     android:layout_alignParentLeft="true"/>
                                 <TextView
                                     android:id="@+id/tvTitleToolBar"
@@ -186,13 +161,13 @@
                                     android:layout_toRightOf="@id/space"
                                     android:text="희은님"
                                     android:visibility="invisible"
-                                    android:textSize="8pt" />
+                                    android:textSize="16sp" />
 
                                 <Button
                                     android:id="@+id/btn_history_2"
-                                    android:layout_width="50dp"
-                                    android:layout_height="30dp"
-                                    android:background="@drawable/blackbutton"
+                                    android:layout_width="32dp"
+                                    android:layout_height="32dp"
+                                    android:background="@drawable/icn_comm_notice"
                                     android:layout_toStartOf="@id/btn_setting_2"
                                     android:layout_toLeftOf="@id/btn_setting_2"
                                     android:layout_margin="10dp"
@@ -200,38 +175,78 @@
 
                                 <Button
                                     android:id="@+id/btn_setting_2"
-                                    android:layout_width="50dp"
-                                    android:layout_height="30dp"
+                                    android:layout_width="32dp"
+                                    android:layout_height="32dp"
                                     android:layout_margin="10dp"
-                                    android:background="@drawable/blackbutton"
+                                    android:background="@drawable/icn_comm_setting"
                                     android:layout_alignParentEnd="true"
                                     android:layout_alignParentRight="true"
                                     android:visibility="invisible"/>
                             </RelativeLayout>
 
-                            <android.support.v7.widget.SearchView
+                            <EditText
                                 android:id="@+id/searchview"
-                                android:layout_width="match_parent"
+                                android:layout_width="320dp"
+                                android:layout_centerInParent="true"
                                 android:layout_alignParentBottom="true"
-                                android:layout_height="wrap_content"
+                                android:layout_height="48dp"
                                 android:paddingBottom="5dp"
-                                android:clickable="true"
-                                android:gravity="top"/>
+                                android:background="@drawable/rectangle"/>
+
                         </RelativeLayout>
                     </android.support.v7.widget.Toolbar>
 
-                    <ImageView
-                        android:id="@+id/imgAvatar"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:src="@drawable/user_icon"
-                        android:layout_marginLeft="50dp"
-                        android:scaleType="centerCrop"
-                        app:layout_behavior=".activity.AvatarImageBehavior" />
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="25dp">
 
+                        <ImageView
+                            android:id="@+id/imgAvatar"
+                            android:layout_width="76dp"
+                            android:layout_height="76dp"
+                            android:src="@drawable/user_icon"
+                            android:layout_marginTop="80dp"
+                            android:scaleType="centerCrop"
+                            app:layout_behavior=".activity.AvatarImageBehavior" />
+
+                        <RelativeLayout
+                            android:id="@+id/txt_user_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/imgAvatar">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="희은님"
+                                android:textColor="#ffffff"
+                                android:textStyle="bold"
+                                android:textSize="30sp"/>
+
+                        </RelativeLayout>
+                        <TextView
+                            android:id="@+id/txt_user_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="안녕하세요!"
+                            android:textColor="#ffffff"
+                            android:layout_below="@id/txt_user_name"
+                            android:textSize="30sp" />
+
+                    </RelativeLayout>
 
                 </android.support.design.widget.CoordinatorLayout>
-            </LinearLayout>
+
+            </RelativeLayout>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/layout_user_view"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            </android.support.v7.widget.RecyclerView>
 
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/btn_floating"
@@ -240,6 +255,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
+                android:background="#ffa1be"
                 android:layout_margin="20dp"/>
 
         </RelativeLayout>
