@@ -18,25 +18,16 @@
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="19dp"
+                android:layout_height="22dp"
                 android:layout_marginLeft="54dp"
                 android:layout_marginTop="52dp"
                 android:orientation="horizontal"></LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/topOfTop"
-                android:layout_width="match_parent"
-                android:layout_height="24dp"
-                android:background="#272b8e"
-                android:orientation="horizontal">
-
-            </LinearLayout>
 
             <RelativeLayout
                 android:id="@+id/ll_blue"
                 android:layout_width="match_parent"
-                android:layout_height="84dp"
-                android:layout_below="@+id/topOfTop"
+                android:layout_height="108dp"
                 android:background="#4b50df">
 
                 <Button
@@ -45,20 +36,50 @@
                     android:layout_height="24dp"
                     android:layout_alignParentLeft="true"
                     android:layout_marginLeft="16dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="40dp"
                     android:background="@drawable/btn_comm_back_wh" />
 
-                <TextView
-                    android:id="@+id/list_head_line"
+
+
+                <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_height="37dp"
+                    android:layout_marginTop="34dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_toRightOf="@id/btn_back"
-                    android:text="넥스터즈 13기"
-                    android:textColor="#ffffff"
-                    android:textSize="24sp" />
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="6dp"
+                        android:layout_height="19dp"
+                        android:layout_gravity="bottom"
+                        android:background="#5f63e6"/>
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent">
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="19dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignRight="@id/list_head_line"
+                            android:background="#5f63e6" />
+                        <TextView
+                            android:id="@+id/list_head_line"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:text="넥스터즈 13기"
+                            android:textColor="#ffffff"
+                            android:textSize="24dp" />
+
+                    </RelativeLayout>
+                    <ImageView
+                        android:layout_width="6dp"
+                        android:layout_height="19dp"
+                        android:layout_gravity="bottom"
+                        android:background="#5f63e6"/>
+                </LinearLayout>
+
+
 
                 <Button
                     android:id="@+id/btn_setting"
@@ -66,7 +87,7 @@
                     android:layout_height="32dp"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="16dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="36dp"
                     android:background="@drawable/g_btn_comm_list_set_bl" />
             </RelativeLayout>
 
@@ -153,7 +174,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="#FFFFFF">
 
             <com.nexters.sororok.adapter.MemberListwithAdapter
                 android:id="@+id/list_member"

@@ -90,8 +90,8 @@ public class MemberListActivity extends AppCompatActivity {
             memberList.add(new MemberListItem(null,"차스트9",8,"01011116290"));
             memberList.add(new MemberListItem(null,"카스트10",9,"01011116040"));
             memberList.add(new MemberListItem(null,"타스트11",10,"01011116251"));
-            memberList.add(new MemberListItem(null,"파스트12",11,"01011116351"));
-            memberList.add(new MemberListItem(null,"하스트13",12,"01011112033"));
+            memberList.add(new MemberListItem(null,"테스트12",11,"01011116351"));
+            memberList.add(new MemberListItem(null,"테스트13",12,"01011112033"));
             memberList.add(new MemberListItem(null,"테스트14",13,"01011115531"));
             memberList.add(new MemberListItem(null,"테스트15",14,"01011116889"));
             memberList.add(new MemberListItem(null,"테스트16",15,"01011116402"));
@@ -177,8 +177,8 @@ public class MemberListActivity extends AppCompatActivity {
             memberList.add(new MemberListItem(null,"테스트96",95,"01011111119"));
             memberList.add(new MemberListItem(null,"테스트97",96,"01011111217"));
             memberList.add(new MemberListItem(null,"테스트98",97,"01011116772"));
-            memberList.add(new MemberListItem(null,"테스트99",98,"01011114251"));
-            memberList.add(new MemberListItem(null,"테스트100",99,"01011119029"));
+            memberList.add(new MemberListItem(null,"파스트99",98,"01011114251"));
+            memberList.add(new MemberListItem(null,"하스트100",99,"01011119029"));
 
 
             final ArrayList<String> name = new ArrayList<String>();
@@ -228,6 +228,7 @@ public class MemberListActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     String etText = etSearchMem.getText().toString();
                     mAdapter.clearAdapter();
+                    listView.clearKeyword();
                         runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -250,6 +251,8 @@ public class MemberListActivity extends AppCompatActivity {
                                     rlOnFail.setVisibility(View.VISIBLE);
                                 }
                             });
+                        }else{
+                            mAdapter.addBottomItem(new MemberListItem(null,null,0,null));
                         }
                     }
                     (MemberListActivity.this).runOnUiThread(new Runnable() {

@@ -245,6 +245,10 @@ public class MemberListwithAdapter extends ListView{
         return sections;
     }
 
+    public void clearKeyword(){
+        sections = new String[0];
+    }
+
     @Override
     protected void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
