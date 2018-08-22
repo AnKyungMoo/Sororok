@@ -395,6 +395,11 @@ public class MemberListwithAdapter extends ListView{
             lvMember.add(item);
         }
 
+        public void clearAdapter(){
+            lvMember.clear();
+            header.clear();
+        }
+
         @Override
         public int getItemViewType(int position){
             if(getCount()-1==position)
@@ -434,6 +439,8 @@ public class MemberListwithAdapter extends ListView{
                         convertView = mInfalater.inflate(R.layout.member_list_item, null);
                         holder.textView = (TextView) convertView.findViewById(R.id.tvMemberList);
                         holder.imageView = (ImageView) convertView.findViewById(R.id.ivMemberList);
+                        holder.textNumber = convertView.findViewById(R.id.tvMemberPhone);
+
 
                         if(getItem(position).isChecked()){
                             convertView.findViewById(R.id.rlMemberList).setBackgroundColor(Color.rgb(242,242,250));
@@ -459,6 +466,7 @@ public class MemberListwithAdapter extends ListView{
             if(rowType == TYPE_ITEM){
                 holder.textView.setText(lvMember.get(position).getMemberName());
                 holder.imageView.setImageDrawable(lvMember.get(position).getMemberProfile());
+                holder.textNumber.setText(lvMember.get(position).getMemberNumber());
             }else if(rowType == TYPE_HEADER){
                 holder.textView.setText(lvMember.get(position).getMemberName());
             }
@@ -485,6 +493,7 @@ public class MemberListwithAdapter extends ListView{
         public static class ViewHolder{
             public TextView textView;
             public ImageView imageView;
+            public TextView textNumber;
         }
     }
 
