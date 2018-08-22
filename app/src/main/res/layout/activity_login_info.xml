@@ -10,6 +10,7 @@
         android:layout_height="wrap_content">
 
         <ImageButton
+            android:id="@+id/info_back_button"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/btn_comm_back_wh"

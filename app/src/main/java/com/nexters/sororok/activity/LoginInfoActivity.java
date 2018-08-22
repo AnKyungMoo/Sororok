@@ -36,6 +36,7 @@ import retrofit2.Response;
 
 public class LoginInfoActivity extends AppCompatActivity {
 
+    ImageButton backButton;
     EditText nameEditText;
     EditText phoneEditText;
     EditText emailEditText;
@@ -77,6 +78,16 @@ public class LoginInfoActivity extends AppCompatActivity {
 
         setPhoneNumber();
 
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginInfoActivity.this, LoginActivity.class);
+                startActivity(intent);
+                //overridePendingTransition(R.anim.slide_out_right, R.anim.slide_no_move);
+                finish();
+            }
+        });
+
         userImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -102,6 +113,7 @@ public class LoginInfoActivity extends AppCompatActivity {
     }
 
     private void initializeView() {
+        backButton = findViewById(R.id.info_back_button);
         nameEditText = findViewById(R.id.edit_login_name);
         phoneEditText = findViewById(R.id.edit_login_phone);
         emailEditText = findViewById(R.id.edit_login_email);
