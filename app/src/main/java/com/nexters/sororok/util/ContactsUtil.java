@@ -43,6 +43,7 @@ public class ContactsUtil {
                     .build());
         }
 
+
 // Asking the Contact provider to create a new contact
         try {
             context.getContentResolver().applyBatch(ContactsContract.AUTHORITY, ops);

@@ -35,7 +35,8 @@
         <activity android:name=".activity.LoginActivity" />
         <activity android:name=".activity.LoginInfoActivity" />
         <activity android:name=".activity.PreviousLoginActivity" />
-        <activity android:name=".activity.MemberListActivity" />
+        <activity android:name=".activity.MemberListActivity"
+            android:windowSoftInputMode="adjustNothing"/>
         <activity android:name=".activity.NewGroupActivity" />
         <activity android:name=".activity.UserGalleryActivity" />
         <activity android:name=".activity.MyPageActivity" />
