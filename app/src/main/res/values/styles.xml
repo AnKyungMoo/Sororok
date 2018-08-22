@@ -8,8 +8,8 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">#4b50df</item>
         <item name="colorAccent">@color/colorAccent</item>
-
-
+        <item name="colorControlNormal">#868ae9</item>
+        <item name="colorControlActivated">#868ae9</item>
     </style>
 
     <style name="AppTheme.white" parent="Base.Theme.AppCompat.Light">

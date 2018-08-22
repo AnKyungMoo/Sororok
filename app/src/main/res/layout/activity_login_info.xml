@@ -91,7 +91,8 @@
                 android:textColor="@android:color/white"
                 android:fontFamily="@font/notosanscjkkr_bold"
                 android:includeFontPadding="false"
-                android:textSize="20sp"/>
+                android:textSize="20sp"
+                android:textColorHint="#80ffffff"/>
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -117,7 +118,8 @@
                 android:textColor="@android:color/white"
                 android:fontFamily="@font/notosanscjkkr_medium"
                 android:includeFontPadding="false"
-                android:textSize="16sp"/>
+                android:textSize="16sp"
+                android:textColorHint="#80ffffff"/>
         </RelativeLayout>
 
         <RelativeLayout
@@ -135,7 +137,8 @@
                 android:textColor="@android:color/white"
                 android:fontFamily="@font/notosanscjkkr_medium"
                 android:includeFontPadding="false"
-                android:textSize="16sp"/>
+                android:textSize="16sp"
+                android:textColorHint="#80ffffff"/>
         </RelativeLayout>
 
     </LinearLayout>
