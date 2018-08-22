@@ -6,17 +6,17 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">#272b8e</item>
+        <item name="colorPrimaryDark">#4b50df</item>
         <item name="colorAccent">@color/colorAccent</item>
 
 
     </style>
 
-    <style name="AppTheme.NoActionBar" parent="Base.Theme.AppCompat.Light">
+    <style name="AppTheme.white" parent="Base.Theme.AppCompat.Light">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryDark">#FFFFFF</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
