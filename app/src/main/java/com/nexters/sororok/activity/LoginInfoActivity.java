@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.nexters.sororok.R;
@@ -38,7 +39,7 @@ public class LoginInfoActivity extends AppCompatActivity {
     EditText nameEditText;
     EditText phoneEditText;
     EditText emailEditText;
-    ImageButton configButton;
+    TextView configButton;
     ImageView userImage;
 
     String TAG = LoginInfoActivity.class.getSimpleName();
