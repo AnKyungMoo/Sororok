@@ -54,7 +54,8 @@
             android:value="@string/kakao_app_key" />
 
         <activity android:name=".activity.LoadingActivity" />
-        <activity android:name=".activity.MemberBanActivity"></activity>
+        <activity android:name=".activity.MemberBanActivity"
+            android:windowSoftInputMode="adjustNothing"></activity>
     </application>
 
 </manifest>

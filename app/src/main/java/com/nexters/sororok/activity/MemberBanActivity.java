@@ -42,8 +42,6 @@ public class MemberBanActivity extends AppCompatActivity {
     //리스트뷰를 커스텀 클래스로 정의함
     private MemberListwithAdapter listView;
     private Button groupManageBtn,backBtn,saveSelectedBtn, selectedNumberBtn;
-    private TextView wholenum;
-    private ImageView toggle;
     private EditText etSearchMem;
     private ImageView ivSearch;
     private RelativeLayout rlOnFail;
@@ -59,6 +57,10 @@ public class MemberBanActivity extends AppCompatActivity {
         backBtn = findViewById(R.id.btn_back);
         rlOnFail=findViewById(R.id.rlIfFail);
         imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+
+        Intent intent = getIntent();
+        int id = intent.getIntExtra("agroupid",-1);
+
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,8 +71,7 @@ public class MemberBanActivity extends AppCompatActivity {
         groupManageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent groupSettingIntent = new Intent(MemberBanActivity.this, MemberSettingActivity.class);
-                startActivityForResult(groupSettingIntent,400);
+            //서버에 삭제 알림
             }
         });
 
@@ -211,9 +212,6 @@ public class MemberBanActivity extends AppCompatActivity {
         }
         listView.setAdapter(mAdapter);
 
-        wholenum=findViewById(R.id.tvWholeMNum);
-        wholenum.setText("총 "+String.valueOf(namesize)+"명");
-        toggle =findViewById(R.id.ivListToggle);
 
         selectedNumberBtn=findViewById(R.id.btn_select_number);
 
@@ -227,7 +225,7 @@ public class MemberBanActivity extends AppCompatActivity {
                 listView.clearKeyword();
                 int count =0;
                 for(int i=0;i<memberListSort.size();i++){
-                    if(listchecked.contains(i)){
+                    if(listchecked.contains(memberListSort.get(i).getMemberID())){
                         memberListSort.remove(i);
                         name.remove(i);
                         count++;
@@ -236,12 +234,16 @@ public class MemberBanActivity extends AppCompatActivity {
                 }
                 listchecked.clear();
                 setBasic(name,consonant,mAdapter,memberListSort);
+                selectedNumberBtn.setText("0");
+                selectedNumberBtn.setVisibility(View.GONE);
+                saveSelectedBtn.setVisibility(View.GONE);
                 Toast.makeText(getApplicationContext(),"총 "+count+"명 삭제 완료",Toast.LENGTH_SHORT).show();
             }
         });
 
 
         etSearchMem=findViewById(R.id.etSearchMember);
+        imm.hideSoftInputFromWindow(etSearchMem.getWindowToken(), 0);
         etSearchMem.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
@@ -350,15 +352,12 @@ public class MemberBanActivity extends AppCompatActivity {
                         if(listchecked.size()==0){
                             saveSelectedBtn.setVisibility(View.GONE);
                             selectedNumberBtn.setVisibility(View.GONE);
-                            toggle.setImageDrawable(getResources().getDrawable(R.drawable.icn_list_check_off));
                         }
                     } else if(!listchecked.contains(item.getMemberID())) {
                         if(listchecked.size()==0) {
                             saveSelectedBtn.setVisibility(View.VISIBLE);
                             selectedNumberBtn.setVisibility(View.VISIBLE);
                         }
-                        if(listchecked.size()==mAdapter.getItemCount())
-                            toggle.setImageDrawable(getResources().getDrawable(R.drawable.icn_list_check_on));
                         listchecked.add(item.getMemberID());
                         selectedNumberBtn.setText(String.valueOf(listchecked.size()));
                         item.setChecked(true);
