@@ -2,6 +2,7 @@ package com.nexters.sororok.activity;
 
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -73,8 +74,13 @@ public class LoadingActivity extends AppCompatActivity {
 
         protected void onPostExecute(Integer result){
             super.onPostExecute(result);
-            Toast.makeText(getApplicationContext(),"전체 "+j+"명 중"+k+"명이 저장되었습니다.",Toast.LENGTH_SHORT);
-            finish();
+            Toast.makeText(getApplicationContext(),"전체 "+j+"명 중"+k+"명이 저장되었습니다.",Toast.LENGTH_SHORT).show();
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    LoadingActivity.this.finish();
+                }
+            }, 2000);
 
         }
     }
