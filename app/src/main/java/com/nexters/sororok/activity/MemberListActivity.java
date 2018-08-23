@@ -24,6 +24,7 @@ import com.nexters.sororok.util.ContactsUtil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.TreeSet;
 
 /**
@@ -195,6 +196,15 @@ public class MemberListActivity extends AppCompatActivity {
             //여기서 데이터 정렬까지 함께 한다.
             final String consonant[] = listView.setKeywordList(name);
 
+            final ArrayList<MemberListItem> memberListSort = new ArrayList<>();
+            for(int i =0;i<namesize;i++){
+                for(int j =0;j<namesize;j++){
+                    if(name.get(i).equals(memberList.get(j).getMemberName())){
+                        memberListSort.add(memberList.get(j));
+                        break;
+                    }
+                }
+            }
             listView.setAdapter(mAdapter);
 
             wholenum=findViewById(R.id.tvWholeMNum);
@@ -211,8 +221,8 @@ public class MemberListActivity extends AppCompatActivity {
                     int j=0;
                     ArrayList<String> myMember = ContactsUtil.getNumberList(getApplicationContext());
                     for(int i=0;i<namesize;i++){
-                        if(listchecked.contains(i)&&!(myMember.contains(memberList.get(i).getMemberNumber()))){
-                          ContactsUtil.savePhoneNumber(getApplicationContext(),memberList.get(i).getMemberName(),memberList.get(i).getMemberNumber());
+                        if(listchecked.contains(i)&&!(myMember.contains(memberListSort.get(i).getMemberNumber()))){
+                          ContactsUtil.savePhoneNumber(getApplicationContext(),memberListSort.get(i).getMemberName(),memberListSort.get(i).getMemberNumber());
                             j++;
                         }
                     }
@@ -236,12 +246,12 @@ public class MemberListActivity extends AppCompatActivity {
                         }
                     });
                     if(etText.length()==0){
-                        setBasic(name,consonant,mAdapter,memberList);
+                        setBasic(name,consonant,mAdapter,memberListSort);
                     }
                     else {
-                        for(int i =0;i<memberList.size();i++){
-                            if(memberList.get(i).getMemberName().contains(etText)){
-                                mAdapter.addItem(new MemberListItem(null, name.get(i),i,memberList.get(i).getMemberNumber()));
+                        for(int i =0;i<memberListSort.size();i++){
+                            if(memberListSort.get(i).getMemberName().contains(etText)){
+                                mAdapter.addItem(new MemberListItem(null, name.get(i),memberListSort.get(i).getMemberID(),memberListSort.get(i).getMemberNumber()));
                             }
                         }
                         if(mAdapter.getCount()==0){
@@ -338,7 +348,7 @@ public class MemberListActivity extends AppCompatActivity {
             });
 
 
-            setBasic(name,consonant,mAdapter,memberList);
+            setBasic(name,consonant,mAdapter,memberListSort);
 
         }
 
@@ -358,12 +368,12 @@ public class MemberListActivity extends AppCompatActivity {
                     mAdapter.addHeaderItem(new MemberListItem(null, consonant[i]+".",0));
                     k=consonant[i];
                 }
-                mAdapter.addItem(new MemberListItem(null, name.get(j),j,memberList.get(j).getMemberNumber()));
+                mAdapter.addItem(new MemberListItem(null, name.get(j),memberList.get(j).getMemberID(),memberList.get(j).getMemberNumber()));
                 if(i<consonant.length-1)
                     i++;
                 j++;
             } else if(firstString.compareTo(consonant[i])<0){
-                mAdapter.addItem(new MemberListItem(null, name.get(j),j,memberList.get(j).getMemberNumber()));
+                mAdapter.addItem(new MemberListItem(null, name.get(j),memberList.get(j).getMemberID(),memberList.get(j).getMemberNumber()));
                 j++;
             } else {
                 i++;

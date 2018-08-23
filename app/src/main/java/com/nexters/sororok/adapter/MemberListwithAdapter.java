@@ -2,6 +2,8 @@ package com.nexters.sororok.adapter;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -59,7 +61,7 @@ public class MemberListwithAdapter extends ListView{
     private Paint sectionTextPaint;
     private GestureDetector mGesture;
     private int moreMargin = 100;
-    private OnClickListener onClickListener;
+    private Bitmap image = BitmapFactory.decodeResource(context.getResources(),R.drawable.bg_index_popup);
     public MemberListwithAdapter(Context context, AttributeSet attrs){
         super(context, attrs);
         this.context =context;
@@ -85,12 +87,13 @@ public class MemberListwithAdapter extends ListView{
         backgroundPaint.setAntiAlias(true);
         sectionBackgroundPaint.setAntiAlias(true);
 
+
         TypedArray array = context.getTheme().obtainStyledAttributes(attrs, R.styleable.ListAttr,0,0);
 
         int indexerBackground = array.getColor(R.styleable.ListAttr_indexerBackground, 0xc0ffffff);
-        int sectionBackground = array.getColor(R.styleable.ListAttr_sectionBackground, 0xffeeeeee);
+        int sectionBackground = array.getColor(R.styleable.ListAttr_sectionBackground, 0x438b81eb);
         int indexerTextColor = array.getColor(R.styleable.ListAttr_indexerTextColor, 0xff000000);
-        int sectionTextColor = array.getColor(R.styleable.ListAttr_sectionTextColor, 0xff000000);
+        int sectionTextColor = array.getColor(R.styleable.ListAttr_sectionTextColor, 0xff4b50df);
         float indexerRadius = array.getFloat(R.styleable.ListAttr_indexerRadius, 60f);
         int indexerWidth = array.getInt(R.styleable.ListAttr_indexerWidth, 20);
         int sectionDelay = array.getInt(R.styleable.ListAttr_sectionDelay, 3 * 1000);
@@ -289,7 +292,8 @@ public class MemberListwithAdapter extends ListView{
             sectionPositionRect.top = (getHeight() - previewSize) / 2;
             sectionPositionRect.bottom = (getHeight() - previewSize) / 2 + previewSize;
 
-            canvas.drawRoundRect(sectionPositionRect, mPreviewPadding, mPreviewPadding, sectionBackgroundPaint);
+            canvas.drawBitmap(image,null,sectionPositionRect,null);
+//            canvas.drawRoundRect(sectionPositionRect, mPreviewPadding, mPreviewPadding, sectionBackgroundPaint);
             canvas.drawText(section.toUpperCase(),
                     sectionPositionRect.left + (previewSize - previewTextWidth) / 2 - 1,
                     sectionPositionRect.top + mPreviewPadding - sectionTextPaint.ascent() + 1, sectionTextPaint);
