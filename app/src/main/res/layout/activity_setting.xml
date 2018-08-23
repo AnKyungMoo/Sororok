@@ -8,31 +8,31 @@
     <RelativeLayout
         android:id="@+id/layout_title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="15dp">
-        <Button
-            android:id="@+id/btn_back"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_alignParentLeft="true"
-            android:background="@drawable/backbutton"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="설정"
-            android:textSize="10pt"
-            android:layout_toRightOf="@id/btn_back"
-            android:layout_marginLeft="30dp"/>
+        android:layout_height="80dp"
+        android:background="#4b50df">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="15dp"
+                android:layout_alignParentBottom="true">
+                <Button
+                    android:id="@+id/btn_back"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentLeft="true"
+                    android:background="@drawable/btn_comm_back_wh"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="설정"
+                    android:textSize="20sp"
+                    android:textColor="#ffffff"
+                    android:layout_centerHorizontal="true"/>
+            </RelativeLayout>
     </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#000000"
-        android:layout_below="@id/layout_title"/>
 
     <LinearLayout
         android:layout_below="@id/layout_title"
@@ -42,7 +42,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:orientation="vertical">
             <RelativeLayout
@@ -52,24 +52,37 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="연락처 업데이트"
-                    android:textSize="7pt"
+                    android:textSize="16sp"
+                    android:textColor="#2b2e38"
                     android:layout_alignParentLeft="true"/>
                 <Button
                     android:id="@+id/btn_update"
-                    android:layout_width="35dp"
-                    android:layout_height="30dp"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:background="@drawable/btn_comm_refresh_bl"
                     android:layout_alignParentRight="true"/>
             </RelativeLayout>
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="#2b2e38"
+                android:text="18.07.20 pm 8:20 업데이트가 완료되었습니다."
+                android:layout_marginBottom="5dp"/>
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="5pt"
+                android:textSize="14sp"
+                android:textColor="#9b9fa8"
                 android:text="내장 주소록에 등록되어있는 번호와\n소로록에 등록되어있는 번호를 업데이트 시킵니다."/>
         </LinearLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="1dp"
+            android:background="#d3d5da"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:orientation="vertical">
             <RelativeLayout
@@ -79,7 +92,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="알림"
-                    android:textSize="7pt"
+                    android:textSize="16sp"
+                    android:textColor="#2b2e38"
                     android:layout_alignParentLeft="true"/>
                 <Switch
                     android:id="@+id/switch_notice"
@@ -90,13 +104,19 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="5pt"
+                android:textSize="14sp"
+                android:textColor="#9b9fa8"
                 android:text="그룹 내 변경되는 정보의 푸쉬 알림을 받겠습니다."/>
          </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="1dp"
+            android:background="#d3d5da"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:orientation="vertical">
             <RelativeLayout
@@ -106,24 +126,33 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="계정삭제"
-                    android:textSize="7pt"
+                    android:textSize="16sp"
+                    android:textColor="#2b2e38"
                     android:layout_alignParentLeft="true"/>
                 <Button
                     android:id="@+id/btn_remove_info"
-                    android:layout_width="35dp"
-                    android:layout_height="30dp"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:background="@drawable/icn_comm_enter_bk"
                     android:layout_alignParentRight="true"/>
             </RelativeLayout>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="5pt"
+                android:textSize="14sp"
+                android:textColor="#9b9fa8"
+                android:layout_marginTop="5dp"
                 android:text="개인정보와 기록 뿐만 아니라\n소로록에 저장되어 있는 모든 번호가 지워집니다."/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="1dp"
+            android:background="#d3d5da"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:orientation="vertical">
             <RelativeLayout
@@ -133,24 +162,33 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="로그아웃"
-                    android:textSize="7pt"
+                    android:textSize="16sp"
+                    android:textColor="#2b2e38"
                     android:layout_alignParentLeft="true"/>
                 <Button
                     android:id="@+id/btn_logout"
-                    android:layout_width="35dp"
-                    android:layout_height="30dp"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:background="@drawable/icn_comm_enter_bk"
                     android:layout_alignParentRight="true"/>
             </RelativeLayout>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="5pt"
+                android:textSize="14sp"
+                android:textColor="#9b9fa8"
+                android:layout_marginTop="5dp"
                 android:text="개인정보와 기록은 지워지지 않습니다."/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="1dp"
+            android:background="#d3d5da"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:orientation="horizontal">
             <RelativeLayout
@@ -160,15 +198,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="개발자에게 문의하기"
-                    android:textSize="7pt"/>
+                    android:textSize="16sp"
+                    android:textColor="#2b2e38"/>
                 <Button
                     android:id="@+id/btn_develop"
                     android:layout_width="35dp"
                     android:layout_height="30dp"
+                    android:background="@drawable/icn_comm_enter_bk"
                     android:layout_alignParentRight="true"/>
             </RelativeLayout>
         </LinearLayout>
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#d3d5da"/>
     </LinearLayout>
 
    <!-- <RelativeLayout
