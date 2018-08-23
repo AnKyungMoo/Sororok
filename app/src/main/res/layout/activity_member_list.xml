@@ -20,12 +20,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="22dp"
                 android:layout_marginLeft="54dp"
-<<<<<<< HEAD
-                android:layout_marginTop="52dp"/>
-=======
                 android:layout_marginTop="52dp"
-                android:orientation="horizontal"></LinearLayout>
->>>>>>> d46ac19a466f4a47b7d06a30cf96047129ae40d7
+                android:orientation="horizontal"/>
+
 
 
             <RelativeLayout

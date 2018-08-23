@@ -8,29 +8,35 @@
         <RelativeLayout
             android:id="@+id/new_group_title"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="15dp">
-
-            <Button
-                android:id="@+id/btn_back"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:background="@drawable/btn_comm_back_bl"
-                android:layout_alignParentLeft="true"/>
+            android:layout_height="80dp"
+            android:background="#4b50df">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="15dp">
+                <Button
+                    android:id="@+id/btn_back"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/btn_comm_back_wh"
+                    android:layout_alignParentLeft="true"/>
                 <TextView
                     android:id="@+id/txt_group_setting"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#0b0d0f"
+                    android:textColor="#ffffff"
                     android:textStyle="bold"
                     android:text="그룹설정"
                     android:layout_toRightOf="@id/btn_back"
                     android:layout_marginStart="20dp"
                     android:layout_marginLeft="20dp"
-                    android:textSize="24sp"/>
+                    android:textSize="20sp"/>
+
+            </RelativeLayout>
 
         </RelativeLayout>
 
@@ -46,13 +52,13 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_below="@id/new_group_title"
-            android:layout_margin="20dp"
             android:visibility="invisible">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="20dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -74,11 +80,17 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#d3d5da"/>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="20dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -154,23 +166,25 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="6dp"
-                android:background="#80e9ebef"/>
+                android:layout_height="1dp"
+                android:background="#d3d5da"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="visible">
 
-                <LinearLayout
+             <!--   <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_margin="20dp">
+                    android:layout_margin="20dp">-->
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
                         android:orientation="horizontal">
 
                         <RelativeLayout
@@ -192,16 +206,15 @@
                         </RelativeLayout>
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="324dp"
-                        android:layout_height="1dp"
-                        android:layout_gravity="center_horizontal"
-                        android:background="#e7e7e7"
-                        android:layout_margin="20dp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#d3d5da"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
                         android:orientation="horizontal">
 
                         <RelativeLayout
@@ -225,23 +238,23 @@
 
                     </LinearLayout>
 
-                </LinearLayout>
+               <!-- </LinearLayout>-->
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="6dp"
-                    android:background="#80e9ebef"/>
+                    android:layout_height="1dp"
+                    android:background="#d3d5da"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_margin="20dp">
+                    android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:layout_margin="20dp">
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -263,11 +276,9 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="324dp"
+                        android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:layout_gravity="center_horizontal"
-                        android:background="#e7e7e7"
-                        android:layout_margin="20dp"/>
+                        android:background="#d3d5da"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -276,7 +287,8 @@
 
                         <RelativeLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            android:layout_margin="20dp">
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -302,6 +314,33 @@
         </LinearLayout>
 
     <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/layout_animation"
+        android:visibility="invisible">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="여기까지가~\n끝인가보오"
+            android:textSize="16sp"
+            android:textColor="#ffffff"
+            android:layout_above="@id/img_door"
+            android:paddingBottom="10dp"
+            android:layout_centerHorizontal="true"/>
+
+        <ImageView
+            android:id="@+id/img_door"
+            android:layout_width="81dp"
+            android:layout_height="97dp"
+            android:background="@drawable/group_3"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="50dp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
         android:id="@+id/layout_animation"
         android:layout_width="match_parent"
         android:layout_height="250dp"
@@ -310,7 +349,7 @@
         <LinearLayout
             android:id="@+id/layout_sure_txt"
             android:layout_width="match_parent"
-            android:layout_height="240dp"
+            android:layout_height="254dp"
             android:orientation="vertical"
             android:gravity="center"
             android:background="#ffffff"
@@ -320,14 +359,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="정말 그룹을 폭파하시려구요?"
+                android:textStyle="bold"
                 android:textColor="#000000"
-                android:textSize="8pt"
+                android:textSize="20sp"
                 android:paddingBottom="30dp"/>
             <TextView
                 android:id="@+id/txt_menu_sub_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="그룹에 저장된 모든 번호가 삭제됩니다.\n그룹장을 다른사람에게 넘기는 것을 추천합니다."/>
+                android:textSize="14sp"
+                android:textColor="#000000"
+                android:text="그룹에 저장된 모든 번호가 사라져요.\n폭파된 그룹은 복구가 불가능해요.\n관리자변경을 추천해드립니!"/>
         </LinearLayout>
         <LinearLayout
             android:id="@+id/layout_select_button1"
@@ -336,17 +378,25 @@
             android:orientation="horizontal"
             android:layout_alignParentBottom="true"
             android:weightSum="1">
-            <Button
-                android:id="@+id/btn_menu_1"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="인수인계"
-                android:layout_weight="0.5"/>
+
             <Button
                 android:id="@+id/btn_menu_2"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="그룹삭제"
+                android:textSize="20sp"
+                android:textColor="#ffffff"
+                android:background="#d3d5da"
+                android:layout_weight="0.5"/>
+
+            <Button
+                android:id="@+id/btn_menu_1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="관리자변경"
+                android:textSize="20sp"
+                android:textColor="#ffffff"
+                android:background="#4b50df"
                 android:layout_weight="0.5"/>
         </LinearLayout>
 
