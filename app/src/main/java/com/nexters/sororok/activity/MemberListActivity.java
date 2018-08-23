@@ -223,15 +223,13 @@ public class MemberListActivity extends AppCompatActivity {
             saveSelectedBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    int j=0;
-                    ArrayList<String> myMember = ContactsUtil.getNumberList(getApplicationContext());
-                    for(int i=0;i<namesize;i++){
-                        if(listchecked.contains(i)&&!(myMember.contains(memberListSort.get(i).getMemberNumber()))){
-                          ContactsUtil.savePhoneNumber(getApplicationContext(),memberListSort.get(i).getMemberName(),memberListSort.get(i).getMemberNumber());
-                            j++;
-                        }
-                    }
-                    Toast.makeText(getApplicationContext(),j+"개 저장 완료",Toast.LENGTH_SHORT).show();
+
+                    ArrayList<String> numberList=new ArrayList<>();
+                    ArrayList<String> nameList=new ArrayList<>();
+                    Intent intent = new Intent(getApplicationContext(), LoadingActivity.class);
+                    intent.putExtra("savelist",memberListSort);
+                    intent.putExtra("checklist",listchecked);
+                    startActivity(intent);
                 }
             });
 
@@ -339,7 +337,7 @@ public class MemberListActivity extends AppCompatActivity {
                     int listSize = mAdapter.getCount();
                     if(listchecked.size()!=mAdapter.getItemCount()){
                         for(int i = 0 ; i<listSize; i++){
-                            if(mAdapter.getItemViewType(i)==0)
+                            if(mAdapter.getItemViewType(i)==0||mAdapter.getItemViewType(i)==3)
                                 listchecked.add((mAdapter.getItem(i).getMemberID()));
                             mAdapter.getItem(i).setChecked(true);
                         }
@@ -349,7 +347,7 @@ public class MemberListActivity extends AppCompatActivity {
                         selectedNumberBtn.setVisibility(View.VISIBLE);
                     } else {
                         for(int i =0 ; i<listSize; i++){
-                            if(mAdapter.getItemViewType(i)==0)
+                            if(mAdapter.getItemViewType(i)==0||mAdapter.getItemViewType(i)==3)
                                 listchecked.remove(mAdapter.getItem(i).getMemberID());
                             mAdapter.getItem(i).setChecked(false);
                             toggle.setImageDrawable(getResources().getDrawable(R.drawable.icn_list_check_off));
@@ -368,7 +366,7 @@ public class MemberListActivity extends AppCompatActivity {
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(final AdapterView<?> adapterView, View view, int position, long l) {
-                    if(adapterView.getAdapter().getItemViewType(position) == 0)
+                    if(adapterView.getAdapter().getItemViewType(position) == 0||adapterView.getAdapter().getItemViewType(position) == 3)
                     {
                         MemberListItem item = (MemberListItem) adapterView.getAdapter().getItem(position);
                         if(listchecked.contains(item.getMemberID())&&item.isChecked()==true){

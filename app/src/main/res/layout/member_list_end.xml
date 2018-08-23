@@ -25,6 +25,8 @@
             android:layout_height="wrap_content"
             android:textSize="16sp"
             android:textColor="#0b0d0f"
+            android:fontFamily="@font/notosanscjkkr_medium"
+            android:includeFontPadding="false"
             android:text="가나초콜렛"
             android:layout_toRightOf="@+id/ivMemberList"
             android:layout_marginLeft="12dp" />
@@ -34,6 +36,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/tvMemberList"
+            android:fontFamily="@font/notosanscjkkr_medium"
+            android:includeFontPadding="false"
             android:textSize="12sp"
             android:textColor="#0b0d0f"
             android:text="010-1234-5678"

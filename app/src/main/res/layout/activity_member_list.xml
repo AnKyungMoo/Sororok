@@ -67,6 +67,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
+                            android:fontFamily="@font/notosanscjkkr_bold"
+                            android:includeFontPadding="false"
                             android:text="넥스터즈 13기"
                             android:textColor="#ffffff"
                             android:textSize="24dp" />
@@ -115,8 +117,9 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
+                        android:includeFontPadding="false"
                         android:layout_marginLeft="4dp"
+                        android:fontFamily="@font/notosanscjkkr_regular"
                         android:text="전체선택"
                         android:textColor="#2b2e38" />
                 </LinearLayout>
@@ -126,6 +129,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
+                    android:fontFamily="@font/notosanscjkkr_regular"
+                    android:includeFontPadding="false"
                     android:layout_marginRight="29dp"
                     android:layout_marginTop="38dp"
                     android:text="총 0명" />
@@ -153,11 +158,16 @@
                     android:layout_width="320dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_centerVertical="true"
                     android:imeOptions="actionSearch"
+                    android:fontFamily="@font/notosanscjkkr_regular"
+                    android:includeFontPadding="false"
                     android:inputType="text"
                     android:background="@android:color/transparent"
                     android:hint="누굴 찾으시나요?"
+                    android:layout_toLeftOf="@id/ivSearchButton"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="7dp"
                     android:textSize="14sp" />
 
                 <ImageView

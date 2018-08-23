@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.LoadingActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#4b50df">
+
+        <ImageView
+            android:id="@+id/ivLogo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="116dp"
+            android:src="@drawable/img_splash_logo" />
+        <RelativeLayout
+            android:id="@+id/rlCenter"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/ivLogo"
+            android:layout_marginTop="60dp">
+        </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tvLoadWhite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="60dp"
+                android:layout_below="@id/ivLogo"
+                android:fontFamily="@font/notosanscjkkr_bold"
+                android:gravity="right"
+                android:layout_marginRight="7dp"
+                android:includeFontPadding="false"
+                android:text="0"
+                android:layout_toLeftOf="@id/rlCenter"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/tvLoadPink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="92dp"
+            android:layout_marginLeft="7dp"
+            android:layout_below="@id/ivLogo"
+            android:layout_toRightOf="@+id/rlCenter"
+            android:fontFamily="@font/notosanscjkkr_bold"
+            android:includeFontPadding="false"
+            android:text="300"
+            android:textColor="#ffcedd"
+            android:textSize="24sp" />
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:gravity="center_horizontal"
+            android:textSize="14sp"
+            android:textColor="#FFFFFF"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="73dp"
+            android:fontFamily="@font/notosanscjkkr_medium"
+            android:text="전체 번호를 저장하는데 다소\n시간이 걸릴 수 있습니다."/>
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

@@ -23,8 +23,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".activity.MainActivity" />
         <!-- android:theme="@style/Theme.AppCompat" -->
-        <activity
-            android:name=".activity.SplashActivity" >
+        <activity android:name=".activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -34,8 +33,9 @@
         <activity android:name=".activity.LoginActivity" />
         <activity android:name=".activity.LoginInfoActivity" />
         <activity android:name=".activity.PreviousLoginActivity" />
-        <activity android:name=".activity.MemberListActivity"
-            android:windowSoftInputMode="adjustNothing"/>
+        <activity
+            android:name=".activity.MemberListActivity"
+            android:windowSoftInputMode="adjustNothing" />
         <activity android:name=".activity.NewGroupActivity" />
         <activity android:name=".activity.UserGalleryActivity" />
         <activity android:name=".activity.MyPageActivity" />
@@ -43,7 +43,9 @@
         <activity android:name=".activity.CropImageActivity" />
         <activity android:name=".activity.MemberSettingActivity" />
         <activity android:name=".activity.EditMemberActivity" />
-        <activity android:name=".activity.ChangeAdminActivity" android:theme="@style/AppTheme.white"/>
+        <activity
+            android:name=".activity.ChangeAdminActivity"
+            android:theme="@style/AppTheme.white" />
         <activity android:name=".activity.Main2Activity" />
         <activity android:name=".activity.TestActivity" />
 
@@ -51,7 +53,8 @@
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/kakao_app_key" />
 
-        <activity android:name=".activity.MemberBan"></activity>
+        <activity android:name=".activity.MemberBan" />
+        <activity android:name=".activity.LoadingActivity"></activity>
     </application>
 
 </manifest>

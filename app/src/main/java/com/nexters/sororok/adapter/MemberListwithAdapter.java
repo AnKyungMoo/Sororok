@@ -414,7 +414,7 @@ public class MemberListwithAdapter extends ListView{
         public int getItemCount(){
             int i = 0;
             for(int j = 0;j<getCount();j++){
-                if(getItemViewType(j)==0){
+                if(getItemViewType(j)==0||getItemViewType(j)==3){
                     i++;
                 }
             }
