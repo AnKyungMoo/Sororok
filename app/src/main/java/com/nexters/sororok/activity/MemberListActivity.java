@@ -1,11 +1,15 @@
 package com.nexters.sororok.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -44,6 +48,7 @@ public class MemberListActivity extends AppCompatActivity {
         private EditText etSearchMem;
         private ImageView ivSearch;
         private RelativeLayout rlOnFail;
+        private InputMethodManager imm;
 
 
         @Override
@@ -54,7 +59,7 @@ public class MemberListActivity extends AppCompatActivity {
             backBtn = findViewById(R.id.btn_back);
             llSelectAll = findViewById(R.id.btn_select_all);
             rlOnFail=findViewById(R.id.rlIfFail);
-
+            imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             backBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -232,10 +237,59 @@ public class MemberListActivity extends AppCompatActivity {
 
 
             etSearchMem=findViewById(R.id.etSearchMember);
+            etSearchMem.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+                @Override
+                public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
+                    if(actionId== EditorInfo.IME_ACTION_SEARCH){
+                        imm.hideSoftInputFromWindow(etSearchMem.getWindowToken(), 0);
+                        listchecked.clear();
+                        String etText = etSearchMem.getText().toString();
+                        mAdapter.clearAdapter();
+                        listView.clearKeyword();
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                rlOnFail.setVisibility(View.GONE);
+                                llSelectAll.setVisibility(View.VISIBLE);
+                            }
+                        });
+                        if(etText.length()==0){
+                            setBasic(name,consonant,mAdapter,memberListSort);
+                        }
+                        else {
+                            for(int i =0;i<memberListSort.size();i++){
+                                if(memberListSort.get(i).getMemberName().contains(etText)){
+                                    mAdapter.addItem(new MemberListItem(null, name.get(i),memberListSort.get(i).getMemberID(),memberListSort.get(i).getMemberNumber()));
+                                }
+                            }
+                            if(mAdapter.getCount()==0){
+                                (MemberListActivity.this).runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        rlOnFail.setVisibility(View.VISIBLE);
+                                        llSelectAll.setVisibility(View.GONE);
+                                    }
+                                });
+                            }else{
+                                mAdapter.addBottomItem(new MemberListItem(null,null,0,null));
+                            }
+                        }
+                        (MemberListActivity.this).runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                mAdapter.notifyDataSetChanged();
+                            }
+                        });
+                    }
+                    return false;
+                }
+            });
             ivSearch=findViewById(R.id.ivSearchButton);
             ivSearch.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    imm.hideSoftInputFromWindow(etSearchMem.getWindowToken(), 0);
+                    listchecked.clear();
                     String etText = etSearchMem.getText().toString();
                     mAdapter.clearAdapter();
                     listView.clearKeyword();
@@ -243,6 +297,7 @@ public class MemberListActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             rlOnFail.setVisibility(View.GONE);
+                            llSelectAll.setVisibility(View.VISIBLE);
                         }
                     });
                     if(etText.length()==0){
@@ -259,6 +314,7 @@ public class MemberListActivity extends AppCompatActivity {
                                 @Override
                                 public void run() {
                                     rlOnFail.setVisibility(View.VISIBLE);
+                                    llSelectAll.setVisibility(View.GONE);
                                 }
                             });
                         }else{
@@ -281,13 +337,13 @@ public class MemberListActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     int listSize = mAdapter.getCount();
-                    if(listchecked.size()!=namesize){
+                    if(listchecked.size()!=mAdapter.getItemCount()){
                         for(int i = 0 ; i<listSize; i++){
                             if(mAdapter.getItemViewType(i)==0)
                                 listchecked.add((mAdapter.getItem(i).getMemberID()));
                             mAdapter.getItem(i).setChecked(true);
                         }
-                        selectedNumberBtn.setText(String.valueOf(namesize));
+                        selectedNumberBtn.setText(String.valueOf(listchecked.size()));
                         toggle.setImageDrawable(getResources().getDrawable(R.drawable.icn_list_check_on));
                         saveSelectedBtn.setVisibility(View.VISIBLE);
                         selectedNumberBtn.setVisibility(View.VISIBLE);
@@ -325,12 +381,15 @@ public class MemberListActivity extends AppCompatActivity {
                             if(listchecked.size()==0){
                                 saveSelectedBtn.setVisibility(View.GONE);
                                 selectedNumberBtn.setVisibility(View.GONE);
-                                }
-                        } else if(item.isChecked()==false) {
+                                toggle.setImageDrawable(getResources().getDrawable(R.drawable.icn_list_check_off));
+                            }
+                        } else if(!listchecked.contains(item.getMemberID())) {
                             if(listchecked.size()==0) {
                                 saveSelectedBtn.setVisibility(View.VISIBLE);
                                 selectedNumberBtn.setVisibility(View.VISIBLE);
                             }
+                            if(listchecked.size()==mAdapter.getItemCount())
+                                toggle.setImageDrawable(getResources().getDrawable(R.drawable.icn_list_check_on));
                             listchecked.add(item.getMemberID());
                             selectedNumberBtn.setText(String.valueOf(listchecked.size()));
                             item.setChecked(true);

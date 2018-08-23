@@ -61,10 +61,12 @@ public class MemberListwithAdapter extends ListView{
     private Paint sectionTextPaint;
     private GestureDetector mGesture;
     private int moreMargin = 100;
-    private Bitmap image = BitmapFactory.decodeResource(context.getResources(),R.drawable.bg_index_popup);
+    private Bitmap image;
+
     public MemberListwithAdapter(Context context, AttributeSet attrs){
         super(context, attrs);
         this.context =context;
+        image = BitmapFactory.decodeResource(context.getResources(),R.drawable.bg_index_popup);
         init(attrs);
 
     }
@@ -72,10 +74,10 @@ public class MemberListwithAdapter extends ListView{
     public MemberListwithAdapter(Context context, AttributeSet attrs, int defStyle){
         super(context, attrs, defStyle);
         this.context = context;
+        image = BitmapFactory.decodeResource(context.getResources(),R.drawable.bg_index_popup);
         init(attrs);
 
     }
-
     private void init(AttributeSet attrs){
         positionRect = new RectF();
         sectionPositionRect = new RectF();
@@ -90,7 +92,7 @@ public class MemberListwithAdapter extends ListView{
 
         TypedArray array = context.getTheme().obtainStyledAttributes(attrs, R.styleable.ListAttr,0,0);
 
-        int indexerBackground = array.getColor(R.styleable.ListAttr_indexerBackground, 0xc0ffffff);
+        int indexerBackground = array.getColor(R.styleable.ListAttr_indexerBackground, 0x00000000);
         int sectionBackground = array.getColor(R.styleable.ListAttr_sectionBackground, 0x438b81eb);
         int indexerTextColor = array.getColor(R.styleable.ListAttr_indexerTextColor, 0xff000000);
         int sectionTextColor = array.getColor(R.styleable.ListAttr_sectionTextColor, 0xff4b50df);
@@ -281,16 +283,16 @@ public class MemberListwithAdapter extends ListView{
             canvas.drawText(sections[i].toUpperCase(), x, calY, textPaint);
         }
 
-        sectionTextPaint.setTextSize(50 * getScaledDensity());
+        sectionTextPaint.setTextSize(30 * getScaledDensity());
         if (useSection && showLetter & !TextUtils.isEmpty(section)) {
-            float mPreviewPadding = 5 * getDensity();
+            float mPreviewPadding = 20 * getDensity();
             float previewTextWidth = sectionTextPaint.measureText(section.toUpperCase());
             float previewSize = 2 * mPreviewPadding + sectionTextPaint.descent() - sectionTextPaint.ascent();
 
             sectionPositionRect.left = (getWidth() - previewSize) / 2;
             sectionPositionRect.right = (getWidth() - previewSize) / 2 + previewSize;
-            sectionPositionRect.top = (getHeight() - previewSize) / 2;
-            sectionPositionRect.bottom = (getHeight() - previewSize) / 2 + previewSize;
+            sectionPositionRect.top = (getHeight() - previewSize) / 2 - previewSize;
+            sectionPositionRect.bottom = (getHeight() - previewSize) / 2;
 
             canvas.drawBitmap(image,null,sectionPositionRect,null);
 //            canvas.drawRoundRect(sectionPositionRect, mPreviewPadding, mPreviewPadding, sectionBackgroundPaint);
@@ -406,6 +408,16 @@ public class MemberListwithAdapter extends ListView{
         public void clearAdapter(){
             lvMember.clear();
             header.clear();
+        }
+
+        public int getItemCount(){
+            int i = 0;
+            for(int j = 0;j<getCount();j++){
+                if(getItemViewType(j)==0){
+                    i++;
+                }
+            }
+            return i;
         }
 
         @Override
