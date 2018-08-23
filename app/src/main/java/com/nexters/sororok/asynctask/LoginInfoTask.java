@@ -4,7 +4,7 @@ import android.os.AsyncTask;
 
 import com.nexters.sororok.model.LoginResponseModel;
 import com.nexters.sororok.model.LoginUserInfo;
-import com.nexters.sororok.service.LoginService;
+import com.nexters.sororok.service.RetrofitService;
 
 import java.io.IOException;
 import retrofit2.Call;
@@ -13,9 +13,9 @@ public class LoginInfoTask extends AsyncTask<LoginUserInfo, Void, LoginResponseM
 
     @Override
     protected LoginResponseModel doInBackground(LoginUserInfo... loginUserInfos) {
-        LoginService loginService = LoginService.loginRetrofit.create(LoginService.class);
+        RetrofitService retrofitService = RetrofitService.retrofit.create(RetrofitService.class);
 
-        Call<LoginResponseModel> infoCall = loginService.signUp(loginUserInfos[0].getPhone(),
+        Call<LoginResponseModel> infoCall = retrofitService.signUp(loginUserInfos[0].getPhone(),
                 loginUserInfos[0].getName(),
                 loginUserInfos[0].getEmail(),
                 loginUserInfos[0].getLoginType(),

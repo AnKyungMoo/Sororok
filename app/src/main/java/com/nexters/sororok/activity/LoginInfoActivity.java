@@ -22,7 +22,7 @@ import com.nexters.sororok.R;
 import com.nexters.sororok.asynctask.LoginInfoTask;
 import com.nexters.sororok.model.LoginResponseModel;
 import com.nexters.sororok.model.LoginUserInfo;
-import com.nexters.sororok.service.LoginService;
+import com.nexters.sororok.service.RetrofitService;
 
 import java.io.File;
 import java.util.concurrent.ExecutionException;
@@ -165,7 +165,7 @@ public class LoginInfoActivity extends AppCompatActivity {
 
     private void imageUpload() {
         //Create Upload Server Client
-        LoginService loginService = LoginService.loginRetrofit.create(LoginService.class);
+        RetrofitService retrofitService = RetrofitService.retrofit.create(RetrofitService.class);
 
         //File creating from selected URL
         File file = new File(photoPath);
@@ -179,7 +179,7 @@ public class LoginInfoActivity extends AppCompatActivity {
         MultipartBody.Part body =
                 MultipartBody.Part.createFormData("memberImage", file.getName(), requestFile);
 
-        Call<LoginResponseModel> resultCall = loginService.signUp(phoneEditText.getText().toString(),
+        Call<LoginResponseModel> resultCall = retrofitService.signUp(phoneEditText.getText().toString(),
                 nameEditText.getText().toString(),
                 emailEditText.getText().toString(),
                 loginType,
