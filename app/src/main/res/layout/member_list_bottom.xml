@@ -12,22 +12,14 @@
         android:gravity="center_horizontal"
         android:orientation="horizontal">
 
-        <ImageView
-            android:layout_width="9dp"
-            android:layout_height="9dp"
-            android:layout_marginTop="26dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/list_slelect" />
 
-        <TextView
-            android:id="@+id/tvBottom"
+
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="3dp"
             android:layout_marginTop="21dp"
-            android:gravity="center"
-            android:text="맨위로"
-            android:textColor="#868ae9"
+            android:src="@drawable/btn_comm_topup_s"
             android:textSize="12sp" />
     </LinearLayout>
 </RelativeLayout>
