@@ -224,8 +224,6 @@ public class MemberListActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
 
-                    ArrayList<String> numberList=new ArrayList<>();
-                    ArrayList<String> nameList=new ArrayList<>();
                     Intent intent = new Intent(getApplicationContext(), LoadingActivity.class);
                     intent.putExtra("savelist",memberListSort);
                     intent.putExtra("checklist",listchecked);
