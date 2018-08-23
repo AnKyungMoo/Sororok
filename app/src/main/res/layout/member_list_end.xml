@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="#FFFFFF"
+    android:layout_height="80dp"
+    android:paddingTop="2dp"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:id="@+id/rlMemberList"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/ivMemberList"
+            android:layout_width="43dp"
+            android:layout_height="43dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="56dp"/>
+
+        <TextView
+            android:id="@+id/tvMemberList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#0b0d0f"
+            android:text="가나초콜렛"
+            android:layout_toRightOf="@+id/ivMemberList"
+            android:layout_marginLeft="12dp" />
+
+        <TextView
+            android:id="@+id/tvMemberPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvMemberList"
+            android:textSize="12sp"
+            android:textColor="#0b0d0f"
+            android:text="010-1234-5678"
+            android:layout_toRightOf="@id/ivMemberList"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="12dp"/>
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="10dp"
+        android:background="#e7e7e7"></ImageView>
+
+</LinearLayout>

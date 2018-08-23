@@ -379,6 +379,7 @@ public class MemberListwithAdapter extends ListView{
         private static final int TYPE_ITEM = 0;
         private static final int TYPE_HEADER = 1;
         private static final int TYPE_BOTTOM = 2;
+        private static final int TYPE_END = 3;
 
         private ArrayList<MemberListItem> lvMember = new ArrayList<MemberListItem>();
         private TreeSet<Integer> header = new TreeSet<Integer>();
@@ -424,12 +425,14 @@ public class MemberListwithAdapter extends ListView{
         public int getItemViewType(int position){
             if(getCount()-1==position)
                 return TYPE_BOTTOM;
+            if(header.contains(position+1)||getCount()-2==position)
+                return TYPE_END;
             return header.contains(position) ? TYPE_HEADER : TYPE_ITEM;
         }
 
         @Override
         public int getViewTypeCount(){
-            return 3;
+            return 4;
         }
 
         @Override
@@ -477,13 +480,25 @@ public class MemberListwithAdapter extends ListView{
                     case TYPE_BOTTOM:
                         convertView = mInfalater.inflate(R.layout.member_list_bottom,null);
                         break;
+                    case TYPE_END:
+                        convertView = mInfalater.inflate(R.layout.member_list_end, null);
+                        holder.textView = (TextView) convertView.findViewById(R.id.tvMemberList);
+                        holder.imageView = (ImageView) convertView.findViewById(R.id.ivMemberList);
+                        holder.textNumber = convertView.findViewById(R.id.tvMemberPhone);
+                        if(getItem(position).isChecked()){
+                            convertView.findViewById(R.id.rlMemberList).setBackgroundColor(Color.rgb(242,242,250));
+                        }
+                        else{
+                            convertView.findViewById(R.id.rlMemberList).setBackgroundColor(Color.rgb(255,255,255));
+                        }
+                        break;
                 }
 //                convertView.setTag(holder);
 //            } else {
 //                holder = (MemberlistAdapter.ViewHolder)convertView.getTag();
 //            }
 
-            if(rowType == TYPE_ITEM){
+            if(rowType == TYPE_ITEM||rowType == TYPE_END){
                 holder.textView.setText(lvMember.get(position).getMemberName());
                 holder.imageView.setImageDrawable(lvMember.get(position).getMemberProfile());
                 holder.textNumber.setText(lvMember.get(position).getMemberNumber());
