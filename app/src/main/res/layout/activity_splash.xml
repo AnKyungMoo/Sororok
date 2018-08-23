@@ -1,23 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.SplashActivity">
+    tools:context=".activity.SplashActivity"
+    android:background="#4b50df">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@android:color/white">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:paddingTop="200dp"
-            android:textSize="25sp"
-            android:textColor="@android:color/black"
-            android:text="SOROROK"/>
-    </LinearLayout>
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:layout_width="122dp"
+        android:layout_height="18dp"
+        android:background="#ffa1be"
+        android:layout_alignTop="@+id/splash_text"
+        android:layout_marginTop="27dp"
+        android:layout_marginLeft="27dp"/>
+
+    <TextView
+        android:id="@+id/splash_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sororok에\n어서와요!\n:)"
+        android:textSize="30sp"
+        android:layout_marginTop="109dp"
+        android:layout_marginLeft="29dp"
+        android:textColor="@android:color/white"
+        android:fontFamily="@font/notosanscjkkr_bold"
+        android:includeFontPadding="false"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/img_splash_logo"
+        android:layout_marginTop="273dp"
+        android:layout_centerHorizontal="true"/>
+</RelativeLayout>

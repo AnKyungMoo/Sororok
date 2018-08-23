@@ -7,6 +7,7 @@ import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.TelephonyManager;
 import android.util.Log;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.nexters.sororok.R;
@@ -34,16 +36,19 @@ import retrofit2.Response;
 
 public class LoginInfoActivity extends AppCompatActivity {
 
+    ImageButton backButton;
     EditText nameEditText;
     EditText phoneEditText;
     EditText emailEditText;
-    ImageButton configButton;
+    TextView configButton;
     ImageView userImage;
 
+    String TAG = LoginInfoActivity.class.getSimpleName();
     String loginType;
     String name;
     String email;
     String id;
+    String photoPath = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +78,16 @@ public class LoginInfoActivity extends AppCompatActivity {
 
         setPhoneNumber();
 
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginInfoActivity.this, LoginActivity.class);
+                startActivity(intent);
+                //overridePendingTransition(R.anim.slide_out_right, R.anim.slide_no_move);
+                finish();
+            }
+        });
+
         userImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -84,7 +99,11 @@ public class LoginInfoActivity extends AppCompatActivity {
         configButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sendLoginInfoToServer();
+
+                if (photoPath == null)
+                    sendLoginInfoToServer();
+                else
+                    imageUpload();
 
                 Intent intent = new Intent(LoginInfoActivity.this, MainActivity.class);
                 startActivity(intent);
@@ -94,6 +113,7 @@ public class LoginInfoActivity extends AppCompatActivity {
     }
 
     private void initializeView() {
+        backButton = findViewById(R.id.info_back_button);
         nameEditText = findViewById(R.id.edit_login_name);
         phoneEditText = findViewById(R.id.edit_login_phone);
         emailEditText = findViewById(R.id.edit_login_email);
@@ -135,11 +155,61 @@ public class LoginInfoActivity extends AppCompatActivity {
 
         try {
             LoginResponseModel responseModel = loginInfoTask.get();
+            Log.d(TAG, "sendLoginInfoToServerSuccess");
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
+    }
+
+    private void imageUpload() {
+        //Create Upload Server Client
+        LoginService loginService = LoginService.loginRetrofit.create(LoginService.class);
+
+        //File creating from selected URL
+        File file = new File(photoPath);
+
+        Log.d("경로", photoPath);
+        Log.d("파일", file.getName());
+
+        // create RequestBody instance from file
+        RequestBody requestFile = RequestBody.create(MediaType.parse("image/*"), file);
+
+        MultipartBody.Part body =
+                MultipartBody.Part.createFormData("memberImage", file.getName(), requestFile);
+
+        Call<LoginResponseModel> resultCall = loginService.signUp(phoneEditText.getText().toString(),
+                nameEditText.getText().toString(),
+                emailEditText.getText().toString(),
+                loginType,
+                id,
+                body
+        );
+
+
+        resultCall.enqueue(new Callback<LoginResponseModel>() {
+            @Override
+            public void onResponse(@NonNull Call<LoginResponseModel> call, @NonNull Response<LoginResponseModel> response) {
+
+                // Response Success or Fail
+                if (response.isSuccessful()) {
+                    Log.d(TAG, "onResponseSuccess");
+                } else {
+                    Log.d(TAG, "onResponseFail");
+                }
+
+                /**
+                 * Update Views
+                 */
+                photoPath = null;
+            }
+
+            @Override
+            public void onFailure(Call<LoginResponseModel> call, Throwable t) {
+                Log.d(TAG, "onFailure");
+            }
+        });
     }
 
     @Override
@@ -148,7 +218,7 @@ public class LoginInfoActivity extends AppCompatActivity {
             switch (requestCode){
                 // 300은 갤러리에서 사진 선택하고 난 뒤의 경우
                 case 300:
-                    String photoPath = data.getExtras().getString("photo_path");
+                    photoPath = data.getExtras().getString("photo_path");
                     Glide.with(this).load(photoPath).into(userImage);
                     break;
             }

@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:background="#FFFFFF"
-    android:layout_height="69dp"
+    android:layout_height="80dp"
     android:paddingTop="2dp"
     android:orientation="vertical">
     <RelativeLayout
@@ -36,10 +36,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/tvMemberList"
-            android:textSize="12sp"
-            android:textColor="#0b0d0f"
             android:fontFamily="@font/notosanscjkkr_medium"
             android:includeFontPadding="false"
+            android:textSize="12sp"
+            android:textColor="#0b0d0f"
             android:text="010-1234-5678"
             android:layout_toRightOf="@id/ivMemberList"
             android:layout_marginTop="5dp"
@@ -48,10 +48,8 @@
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="49dp"
-        android:layout_marginRight="38dp"
-        android:layout_marginTop="2dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="10dp"
         android:background="#e7e7e7"></ImageView>
 
 </LinearLayout>

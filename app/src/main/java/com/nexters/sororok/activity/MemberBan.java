@@ -19,7 +19,7 @@ import java.util.TreeSet;
 public class MemberBan extends AppCompatActivity {
     //리스트뷰를 커스텀 클래스로 정의함
     private MemberListwithAdapter banListView;
-    private Button groupManageBtn,backBtn,saveSelectedBtn;
+    private Button backBtn,saveSelectedBtn;
     private LinearLayout llSelectAll;
 
     @Override
@@ -45,26 +45,26 @@ public class MemberBan extends AppCompatActivity {
 
 
         //테스트용 데이터 생성. 지금은 String으로 했지만 서버 연동 후 MemberListitem 형식으로 생성할 듯.
-        final ArrayList<MemberListItem> memberList = new ArrayList<>();
-        memberList.add(new MemberListItem(null,"강문정",0,"01025557464"));
-        memberList.add(new MemberListItem(null,"곽희은",1,"01071849414"));
-        memberList.add(new MemberListItem(null,"김혜리",2,"01043232426"));
-        memberList.add(new MemberListItem(null,"남수민",3,"01032723956"));
-        memberList.add(new MemberListItem(null,"신상훈",4,"01071500894"));
-        memberList.add(new MemberListItem(null,"안경무",5,"01028175670"));
-        memberList.add(new MemberListItem(null,"한희영",6,"01098105690"));
-        memberList.add(new MemberListItem(null,"a",7,""));
-        memberList.add(new MemberListItem(null,"b",8,""));
-        memberList.add(new MemberListItem(null,"c",9,""));
-        memberList.add(new MemberListItem(null,"d",10,""));
-        memberList.add(new MemberListItem(null,"e",11,""));
-        memberList.add(new MemberListItem(null,"f",12,""));
-        memberList.add(new MemberListItem(null,"g",13,""));
-        memberList.add(new MemberListItem(null,"h",14,""));
-        memberList.add(new MemberListItem(null,"i",15,""));
+        final ArrayList<MemberListItem> memberBanList = new ArrayList<>();
+        memberBanList.add(new MemberListItem(null,"강문정",0,"01025557464"));
+        memberBanList.add(new MemberListItem(null,"곽희은",1,"01071849414"));
+        memberBanList.add(new MemberListItem(null,"김혜리",2,"01043232426"));
+        memberBanList.add(new MemberListItem(null,"남수민",3,"01032723956"));
+        memberBanList.add(new MemberListItem(null,"신상훈",4,"01071500894"));
+        memberBanList.add(new MemberListItem(null,"안경무",5,"01028175670"));
+        memberBanList.add(new MemberListItem(null,"한희영",6,"01098105690"));
+        memberBanList.add(new MemberListItem(null,"a",7,""));
+        memberBanList.add(new MemberListItem(null,"b",8,""));
+        memberBanList.add(new MemberListItem(null,"c",9,""));
+        memberBanList.add(new MemberListItem(null,"d",10,""));
+        memberBanList.add(new MemberListItem(null,"e",11,""));
+        memberBanList.add(new MemberListItem(null,"f",12,""));
+        memberBanList.add(new MemberListItem(null,"g",13,""));
+        memberBanList.add(new MemberListItem(null,"h",14,""));
+        memberBanList.add(new MemberListItem(null,"i",15,""));
         ArrayList<String> name = new ArrayList<String>();
-        for(int i=0;i<memberList.size();i++){
-            name.add(memberList.get(i).getMemberName());
+        for(int i=0;i<memberBanList.size();i++){
+            name.add(memberBanList.get(i).getMemberName());
         }
         final int namesize = name.size();
 
@@ -172,12 +172,12 @@ public class MemberBan extends AppCompatActivity {
                 firstString=Direct(firstString);
             if (firstString.equals(consonant[i])) {
                 mAdapter.addHeaderItem(new MemberListItem(null, consonant[i]+".",0));
-                mAdapter.addItem(new MemberListItem(null, name.get(j),j,memberList.get(j).getMemberNumber()));
+                mAdapter.addItem(new MemberListItem(null, name.get(j),j,memberBanList.get(j).getMemberNumber()));
                 if(i<consonant.length-1)
                     i++;
                 j++;
             } else if(firstString.compareTo(consonant[i])<0){
-                mAdapter.addItem(new MemberListItem(null, name.get(j),j,memberList.get(j).getMemberNumber()));
+                mAdapter.addItem(new MemberListItem(null, name.get(j),j,memberBanList.get(j).getMemberNumber()));
                 j++;
             } else {
                 i++;

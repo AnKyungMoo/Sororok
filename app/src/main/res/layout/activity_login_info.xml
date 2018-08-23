@@ -1,84 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#4b50df">
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/info_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/info_back_button"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/btn_comm_back_wh"
+            android:background="@android:color/transparent"
+            android:scaleType="fitXY"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="20dp"/>
+
+        <TextView
+            android:id="@+id/login_config_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="확인"
+            android:fontFamily="@font/notosanscjkkr_regular"
+            android:includeFontPadding="false"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:layout_marginTop="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="19dp"
+            android:layout_marginEnd="19dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/info_texts"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="30dp">
+        android:layout_below="@+id/info_buttons"
+        android:layout_marginTop="64dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="하단의 정보가 정확한지 확인해주세요!"
+            android:text="정확한 정보인지 입력해주세요"
+            android:fontFamily="@font/notosanscjkkr_medium"
+            android:includeFontPadding="false"
+            android:textColor="@android:color/white"
             android:textSize="20sp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="20dp"/>
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/info_images"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/info_texts"
+        android:layout_marginTop="76dp">
+
+        <ImageView
+            android:id="@+id/login_user_image"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:src="@drawable/user_icon"
+            android:background="@android:color/transparent"
+            android:scaleType="centerCrop"
+            android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/info_images"
+        android:orientation="vertical"
+        android:layout_marginTop="45dp" >
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp">
-
-            <ImageView
-                android:id="@+id/login_user_image"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:src="@drawable/user_icon"
-                android:background="@android:color/transparent"
-                android:scaleType="centerCrop"
-                android:layout_centerHorizontal="true"/>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp">
+            android:layout_height="wrap_content">
 
             <EditText
                 android:id="@+id/edit_login_name"
-                android:layout_width="250dp"
-                android:layout_height="40dp"
-                android:background="@drawable/edittext_normal"
+                android:layout_width="180dp"
+                android:layout_height="49dp"
+                android:inputType="text"
                 android:layout_centerHorizontal="true"
-                android:hint="이름"/>
+                android:hint="@string/name_edittext_hint"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                android:fontFamily="@font/notosanscjkkr_bold"
+                android:includeFontPadding="false"
+                android:textSize="20sp"
+                android:textColorHint="#80ffffff"/>
 
-            <ImageButton
-                android:id="@+id/login_name_xbutton"
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/temp_xbutton"
-                android:background="@android:color/transparent"
+                android:src="@drawable/btn_mypage_profile"
                 android:layout_alignRight="@+id/edit_login_name"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="10dp"/>
+                android:layout_centerVertical="true"/>
+
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp">
+            android:layout_height="wrap_content">
 
             <EditText
                 android:id="@+id/edit_login_phone"
-                android:layout_width="250dp"
-                android:layout_height="40dp"
-                android:background="@drawable/edittext_normal"
+                android:layout_width="180dp"
+                android:layout_height="49dp"
+                android:inputType="phone"
                 android:layout_centerHorizontal="true"
-                android:hint="010-1234-5678"/>
-
-            <ImageButton
-                android:id="@+id/login_phone_xbutton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/temp_xbutton"
-                android:background="@android:color/transparent"
-                android:layout_alignRight="@+id/edit_login_phone"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="10dp"/>
+                android:hint="010-1234-5678"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                android:fontFamily="@font/notosanscjkkr_medium"
+                android:includeFontPadding="false"
+                android:textSize="16sp"
+                android:textColorHint="#80ffffff"/>
         </RelativeLayout>
 
         <RelativeLayout
@@ -87,28 +129,19 @@
 
             <EditText
                 android:id="@+id/edit_login_email"
-                android:layout_width="250dp"
-                android:layout_height="40dp"
-                android:background="@drawable/edittext_normal"
+                android:layout_width="180dp"
+                android:layout_height="49dp"
+                android:inputType="textEmailAddress"
                 android:layout_centerHorizontal="true"
-                android:hint="1234@gmail.com"/>
-
-            <ImageButton
-                android:id="@+id/login_email_xbutton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/temp_xbutton"
-                android:background="@android:color/transparent"
-                android:layout_alignRight="@+id/edit_login_email"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="10dp"/>
+                android:hint="sororok@email.com"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                android:fontFamily="@font/notosanscjkkr_medium"
+                android:includeFontPadding="false"
+                android:textSize="16sp"
+                android:textColorHint="#80ffffff"/>
         </RelativeLayout>
 
     </LinearLayout>
 
-    <ImageButton
-        android:id="@+id/login_config_button"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_alignParentBottom="true"/>
 </RelativeLayout>

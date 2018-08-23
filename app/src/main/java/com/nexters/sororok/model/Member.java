@@ -3,58 +3,41 @@ package com.nexters.sororok.model;
 import java.util.ArrayList;
 
 public class Member {
-    private int memberID;
-    private String memberName;
-    private String memberPhone;
-    private String memberPhoto;
-    private ArrayList<Integer> groupsByMember;
+    private int memberId;
+    private String name;
+    private String phone;
+    private String email;
+    private int authority;
 
-    public int getMemberID() {
-        return memberID;
+    public Member(int memberId, String name, String phone, String email, int authority) {
+        this.memberId = memberId;
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.authority = authority;
     }
 
-    public void setMemberID(int memberID) {
-        this.memberID = memberID;
+    public int getMemberId() {
+        return memberId;
     }
 
-    public String getMemberName() {
-        return memberName;
+    public String getName() {
+        return name;
     }
 
-    public void setMemberName(String memberName) {
-        this.memberName = memberName;
+    public String getPhone() {
+        return phone;
     }
 
-    public String getMemberPhone() {
-        return memberPhone;
+    public String getEmail() {
+        return email;
     }
 
-    public void setMemberPhone(String memberPhone) {
-        this.memberPhone = memberPhone;
+    public int getAuthority() {
+        return authority;
     }
 
-    public String getMemberPhoto() {
-        return memberPhoto;
+    public void setAuthority(int authority) {
+        this.authority = authority;
     }
-
-    public void setMemberPhoto(String memberPhoto) {
-        this.memberPhoto = memberPhoto;
-    }
-
-    public ArrayList<Integer> getGroupsByMember(){
-        return groupsByMember;
-    }
-
-    public void addGroup(int group){
-        this.groupsByMember.add(group);
-    }
-
-    public void removeGroup(int group){
-        this.groupsByMember.remove(group);
-    }
-
-   public ArrayList<Integer> getGroupsbyMember(){
-        return groupsByMember;
-   }
-
 }

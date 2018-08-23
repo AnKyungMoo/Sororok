@@ -2,6 +2,7 @@ package com.nexters.sororok.service;
 
 import com.nexters.sororok.model.LoginRequestModel;
 import com.nexters.sororok.model.LoginResponseModel;
+import com.nexters.sororok.model.Member;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -11,6 +12,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -47,7 +49,7 @@ public interface LoginService {
                                     @Part("email") String email,
                                     @Part("loginType") String loginType,
                                     @Part("loginUid") String loginUid,
-                                    @Part("memberImage") MultipartBody.Part image
+                                    @Part MultipartBody.Part image
     );
 
     // 이미지가 URL인 경우
@@ -60,4 +62,6 @@ public interface LoginService {
                                     @Part("loginUid") String loginUid,
                                     @Part("imageUrl") String imageUrl
     );
+
+
 }

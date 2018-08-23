@@ -3,7 +3,9 @@ package com.nexters.sororok.item;
 
 import android.graphics.drawable.Drawable;
 
-public class MemberListItem{
+import java.io.Serializable;
+
+public class MemberListItem implements Serializable{
     private Drawable memberProfile;
     private String memberName;
     private String memberNumber;

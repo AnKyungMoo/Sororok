@@ -2,6 +2,8 @@ package com.nexters.sororok.adapter;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -59,10 +61,12 @@ public class MemberListwithAdapter extends ListView{
     private Paint sectionTextPaint;
     private GestureDetector mGesture;
     private int moreMargin = 100;
-    private OnClickListener onClickListener;
+    private Bitmap image;
+
     public MemberListwithAdapter(Context context, AttributeSet attrs){
         super(context, attrs);
         this.context =context;
+        image = BitmapFactory.decodeResource(context.getResources(),R.drawable.bg_index_popup);
         init(attrs);
 
     }
@@ -70,10 +74,10 @@ public class MemberListwithAdapter extends ListView{
     public MemberListwithAdapter(Context context, AttributeSet attrs, int defStyle){
         super(context, attrs, defStyle);
         this.context = context;
+        image = BitmapFactory.decodeResource(context.getResources(),R.drawable.bg_index_popup);
         init(attrs);
 
     }
-
     private void init(AttributeSet attrs){
         positionRect = new RectF();
         sectionPositionRect = new RectF();
@@ -85,12 +89,13 @@ public class MemberListwithAdapter extends ListView{
         backgroundPaint.setAntiAlias(true);
         sectionBackgroundPaint.setAntiAlias(true);
 
+
         TypedArray array = context.getTheme().obtainStyledAttributes(attrs, R.styleable.ListAttr,0,0);
 
-        int indexerBackground = array.getColor(R.styleable.ListAttr_indexerBackground, 0xc0ffffff);
-        int sectionBackground = array.getColor(R.styleable.ListAttr_sectionBackground, 0xffeeeeee);
+        int indexerBackground = array.getColor(R.styleable.ListAttr_indexerBackground, 0x00000000);
+        int sectionBackground = array.getColor(R.styleable.ListAttr_sectionBackground, 0x438b81eb);
         int indexerTextColor = array.getColor(R.styleable.ListAttr_indexerTextColor, 0xff000000);
-        int sectionTextColor = array.getColor(R.styleable.ListAttr_sectionTextColor, 0xff000000);
+        int sectionTextColor = array.getColor(R.styleable.ListAttr_sectionTextColor, 0xff4b50df);
         float indexerRadius = array.getFloat(R.styleable.ListAttr_indexerRadius, 60f);
         int indexerWidth = array.getInt(R.styleable.ListAttr_indexerWidth, 20);
         int sectionDelay = array.getInt(R.styleable.ListAttr_sectionDelay, 3 * 1000);
@@ -245,6 +250,10 @@ public class MemberListwithAdapter extends ListView{
         return sections;
     }
 
+    public void clearKeyword(){
+        sections = new String[0];
+    }
+
     @Override
     protected void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
@@ -274,18 +283,19 @@ public class MemberListwithAdapter extends ListView{
             canvas.drawText(sections[i].toUpperCase(), x, calY, textPaint);
         }
 
-        sectionTextPaint.setTextSize(50 * getScaledDensity());
+        sectionTextPaint.setTextSize(30 * getScaledDensity());
         if (useSection && showLetter & !TextUtils.isEmpty(section)) {
-            float mPreviewPadding = 5 * getDensity();
+            float mPreviewPadding = 20 * getDensity();
             float previewTextWidth = sectionTextPaint.measureText(section.toUpperCase());
             float previewSize = 2 * mPreviewPadding + sectionTextPaint.descent() - sectionTextPaint.ascent();
 
             sectionPositionRect.left = (getWidth() - previewSize) / 2;
             sectionPositionRect.right = (getWidth() - previewSize) / 2 + previewSize;
-            sectionPositionRect.top = (getHeight() - previewSize) / 2;
-            sectionPositionRect.bottom = (getHeight() - previewSize) / 2 + previewSize;
+            sectionPositionRect.top = (getHeight() - previewSize) / 2 - previewSize;
+            sectionPositionRect.bottom = (getHeight() - previewSize) / 2;
 
-            canvas.drawRoundRect(sectionPositionRect, mPreviewPadding, mPreviewPadding, sectionBackgroundPaint);
+            canvas.drawBitmap(image,null,sectionPositionRect,null);
+//            canvas.drawRoundRect(sectionPositionRect, mPreviewPadding, mPreviewPadding, sectionBackgroundPaint);
             canvas.drawText(section.toUpperCase(),
                     sectionPositionRect.left + (previewSize - previewTextWidth) / 2 - 1,
                     sectionPositionRect.top + mPreviewPadding - sectionTextPaint.ascent() + 1, sectionTextPaint);
@@ -369,6 +379,7 @@ public class MemberListwithAdapter extends ListView{
         private static final int TYPE_ITEM = 0;
         private static final int TYPE_HEADER = 1;
         private static final int TYPE_BOTTOM = 2;
+        private static final int TYPE_END = 3;
 
         private ArrayList<MemberListItem> lvMember = new ArrayList<MemberListItem>();
         private TreeSet<Integer> header = new TreeSet<Integer>();
@@ -395,16 +406,33 @@ public class MemberListwithAdapter extends ListView{
             lvMember.add(item);
         }
 
+        public void clearAdapter(){
+            lvMember.clear();
+            header.clear();
+        }
+
+        public int getItemCount(){
+            int i = 0;
+            for(int j = 0;j<getCount();j++){
+                if(getItemViewType(j)==0||getItemViewType(j)==3){
+                    i++;
+                }
+            }
+            return i;
+        }
+
         @Override
         public int getItemViewType(int position){
             if(getCount()-1==position)
                 return TYPE_BOTTOM;
+            if(header.contains(position+1)||getCount()-2==position)
+                return TYPE_END;
             return header.contains(position) ? TYPE_HEADER : TYPE_ITEM;
         }
 
         @Override
         public int getViewTypeCount(){
-            return 3;
+            return 4;
         }
 
         @Override
@@ -434,6 +462,8 @@ public class MemberListwithAdapter extends ListView{
                         convertView = mInfalater.inflate(R.layout.member_list_item, null);
                         holder.textView = (TextView) convertView.findViewById(R.id.tvMemberList);
                         holder.imageView = (ImageView) convertView.findViewById(R.id.ivMemberList);
+                        holder.textNumber = convertView.findViewById(R.id.tvMemberPhone);
+
 
                         if(getItem(position).isChecked()){
                             convertView.findViewById(R.id.rlMemberList).setBackgroundColor(Color.rgb(242,242,250));
@@ -450,15 +480,28 @@ public class MemberListwithAdapter extends ListView{
                     case TYPE_BOTTOM:
                         convertView = mInfalater.inflate(R.layout.member_list_bottom,null);
                         break;
+                    case TYPE_END:
+                        convertView = mInfalater.inflate(R.layout.member_list_end, null);
+                        holder.textView = (TextView) convertView.findViewById(R.id.tvMemberList);
+                        holder.imageView = (ImageView) convertView.findViewById(R.id.ivMemberList);
+                        holder.textNumber = convertView.findViewById(R.id.tvMemberPhone);
+                        if(getItem(position).isChecked()){
+                            convertView.findViewById(R.id.rlMemberList).setBackgroundColor(Color.rgb(242,242,250));
+                        }
+                        else{
+                            convertView.findViewById(R.id.rlMemberList).setBackgroundColor(Color.rgb(255,255,255));
+                        }
+                        break;
                 }
 //                convertView.setTag(holder);
 //            } else {
 //                holder = (MemberlistAdapter.ViewHolder)convertView.getTag();
 //            }
 
-            if(rowType == TYPE_ITEM){
+            if(rowType == TYPE_ITEM||rowType == TYPE_END){
                 holder.textView.setText(lvMember.get(position).getMemberName());
                 holder.imageView.setImageDrawable(lvMember.get(position).getMemberProfile());
+                holder.textNumber.setText(lvMember.get(position).getMemberNumber());
             }else if(rowType == TYPE_HEADER){
                 holder.textView.setText(lvMember.get(position).getMemberName());
             }
@@ -485,6 +528,7 @@ public class MemberListwithAdapter extends ListView{
         public static class ViewHolder{
             public TextView textView;
             public ImageView imageView;
+            public TextView textNumber;
         }
     }
 
