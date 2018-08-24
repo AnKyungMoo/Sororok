@@ -1,9 +1,6 @@
 package com.nexters.sororok.activity;
 
 import android.content.Intent;
-import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.OvalShape;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -76,11 +73,11 @@ public class TestActivity extends AppCompatActivity
         drawerLayout = findViewById(R.id.layout_drawer);
         relativeLayout = findViewById(R.id.layout_linear);
         floatingActionButton = findViewById(R.id.btn_floating);
-        userImage = findViewById(R.id.imgAvatar);
-        userImage.setBackground(new ShapeDrawable(new OvalShape()));
+        //userImage = findViewById(R.id.imgAvatar);
+       /* userImage.setBackground(new ShapeDrawable(new OvalShape()));
         if(Build.VERSION.SDK_INT >= 21) {
             userImage.setClipToOutline(true);
-        }
+        }*/
     }
 
     public void buttonConnect(){
@@ -110,7 +107,7 @@ public class TestActivity extends AppCompatActivity
                 startActivityForResult(intent,100);
             }
         });
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+        /*floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), NewGroupActivity.class);
@@ -123,7 +120,7 @@ public class TestActivity extends AppCompatActivity
                 Intent intent = new Intent(getApplicationContext(), MyPageActivity.class);
                 startActivityForResult(intent,300);
             }
-        });
+        });*/
     }
 
     @Override

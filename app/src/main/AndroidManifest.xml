@@ -42,6 +42,7 @@
         <activity android:name=".activity.SettingActivity" />
         <activity android:name=".activity.CropImageActivity" />
         <activity android:name=".activity.MemberSettingActivity" />
+        <activity android:name=".activity.test"/>
         <activity android:name=".activity.EditMemberActivity" />
         <activity
             android:name=".activity.ChangeAdminActivity"

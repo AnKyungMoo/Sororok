@@ -9,7 +9,6 @@
     android:layout_height="match_parent"
     tools:context=".activity.TestActivity">
 
-    <!--History Layout-->
     <RelativeLayout
         android:id="@+id/layout_linear"
         android:layout_width="280dp"
@@ -50,21 +49,19 @@
 
     </RelativeLayout>
 
-    <!--Main Layout-->
     <FrameLayout
         android:id="@+id/frame_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <!--for below recyclerview-->
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            tools:context=".activity.TestActivity">
 
-            <RelativeLayout
-                android:id="@+id/layout_user_view"
+            <LinearLayout
+                android:layout_centerInParent="true"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
 
                 <android.support.design.widget.CoordinatorLayout
@@ -77,6 +74,7 @@
                         android:layout_height="wrap_content"
                         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
+
                         <android.support.design.widget.CollapsingToolbarLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -86,104 +84,63 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
 
-                                <!--<RelativeLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content">-->
 
-                                    <Button
-                                        android:id="@+id/btn_history_1"
-                                        android:layout_width="32dp"
-                                        android:layout_height="32dp"
-                                        android:background="@drawable/icn_comm_notice"
-                                        android:layout_margin="10dp"
-                                        android:layout_toLeftOf="@id/btn_setting_1"/>
+                            <Button
+                                android:id="@+id/btn_history_1"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:background="@drawable/icn_comm_notice"
+                                android:layout_margin="10dp"
+                                android:layout_toLeftOf="@id/btn_setting_1"/>
 
-                                    <Button
-                                        android:id="@+id/btn_setting_1"
-                                        android:layout_width="32dp"
-                                        android:layout_height="32dp"
-                                        android:background="@drawable/icn_comm_setting"
-                                        android:layout_gravity="right"
-                                        android:layout_margin="10dp"
-                                        android:layout_alignParentRight="true"/>
-                                <!--</RelativeLayout>-->
-
-
-                               <!-- <ImageView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="#ffffff"
-                                    android:layout_alignParentBottom="true"
-                                    android:tint="#11000000"
-                                    app:layout_collapseMode="parallax"
-                                    app:layout_collapseParallaxMultiplier="0.9" />-->
+                            <Button
+                                android:id="@+id/btn_setting_1"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:background="@drawable/icn_comm_setting"
+                                android:layout_gravity="right"
+                                android:layout_margin="10dp"
+                                android:layout_alignParentRight="true"/>
                         </RelativeLayout>
 
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="290dp"
+                            app:layout_collapseMode="parallax"
+                            app:layout_collapseParallaxMultiplier="0.9" />
+
                             <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="290dp"
-                                app:layout_collapseMode="parallax"
-                                app:layout_collapseParallaxMultiplier="0.9" />
-
-
-                           <!-- <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="25dp">-->
-
-                               <!-- <ImageView
-                                    android:id="@+id/imgAvatar"
-                                    android:layout_width="76dp"
-                                    android:layout_height="76dp"
-                                    android:src="@drawable/oval"
-                                    android:layout_marginTop="80dp"
-                                    android:scaleType="centerCrop"
-                                    app:layout_behavior=".activity.AvatarImageBehavior" />-->
-
-                                <RelativeLayout
-                                    android:id="@+id/txt_user_name"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="30dp"
-                                    android:layout_marginTop="120dp">
-                                   <!-- android:layout_below="@id/imgAvatar">-->
-
-                                    <TextView
-                                        android:id="@+id/txt_user_name_title"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="희은님"
-                                        android:textColor="#ffffff"
-                                        android:textStyle="bold"
-                                        android:textSize="30sp"/>
-
-                                    <TextView
-                                        android:id="@+id/txt_user_title"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="안녕하세요!"
-                                        android:textColor="#ffffff"
-                                        android:layout_below="@id/txt_user_name_title"
-                                        android:textSize="30sp" />
-
-                                </RelativeLayout>
-
-                            <!--<TextView
-                                android:id="@+id/txt_user_title"
+                                android:id="@+id/txt_user_name"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="안녕하세요!"
-                                android:textColor="#ffffff"
-                                android:layout_below="@id/txt_user_name"
-                                android:textSize="30sp" />
-                               -->
+                                android:layout_marginLeft="30dp"
+                                android:layout_marginTop="120dp">
 
-                            <!--</RelativeLayout>-->
+                                <TextView
+                                    android:id="@+id/txt_user_name_title"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="희은님"
+                                    android:textColor="#ffffff"
+                                    android:textStyle="bold"
+                                    android:textSize="30sp"/>
+
+                                <TextView
+                                    android:id="@+id/txt_user_title"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="안녕하세요!"
+                                    android:textColor="#ffffff"
+                                    android:layout_below="@id/txt_user_name_title"
+                                    android:textSize="30sp" />
+
+                            </RelativeLayout>
+
 
                             <FrameLayout
                                 android:id="@+id/frameLayout"
                                 android:layout_width="match_parent"
-                                android:layout_height="20dp"
+                                android:layout_height="70dp"
                                 android:layout_gravity="bottom"
                                 android:background="#ffffff"
                                 app:layout_collapseMode="parallax"
@@ -191,39 +148,32 @@
                             </FrameLayout>
 
                         </android.support.design.widget.CollapsingToolbarLayout>
-
                     </android.support.design.widget.AppBarLayout>
-
-                    <android.support.v7.widget.RecyclerView
+                    <android.support.v4.widget.NestedScrollView
                         android:id="@+id/recyclerview"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-                    </android.support.v7.widget.RecyclerView>
-
-                    <!--<android.support.v7.widget.RecyclerView
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/lorem"/>
+                    </android.support.v4.widget.NestedScrollView>
+                   <!-- <android.support.v7.widget.RecyclerView
                         android:id="@+id/recyclerview"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         app:layout_behavior="@string/appbar_scrolling_view_behavior">
-                        &lt;!&ndash;app:layout_behavior="@string/appbar_scrolling_view_behavior">&ndash;&gt;
-                        &lt;!&ndash;android:layout_below="@id/layout_user_view"&ndash;&gt;
 
                     </android.support.v7.widget.RecyclerView>-->
-
 
                     <android.support.v7.widget.Toolbar
                         android:id="@+id/toolbar"
                         android:layout_width="match_parent"
                         android:layout_height="120dp"
+                        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
                         app:layout_anchor="@id/frameLayout">
 
-                       <!-- <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginRight="10dp"
-                            android:layout_gravity="center">-->
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
@@ -298,72 +248,7 @@
                                     android:src="@drawable/btn_comm_search_check_bl" />
                             </RelativeLayout>
                         </RelativeLayout>
-
-
-                        <!--</FrameLayout>-->
-
-                       <!-- <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-                                <Space
-                                    android:id="@+id/space"
-                                    android:layout_width="50dp"
-                                    android:layout_height="50dp"
-                                    android:layout_alignParentLeft="true"/>
-                                <TextView
-                                    android:id="@+id/tvTitleToolBar"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="bottom"
-                                    android:paddingTop="35dp"
-                                    android:layout_toEndOf="@id/space"
-                                    android:layout_toRightOf="@id/space"
-                                    android:text="희은님"
-                                    android:visibility="invisible"
-                                    android:textSize="16sp" />
-
-                                <Button
-                                    android:id="@+id/btn_history_2"
-                                    android:layout_width="32dp"
-                                    android:layout_height="32dp"
-                                    android:background="@drawable/icn_comm_notice"
-                                    android:layout_toStartOf="@id/btn_setting_2"
-                                    android:layout_toLeftOf="@id/btn_setting_2"
-                                    android:layout_margin="10dp"
-                                    android:visibility="invisible"/>
-
-                                <Button
-                                    android:id="@+id/btn_setting_2"
-                                    android:layout_width="32dp"
-                                    android:layout_height="32dp"
-                                    android:layout_margin="10dp"
-                                    android:background="@drawable/icn_comm_setting"
-                                    android:layout_alignParentEnd="true"
-                                    android:layout_alignParentRight="true"
-                                    android:visibility="invisible"/>
-                            </RelativeLayout>
-
-
-                        </RelativeLayout>-->
-
                     </android.support.v7.widget.Toolbar>
-
-
-                   <!-- <ImageView
-                        android:id="@+id/imgAvatar"
-                        android:layout_width="52dp"
-                        android:layout_height="52dp"
-                        android:src="@drawable/oval"
-                        android:layout_marginLeft="25dp"
-                        app:layout_behavior=".activity.AvatarImageBehavior" />-->
-
-                   <!-- <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">-->
 
                     <ImageView
                         android:id="@+id/imgAvatar"
@@ -374,13 +259,10 @@
                         android:layout_marginTop="55dp"
                         app:layout_behavior=".activity.AvatarImageBehavior" />
 
-                   <!-- </RelativeLayout>-->
 
                 </android.support.design.widget.CoordinatorLayout>
+            </LinearLayout>
 
-            </RelativeLayout>
-
-<!--
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/btn_floating"
                 android:layout_width="70dp"
@@ -388,8 +270,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:background="#ffa1be"
-                android:layout_margin="20dp"/>-->
+                android:layout_margin="20dp"/>
 
         </RelativeLayout>
     </FrameLayout>
