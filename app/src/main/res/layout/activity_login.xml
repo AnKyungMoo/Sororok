@@ -97,10 +97,4 @@
             android:layout_marginStart="12.5dp"
             android:includeFontPadding="false"/>
     </RelativeLayout>
-
-    <Button
-        android:id="@+id/temp_main_button"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:text="메인"/>
 </LinearLayout>
