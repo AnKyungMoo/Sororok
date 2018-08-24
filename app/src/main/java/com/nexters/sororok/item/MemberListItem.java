@@ -6,7 +6,7 @@ import android.graphics.drawable.Drawable;
 import java.io.Serializable;
 
 public class MemberListItem implements Serializable{
-    private Drawable memberProfile;
+    private String memberProfile;
     private String memberName;
     private String memberNumber;
     private int memberID;
@@ -31,24 +31,24 @@ public class MemberListItem implements Serializable{
 
 
 
-    public MemberListItem(Drawable memberProfile, String memberName, int memberID){
+    public MemberListItem(String memberProfile, String memberName, int memberID){
         this.memberName = memberName;
         this.memberProfile = memberProfile;
         this.memberID = memberID;
     }
 
-    public MemberListItem(Drawable memberProfile, String memberName, int memberID, String memberNumber){
+    public MemberListItem(String memberProfile, String memberName, int memberID, String memberNumber){
         this.memberName = memberName;
         this.memberProfile = memberProfile;
         this.memberID = memberID;
         this.memberNumber = memberNumber;
     }
 
-    public Drawable getMemberProfile() {
+    public String getMemberProfile() {
         return memberProfile;
     }
 
-    public void setMemberProfile(Drawable memberProfile) {
+    public void setMemberProfile(String memberProfile) {
         this.memberProfile = memberProfile;
     }
 

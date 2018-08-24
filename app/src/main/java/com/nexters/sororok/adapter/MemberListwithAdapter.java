@@ -24,6 +24,7 @@ import android.widget.SectionIndexer;
 import android.widget.TextView;
 
 import com.nexters.sororok.R;
+import com.nexters.sororok.asynctask.DownloadImageTask;
 import com.nexters.sororok.item.MemberListItem;
 import com.nexters.sororok.activity.MemberListActivity;
 
@@ -35,6 +36,7 @@ import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.lang.String;
 import java.util.TreeSet;
+import java.util.concurrent.ExecutionException;
 
 public class MemberListwithAdapter extends ListView{
 
@@ -500,7 +502,16 @@ public class MemberListwithAdapter extends ListView{
 
             if(rowType == TYPE_ITEM||rowType == TYPE_END){
                 holder.textView.setText(lvMember.get(position).getMemberName());
-                holder.imageView.setImageDrawable(lvMember.get(position).getMemberProfile());
+                DownloadImageTask downloadImageTask = new DownloadImageTask();
+                downloadImageTask.execute("http://45.63.120.140:40005/sororok/images/" + lvMember.get(position).getMemberProfile());
+                try {
+                    Bitmap bitmap = downloadImageTask.get();
+                    holder.imageView.setImageBitmap(bitmap);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
                 holder.textNumber.setText(lvMember.get(position).getMemberNumber());
             }else if(rowType == TYPE_HEADER){
                 holder.textView.setText(lvMember.get(position).getMemberName());
