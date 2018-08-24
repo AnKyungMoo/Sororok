@@ -275,16 +275,17 @@
                        android:orientation="horizontal"
                        android:layout_alignParentBottom="true"
                        android:weightSum="1">
+
                        <Button
                            android:layout_width="wrap_content"
                            android:layout_height="match_parent"
-                           android:text="로그아웃"
-                           android:textSize="20sp"
+                           android:layout_weight="0.5"
+                           android:background="#d3d5da"
                            android:fontFamily="@font/notosanscjkkr_medium"
                            android:includeFontPadding="false"
-                           android:background="#d3d5da"
+                           android:text="로그아웃"
                            android:textColor="#FFFFFF"
-                           android:layout_weight="0.5"/>
+                           android:textSize="20sp" />
                        <Button
                            android:layout_width="wrap_content"
                            android:layout_height="match_parent"

@@ -44,6 +44,51 @@
             android:background="#5a5cf1"
             android:layout_below="@id/new_group_title"/>
 
+    <LinearLayout
+        android:id="@+id/layout_click_share_group"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:visibility="invisible">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="그룹 공유하기"
+                    android:textColor="#0b0d0f"
+                    android:textSize="16sp" />
+
+                <Button
+                    android:id="@+id/btn_group_share2"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/icn_comm_enter_bk" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#d3d5da" />
+
+
+    </LinearLayout>
+
 
 
         <LinearLayout
