@@ -76,6 +76,9 @@ public class LoginInfoActivity extends AppCompatActivity {
         Log.d("asdf", email);
         Log.d("imageUrl", imageUrl);
 
+        if (!imageUrl.equals(""))
+            Glide.with(this).load(imageUrl).into(userImage);
+
         nameEditText.setText(name);
         emailEditText.setText(email);
 

@@ -298,7 +298,7 @@ public class LoginActivity extends AppCompatActivity{
                     uid = naverId;
 
                     callRetrofit();
-                    
+
                     if (!id.equals("-1")) {
                         Intent intent = new Intent(activity, TestActivity.class);
                         activity.startActivity(intent);
