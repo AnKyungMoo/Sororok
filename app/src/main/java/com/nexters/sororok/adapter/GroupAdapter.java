@@ -1,6 +1,8 @@
 package com.nexters.sororok.adapter;
 
-import android.content.Intent;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -12,16 +14,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nexters.sororok.R;
 import com.nexters.sororok.activity.CustomDialog;
-import com.nexters.sororok.activity.MemberListActivity;
-import com.nexters.sororok.activity.SplashActivity;
 import com.nexters.sororok.asynctask.DownloadImageTask;
-import com.nexters.sororok.asynctask.JoinRepositoryTask;
 import com.nexters.sororok.item.GroupListItem;
-import com.nexters.sororok.model.JoinRepositoryRequestModel;
-import com.nexters.sororok.model.JoinRepositoryResponseModel;
 
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
@@ -31,8 +29,11 @@ public class GroupAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private ArrayList<GroupListItem> groupListItems;
     private CustomDialog customDialog;
 
-    public GroupAdapter(ArrayList<GroupListItem> groupListItems) {
+    private Activity activity;
+
+    public GroupAdapter(ArrayList<GroupListItem> groupListItems, Activity activity) {
         this.groupListItems = groupListItems;
+        this.activity=activity;
         //this.context = context;
         //customDialog = new CustomDialog(context);
     }
@@ -75,13 +76,57 @@ public class GroupAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         groupViewHolder.groupContent.setText(groupListItems.get(position).groupContent);
         groupViewHolder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                customDialog = new CustomDialog(view.getContext(), groupListItems.get(position).groupId);
-                customDialog.getWindow().getAttributes().windowAnimations = R.style.DialogAni;
-                customDialog.show();
-                customDialog.setFlag(1);
-                customDialog.getEditText().setVisibility(View.VISIBLE);
-                customDialog.setTitle("그룹코드를 입력해주세요.");
+            public void onClick(final View view) {
+//                customDialog = new CustomDialog(view.getContext(), groupListItems.get(position).groupId);
+//                customDialog.getWindow().getAttributes().windowAnimations = R.style.DialogAni;
+//                customDialog.setFlag(1);
+//                customDialog.show();
+//                customDialog.getEditText().setVisibility(View.VISIBLE);
+//                customDialog.setTitle("그룹코드를 입력해주세요.");
+
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+                final EditText edit = new EditText(activity);
+                builder.setView(edit);
+                builder.setMessage("그룹 코드를 입력해 주세요");
+
+                builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        // Text 값 받아서 로그 남기기
+                        String value = edit.getText().toString();
+                        Toast.makeText(view.getContext(),value,Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();     //닫기
+                        // Event
+                    }
+                });
+
+// 취소 버튼 설정
+                builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();     //닫기
+                        // Event
+                    }
+                });
+
+// 창 띄우기
+                builder.show();
+
+                /*customDialog.getEditText().setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        Toast.makeText(view.getContext(), "클릭",Toast.LENGTH_SHORT).show();
+                        InputMethodManager imm = (InputMethodManager) view.getContext().getSystemService(INPUT_METHOD_SERVICE);
+                        imm.showSoftInput(customDialog.getEditText(), 0);
+                        customDialog.getEditText().setFocusable(true);
+                        customDialog.setTitle("그룹코드를 입력해주세요.");
+                    }
+                });*/
+                //customDialog.getEditText().setEnabled(true);
+
             }
         });
 

@@ -9,6 +9,8 @@
         android:layout_height="180dp"
         android:orientation="vertical"
         android:layout_centerInParent="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:background="#ffffff"
         android:layout_margin="30dp">
 
@@ -21,6 +23,7 @@
             android:textSize="20sp"
             android:textColor="#2b2e38"
             android:textStyle="bold"
+            android:layout_alignParentTop="true"
             android:layout_above="@id/layout_dialog_button"
             android:layout_marginBottom="50dp"
             android:layout_marginTop="30dp"/>
@@ -31,9 +34,10 @@
             android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:background="@null"
             android:layout_above="@id/layout_dialog_button"
-            android:visibility="invisible"
+            android:paddingBottom="5dp"
+            android:visibility="visible"
+            android:inputType="text"
             android:layout_marginBottom="10dp"/>
 
         <LinearLayout

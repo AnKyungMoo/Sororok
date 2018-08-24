@@ -10,8 +10,15 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="colorControlNormal">#868ae9</item>
         <item name="colorControlActivated">#868ae9</item>
+        <item name="alertDialogTheme">@style/mAlertTheme</item>
     </style>
 
+
+
+    <style name="mAlertTheme"  parent="Base.Theme.AppCompat.Light.Dialog">
+        <item name="android:colorAccent">@color/colorPrimary</item>
+
+    </style>
     <style name="AppTheme.white" parent="Base.Theme.AppCompat.Light">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
