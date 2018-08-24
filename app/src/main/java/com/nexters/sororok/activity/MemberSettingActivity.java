@@ -15,9 +15,11 @@ import android.widget.TextView;
 import com.nexters.sororok.R;
 import com.nexters.sororok.asynctask.DestroyGroupTask;
 import com.nexters.sororok.asynctask.GroupCodeTask;
+import com.nexters.sororok.asynctask.GroupInfoTask;
 import com.nexters.sororok.asynctask.RefreshCodeTask;
 import com.nexters.sororok.model.DestroyGroupModel;
 import com.nexters.sororok.model.DestroyRequestModel;
+import com.nexters.sororok.model.GroupInfoModel;
 import com.nexters.sororok.model.RefreshCodeModel;
 import com.nexters.sororok.model.UpdateCodeModel;
 
@@ -41,13 +43,14 @@ public class MemberSettingActivity extends AppCompatActivity {
     private TextView mainTitle, subTitle, groupCode;
     private int groupid;
     /* TODO: 앞에서부터 데이터 가져오자 */
-    private int repositoryId = 11;
+    private int repositoryId = 13;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_member_setting);
         initComponent();
+        getGroupInfo();
         Intent intentForGet = getIntent();
         groupid=intentForGet.getIntExtra("bgroupid",-1);
         boom.setOnClickListener(new View.OnClickListener() {
@@ -208,10 +211,26 @@ public class MemberSettingActivity extends AppCompatActivity {
         refreshButton = findViewById(R.id.button_code_refresh);
     }
 
+    private void getGroupInfo() {
+        GroupInfoTask groupInfoTask = new GroupInfoTask();
+
+        groupInfoTask.execute(repositoryId);
+
+        try {
+            GroupInfoModel groupInfoModel = groupInfoTask.get();
+
+            groupCode.setText(groupInfoModel.getCode());
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void refreshGroupCode() {
         RefreshCodeTask refreshCodeTask = new RefreshCodeTask();
 
-        refreshCodeTask.execute(new UpdateCodeModel(12));
+        refreshCodeTask.execute(new UpdateCodeModel(repositoryId));
 
         try {
             RefreshCodeModel refreshCodeModel = refreshCodeTask.get();

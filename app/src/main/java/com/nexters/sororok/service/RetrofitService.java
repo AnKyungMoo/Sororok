@@ -2,6 +2,7 @@ package com.nexters.sororok.service;
 
 import com.nexters.sororok.model.DestroyGroupModel;
 import com.nexters.sororok.model.DestroyRequestModel;
+import com.nexters.sororok.model.GroupInfoModel;
 import com.nexters.sororok.model.GroupList;
 import com.nexters.sororok.model.GroupResponseModel;
 import com.nexters.sororok.model.LoginRequestModel;
@@ -107,4 +108,8 @@ public interface RetrofitService {
     // 저장소 코드 refresh
     @PUT("repository/update")
     Call<RefreshCodeModel> update(@Body UpdateCodeModel updateCodeModel);
+
+    // 저장소의 정보를 획득
+    @GET("repository/info")
+    Call<GroupInfoModel> info(@Query("repositoryId") int repositoryId);
 }
