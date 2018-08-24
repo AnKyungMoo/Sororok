@@ -114,7 +114,7 @@ public class LoginInfoActivity extends AppCompatActivity {
                 else
                     sendLoginInfoToServer();
 
-                Intent intent = new Intent(LoginInfoActivity.this, MainActivity.class);
+                Intent intent = new Intent(LoginInfoActivity.this, TestActivity.class);
                 startActivity(intent);
                 finish();
             }
