@@ -118,12 +118,14 @@ public class NewGroupActivity extends AppCompatActivity {
         linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ClipboardManager clipboardManager = (ClipboardManager)getApplicationContext().getSystemService(getApplicationContext().CLIPBOARD_SERVICE);
-                ClipData clipData = ClipData.newPlainText("group_code", textGroupCode.getText().toString());
-                clipboardManager.setPrimaryClip(clipData);
-                Toast.makeText(getApplicationContext(), "그룹코드가 복사되었습니다.",Toast.LENGTH_SHORT).show();
-               // Toast.makeText(getApplicationContext(), getApplicationContext().getString(R.string.toast_text_clipboard_adress), Toast.LENGTH_SHORT).show();
-
+                if(groupName.getText().toString().length()>0 && groupExplain.getText().length()>0){
+                    ClipboardManager clipboardManager = (ClipboardManager)getApplicationContext().getSystemService(getApplicationContext().CLIPBOARD_SERVICE);
+                    ClipData clipData = ClipData.newPlainText("group_code", textGroupCode.getText().toString());
+                    clipboardManager.setPrimaryClip(clipData);
+                    Toast.makeText(getApplicationContext(), "그룹코드가 복사되었습니다.",Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(getApplicationContext(), "빈칸을 모두 채워주세요",Toast.LENGTH_SHORT).show();
+                }
             }
         });
         backBtn.setOnClickListener(new View.OnClickListener() {
