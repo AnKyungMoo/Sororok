@@ -33,38 +33,39 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginTop="67dp">
 
         <ImageButton
             android:id="@+id/google_button"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/login_google"
             android:background="@android:color/transparent"
-            android:layout_marginLeft="24dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginBottom="12dp"/>
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"/>
 
         <ImageButton
             android:id="@+id/naver_button"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/login_naver"
             android:background="@android:color/transparent"
             android:layout_below="@+id/google_button"
-            android:layout_marginLeft="24dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginBottom="12dp"/>
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"/>
 
         <ImageButton
             android:id="@+id/kakao_button"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/login_kakao"
             android:background="@android:color/transparent"
             android:layout_below="@+id/naver_button"
-            android:layout_marginLeft="24dp"
-            android:layout_marginStart="24dp"/>
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"/>
     </RelativeLayout>
 </LinearLayout>
