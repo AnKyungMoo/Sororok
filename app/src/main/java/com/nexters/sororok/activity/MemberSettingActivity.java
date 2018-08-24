@@ -4,10 +4,12 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -26,9 +28,9 @@ import java.util.concurrent.ExecutionException;
  */
 public class MemberSettingActivity extends AppCompatActivity {
 
-    private Button groupShareBtn, changeAdminBtn,groupManageBtn,groupRemoveBtn,groupShareBtn2;
+    private Button groupShareBtn2;
     private Button backBtn,exitGroupBtn,optionBtn1,optionBtn2,optionBtn3;
-    private RelativeLayout animLayout,mainLayout;
+    private RelativeLayout animLayout,mainLayout, dimLayout;
     private Animation slideUpAnimation, slideDownAnimation;
     private LinearLayout defalutLayout, nextLayout,share,manage,change,boom;
     private TextView mainTitle,subTitle,groupCode;
@@ -52,11 +54,18 @@ public class MemberSettingActivity extends AppCompatActivity {
                 optionBtn1.setVisibility(View.VISIBLE);
                 optionBtn2.setVisibility(View.VISIBLE);
                 animLayout.startAnimation(slideUpAnimation);
-                mainLayout.setBackgroundColor(Color.argb(80,50,50,50));
+//                mainLayout.setBackgroundColor(Color.argb(80,50,50,50));
+                dimLayout.setVisibility(View.VISIBLE);
                 animLayout.setVisibility(View.VISIBLE);
             }
         });
 
+        animLayout.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                return true;
+            }
+        });
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,16 +78,18 @@ public class MemberSettingActivity extends AppCompatActivity {
             }
         });
 
-        mainLayout.setOnClickListener(new View.OnClickListener() {
+        dimLayout.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View view) {
-                if(animLayout.getVisibility()==View.VISIBLE){
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if (animLayout.getVisibility() == View.VISIBLE) {
                     animLayout.startAnimation(slideDownAnimation);
-                    mainLayout.setBackgroundColor(Color.rgb(255,255,255));
+                    dimLayout.setVisibility(View.GONE);
                     animLayout.setVisibility(View.INVISIBLE);
                 }
+                return true;
             }
         });
+
 
         change.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -172,11 +183,7 @@ public class MemberSettingActivity extends AppCompatActivity {
         manage=findViewById(R.id.llGroupManage);
         change=findViewById(R.id.llGroupChange);
         boom=findViewById(R.id.llGroupBoom);
-        groupShareBtn = findViewById(R.id.btn_group_share);
         groupShareBtn2 = findViewById(R.id.btn_group_share2);
-        changeAdminBtn = findViewById(R.id.btn_admin_change);
-        groupManageBtn = findViewById(R.id.btn_members_manage);
-        groupRemoveBtn = findViewById(R.id.btn_group_remove);
         animLayout =  findViewById(R.id.layout_animation);
         mainLayout = findViewById(R.id.layout_main);
         backBtn = findViewById(R.id.btn_back);
@@ -186,6 +193,7 @@ public class MemberSettingActivity extends AppCompatActivity {
         optionBtn1 = findViewById(R.id.btn_menu_1);
         optionBtn2 = findViewById(R.id.btn_menu_2);
         optionBtn3 = findViewById(R.id.btn_menu_3);
+        dimLayout = findViewById(R.id.rlDim);
         mainTitle = findViewById(R.id.txt_menu_main_title);
         subTitle = findViewById(R.id.txt_menu_sub_title);
         groupCode = findViewById(R.id.txt_group_code);

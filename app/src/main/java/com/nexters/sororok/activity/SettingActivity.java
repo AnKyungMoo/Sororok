@@ -73,7 +73,6 @@ public class SettingActivity extends AppCompatActivity{
         layoutMove = findViewById(R.id.layout_animation);
         layoutMain = findViewById(R.id.layout_main);
         updateBtn = findViewById(R.id.btn_update);
-        noticeSwitch = findViewById(R.id.switch_notice);
         updateBtn = findViewById(R.id.btn_update);
         qnaBtn = findViewById(R.id.btn_develop);
         logoutBtn = findViewById(R.id.btn_logout);
