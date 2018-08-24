@@ -57,6 +57,7 @@ public class MemberSettingActivity extends AppCompatActivity {
         getGroupInfo();
         Intent intentForGet = getIntent();
         groupid=intentForGet.getIntExtra("bgroupid",-1);
+        isMember();
         boom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
