@@ -13,15 +13,13 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="15dp">
+                android:layout_marginTop="38dp"
+                android:layout_marginLeft="20dp">
                 <Button
                     android:id="@+id/btn_back"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_centerVertical="true"
                     android:background="@drawable/btn_comm_back_wh"
                     android:layout_alignParentLeft="true"/>
                 <TextView
@@ -29,11 +27,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#ffffff"
-                    android:textStyle="bold"
                     android:text="그룹설정"
+                    android:fontFamily="@font/notosanscjkkr_bold"
+                    android:includeFontPadding="false"
                     android:layout_toRightOf="@id/btn_back"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="12dp"
                     android:textSize="20sp"/>
 
             </RelativeLayout>
@@ -87,12 +85,14 @@
 
 
             <LinearLayout
+                android:id="@+id/llOut"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_margin="20dp">
 
                 <RelativeLayout
+
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
                     <TextView
@@ -136,6 +136,8 @@
                         android:id="@+id/txt_code_change"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosanscjkkr_regular"
+                        android:includeFontPadding="false"
                         android:text="코드번호 변경"
                         android:textColor="#0b0d0f"
                         android:textSize="16sp"/>
@@ -156,6 +158,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="10W93F"
+                            android:fontFamily="@font/notosanscjkkr_bold"
+                            android:includeFontPadding="false"
                             android:layout_centerInParent="true"
                             android:textSize="30sp"
                             android:textStyle="bold"
@@ -182,6 +186,7 @@
                     android:layout_margin="20dp">-->
 
                     <LinearLayout
+                        android:id="@+id/llGroupShare"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="20dp"
@@ -193,6 +198,8 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/notosanscjkkr_regular"
+                                android:includeFontPadding="false"
                                 android:text="그룹 공유하기"
                                 android:textColor="#0b0d0f"
                                 android:textSize="16sp"/>
@@ -212,6 +219,7 @@
                     android:background="#d3d5da"/>
 
                     <LinearLayout
+                        android:id="@+id/llGroupManage"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="20dp"
@@ -224,6 +232,8 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/notosanscjkkr_regular"
+                                android:includeFontPadding="false"
                                 android:text="그룹원 관리"
                                 android:textColor="#0b0d0f"
                                 android:textSize="16sp"/>
@@ -246,11 +256,13 @@
                     android:background="#d3d5da"/>
 
                 <LinearLayout
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
                     <LinearLayout
+                        android:id="@+id/llGroupChange"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
@@ -262,6 +274,8 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/notosanscjkkr_regular"
+                                android:includeFontPadding="false"
                                 android:text="관리자 변경"
                                 android:textColor="#0b0d0f"
                                 android:textSize="16sp"/>
@@ -281,6 +295,7 @@
                         android:background="#d3d5da"/>
 
                     <LinearLayout
+                        android:id="@+id/llGroupBoom"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
@@ -293,6 +308,8 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/notosanscjkkr_regular"
+                                android:includeFontPadding="false"
                                 android:text="그룹 폭파"
                                 android:textColor="#0b0d0f"
                                 android:textSize="16sp"/>
@@ -307,38 +324,16 @@
 
                     </LinearLayout>
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#d3d5da"/>
+
                 </LinearLayout>
 
             </LinearLayout>
 
         </LinearLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/layout_animation"
-        android:visibility="invisible">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="여기까지가~\n끝인가보오"
-            android:textSize="16sp"
-            android:textColor="#ffffff"
-            android:layout_above="@id/img_door"
-            android:paddingBottom="10dp"
-            android:layout_centerHorizontal="true"/>
-
-        <ImageView
-            android:id="@+id/img_door"
-            android:layout_width="81dp"
-            android:layout_height="97dp"
-            android:background="@drawable/group_3"
-            android:layout_alignParentBottom="true"
-            android:layout_centerInParent="true"
-            android:layout_marginBottom="50dp"/>
-
-    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/layout_animation"
