@@ -3,6 +3,7 @@ package com.nexters.sororok.service;
 import com.nexters.sororok.model.GroupResponseModel;
 import com.nexters.sororok.model.LoginRequestModel;
 import com.nexters.sororok.model.LoginResponseModel;
+import com.nexters.sororok.model.MemberResponseModel;
 
 import okhttp3.MultipartBody;
 import retrofit2.Call;
@@ -10,10 +11,12 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Part;
+import retrofit2.http.Query;
 
 public interface RetrofitService {
 
@@ -67,4 +70,7 @@ public interface RetrofitService {
                                     @Part("memberId") int memberId,
                                     @Part("extraInfo") String extraInfo
     );
+
+    @GET("member/detail")
+    Call<MemberResponseModel> listup(@Query("repositoryId") int repositoryId);
 }
