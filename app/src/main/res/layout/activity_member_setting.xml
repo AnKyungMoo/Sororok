@@ -148,6 +148,7 @@
                         android:layout_below="@id/txt_code_change"
                         android:background="#80e9ebef">
                         <Button
+                            android:id="@+id/button_code_refresh"
                             android:layout_width="24dp"
                             android:layout_height="24dp"
                             android:layout_alignParentRight="true"
