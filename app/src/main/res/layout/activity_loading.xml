@@ -34,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="60dp"
                 android:layout_below="@id/ivLogo"
-                android:fontFamily="@font/notosanscjkkr_bold"
+                android:fontFamily="@font/notosanscjkkr_regular"
                 android:gravity="right"
                 android:layout_marginRight="7dp"
                 android:includeFontPadding="false"
@@ -51,11 +51,19 @@
             android:layout_marginLeft="7dp"
             android:layout_below="@id/ivLogo"
             android:layout_toRightOf="@+id/rlCenter"
-            android:fontFamily="@font/notosanscjkkr_bold"
+            android:fontFamily="@font/notosanscjkkr_regular"
             android:includeFontPadding="false"
             android:text="300"
             android:textColor="#ffcedd"
             android:textSize="24sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src ="@drawable/path_30"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/ivLogo"
+            android:layout_marginTop="76dp"/>
 
 
 

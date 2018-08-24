@@ -1,13 +1,9 @@
 package com.nexters.sororok.activity;
 
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.Signature;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -39,7 +35,6 @@ import com.nexters.sororok.asynctask.LoginAsyncTask;
 import com.nexters.sororok.asynctask.NaverTokenTask;
 import com.nexters.sororok.model.LoginRequestModel;
 import com.nexters.sororok.model.LoginResponseModel;
-import com.nexters.sororok.service.LoginService;
 import com.nhn.android.naverlogin.OAuthLogin;
 import com.nhn.android.naverlogin.OAuthLoginHandler;
 
@@ -47,14 +42,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.lang.ref.WeakReference;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.concurrent.ExecutionException;
-
-import retrofit2.Call;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class LoginActivity extends AppCompatActivity{
 
@@ -245,6 +233,11 @@ public class LoginActivity extends AppCompatActivity{
                         // 카카오는 받아올 이메일이 없어서 빈 문자열을 넘김
                         intent.putExtra("email", "");
                         intent.putExtra("name", userName);
+                        if (userProfile.getProfileImagePath() != null)
+                            intent.putExtra("imageUrl", userProfile.getProfileImagePath());
+                        else
+                            intent.putExtra("imageUrl", "");
+
                         startActivity(intent);
                         finish();
                     }
@@ -294,6 +287,11 @@ public class LoginActivity extends AppCompatActivity{
                     String naverId = naverResponseJson.getString("id");
                     String name = naverResponseJson.getString("name");
                     String email = naverResponseJson.getString("email");
+                    String imageUrl;
+                    if (naverResponseJson.getString("profile_image") != null)
+                        imageUrl = naverResponseJson.getString("profile_image");
+                    else
+                        imageUrl = "";
 
                     // naver = 2
                     loginType = "2";
@@ -312,6 +310,7 @@ public class LoginActivity extends AppCompatActivity{
                         intent.putExtra("loginUid", uid);
                         intent.putExtra("name", name);
                         intent.putExtra("email", email);
+                        intent.putExtra("imageUrl", imageUrl);
 
                         activity.startActivity(intent);
                         activity.finish();
@@ -375,6 +374,12 @@ public class LoginActivity extends AppCompatActivity{
                             // google = 0
                             loginType = "0";
                             uid = user.getUid();
+                            String imageUrl;
+
+                            if (user.getPhotoUrl() != null)
+                                imageUrl = user.getPhotoUrl() + "";
+                            else
+                                imageUrl = "";
 
                             callRetrofit();
 
@@ -388,6 +393,8 @@ public class LoginActivity extends AppCompatActivity{
                                 intent.putExtra("loginUid", uid);
                                 intent.putExtra("name", user.getDisplayName());
                                 intent.putExtra("email", user.getEmail());
+                                intent.putExtra("imageUrl", imageUrl);
+
                                 startActivity(intent);
                                 finish();
                             }

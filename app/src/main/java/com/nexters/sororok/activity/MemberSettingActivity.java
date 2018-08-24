@@ -27,13 +27,15 @@ public class MemberSettingActivity extends AppCompatActivity {
     private Animation slideUpAnimation, slideDownAnimation;
     private LinearLayout defalutLayout, nextLayout;
     private TextView mainTitle,subTitle,groupCode;
+    private int groupid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_member_setting);
         initComponent();
-
+        Intent intentForGet = getIntent();
+        groupid=intentForGet.getIntExtra("bgroupid",-1);
         groupRemoveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -124,6 +126,15 @@ public class MemberSettingActivity extends AppCompatActivity {
                 animLayout.startAnimation(slideUpAnimation);
                 mainLayout.setBackgroundColor(Color.argb(80,50,50,50));
                 animLayout.setVisibility(View.VISIBLE);
+            }
+        });
+
+        groupManageBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent manageIntent = new Intent(getApplicationContext(),MemberBanActivity.class);
+                manageIntent.putExtra("agroupid",groupid);
+                startActivity(manageIntent);
             }
         });
     }
