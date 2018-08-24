@@ -13,6 +13,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.nexters.sororok.R;
+import com.nexters.sororok.asynctask.DestroyGroupTask;
+import com.nexters.sororok.model.DestroyGroupModel;
+import com.nexters.sororok.model.DestroyRequestModel;
+
+import java.util.concurrent.ExecutionException;
 
 /**
  *
@@ -28,6 +33,8 @@ public class MemberSettingActivity extends AppCompatActivity {
     private LinearLayout defalutLayout, nextLayout,share,manage,change,boom;
     private TextView mainTitle,subTitle,groupCode;
     private int groupid;
+    /* TODO: 앞에서부터 데이터 가져오자 */
+    private int repositoryId = 11;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +94,27 @@ public class MemberSettingActivity extends AppCompatActivity {
                 defalutLayout.setVisibility(View.INVISIBLE);
                 nextLayout.setVisibility(View.VISIBLE);
 
+            }
+        });
+
+        optionBtn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DestroyGroupTask destroyGroupTask = new DestroyGroupTask();
+
+                destroyGroupTask.execute(new DestroyRequestModel(Integer.valueOf(SplashActivity.localId), repositoryId));
+
+                try {
+                    DestroyGroupModel destroyGroupModel = destroyGroupTask.get();
+
+                    Intent intent = new Intent(MemberSettingActivity.this, TestActivity.class);
+                    startActivity(intent);
+                    finish();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
             }
         });
 

@@ -1,5 +1,7 @@
 package com.nexters.sororok.service;
 
+import com.nexters.sororok.model.DestroyGroupModel;
+import com.nexters.sororok.model.DestroyRequestModel;
 import com.nexters.sororok.model.GroupList;
 import com.nexters.sororok.model.GroupResponseModel;
 import com.nexters.sororok.model.LoginRequestModel;
@@ -91,4 +93,8 @@ public interface RetrofitService {
     // 메인화면에 그룹 리스트 획득
     @GET("repository/list")
     Call<List<GroupList>> list(@Query("memberId") int memberId);
+
+    // 그룹 폭파
+    @POST("repository/destroy")
+    Call<DestroyGroupModel> destroy(@Body DestroyRequestModel destroyRequestModel);
 }
