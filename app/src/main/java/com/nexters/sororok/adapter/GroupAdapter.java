@@ -1,8 +1,11 @@
 package com.nexters.sororok.adapter;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +17,14 @@ import android.widget.TextView;
 import com.nexters.sororok.R;
 import com.nexters.sororok.activity.CustomDialog;
 import com.nexters.sororok.activity.MemberListActivity;
+import com.nexters.sororok.asynctask.DownloadImageTask;
 import com.nexters.sororok.item.GroupListItem;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 public class GroupAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -42,7 +50,26 @@ public class GroupAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
        // groupViewHolder.isJoinText.setText(groupListItems.get(position).isJoinText);
         groupViewHolder.signInText.setText(groupListItems.get(position).signInText);
-        groupViewHolder.groupImage.setImageResource(groupListItems.get(position).groupImage);
+
+
+        if (groupListItems.get(position).groupImage != null) {
+            try {
+                DownloadImageTask downloadImageTask = new DownloadImageTask();
+
+                downloadImageTask.execute("http://45.63.120.140:40005/sororok/images/" + groupListItems.get(position).groupImage);
+
+                Bitmap myBitmap = downloadImageTask.get();
+                groupViewHolder.groupImage.setImageBitmap(myBitmap);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
+        else {
+            groupViewHolder.groupImage.setImageResource(R.drawable.combined_shape_rectangle_2_path_rectangle_copy_oval_copy_3_oval_copy_5_mask_copy_copy_copy_copy);
+        }
+
         groupViewHolder.groupName.setText(groupListItems.get(position).groupName);
        // groupViewHolder.groupBossImage.setImageResource(groupListItems.get(position).groupSmallImage);
         groupViewHolder.groupContent.setText(groupListItems.get(position).groupContent);
