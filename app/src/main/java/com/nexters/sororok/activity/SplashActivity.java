@@ -66,7 +66,7 @@ public class SplashActivity extends AppCompatActivity {
                 public void run() {
                     if (!localId.equals("-1")) {
                         Log.d("호출", "ㅁ");
-                        Intent intent = new Intent(SplashActivity.this, TestActivity.class);
+                        Intent intent = new Intent(SplashActivity.this, NewGroupActivity.class);
                         startActivity(intent);
                         finish();
                     }
@@ -99,7 +99,7 @@ public class SplashActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         if (!localId.equals("-1")) {
-                            Intent intent = new Intent(SplashActivity.this, TestActivity.class);
+                            Intent intent = new Intent(SplashActivity.this, NewGroupActivity.class);
                             startActivity(intent);
                             finish();
                         }

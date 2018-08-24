@@ -10,7 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,13 +31,10 @@ public class NewGroupActivity extends AppCompatActivity {
     private static final int REQUEST_USER_GALLERY = 1;
     private ImageView imgGroupPhoto;
     private TextView groupName, groupExplain;
-    private TextView seekValue;
     private TextView completeBtn;
     private Button backBtn, codeButton;
-    private SeekBar totalMemberSeek;
     private String photoPath = null;
     private String groupCode;
-    private int total_progress=2;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,14 +50,6 @@ public class NewGroupActivity extends AppCompatActivity {
             }
         });
        // seekListener();
-    }
-
-    public int getTotal_progress() {
-        return total_progress;
-    }
-
-    public void setTotal_progress(int total_progress) {
-        this.total_progress = total_progress;
     }
 
     @Override
@@ -87,7 +75,7 @@ public class NewGroupActivity extends AppCompatActivity {
                     Intent intent = new Intent();
                     intent.putExtra("group_name", groupName.getText().toString());
                     intent.putExtra("group_explain", groupExplain.getText().toString());
-                    intent.putExtra("total_member", getTotal_progress());
+                    //intent.putExtra("total_member", getTotal_progress());
                     setResult(RESULT_OK, intent);
                     finish();
                 }
