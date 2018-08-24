@@ -109,7 +109,7 @@ public class NewGroupActivity extends AppCompatActivity {
         imgGroupPhoto = findViewById(R.id.img_new_group);
         groupName = findViewById(R.id.edit_group_name); //그룹 이름
         groupExplain = findViewById(R.id.edit_group_explain); //그룹 설명
-        completeBtn = findViewById(R.id.btn_new_group_complete);
+        completeBtn = findViewById(R.id.txt_new_group_complete);
         sendGroupInfo();
         /*totalMemberSeek = findViewById(R.id.seek_total_member);
         seekValue = findViewById(R.id.txt_seek_value);
