@@ -1,6 +1,9 @@
 package com.nexters.sororok.activity;
 
 import android.content.Intent;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.OvalShape;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -56,10 +59,15 @@ public class NewGroupActivity extends AppCompatActivity {
         if(resultCode == RESULT_OK){
             switch (requestCode){
                 case REQUEST_USER_GALLERY:
-                    photoPath = data.getStringExtra("photo_path");
-                    if(photoPath!=null)
-                        Glide.with(this).load(photoPath).into(imgGroupPhoto);
-                    break;
+                    imgGroupPhoto.setBackground(new ShapeDrawable(new OvalShape()));
+                    if(Build.VERSION.SDK_INT >= 21) {
+                        imgGroupPhoto.setClipToOutline(true);
+                        photoPath = data.getStringExtra("photo_path");
+                        if(photoPath!=null)
+                            Glide.with(this).load(photoPath).into(imgGroupPhoto);
+                        break;
+                    }
+
             }
         }
     }

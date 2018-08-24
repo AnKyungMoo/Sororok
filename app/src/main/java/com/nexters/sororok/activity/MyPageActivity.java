@@ -72,25 +72,30 @@ public class MyPageActivity extends AppCompatActivity {
             }
         });
         imgUserPhoto = findViewById(R.id.img_user_photo);
-        imgUserPhoto.setBackground(new ShapeDrawable(new OvalShape()));
+       /* imgUserPhoto.setBackground(new ShapeDrawable(new OvalShape()));
         if(Build.VERSION.SDK_INT >= 21) {
             imgUserPhoto.setClipToOutline(true);
-        }
+        }*/
 
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 1 && resultCode == RESULT_OK) {
+        if (requestCode == REQUEST_USER_GALLERY && resultCode == RESULT_OK) {
             photoPath = data.getStringExtra("photo_path"); //사진경로
-           // Toast.makeText(getApplicationContext(), photoPath+"2222", Toast.LENGTH_SHORT).show();
-            if(photoPath!=""){
-                Glide.with(this).load(photoPath).into(imgUserPhoto);
-                //imgUserPhoto.setImageURI(Uri.parse(photoPath));
-            }else{
-                Glide.with(this).load(R.drawable.user_icon).into(imgUserPhoto);
-                photoPath = "drawable://"+R.drawable.user_icon;
+            imgUserPhoto.setBackground(new ShapeDrawable(new OvalShape()));
+            if(Build.VERSION.SDK_INT >= 21) {
+                imgUserPhoto.setClipToOutline(true);
+                if(photoPath!=""){
+                    Glide.with(this).load(photoPath).into(imgUserPhoto);
+                    //imgUserPhoto.setImageURI(Uri.parse(photoPath));
+                }else{
+                    Glide.with(this).load(R.drawable.user_icon).into(imgUserPhoto);
+                    photoPath = "drawable://"+R.drawable.user_icon;
+                }
             }
+           // Toast.makeText(getApplicationContext(), photoPath+"2222", Toast.LENGTH_SHORT).show();
+
         }
     }
 }
