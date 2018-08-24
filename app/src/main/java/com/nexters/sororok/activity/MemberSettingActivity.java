@@ -46,16 +46,18 @@ public class MemberSettingActivity extends AppCompatActivity {
     private LinearLayout defalutLayout, nextLayout,share,manage,change,boom,out;
     private TextView mainTitle, subTitle, groupCode;
     private int groupid;
-    /* TODO: 앞에서부터 데이터 가져오자 */
-    private int repositoryId = 13;
+    private int repositoryId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_member_setting);
         initComponent();
-        getGroupInfo();
         Intent intentForGet = getIntent();
+        repositoryId = intentForGet.getExtras().getInt("repositoryId");
+
+        getGroupInfo();
+
         groupid=intentForGet.getIntExtra("bgroupid",-1);
         boom.setOnClickListener(new View.OnClickListener() {
             @Override
