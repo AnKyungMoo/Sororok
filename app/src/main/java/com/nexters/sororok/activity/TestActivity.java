@@ -12,7 +12,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.Button;
@@ -27,11 +26,9 @@ import com.nexters.sororok.adapter.GroupAdapter;
 import com.nexters.sororok.adapter.HistoryAdapter;
 import com.nexters.sororok.asynctask.DownloadImageTask;
 import com.nexters.sororok.asynctask.GroupListTask;
-import com.nexters.sororok.asynctask.JoinRepositoryTask;
 import com.nexters.sororok.asynctask.MemberInfoTask;
 import com.nexters.sororok.item.GroupListItem;
 import com.nexters.sororok.model.GroupList;
-import com.nexters.sororok.model.JoinRepositoryRequestModel;
 import com.nexters.sororok.model.MemberInfo;
 
 import java.util.ArrayList;
@@ -303,7 +300,7 @@ public class TestActivity extends AppCompatActivity
                 ));
             }
 
-            groupAdapter = new GroupAdapter(groupListItems);
+            groupAdapter = new GroupAdapter(groupListItems, TestActivity.this);
             recyclerView.setAdapter(groupAdapter);
 
         } catch (InterruptedException e) {

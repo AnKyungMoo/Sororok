@@ -105,6 +105,8 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/rectangle"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:layout_marginTop="80dp">
@@ -154,7 +156,6 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:layout_margin="25dp"/>
-
     </RelativeLayout>
 </FrameLayout>
 </android.support.v4.widget.DrawerLayout>
