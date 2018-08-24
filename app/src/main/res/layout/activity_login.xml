@@ -67,34 +67,4 @@
             android:layout_marginLeft="24dp"
             android:layout_marginStart="24dp"/>
     </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="22dp">
-        <TextView
-            android:id="@+id/question"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/notosanscjkkr_medium"
-            android:text="이미 회원이신가요?"
-            android:textSize="14sp"
-            android:textColor="@android:color/white"
-            android:layout_marginLeft="77.5dp"
-            android:layout_marginStart="77.5dp"
-            android:includeFontPadding="false"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/notosanscjkkr_regular"
-            android:text="로그인 하기"
-            android:layout_toRightOf="@+id/question"
-            android:layout_toEndOf="@+id/question"
-            android:textSize="14sp"
-            android:textColor="@android:color/white"
-            android:layout_marginLeft="12.5dp"
-            android:layout_marginStart="12.5dp"
-            android:includeFontPadding="false"/>
-    </RelativeLayout>
 </LinearLayout>
