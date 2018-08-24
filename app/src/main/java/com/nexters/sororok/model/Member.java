@@ -8,13 +8,18 @@ public class Member {
     private String phone;
     private String email;
     private int authority;
+    private String imageName;
 
-    public Member(int memberId, String name, String phone, String email, int authority) {
+
+
+    public Member(int memberId, String name, String phone, String email, int authority,String imageName) {
         this.memberId = memberId;
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.authority = authority;
+        this.imageName = imageName;
+
     }
 
     public int getMemberId() {
@@ -37,7 +42,7 @@ public class Member {
         return authority;
     }
 
-    public void setAuthority(int authority) {
-        this.authority = authority;
+    public String getImageName() {
+        return imageName;
     }
 }
