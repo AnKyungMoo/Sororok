@@ -49,6 +49,7 @@ public class LoginInfoActivity extends AppCompatActivity {
     String email;
     String id;
     String photoPath = null;
+    String imageUrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,11 +68,13 @@ public class LoginInfoActivity extends AppCompatActivity {
         id = infoIntent.getStringExtra("loginUid");
         name = infoIntent.getStringExtra("name");
         email = infoIntent.getStringExtra("email");
+        imageUrl = infoIntent.getStringExtra("imageUrl");
 
         Log.d("aaa", loginType);
         Log.d("bbb", id);
         Log.d("ccc", name);
         Log.d("asdf", email);
+        Log.d("imageUrl", imageUrl);
 
         nameEditText.setText(name);
         emailEditText.setText(email);
@@ -100,10 +103,12 @@ public class LoginInfoActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if (photoPath == null)
-                    sendLoginInfoToServer();
+                if (photoPath != null)
+                    sendImageFile();
+                else if (!imageUrl.equals(""))
+                    sendImageUrl();
                 else
-                    imageUpload();
+                    sendLoginInfoToServer();
 
                 Intent intent = new Intent(LoginInfoActivity.this, MainActivity.class);
                 startActivity(intent);
@@ -141,6 +146,7 @@ public class LoginInfoActivity extends AppCompatActivity {
         phoneEditText.setText(phoneNumber);
     }
 
+    // 필수 정보만 보내기
     private void sendLoginInfoToServer() {
         LoginUserInfo loginUserInfo = new LoginUserInfo(phoneEditText.getText().toString(),
                 nameEditText.getText().toString(),
@@ -163,7 +169,44 @@ public class LoginInfoActivity extends AppCompatActivity {
         }
     }
 
-    private void imageUpload() {
+    // imageUrl 포함 정보 보내기
+    private void sendImageUrl() {
+        RetrofitService retrofitService = RetrofitService.retrofit.create(RetrofitService.class);
+
+        Call<LoginResponseModel> resultCall = retrofitService.signUp(phoneEditText.getText().toString(),
+                nameEditText.getText().toString(),
+                emailEditText.getText().toString(),
+                loginType,
+                id,
+                imageUrl
+        );
+
+        resultCall.enqueue(new Callback<LoginResponseModel>() {
+            @Override
+            public void onResponse(@NonNull Call<LoginResponseModel> call, @NonNull Response<LoginResponseModel> response) {
+
+                // Response Success or Fail
+                if (response.isSuccessful()) {
+                    Log.d(TAG, "onResponseSuccess");
+                } else {
+                    Log.d(TAG, "onResponseFail");
+                }
+
+                /**
+                 * Update Views
+                 */
+                imageUrl = null;
+            }
+
+            @Override
+            public void onFailure(Call<LoginResponseModel> call, Throwable t) {
+                Log.d(TAG, "onFailure");
+            }
+        });
+    }
+
+    // 이미지 파일 포함 업로드
+    private void sendImageFile() {
         //Create Upload Server Client
         RetrofitService retrofitService = RetrofitService.retrofit.create(RetrofitService.class);
 
