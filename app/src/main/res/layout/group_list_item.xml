@@ -2,13 +2,16 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
-    android:layout_margin="25dp">
+    android:layout_height="110dp"
+    android:layout_marginLeft="25dp"
+    android:layout_marginRight="25dp"
+    android:layout_marginBottom="10dp"
+    android:layout_marginTop="10dp">
 
     <RelativeLayout
         android:id="@+id/click_member_list"
-        android:layout_width="300dp"
-        android:layout_height="80dp"
+        android:layout_width="350dp"
+        android:layout_height="85dp"
         android:background="@drawable/bg_list"
         android:layout_marginLeft="30dp"
         android:layout_alignParentBottom="true">

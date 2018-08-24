@@ -9,6 +9,7 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -153,8 +154,8 @@ public class TestActivity extends AppCompatActivity
     }
 
     public void addGroup(String groupName, String groupExplain){
-        groupListItems.add(0, new GroupListItem("가입됨", R.drawable.xbutton,
-                groupName, R.drawable.xbutton, groupExplain));
+        groupListItems.add(0, new GroupListItem("가입됨", R.drawable.combined_shape_rectangle_2_path_rectangle_copy_oval_copy_3_oval_copy_5_mask_copy_copy_copy_copy,
+                groupName, groupExplain));
         /*groupListItems.set(0, new GroupListItem("가입됨", R.drawable.xbutton,
                 groupName, R.drawable.xbutton, groupExplain));*/
         groupAdapter.notifyDataSetChanged();
@@ -166,6 +167,18 @@ public class TestActivity extends AppCompatActivity
         historyAdapter.addHistory("넥스터즈 13기 그룹의 곽희은 님의 번호가 변경되었습니다.");
         historyAdapter.addHistory("소로록이 새롭게 업데이트가 되었습니다.");
         historyAdapter.addHistory("넥터 13기 그룹이 새롭게 추가 되었습니다.");
+
+        recyclerView.setHasFixedSize(true);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(linearLayoutManager);
+
+        groupListItems = new ArrayList<>(); //public GroupListItem(String signInText, int groupImage, String groupName, String groupContent)
+        groupListItems.add(new GroupListItem("가입됨", R.drawable.combined_shape_rectangle_2_path_rectangle_copy_oval_copy_3_oval_copy_5_mask_copy_copy_copy_copy,
+                "넥스터즈 13기", "주소록팀"));
+
+        groupAdapter = new GroupAdapter(groupListItems);
+        recyclerView.setAdapter(groupAdapter);
+
 
        /* recyclerView.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);

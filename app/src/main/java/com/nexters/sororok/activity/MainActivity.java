@@ -14,9 +14,6 @@ import android.widget.RelativeLayout;
 import com.nexters.sororok.R;
 import com.nexters.sororok.adapter.GroupAdapter;
 import com.nexters.sororok.adapter.HistoryAdapter;
-import com.nexters.sororok.item.GroupListItem;
-
-import java.util.ArrayList;
 
 /**
  * 메인 액티비티
@@ -101,16 +98,16 @@ public class MainActivity extends AppCompatActivity{
         recyclerView.setLayoutManager(linearLayoutManager);
 
         /*TODO: 서버에서 데이터를 받아올 때 까지 사용할 더미 데이터*/
-        ArrayList<GroupListItem> groupListItems = new ArrayList<GroupListItem>();
+       /* ArrayList<GroupListItem> groupListItems = new ArrayList<GroupListItem>();
         groupListItems.add(new GroupListItem("가입됨", R.drawable.xbutton,
                 "넥스터즈 13기", R.drawable.xbutton, "1번방"));
         groupListItems.add(new GroupListItem("가입됨", R.drawable.xbutton,
                 "(주)소로록", R.drawable.xbutton, "7번방"));
         groupListItems.add(new GroupListItem("가입안됨", R.drawable.xbutton,
-                "빈방", R.drawable.xbutton, "0번방"));
+                "빈방", R.drawable.xbutton, "0번방"));*/
 
-        groupAdapter = new GroupAdapter(groupListItems);
-        recyclerView.setAdapter(groupAdapter);
+        /*groupAdapter = new GroupAdapter(groupListItems);
+        recyclerView.setAdapter(groupAdapter);*/
     }
 
     public void initComponent(){

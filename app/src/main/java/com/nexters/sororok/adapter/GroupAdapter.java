@@ -1,5 +1,6 @@
 package com.nexters.sororok.adapter;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,10 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.nexters.sororok.R;
 import com.nexters.sororok.activity.CustomDialog;
+import com.nexters.sororok.activity.MemberListActivity;
 import com.nexters.sororok.item.GroupListItem;
 
 import java.util.ArrayList;
@@ -37,13 +40,28 @@ public class GroupAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         GroupViewHolder groupViewHolder = (GroupViewHolder) holder;
 
-
+       // groupViewHolder.isJoinText.setText(groupListItems.get(position).isJoinText);
         groupViewHolder.signInText.setText(groupListItems.get(position).signInText);
         groupViewHolder.groupImage.setImageResource(groupListItems.get(position).groupImage);
         groupViewHolder.groupName.setText(groupListItems.get(position).groupName);
-        groupViewHolder.groupBossImage.setImageResource(groupListItems.get(position).groupSmallImage);
+       // groupViewHolder.groupBossImage.setImageResource(groupListItems.get(position).groupSmallImage);
         groupViewHolder.groupContent.setText(groupListItems.get(position).groupContent);
-        groupViewHolder.goButton.setOnClickListener(new View.OnClickListener() {
+        groupViewHolder.relativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                customDialog = new CustomDialog(view.getContext());
+                customDialog.getWindow().getAttributes().windowAnimations = R.style.DialogAni;
+                customDialog.show();
+                customDialog.setFlag(1);
+                customDialog.getEditText().setVisibility(View.VISIBLE);
+                customDialog.setTitle("그룹코드를 입력해주세요.");
+
+                Intent intent = new Intent (view.getContext(), MemberListActivity.class);
+                view.getContext().startActivity(intent);
+
+            }
+        });
+       /* groupViewHolder.goButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 customDialog = new CustomDialog(view.getContext());
@@ -54,10 +72,10 @@ public class GroupAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 customDialog.setTitle("그룹코드를 입력해주세요.");
 
 
-                /*Intent intent = new Intent (view.getContext(), MemberListActivity.class);
-                view.getContext().startActivity(intent);*/
+                *//*Intent intent = new Intent (view.getContext(), MemberListActivity.class);
+                view.getContext().startActivity(intent);*//*
             }
-        });
+        });*/
     }
 
     @Override
@@ -73,16 +91,19 @@ public class GroupAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         private ImageView groupBossImage;
         private TextView groupContent;
         private Button goButton;
+        private RelativeLayout relativeLayout;
+        private TextView isJoinText;
 
         public GroupViewHolder(View view) {
             super(view);
-
+           // isJoinText = (TextView)view.findViewById(R.id.txt_user_join);
             signInText = (TextView) view.findViewById(R.id.txt_user_join);
             groupImage = (ImageView) view.findViewById(R.id.img_user_group);
             groupName = (TextView) view.findViewById(R.id.txt_group_maintitle);
            // groupBossImage = (ImageView) view.findViewById(R.id.img_user_boss);
             groupContent = (TextView) view.findViewById(R.id.txt_group_subtitle);
-            goButton = (Button) view.findViewById(R.id.btn_go_group);
+            relativeLayout = view.findViewById(R.id.click_member_list); //셀 전체
+           // goButton = (Button) view.findViewById(R.id.btn_go_group);
         }
     }
 }
