@@ -30,9 +30,9 @@ public class NewGroupActivity extends AppCompatActivity {
 
     private static final int REQUEST_USER_GALLERY = 1;
     private ImageView imgGroupPhoto;
-    private TextView groupName, groupExplain;
+    private TextView groupName, groupExplain, textGroupCode;
     private TextView completeBtn;
-    private Button backBtn, codeButton;
+    private Button backBtn;
     private String photoPath = null;
     private String groupCode;
 
@@ -100,8 +100,8 @@ public class NewGroupActivity extends AppCompatActivity {
         completeBtn = findViewById(R.id.txt_new_group_complete);
         sendGroupInfo();
         /*totalMemberSeek = findViewById(R.id.seek_total_member);
-        seekValue = findViewById(R.id.txt_seek_value);
-        codeButton = findViewById(R.id.button_group_code);*/
+        seekValue = findViewById(R.id.txt_seek_value);*/
+        textGroupCode = findViewById(R.id.new_group_code);
         backBtn = findViewById(R.id.btn_back);
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -145,7 +145,7 @@ public class NewGroupActivity extends AppCompatActivity {
             JSONObject jsonObject = new JSONObject(groupCodeTask.get());
 
             groupCode = jsonObject.getString("code");
-            codeButton.setText(groupCode);
+            textGroupCode.setText(groupCode);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
