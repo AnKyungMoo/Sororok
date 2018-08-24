@@ -19,7 +19,11 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.nexters.sororok.R;
 import com.nexters.sororok.asynctask.CreateGroupTask;
+import com.nexters.sororok.asynctask.GroupCodeTask;
 import com.nexters.sororok.model.GroupResponseModel;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.concurrent.ExecutionException;
 
@@ -31,10 +35,10 @@ public class NewGroupActivity extends AppCompatActivity {
     private ImageView imgGroupPhoto;
     private EditText groupName, groupExplain;
     private TextView seekValue;
-    private Button completeBtn,backBtn;
+    private Button completeBtn, backBtn, codeButton;
     private SeekBar totalMemberSeek;
     private String photoPath = null;
-    private String groupCode = "a1b2c3";
+    private String groupCode;
     private int total_progress=2;
 
     @Override
@@ -42,6 +46,7 @@ public class NewGroupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_group);
         initComponent();
+        getGroupCode();
         imgGroupPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -109,6 +114,7 @@ public class NewGroupActivity extends AppCompatActivity {
         sendGroupInfo();
         totalMemberSeek = findViewById(R.id.seek_total_member);
         seekValue = findViewById(R.id.txt_seek_value);
+        codeButton = findViewById(R.id.button_group_code);
         backBtn = findViewById(R.id.btn_back);
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,6 +147,25 @@ public class NewGroupActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void getGroupCode() {
+        GroupCodeTask groupCodeTask = new GroupCodeTask();
+
+        groupCodeTask.execute();
+
+        try {
+            JSONObject jsonObject = new JSONObject(groupCodeTask.get());
+
+            groupCode = jsonObject.getString("code");
+            codeButton.setText(groupCode);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     private void callRetrofit() {
