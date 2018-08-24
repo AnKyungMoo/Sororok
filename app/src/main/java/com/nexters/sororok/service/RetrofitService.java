@@ -5,8 +5,11 @@ import com.nexters.sororok.model.DestroyRequestModel;
 import com.nexters.sororok.model.GroupInfoModel;
 import com.nexters.sororok.model.GroupList;
 import com.nexters.sororok.model.GroupResponseModel;
+import com.nexters.sororok.model.JoinRepositoryRequestModel;
+import com.nexters.sororok.model.JoinRepositoryResponseModel;
 import com.nexters.sororok.model.LoginRequestModel;
 import com.nexters.sororok.model.LoginResponseModel;
+import com.nexters.sororok.model.MemberInfo;
 import com.nexters.sororok.model.MemberResponseModel;
 import com.nexters.sororok.model.RefreshCodeModel;
 import com.nexters.sororok.model.UpdateCodeModel;
@@ -112,4 +115,12 @@ public interface RetrofitService {
     // 저장소의 정보를 획득
     @GET("repository/info")
     Call<GroupInfoModel> info(@Query("repositoryId") int repositoryId);
+
+    // 사용자의 정보 획득
+    @GET("member/info")
+    Call<MemberInfo> memberInfo(@Query("memberId") int memberId);
+
+    // 그룹 가입
+    @PUT("repository/join")
+    Call<JoinRepositoryResponseModel> repositoryJoin(@Body JoinRepositoryRequestModel joinRepositoryRequestModel);
 }

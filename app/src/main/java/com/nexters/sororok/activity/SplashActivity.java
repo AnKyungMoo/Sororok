@@ -25,7 +25,7 @@ import java.security.NoSuchAlgorithmException;
  */
 public class SplashActivity extends AppCompatActivity {
 
-    static String localId = "-1";
+    public static String localId = "-1";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -35,7 +35,7 @@ public class ChangeAdminActivity extends AppCompatActivity {
         updateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                customDialog = new CustomDialog(ChangeAdminActivity.this);
+                customDialog = new CustomDialog(ChangeAdminActivity.this, groupid);
                 customDialog.getWindow().getAttributes().windowAnimations = R.style.DialogAni;
                 customDialog.show();
                 customDialog.setTitle("그룹 관리자를 변경하시겠습니까?");

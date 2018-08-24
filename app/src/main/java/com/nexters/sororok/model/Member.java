@@ -1,7 +1,5 @@
 package com.nexters.sororok.model;
 
-import java.util.ArrayList;
-
 public class Member {
     private int memberId;
     private String name;
@@ -9,8 +7,6 @@ public class Member {
     private String email;
     private int authority;
     private String imageName;
-
-
 
     public Member(int memberId, String name, String phone, String email, int authority,String imageName) {
         this.memberId = memberId;

@@ -1,6 +1,7 @@
 package com.nexters.sororok.activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.os.Build;
@@ -24,9 +25,14 @@ import com.bumptech.glide.Glide;
 import com.nexters.sororok.R;
 import com.nexters.sororok.adapter.GroupAdapter;
 import com.nexters.sororok.adapter.HistoryAdapter;
+import com.nexters.sororok.asynctask.DownloadImageTask;
 import com.nexters.sororok.asynctask.GroupListTask;
+import com.nexters.sororok.asynctask.JoinRepositoryTask;
+import com.nexters.sororok.asynctask.MemberInfoTask;
 import com.nexters.sororok.item.GroupListItem;
 import com.nexters.sororok.model.GroupList;
+import com.nexters.sororok.model.JoinRepositoryRequestModel;
+import com.nexters.sororok.model.MemberInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,6 +70,7 @@ public class TestActivity extends AppCompatActivity
         findViewById();
         setAdapter();
         buttonConnect();
+        getMemnberInfo();
        // appBarLayout.addOnOffsetChangedListener(this);
        // startAlphaAnimation(tvTitleToolBar, 0, View.INVISIBLE);
     }
@@ -249,6 +256,27 @@ public class TestActivity extends AppCompatActivity
                 startAlphaAnimation(tvTitleToolBar, ALPHA_ANIMATIONS_DURATION, View.INVISIBLE);
                 mIsTheTitleVisible = false;
             }
+        }
+    }
+
+    private void getMemnberInfo() {
+        MemberInfoTask memberInfoTask = new MemberInfoTask();
+        memberInfoTask.execute(Integer.valueOf(SplashActivity.localId));
+        try {
+            MemberInfo memberInfo = memberInfoTask.get();
+            userName.setText(memberInfo.getName());
+
+            DownloadImageTask downloadImageTask = new DownloadImageTask();
+
+            downloadImageTask.execute("http://45.63.120.140:40005/sororok/images/" + memberInfo.getImageName());
+
+            Bitmap myBitmap = downloadImageTask.get();
+            userImage.setImageBitmap(myBitmap);
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
         }
     }
 

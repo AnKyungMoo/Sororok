@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -17,8 +18,12 @@ import android.widget.TextView;
 import com.nexters.sororok.R;
 import com.nexters.sororok.activity.CustomDialog;
 import com.nexters.sororok.activity.MemberListActivity;
+import com.nexters.sororok.activity.SplashActivity;
 import com.nexters.sororok.asynctask.DownloadImageTask;
+import com.nexters.sororok.asynctask.JoinRepositoryTask;
 import com.nexters.sororok.item.GroupListItem;
+import com.nexters.sororok.model.JoinRepositoryRequestModel;
+import com.nexters.sororok.model.JoinRepositoryResponseModel;
 
 import java.io.File;
 import java.io.IOException;
@@ -46,7 +51,7 @@ public class GroupAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
-        GroupViewHolder groupViewHolder = (GroupViewHolder) holder;
+        final GroupViewHolder groupViewHolder = (GroupViewHolder) holder;
 
        // groupViewHolder.isJoinText.setText(groupListItems.get(position).isJoinText);
         groupViewHolder.signInText.setText(groupListItems.get(position).signInText);
@@ -76,19 +81,15 @@ public class GroupAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         groupViewHolder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                customDialog = new CustomDialog(view.getContext());
+                customDialog = new CustomDialog(view.getContext(), groupListItems.get(position).groupId);
                 customDialog.getWindow().getAttributes().windowAnimations = R.style.DialogAni;
                 customDialog.show();
                 customDialog.setFlag(1);
                 customDialog.getEditText().setVisibility(View.VISIBLE);
                 customDialog.setTitle("그룹코드를 입력해주세요.");
-
-                Intent intent = new Intent (view.getContext(), MemberListActivity.class);
-                intent.putExtra("repositoryId", groupListItems.get(position).groupId);
-                view.getContext().startActivity(intent);
-
             }
         });
+
        /* groupViewHolder.goButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
