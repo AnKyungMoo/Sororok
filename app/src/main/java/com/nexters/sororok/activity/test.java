@@ -10,6 +10,6 @@ public class test extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.test222);
+        setContentView(R.layout.main4);
     }
 }

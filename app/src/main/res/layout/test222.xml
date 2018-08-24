@@ -71,6 +71,7 @@
                         android:id="@+id/appBarLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="#4b50df"
                         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
 
@@ -102,7 +103,7 @@
 
                             <ImageView
                                 android:layout_width="match_parent"
-                                android:layout_height="280dp"
+                                android:layout_height="300dp"
                                 android:scaleType="centerCrop"
                                 android:tint="#11000000"
                                 app:layout_collapseMode="parallax"
@@ -113,7 +114,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="30dp"
-                                android:layout_marginTop="120dp">
+                                android:layout_marginTop="130dp">
 
                                 <TextView
                                     android:id="@+id/txt_user_name_title"
@@ -142,19 +143,20 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="70dp"
                                 android:layout_gravity="bottom"
-                                android:background="#11000000"
+                                android:background="#4b50df"
                                 app:layout_collapseMode="parallax"
                                 app:layout_collapseParallaxMultiplier="0.3">
                             </FrameLayout>
 
-                            <ImageView
+                           <!-- <ImageView
                                 android:layout_width="match_parent"
                                 android:layout_height="40dp"
                                 android:background="#ffffff"
-                                android:layout_gravity="bottom"/>
+                                android:layout_gravity="bottom"/>-->
 
                         </android.support.design.widget.CollapsingToolbarLayout>
                     </android.support.design.widget.AppBarLayout>
+
                     <android.support.v4.widget.NestedScrollView
                         android:id="@+id/recyclerview"
                         android:layout_width="match_parent"
@@ -189,8 +191,9 @@
                                 android:layout_alignParentTop="true">
                                 <Space
                                     android:id="@+id/space"
-                                    android:layout_width="32dp"
-                                    android:layout_height="32dp"
+                                    android:layout_width="35dp"
+                                    android:layout_height="35dp"
+                                    android:layout_marginTop="30dp"
                                     android:layout_alignParentLeft="true"/>
                                 <TextView
                                     android:id="@+id/tvTitleToolBar"
@@ -268,8 +271,7 @@
                         android:layout_width="52dp"
                         android:layout_height="52dp"
                         android:src="@drawable/oval"
-                        android:layout_marginLeft="25dp"
-                        android:layout_marginTop="55dp"
+                        android:layout_marginLeft="20dp"
                         app:layout_behavior=".activity.AvatarImageBehavior" />
 
 

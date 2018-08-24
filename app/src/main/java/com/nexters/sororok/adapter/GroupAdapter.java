@@ -80,7 +80,7 @@ public class GroupAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             signInText = (TextView) view.findViewById(R.id.txt_user_join);
             groupImage = (ImageView) view.findViewById(R.id.img_user_group);
             groupName = (TextView) view.findViewById(R.id.txt_group_maintitle);
-            groupBossImage = (ImageView) view.findViewById(R.id.img_user_boss);
+           // groupBossImage = (ImageView) view.findViewById(R.id.img_user_boss);
             groupContent = (TextView) view.findViewById(R.id.txt_group_subtitle);
             goButton = (Button) view.findViewById(R.id.btn_go_group);
         }

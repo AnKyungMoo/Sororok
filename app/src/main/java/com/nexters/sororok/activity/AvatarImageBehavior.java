@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -44,7 +45,7 @@ public class AvatarImageBehavior extends CoordinatorLayout.Behavior<ImageView> {
         float expandedPercentageFactor = dependency.getY() / maxScrollDistance;
 
         float distanceYToSubtract = ((mStartDependencyYPosition - mEndDependencyYPosition)
-                * (1f - expandedPercentageFactor)) + (child.getHeight() / 2);
+                * (1f - expandedPercentageFactor)) + (child.getHeight()*3/2);
 
         float distanceXToSubtract = ((mStartChildXPosition - mEndChildXPosition)
                 * (1f - expandedPercentageFactor)) + (child.getWidth() / 2);
@@ -53,6 +54,12 @@ public class AvatarImageBehavior extends CoordinatorLayout.Behavior<ImageView> {
 
         child.setY(mStartDependencyYPosition - distanceYToSubtract);
         child.setX(mStartChildXPosition - distanceXToSubtract);
+        Log.i("x>>>>>",String.valueOf(distanceXToSubtract));
+        Log.i("y>>>>>>",String.valueOf(distanceYToSubtract));
+        Log.i("x2>>>>>",String.valueOf(mStartChildXPosition));
+        Log.i("y2>>>",String.valueOf(mStartDependencyYPosition));
+       //child.setX(50);
+       //child.setY(100);
 
         CoordinatorLayout.LayoutParams lp = (CoordinatorLayout.LayoutParams) child.getLayoutParams();
 

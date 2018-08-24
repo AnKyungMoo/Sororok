@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v4.widget.DrawerLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/layout_drawer"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:id="@+id/layout_linear"
+        android:layout_width="280dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="right"
+        android:background="#ffffff">
+
+        <RelativeLayout
+            android:id="@+id/layout_update"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="소식"
+                android:textSize="20sp"
+                android:textColor="#2b2e38"/>
+
+            <Button
+                android:id="@+id/btn_history_close"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="@drawable/icn_noti_close"
+                android:layout_alignParentRight="true" />
+
+        </RelativeLayout>
+
+        <ListView
+            android:id="@+id/list_drawer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/layout_update"
+            android:background="#FAFAFA"
+            android:orientation="vertical" />
+
+    </RelativeLayout>
+
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:background="#4b50df">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp">
+
+                <ImageView
+                    android:id="@+id/img_user"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:src="@drawable/oval"/>
+                <TextView
+                    android:id="@+id/txt_user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="허숙희님"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_toRightOf="@id/img_user"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:textColor="#ffffff"/>
+
+                <Button
+                    android:id="@+id/btn_history"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="@drawable/icn_comm_notice"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@id/btn_setting"/>
+
+                <Button
+                    android:id="@+id/btn_setting"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="@drawable/icn_comm_setting"
+                    android:layout_gravity="right"
+                    android:layout_alignParentRight="true"/>
+            </RelativeLayout>
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/relative2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/rectangle"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="80dp">
+
+            <EditText
+                android:id="@+id/etSearchMember"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_centerVertical="true"
+                android:imeOptions="actionSearch"
+                android:fontFamily="@font/notosanscjkkr_regular"
+                android:includeFontPadding="false"
+                android:inputType="text"
+                android:background="@android:color/transparent"
+                android:hint="누굴 찾으시나요?"
+                android:layout_toLeftOf="@id/ivSearchButton"
+                android:paddingTop="5dp"
+                android:paddingBottom="7dp"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/ivSearchButton"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="12dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/btn_comm_search_check_bl" />
+
+        </RelativeLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@id/relative2"/>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/btn_floating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="25dp"/>
+
+    </RelativeLayout>
+</FrameLayout>
+</android.support.v4.widget.DrawerLayout>
