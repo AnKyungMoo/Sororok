@@ -71,9 +71,6 @@ public class LoginActivity extends AppCompatActivity{
     static String loginType;
     static String uid;
 
-    /*TODO: 임시로 메인으로 가는 버튼이니 키 해시 문제가 해결되면 제거하자*/
-    Button tempButton;
-
     /*TODO: 카카오 중복 success 해결방안을 찾을 때까지 임시 방편 boolean*/
     boolean isSuccess;
 
@@ -105,7 +102,6 @@ public class LoginActivity extends AppCompatActivity{
         googleButton = findViewById(R.id.google_button);
         naverButton = findViewById(R.id.naver_button);
         kakaoButton = findViewById(R.id.kakao_button);
-        tempButton = findViewById(R.id.temp_main_button);
 
         isSuccess = false;
 
@@ -129,17 +125,6 @@ public class LoginActivity extends AppCompatActivity{
                 kakaoLogin();
             }
         });
-
-        /* TODO: 테스트 용 이후에 지우자 */
-        tempButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this, TestActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
     }
 
     @Override

@@ -168,8 +168,13 @@
                 android:layout_marginTop="15dp"
                 android:background="#ffffff">
 
+<<<<<<< HEAD
                 <Button
                     android:id="@+id/button_group_code"
+=======
+                <TextView
+                    android:id="@+id/new_group_code"
+>>>>>>> 77d235e6c13b3add4a4cabf03b02cabac90624aa
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:textColor="#2b2e38"
