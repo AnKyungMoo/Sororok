@@ -143,7 +143,7 @@ public class TestActivity extends AppCompatActivity
                     String groupName = data.getExtras().getString("group_name");
                     String groupExplain = data.getExtras().getString("group_explain");
                     int totalMember = data.getExtras().getInt("total_member");
-                    addGroup(groupName, groupExplain);
+                    //addGroup(groupName, groupExplain);
                     break;
                 case 300:
                     String photoPath = data.getExtras().getString("photo_path");
@@ -153,13 +153,14 @@ public class TestActivity extends AppCompatActivity
         }
     }
 
+    /*
     public void addGroup(String groupName, String groupExplain){
         groupListItems.add(0, new GroupListItem("가입됨", R.drawable.combined_shape_rectangle_2_path_rectangle_copy_oval_copy_3_oval_copy_5_mask_copy_copy_copy_copy,
                 groupName, groupExplain));
         /*groupListItems.set(0, new GroupListItem("가입됨", R.drawable.xbutton,
-                groupName, R.drawable.xbutton, groupExplain));*/
+                groupName, R.drawable.xbutton, groupExplain));
         groupAdapter.notifyDataSetChanged();
-    }
+    }*/
 
     public void setAdapter(){
         historyAdapter = new HistoryAdapter(this);
@@ -167,18 +168,6 @@ public class TestActivity extends AppCompatActivity
         historyAdapter.addHistory("넥스터즈 13기 그룹의 곽희은 님의 번호가 변경되었습니다.");
         historyAdapter.addHistory("소로록이 새롭게 업데이트가 되었습니다.");
         historyAdapter.addHistory("넥터 13기 그룹이 새롭게 추가 되었습니다.");
-
-        recyclerView.setHasFixedSize(true);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(linearLayoutManager);
-
-        groupListItems = new ArrayList<>(); //public GroupListItem(String signInText, int groupImage, String groupName, String groupContent)
-        groupListItems.add(new GroupListItem("가입됨", R.drawable.combined_shape_rectangle_2_path_rectangle_copy_oval_copy_3_oval_copy_5_mask_copy_copy_copy_copy,
-                "넥스터즈 13기", "주소록팀"));
-
-        groupAdapter = new GroupAdapter(groupListItems);
-        recyclerView.setAdapter(groupAdapter);
-
 
        /* recyclerView.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -265,9 +254,23 @@ public class TestActivity extends AppCompatActivity
         try {
             List<GroupList> groupList = groupListTask.get();
 
+            recyclerView.setHasFixedSize(true);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+            recyclerView.setLayoutManager(linearLayoutManager);
+
+            groupListItems = new ArrayList<>();
+
             for (int i = 0; i < groupList.size(); ++i) {
-                Log.d("AKM", groupList.get(i).getName());
+                groupListItems.add(new GroupListItem("가입됨",
+                        groupList.get(i).getImageName(),
+                        groupList.get(i).getName(),
+                        groupList.get(i).getExtra_info()
+                ));
             }
+
+            groupAdapter = new GroupAdapter(groupListItems);
+            recyclerView.setAdapter(groupAdapter);
+
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
