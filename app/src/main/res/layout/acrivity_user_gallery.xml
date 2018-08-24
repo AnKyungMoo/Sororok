@@ -4,39 +4,44 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/layout_gallery_title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="15dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="15dp">
-
-        <LinearLayout
-            android:id="@+id/new_group_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/btn_back"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:background="@drawable/backbutton"/>
-
-            <TextView
-                android:id="@+id/txt_total_image_count"
-                android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:background="#4b50df">
+             <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:text="전체보기(361)"
-                android:textSize="10pt"/>
-        </LinearLayout>
-    </LinearLayout>
+                android:orientation="vertical"
+                 android:layout_alignParentBottom="true"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="10dp">
 
+                <RelativeLayout
+                    android:id="@+id/new_group_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:id="@+id/btn_back"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_alignParentLeft="true"
+                        android:background="@drawable/btn_comm_back_wh"/>
+
+                    <TextView
+                        android:id="@+id/txt_total_image_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:text="전체보기(361)"
+                        android:textColor="#ffffff"
+                        android:textSize="20sp"/>
+                </RelativeLayout>
+            </LinearLayout>
+    </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="1px"

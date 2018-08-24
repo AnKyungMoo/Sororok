@@ -204,9 +204,8 @@
                                 android:text="그룹 공유하기"
                                 android:textColor="#0b0d0f"
                                 android:textSize="16sp"/>
-                            <Button
-                                android:id="@+id/btn_group_share"
-                                android:background="@drawable/icn_comm_enter_bk"
+                            <ImageView
+                                android:src="@drawable/icn_comm_enter_bk"
                                 android:layout_width="24dp"
                                 android:layout_height="24dp"
                                 android:layout_alignParentRight="true"/>
@@ -238,9 +237,8 @@
                                 android:text="그룹원 관리"
                                 android:textColor="#0b0d0f"
                                 android:textSize="16sp"/>
-                            <Button
-                                android:id="@+id/btn_members_manage"
-                                android:background="@drawable/icn_comm_enter_bk"
+                            <ImageView
+                                android:src="@drawable/icn_comm_enter_bk"
                                 android:layout_width="24dp"
                                 android:layout_height="24dp"
                                 android:layout_alignParentRight="true"/>
@@ -280,9 +278,8 @@
                                 android:text="관리자 변경"
                                 android:textColor="#0b0d0f"
                                 android:textSize="16sp"/>
-                            <Button
-                                android:id="@+id/btn_admin_change"
-                                android:background="@drawable/icn_comm_enter_bk"
+                            <ImageView
+                                android:src="@drawable/icn_comm_enter_bk"
                                 android:layout_width="24dp"
                                 android:layout_height="24dp"
                                 android:layout_alignParentRight="true"/>
@@ -314,9 +311,8 @@
                                 android:text="그룹 폭파"
                                 android:textColor="#0b0d0f"
                                 android:textSize="16sp"/>
-                            <Button
-                                android:id="@+id/btn_group_remove"
-                                android:background="@drawable/icn_comm_enter_bk"
+                            <ImageView
+                                android:src="@drawable/icn_comm_enter_bk"
                                 android:layout_width="24dp"
                                 android:layout_height="24dp"
                                 android:layout_alignParentRight="true"/>
@@ -335,7 +331,29 @@
             </LinearLayout>
 
         </LinearLayout>
-
+    <RelativeLayout
+        android:id="@+id/rlDim"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#c00b0d0f"
+        android:visibility="gone">
+        <TextView
+            android:id="@+id/tvBye"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="126dp"
+            android:text="여기까지가~\n끝인가보오😢"/>
+    <ImageView
+        android:layout_width="83dp"
+        android:layout_height="99dp"
+        android:src="@drawable/img_group_delete"
+        android:layout_below="@id/tvBye"
+        android:layout_marginTop="28dp"
+        android:layout_centerHorizontal="true"/>
+</RelativeLayout>
     <RelativeLayout
         android:id="@+id/layout_animation"
         android:layout_width="match_parent"

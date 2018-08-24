@@ -3,27 +3,38 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="15dp"
-    android:layout_marginLeft="20dp"
-    android:layout_marginRight="20dp"
-    android:layout_marginBottom="15dp">
+    android:background="#4b50df">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="15dp">
 
         <RelativeLayout
             android:id="@+id/new_group_title"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp">
 
             <Button
                 android:id="@+id/btn_back"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:background="@drawable/backbutton"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="@drawable/btn_comm_back_wh"
                 android:layout_alignParentLeft="true"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="마이페이지"
+                android:textColor="#ffffff"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"
+                android:textSize="20sp"/>
 
             <TextView
                 android:id="@+id/txt_save"
@@ -31,12 +42,138 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:text="저장"
-                android:textSize="10pt"/>
+                android:textSize="16sp"
+                android:textColor="#ffffff"/>
 
         </RelativeLayout>
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="25dp"
+            android:paddingTop="50dp"
+            android:gravity="center">
+
+            <RelativeLayout
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:background="@drawable/oval">
+                <TextView
+                    android:layout_width="72dp"
+                    android:layout_height="18dp"
+                    android:background="@drawable/btn_edit_profileimg"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_margin="10dp"/>
+
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/img_new_group"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:scaleType="centerCrop"/>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="60dp"
+            android:orientation="vertical"
+            android:layout_marginRight="60dp">
 
             <LinearLayout
+                android:id="@+id/relative_group_name"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:id="@+id/txt_user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="허숙희"
+                    android:textColor="#ffffff"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:textSize="20sp"/>
+
+                <Button
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:gravity="right"
+                    android:background="@drawable/btn_mypage_profile"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="180dp"
+                android:layout_height="1dp"
+                android:background="#868ae9"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:layout_below="@id/txt_user_name"/>
+
+            <LinearLayout
+                android:id="@+id/relative_phone_number"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:id="@+id/txt_user_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="010-1234-1234"
+                    android:textColor="#ffffff"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:textSize="20sp"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="180dp"
+                android:layout_height="1dp"
+                android:background="#868ae9"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:layout_below="@id/relative_phone_number"/>
+
+            <LinearLayout
+                android:id="@+id/relative_user_email"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:id="@+id/txt_user_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="example@gmail.com"
+                    android:textColor="#ffffff"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:textSize="20sp"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="180dp"
+                android:layout_height="1dp"
+                android:background="#868ae9"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:layout_below="@id/relative_phone_number"/>
+
+
+
+
+        </LinearLayout>
+
+
+            <!--<LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
@@ -69,7 +206,7 @@
                         android:layout_toRightOf="@id/txt_user_name"/>
                 </RelativeLayout>
 
-            </LinearLayout>
+            </LinearLayout>-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
@@ -95,8 +232,10 @@
     </LinearLayout>
     <Button
         android:id="@+id/btn_logout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="76dp"
+        android:layout_height="15dp"
         android:layout_alignParentBottom="true"
-        android:text="로그아웃"/>
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"
+        android:background="@drawable/logout"/>
 </RelativeLayout>
