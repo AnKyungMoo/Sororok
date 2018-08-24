@@ -39,11 +39,11 @@ public class MemberSettingActivity extends AppCompatActivity {
 
 
     private Button groupShareBtn2;
-    private Button backBtn,exitGroupBtn,optionBtn1,optionBtn2,optionBtn3;
-    private RelativeLayout animLayout,mainLayout, dimLayout,refreshButton;
+    private Button backBtn,exitGroupBtn,optionBtn1,optionBtn2,optionBtn3,refreshButton;
+    private RelativeLayout animLayout,mainLayout, dimLayout;
 
     private Animation slideUpAnimation, slideDownAnimation;
-    private LinearLayout defalutLayout, nextLayout,share,manage,change,boom;
+    private LinearLayout defalutLayout, nextLayout,share,manage,change,boom,out;
     private TextView mainTitle, subTitle, groupCode;
     private int groupid;
     /* TODO: 앞에서부터 데이터 가져오자 */
@@ -57,6 +57,7 @@ public class MemberSettingActivity extends AppCompatActivity {
         getGroupInfo();
         Intent intentForGet = getIntent();
         groupid=intentForGet.getIntExtra("bgroupid",-1);
+        isMember();
         boom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -168,14 +169,12 @@ public class MemberSettingActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mainTitle.setText("정말 그룹을 나가시려구요?");
-                subTitle.setText("그룹 탈퇴에 대한 알림\n그룹원에게 알림이 가지 않습니다.");
-                optionBtn1.setText("인수인계");
-                optionBtn2.setText("그룹삭제");
+                subTitle.setText("그룹 탈퇴에 대한 알림은\n그룹원에게 알림이 가지 않습니다.");
                 optionBtn3.setVisibility(View.VISIBLE);
                 optionBtn1.setVisibility(View.INVISIBLE);
                 optionBtn2.setVisibility(View.INVISIBLE);
                 animLayout.startAnimation(slideUpAnimation);
-                mainLayout.setBackgroundColor(Color.argb(80,50,50,50));
+                dimLayout.setVisibility(View.VISIBLE);
                 animLayout.setVisibility(View.VISIBLE);
             }
         });
@@ -197,18 +196,23 @@ public class MemberSettingActivity extends AppCompatActivity {
         });
     }
 
+    public void isMember(){
+        manage.setVisibility(View.GONE);
+        change.setVisibility(View.GONE);
+        boom.setVisibility(View.GONE);
+        out.setVisibility(View.VISIBLE);
+    }
+
     public void initComponent(){
         share=findViewById(R.id.llGroupShare);
         manage=findViewById(R.id.llGroupManage);
         change=findViewById(R.id.llGroupChange);
         boom=findViewById(R.id.llGroupBoom);
-        groupShareBtn2 = findViewById(R.id.btn_group_share2);
         animLayout =  findViewById(R.id.layout_animation);
         mainLayout = findViewById(R.id.layout_main);
         backBtn = findViewById(R.id.btn_back);
         exitGroupBtn = findViewById(R.id.btn_exit_group);
         defalutLayout = findViewById(R.id.layout_default_screen);
-        nextLayout = findViewById(R.id.layout_click_share_group);
         optionBtn1 = findViewById(R.id.btn_menu_1);
         optionBtn2 = findViewById(R.id.btn_menu_2);
         optionBtn3 = findViewById(R.id.btn_menu_3);
@@ -216,6 +220,7 @@ public class MemberSettingActivity extends AppCompatActivity {
         mainTitle = findViewById(R.id.txt_menu_main_title);
         subTitle = findViewById(R.id.txt_menu_sub_title);
         groupCode = findViewById(R.id.txt_group_code);
+        out = findViewById(R.id.llOut);
         slideUpAnimation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.slide_up_animation);
         slideDownAnimation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.slide_down_animation);
         refreshButton = findViewById(R.id.button_code_refresh);
