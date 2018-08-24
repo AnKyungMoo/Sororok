@@ -24,6 +24,10 @@ public class MemberResponseModel {
     @Expose
     private String imageName;
 
+    @SerializedName("memberI")
+    @Expose
+    private int memberId;
+
     public int getAuthority() {
         return authority;
     }
@@ -42,5 +46,9 @@ public class MemberResponseModel {
 
     public String getImageName() {
         return imageName;
+    }
+
+    public int getMemberId() {
+        return memberId;
     }
 }

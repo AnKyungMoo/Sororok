@@ -45,7 +45,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="정확한 정보인지 입력해주세요"
+            android:text="정확한 정보인지 확인해주세요"
             android:fontFamily="@font/notosanscjkkr_medium"
             android:includeFontPadding="false"
             android:textColor="@android:color/white"
@@ -53,7 +53,40 @@
             android:layout_centerHorizontal="true" />
     </RelativeLayout>
 
+
+
     <RelativeLayout
+        android:id="@+id/info_images"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="25dp"
+        android:layout_below="@+id/info_texts"
+        android:gravity="center">
+
+        <RelativeLayout
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:background="@drawable/oval_5">
+            <TextView
+                android:layout_width="72dp"
+                android:layout_height="18dp"
+                android:background="@drawable/btn_edit_profileimg"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="10dp"/>
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/login_user_image"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:background="@android:color/transparent"
+            android:scaleType="centerCrop"/>
+
+    </RelativeLayout>
+
+    <!--<RelativeLayout
         android:id="@+id/info_images"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -68,14 +101,14 @@
             android:background="@android:color/transparent"
             android:scaleType="centerCrop"
             android:layout_centerHorizontal="true"/>
-    </RelativeLayout>
+    </RelativeLayout>-->
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/info_images"
         android:orientation="vertical"
-        android:layout_marginTop="45dp" >
+        android:layout_marginTop="35dp" >
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -96,8 +129,8 @@
                 android:textColorHint="#80ffffff"/>
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:src="@drawable/btn_mypage_profile"
                 android:layout_alignRight="@+id/edit_login_name"
                 android:layout_centerVertical="true"/>

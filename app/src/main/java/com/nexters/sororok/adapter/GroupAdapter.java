@@ -2,10 +2,8 @@ package com.nexters.sororok.adapter;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,9 +23,6 @@ import com.nexters.sororok.item.GroupListItem;
 import com.nexters.sororok.model.JoinRepositoryRequestModel;
 import com.nexters.sororok.model.JoinRepositoryResponseModel;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 

@@ -9,18 +9,19 @@ import com.nexters.sororok.model.MemberResponseModel;
 import com.nexters.sororok.service.RetrofitService;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import retrofit2.Call;
 
-public class MemberAsyncTask extends AsyncTask<Integer,Void,MemberResponseModel> {
+public class MemberAsyncTask extends AsyncTask<Integer,Void,ArrayList<MemberResponseModel>> {
     @Override
-    protected MemberResponseModel doInBackground(Integer... integers) {
+    protected ArrayList<MemberResponseModel> doInBackground(Integer... integers) {
         RetrofitService retrofitService = RetrofitService.retrofit.create(RetrofitService.class);
 
-        Call<MemberResponseModel> infoCall = retrofitService.listup(integers[0]);
+        Call<ArrayList<MemberResponseModel>> memberCall = retrofitService.listup(integers[0]);
 
         try {
-            return infoCall.execute().body();
+            return memberCall.execute().body();
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -14,6 +14,7 @@ import com.nexters.sororok.model.MemberResponseModel;
 import com.nexters.sororok.model.RefreshCodeModel;
 import com.nexters.sororok.model.UpdateCodeModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.MultipartBody;
@@ -84,7 +85,7 @@ public interface RetrofitService {
     );
     
     @GET("member/detail")
-    Call<MemberResponseModel> listup(@Query("repositoryId") int repositoryId);
+    Call<ArrayList<MemberResponseModel>> listup(@Query("repositoryId") int repositoryId);
 
     // 이미지 포함 저장소 생성
     @Multipart

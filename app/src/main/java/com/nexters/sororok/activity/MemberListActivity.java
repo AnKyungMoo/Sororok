@@ -23,14 +23,18 @@ import android.widget.Toast;
 
 import com.nexters.sororok.R;
 import com.nexters.sororok.adapter.MemberListwithAdapter;
+import com.nexters.sororok.asynctask.MemberAsyncTask;
 import com.nexters.sororok.item.ContactItem;
 import com.nexters.sororok.item.MemberListItem;
+import com.nexters.sororok.model.Member;
+import com.nexters.sororok.model.MemberResponseModel;
 import com.nexters.sororok.util.ContactsUtil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.TreeSet;
+import java.util.concurrent.ExecutionException;
 
 /**
  * 멤버리스트 액티비티
@@ -75,6 +79,22 @@ public class MemberListActivity extends AppCompatActivity {
                 }
             });
 
+            //테스트용 데이터 생성. 지금은 String으로 했지만 서버 연동 후 MemberListitem 형식으로 생성할 듯.
+            final ArrayList<MemberListItem> memberList = new ArrayList<>();
+
+            MemberAsyncTask asyncTask = new MemberAsyncTask();
+            asyncTask.execute(repositoryId);
+            try{
+                ArrayList<MemberResponseModel> memberResponseModels = asyncTask.get();
+                for(int i=0;i<memberResponseModels.size();i++){
+                    MemberListItem memberListItem = new MemberListItem(memberResponseModels.get(i).getImageName(),memberResponseModels.get(i).getName(),memberResponseModels.get(i).getMemberId(),memberResponseModels.get(i).getPhone());
+                    memberList.add(memberListItem);
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
             groupManageBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -89,111 +109,6 @@ public class MemberListActivity extends AppCompatActivity {
 
             //리스트 중 체크된 것들이 무엇인지를 확인하는 트리셋. int형의 ID가 들어간다.
             final TreeSet<Integer> listchecked = new TreeSet<>();
-
-
-            //테스트용 데이터 생성. 지금은 String으로 했지만 서버 연동 후 MemberListitem 형식으로 생성할 듯.
-            final ArrayList<MemberListItem> memberList = new ArrayList<>();
-
-            memberList.add(new MemberListItem(null,"가스트1",0,"01011114999"));
-            memberList.add(new MemberListItem(null,"나스트2",1,"01011112320"));
-            memberList.add(new MemberListItem(null,"다스트3",2,"01011119150"));
-            memberList.add(new MemberListItem(null,"라스트4",3,"01011119332"));
-            memberList.add(new MemberListItem(null,"마스트5",4,"01011115611"));
-            memberList.add(new MemberListItem(null,"바스트6",5,"01011116786"));
-            memberList.add(new MemberListItem(null,"사스트7",6,"01011117773"));
-            memberList.add(new MemberListItem(null,"자스트8",7,"01011113603"));
-            memberList.add(new MemberListItem(null,"차스트9",8,"01011116290"));
-            memberList.add(new MemberListItem(null,"카스트10",9,"01011116040"));
-            memberList.add(new MemberListItem(null,"타스트11",10,"01011116251"));
-            memberList.add(new MemberListItem(null,"테스트12",11,"01011116351"));
-            memberList.add(new MemberListItem(null,"테스트13",12,"01011112033"));
-            memberList.add(new MemberListItem(null,"테스트14",13,"01011115531"));
-            memberList.add(new MemberListItem(null,"테스트15",14,"01011116889"));
-            memberList.add(new MemberListItem(null,"테스트16",15,"01011116402"));
-            memberList.add(new MemberListItem(null,"테스트17",16,"01011118951"));
-            memberList.add(new MemberListItem(null,"테스트18",17,"01011114199"));
-            memberList.add(new MemberListItem(null,"테스트19",18,"01011116580"));
-            memberList.add(new MemberListItem(null,"테스트20",19,"01011113853"));
-            memberList.add(new MemberListItem(null,"테스트21",20,"01011114504"));
-            memberList.add(new MemberListItem(null,"테스트22",21,"01011116238"));
-            memberList.add(new MemberListItem(null,"테스트23",22,"01011113256"));
-            memberList.add(new MemberListItem(null,"테스트24",23,"01011113464"));
-            memberList.add(new MemberListItem(null,"테스트25",24,"01011119305"));
-            memberList.add(new MemberListItem(null,"테스트26",25,"01011115932"));
-            memberList.add(new MemberListItem(null,"테스트27",26,"01011118638"));
-            memberList.add(new MemberListItem(null,"테스트28",27,"01011113810"));
-            memberList.add(new MemberListItem(null,"테스트29",28,"01011114880"));
-            memberList.add(new MemberListItem(null,"테스트30",29,"01011118035"));
-            memberList.add(new MemberListItem(null,"테스트31",30,"01011112877"));
-            memberList.add(new MemberListItem(null,"테스트32",31,"01011115802"));
-            memberList.add(new MemberListItem(null,"테스트33",32,"01011119232"));
-            memberList.add(new MemberListItem(null,"테스트34",33,"01011118675"));
-            memberList.add(new MemberListItem(null,"테스트35",34,"01011116566"));
-            memberList.add(new MemberListItem(null,"테스트36",35,"01011118374"));
-            memberList.add(new MemberListItem(null,"테스트37",36,"01011116784"));
-            memberList.add(new MemberListItem(null,"테스트38",37,"01011116416"));
-            memberList.add(new MemberListItem(null,"테스트39",38,"01011119959"));
-            memberList.add(new MemberListItem(null,"테스트40",39,"01011115459"));
-            memberList.add(new MemberListItem(null,"테스트41",40,"01011115090"));
-            memberList.add(new MemberListItem(null,"테스트42",41,"01011115718"));
-            memberList.add(new MemberListItem(null,"테스트43",42,"01011112314"));
-            memberList.add(new MemberListItem(null,"테스트44",43,"01011118026"));
-            memberList.add(new MemberListItem(null,"테스트45",44,"01011112641"));
-            memberList.add(new MemberListItem(null,"테스트46",45,"01011111590"));
-            memberList.add(new MemberListItem(null,"테스트47",46,"01011111629"));
-            memberList.add(new MemberListItem(null,"테스트48",47,"01011117302"));
-            memberList.add(new MemberListItem(null,"테스트49",48,"01011119088"));
-            memberList.add(new MemberListItem(null,"테스트50",49,"01011117924"));
-            memberList.add(new MemberListItem(null,"테스트51",50,"01011117634"));
-            memberList.add(new MemberListItem(null,"테스트52",51,"01011112170"));
-            memberList.add(new MemberListItem(null,"테스트53",52,"01011112464"));
-            memberList.add(new MemberListItem(null,"테스트54",53,"01011119725"));
-            memberList.add(new MemberListItem(null,"테스트55",54,"01011111195"));
-            memberList.add(new MemberListItem(null,"테스트56",55,"01011119139"));
-            memberList.add(new MemberListItem(null,"테스트57",56,"01011113818"));
-            memberList.add(new MemberListItem(null,"테스트58",57,"01011117827"));
-            memberList.add(new MemberListItem(null,"테스트59",58,"01011112264"));
-            memberList.add(new MemberListItem(null,"테스트60",59,"01011119713"));
-            memberList.add(new MemberListItem(null,"테스트61",60,"01011112335"));
-            memberList.add(new MemberListItem(null,"테스트62",61,"01011113019"));
-            memberList.add(new MemberListItem(null,"테스트63",62,"01011117534"));
-            memberList.add(new MemberListItem(null,"테스트64",63,"01011118564"));
-            memberList.add(new MemberListItem(null,"테스트65",64,"01011111303"));
-            memberList.add(new MemberListItem(null,"테스트66",65,"01011115075"));
-            memberList.add(new MemberListItem(null,"테스트67",66,"01011116901"));
-            memberList.add(new MemberListItem(null,"테스트68",67,"01011119377"));
-            memberList.add(new MemberListItem(null,"테스트69",68,"01011118965"));
-            memberList.add(new MemberListItem(null,"테스트70",69,"01011116263"));
-            memberList.add(new MemberListItem(null,"테스트71",70,"01011115237"));
-            memberList.add(new MemberListItem(null,"테스트72",71,"01011117752"));
-            memberList.add(new MemberListItem(null,"테스트73",72,"01011117763"));
-            memberList.add(new MemberListItem(null,"테스트74",73,"01011111798"));
-            memberList.add(new MemberListItem(null,"테스트75",74,"01011118130"));
-            memberList.add(new MemberListItem(null,"테스트76",75,"01011117601"));
-            memberList.add(new MemberListItem(null,"테스트77",76,"01011112024"));
-            memberList.add(new MemberListItem(null,"테스트78",77,"01011111423"));
-            memberList.add(new MemberListItem(null,"테스트79",78,"01011119105"));
-            memberList.add(new MemberListItem(null,"테스트80",79,"01011118467"));
-            memberList.add(new MemberListItem(null,"테스트81",80,"01011114198"));
-            memberList.add(new MemberListItem(null,"테스트82",81,"01011119761"));
-            memberList.add(new MemberListItem(null,"테스트83",82,"01011119537"));
-            memberList.add(new MemberListItem(null,"테스트84",83,"01011111576"));
-            memberList.add(new MemberListItem(null,"테스트85",84,"01011112652"));
-            memberList.add(new MemberListItem(null,"테스트86",85,"01011112924"));
-            memberList.add(new MemberListItem(null,"테스트87",86,"01011119530"));
-            memberList.add(new MemberListItem(null,"테스트88",87,"01011118107"));
-            memberList.add(new MemberListItem(null,"테스트89",88,"01011116983"));
-            memberList.add(new MemberListItem(null,"테스트90",89,"01011117256"));
-            memberList.add(new MemberListItem(null,"테스트91",90,"01011114277"));
-            memberList.add(new MemberListItem(null,"테스트92",91,"01011116238"));
-            memberList.add(new MemberListItem(null,"테스트93",92,"01011112494"));
-            memberList.add(new MemberListItem(null,"테스트94",93,"01011115492"));
-            memberList.add(new MemberListItem(null,"테스트95",94,"01011115919"));
-            memberList.add(new MemberListItem(null,"테스트96",95,"01011111119"));
-            memberList.add(new MemberListItem(null,"테스트97",96,"01011111217"));
-            memberList.add(new MemberListItem(null,"테스트98",97,"01011116772"));
-            memberList.add(new MemberListItem(null,"파스트99",98,"01011114251"));
-            memberList.add(new MemberListItem(null,"하스트100",99,"01011119029"));
 
 
             final ArrayList<String> name = new ArrayList<String>();
