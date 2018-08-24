@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -50,11 +51,18 @@ public class MemberListActivity extends AppCompatActivity {
         private RelativeLayout rlOnFail;
         private InputMethodManager imm;
 
+        // 현재 그룹 id
+        private int repositoryId;
+
 
         @Override
         protected void onCreate(final Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_member_list);
+
+            Intent intent = getIntent();
+            repositoryId = intent.getExtras().getInt("repositoryId");
+
             groupManageBtn = findViewById(R.id.btn_setting);
             backBtn = findViewById(R.id.btn_back);
             llSelectAll = findViewById(R.id.btn_select_all);

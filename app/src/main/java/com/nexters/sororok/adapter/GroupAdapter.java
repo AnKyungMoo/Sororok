@@ -45,7 +45,7 @@ public class GroupAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
         GroupViewHolder groupViewHolder = (GroupViewHolder) holder;
 
        // groupViewHolder.isJoinText.setText(groupListItems.get(position).isJoinText);
@@ -84,6 +84,7 @@ public class GroupAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 customDialog.setTitle("그룹코드를 입력해주세요.");
 
                 Intent intent = new Intent (view.getContext(), MemberListActivity.class);
+                intent.putExtra("repositoryId", groupListItems.get(position).groupId);
                 view.getContext().startActivity(intent);
 
             }

@@ -270,7 +270,8 @@ public class TestActivity extends AppCompatActivity
                 groupListItems.add(new GroupListItem("가입됨",
                         groupList.get(i).getImageName(),
                         groupList.get(i).getName(),
-                        groupList.get(i).getExtra_info()
+                        groupList.get(i).getExtra_info(),
+                        groupList.get(i).getRepositoryId()
                 ));
             }
 
