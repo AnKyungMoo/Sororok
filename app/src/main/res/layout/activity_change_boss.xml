@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.MemberBanActivity">
+    tools:context=".activity.ChangeBossActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -62,7 +62,7 @@
                             android:fontFamily="@font/notosanscjkkr_bold"
                             android:gravity="center_vertical"
                             android:includeFontPadding="false"
-                            android:text="멤버 관리"
+                            android:text="관리자 변경"
                             android:textColor="#0b0d0f"
                             android:textSize="24dp" />
 
@@ -72,19 +72,6 @@
                 </LinearLayout>
 
 
-                <Button
-                    android:id="@+id/btn_setting"
-                    android:layout_width="30dp"
-                    android:layout_height="24dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginTop="36dp"
-                    android:text="저장"
-                    android:textSize="16sp"
-                    android:fontFamily="@font/notosanscjkkr_regular"
-                    android:includeFontPadding="false"
-                    android:textColor="#4b50df"
-                    android:background="@drawable/g_btn_comm_list_set_bl" />
             </RelativeLayout>
 
             <LinearLayout

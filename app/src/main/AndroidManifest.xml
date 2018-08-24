@@ -42,7 +42,7 @@
         <activity android:name=".activity.SettingActivity" />
         <activity android:name=".activity.CropImageActivity" />
         <activity android:name=".activity.MemberSettingActivity" />
-        <activity android:name=".activity.test"/>
+        <activity android:name=".activity.test" />
         <activity android:name=".activity.EditMemberActivity" />
         <activity
             android:name=".activity.ChangeAdminActivity"
@@ -55,7 +55,10 @@
             android:value="@string/kakao_app_key" />
 
         <activity android:name=".activity.LoadingActivity" />
-        <activity android:name=".activity.MemberBanActivity"
+        <activity
+            android:name=".activity.MemberBanActivity"
+            android:windowSoftInputMode="adjustNothing" />
+        <activity android:name=".activity.ChangeBossActivity"
             android:windowSoftInputMode="adjustNothing"></activity>
     </application>
 
