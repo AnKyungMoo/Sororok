@@ -61,6 +61,7 @@ public interface RetrofitService {
     );
 
     // 필수 요소로 저장소 생성
+    @Multipart
     @PUT("repository/create")
     Call<GroupResponseModel> create(@Part("name") String name,
                                     @Part("code") String code,

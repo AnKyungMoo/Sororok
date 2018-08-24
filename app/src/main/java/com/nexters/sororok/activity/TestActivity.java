@@ -107,13 +107,13 @@ public class TestActivity extends AppCompatActivity
                 startActivityForResult(intent,100);
             }
         });
-        /*floatingActionButton.setOnClickListener(new View.OnClickListener() {
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), NewGroupActivity.class);
                 startActivityForResult(intent, 200);
             }
-        });
+        });/*
         userImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
