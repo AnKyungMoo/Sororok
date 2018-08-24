@@ -64,7 +64,7 @@
             android:id="@+id/login_user_image"
             android:layout_width="96dp"
             android:layout_height="96dp"
-            android:src="@drawable/user_icon"
+            android:src="@drawable/oval"
             android:background="@android:color/transparent"
             android:scaleType="centerCrop"
             android:layout_centerHorizontal="true"/>

@@ -99,6 +99,7 @@ public class MemberListActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     Intent groupSettingIntent = new Intent(MemberListActivity.this, MemberSettingActivity.class);
+                    groupSettingIntent.putExtra("repositoryId", repositoryId);
                     startActivityForResult(groupSettingIntent,400);
                 }
             });

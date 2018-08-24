@@ -9,8 +9,10 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.nexters.sororok.R;
@@ -24,6 +26,7 @@ public class MyPageActivity extends AppCompatActivity {
     private TextView saveText;
     private String photoPath;
     private CustomDialog customDialog;
+    private EditText userName, userNumber, userEmail;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,11 +54,16 @@ public class MyPageActivity extends AppCompatActivity {
         saveText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.putExtra("photo_path", photoPath);
-               // Toast.makeText(getApplicationContext(), photoPath+"1111", Toast.LENGTH_SHORT).show();
-                setResult(RESULT_OK, intent);
-                finish();
+                if(userName.getText().length()>0 && userNumber.getText().length()>0 && userEmail.getText().length()>0){
+                      Intent intent = new Intent();
+                      intent.putExtra("photo_path", photoPath);
+                     // intent.putExtra("user_name", userName.toString());
+                      setResult(RESULT_OK, intent);
+                      finish();
+                }else{
+                    Toast.makeText(getApplicationContext(), "빈칸을 채워주세요!",Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
     }
@@ -72,6 +80,9 @@ public class MyPageActivity extends AppCompatActivity {
             }
         });
         imgUserPhoto = findViewById(R.id.img_user_photo);
+        userName = findViewById(R.id.txt_user_name);
+        userNumber = findViewById(R.id.txt_user_number);
+        userEmail = findViewById(R.id.txt_user_email);
        /* imgUserPhoto.setBackground(new ShapeDrawable(new OvalShape()));
         if(Build.VERSION.SDK_INT >= 21) {
             imgUserPhoto.setClipToOutline(true);

@@ -148,6 +148,9 @@
             android:id="@+id/btn_floating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            app:backgroundTint="#ffa1be"
+            app:fabSize="normal"
+            android:src="@drawable/btn_floating"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:layout_margin="25dp"/>
