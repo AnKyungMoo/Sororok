@@ -1,14 +1,12 @@
 package com.nexters.sororok.activity;
 
 import android.content.Intent;
-import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.OvalShape;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,7 +28,7 @@ public class NewGroupActivity extends AppCompatActivity {
 
     private static final int REQUEST_USER_GALLERY = 1;
     private ImageView imgGroupPhoto;
-    private TextView groupName, groupExplain;
+    private EditText groupName, groupExplain;
     private TextView completeBtn;
     private Button backBtn, codeButton;
     private String photoPath = null;
@@ -99,6 +97,7 @@ public class NewGroupActivity extends AppCompatActivity {
         groupExplain = findViewById(R.id.edit_group_explain); //그룹 설명
         completeBtn = findViewById(R.id.txt_new_group_complete);
         sendGroupInfo();
+        codeButton = findViewById(R.id.button_group_code);
         /*totalMemberSeek = findViewById(R.id.seek_total_member);
         seekValue = findViewById(R.id.txt_seek_value);
         codeButton = findViewById(R.id.button_group_code);*/
@@ -109,10 +108,10 @@ public class NewGroupActivity extends AppCompatActivity {
                 finish();
             }
         });
-        imgGroupPhoto.setBackground(new ShapeDrawable(new OvalShape()));
+       /* imgGroupPhoto.setBackground(new ShapeDrawable(new OvalShape()));
         if(Build.VERSION.SDK_INT >= 21) {
             imgGroupPhoto.setClipToOutline(true);
-        }
+        }*/
     }
 /*
     public void seekListener(){
