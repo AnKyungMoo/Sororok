@@ -25,7 +25,7 @@ public class MemberSettingActivity extends AppCompatActivity {
     private Button backBtn,exitGroupBtn,optionBtn1,optionBtn2,optionBtn3;
     private RelativeLayout animLayout,mainLayout;
     private Animation slideUpAnimation, slideDownAnimation;
-    private LinearLayout defalutLayout, nextLayout;
+    private LinearLayout defalutLayout, nextLayout,share,manage,change,boom;
     private TextView mainTitle,subTitle,groupCode;
     private int groupid;
 
@@ -36,7 +36,7 @@ public class MemberSettingActivity extends AppCompatActivity {
         initComponent();
         Intent intentForGet = getIntent();
         groupid=intentForGet.getIntExtra("bgroupid",-1);
-        groupRemoveBtn.setOnClickListener(new View.OnClickListener() {
+        boom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mainTitle.setText("정말 그룹을 폭파하시려구요?");
@@ -73,7 +73,7 @@ public class MemberSettingActivity extends AppCompatActivity {
             }
         });
 
-        changeAdminBtn.setOnClickListener(new View.OnClickListener() {
+        change.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MemberSettingActivity.this, ChangeAdminActivity.class);
@@ -81,7 +81,7 @@ public class MemberSettingActivity extends AppCompatActivity {
             }
         });
 
-        groupShareBtn.setOnClickListener(new View.OnClickListener() {
+        share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 defalutLayout.setVisibility(View.INVISIBLE);
@@ -129,7 +129,7 @@ public class MemberSettingActivity extends AppCompatActivity {
             }
         });
 
-        groupManageBtn.setOnClickListener(new View.OnClickListener() {
+        manage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent manageIntent = new Intent(getApplicationContext(),MemberBanActivity.class);
@@ -140,6 +140,10 @@ public class MemberSettingActivity extends AppCompatActivity {
     }
 
     public void initComponent(){
+        share=findViewById(R.id.llGroupShare);
+        manage=findViewById(R.id.llGroupManage);
+        change=findViewById(R.id.llGroupChange);
+        boom=findViewById(R.id.llGroupBoom);
         groupShareBtn = findViewById(R.id.btn_group_share);
         groupShareBtn2 = findViewById(R.id.btn_group_share2);
         changeAdminBtn = findViewById(R.id.btn_admin_change);
