@@ -28,11 +28,7 @@ public class NewGroupActivity extends AppCompatActivity {
 
     private static final int REQUEST_USER_GALLERY = 1;
     private ImageView imgGroupPhoto;
-<<<<<<< HEAD
-    private EditText groupName, groupExplain;
-=======
     private TextView groupName, groupExplain, textGroupCode;
->>>>>>> 77d235e6c13b3add4a4cabf03b02cabac90624aa
     private TextView completeBtn;
     private Button backBtn;
     private String photoPath = null;
@@ -101,7 +97,6 @@ public class NewGroupActivity extends AppCompatActivity {
         groupExplain = findViewById(R.id.edit_group_explain); //그룹 설명
         completeBtn = findViewById(R.id.txt_new_group_complete);
         sendGroupInfo();
-        codeButton = findViewById(R.id.button_group_code);
         /*totalMemberSeek = findViewById(R.id.seek_total_member);
         seekValue = findViewById(R.id.txt_seek_value);*/
         textGroupCode = findViewById(R.id.new_group_code);
