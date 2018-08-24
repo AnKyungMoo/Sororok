@@ -2,60 +2,75 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="130dp"
-    android:layout_margin="25dp"
-    android:background="#F2F2F2">
+    android:layout_height="100dp"
+    android:layout_margin="25dp">
 
-    <LinearLayout
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_alignParentLeft="true"
-        android:layout_centerInParent="true">
-        <TextView
-            android:id="@+id/txt_user_join"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="가입됨"
-            android:textSize="6pt"/>
-        <ImageView
-            android:id="@+id/img_user_group"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/ic_launcher"
-            android:layout_marginTop="5dp"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="160dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:layout_centerInParent="true">
+    <RelativeLayout
+        android:layout_width="300dp"
+        android:layout_height="80dp"
+        android:background="@drawable/bg_list"
+        android:layout_marginLeft="30dp"
+        android:layout_alignParentBottom="true">
+
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="160dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:layout_centerInParent="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="60dp">
+
             <TextView
                 android:id="@+id/txt_group_maintitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="넥스터즈 13기"
-                android:textSize="10pt"/>
-            <ImageView
-                android:id="@+id/img_user_boss"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@mipmap/ic_launcher"/>
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#2b2e38"/>
+
+            <TextView
+                android:id="@+id/txt_group_subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="#9b9fa8"
+                android:text="주소로록팀"/>
         </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relative"
+        android:layout_width="80dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true">
+
+        <ImageView
+            android:id="@+id/img_user_group"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:src="@mipmap/ic_launcher"
+            android:layout_alignParentTop="true"/>
+
         <TextView
-            android:id="@+id/txt_group_subtitle"
-            android:layout_width="wrap_content"
+            android:id="@+id/txt_user_join"
+            android:layout_width="72dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="넥터 주소로록팀"/>
-    </LinearLayout>
-    <LinearLayout
+            android:text="가입됨"
+            android:background="#4c0b0d0f"
+            android:layout_alignBottom="@id/img_user_group"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:textColor="#ffffff"
+            android:textStyle="bold"/>
+    </RelativeLayout>
+
+
+
+   <!-- <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -67,5 +82,5 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:background="#000000"/>
-    </LinearLayout>
+    </LinearLayout>-->
 </RelativeLayout>
