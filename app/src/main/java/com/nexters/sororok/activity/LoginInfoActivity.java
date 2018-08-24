@@ -3,6 +3,7 @@ package com.nexters.sororok.activity;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.os.Build;
@@ -89,7 +90,7 @@ public class LoginInfoActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(LoginInfoActivity.this, LoginActivity.class);
                 startActivity(intent);
-                //overridePendingTransition(R.anim.slide_out_right, R.anim.slide_no_move);
+                //overridePendingTransition(android.R.anim.fade_out, android.R.anim.slide_out_right);
                 finish();
             }
         });
@@ -241,6 +242,12 @@ public class LoginInfoActivity extends AppCompatActivity {
                 // Response Success or Fail
                 if (response.isSuccessful()) {
                     Log.d(TAG, "onResponseSuccess");
+
+                    SharedPreferences pref = getSharedPreferences("idPreference", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = pref.edit();
+                    editor.putString("id", response.body() != null ? response.body().getId() : "-1");
+                    editor.apply();
+
                 } else {
                     Log.d(TAG, "onResponseFail");
                 }

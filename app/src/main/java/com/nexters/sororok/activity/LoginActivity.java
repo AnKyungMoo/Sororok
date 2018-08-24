@@ -1,6 +1,8 @@
 package com.nexters.sororok.activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -218,7 +220,7 @@ public class LoginActivity extends AppCompatActivity{
                     loginType = "1";
                     uid = userProfile.getId() + "";
 
-                    callRetrofit();
+                    callRetrofit(LoginActivity.this);
 
                     if (!id.equals("-1")) {
                         Intent intent = new Intent(LoginActivity.this, TestActivity.class);
@@ -297,7 +299,7 @@ public class LoginActivity extends AppCompatActivity{
                     loginType = "2";
                     uid = naverId;
 
-                    callRetrofit();
+                    callRetrofit(activity);
 
                     if (!id.equals("-1")) {
                         Intent intent = new Intent(activity, TestActivity.class);
@@ -381,7 +383,7 @@ public class LoginActivity extends AppCompatActivity{
                             else
                                 imageUrl = "";
 
-                            callRetrofit();
+                            callRetrofit(LoginActivity.this);
 
                             if (!id.equals("-1")) {
                                 Intent intent = new Intent(LoginActivity.this, TestActivity.class);
@@ -412,7 +414,7 @@ public class LoginActivity extends AppCompatActivity{
     }
 
     // 레트로핏을 이용하여서 서버에서 기존 로그인 정보 획득
-    private static void callRetrofit() {
+    private static void callRetrofit(LoginActivity loginActivity) {
 
         /* 비동기로 처리하면 id를 가져오는거보다 다른 작업이 먼저 처리되는 경우가 발생되므로
          * 동기로 처리, 네트워크 통신 문제때문에 asyncTask에서 작업
@@ -425,6 +427,15 @@ public class LoginActivity extends AppCompatActivity{
             LoginResponseModel loginResponseModel = loginTask.get();
             id = loginResponseModel.getId();
             Log.d("checkId", id);
+
+            WeakReference<LoginActivity> activity = new WeakReference<>(loginActivity);
+            LoginActivity mActivity = activity.get();
+
+            SharedPreferences pref = getSharedPreferences(mActivity);
+            SharedPreferences.Editor editor = pref.edit();
+            editor.putString("id", id);
+            editor.apply();
+
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -454,5 +465,9 @@ public class LoginActivity extends AppCompatActivity{
             }
         });
         */
+    }
+
+    public static SharedPreferences getSharedPreferences (Context ctxt) {
+        return ctxt.getSharedPreferences("idPreference", MODE_PRIVATE);
     }
 }
