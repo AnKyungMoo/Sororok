@@ -2,54 +2,190 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#4b50df">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_above="@+id/btn_new_group_complete"
         android:layout_marginTop="15dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp">
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/new_group_title"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content">
 
             <Button
                 android:id="@+id/btn_back"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:background="@drawable/backbutton"/>
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="@drawable/btn_comm_back_wh"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:text="그룹 생성"
-                android:textSize="10pt"/>
-        </LinearLayout>
+                android:textSize="20sp"
+                android:textColor="#ffffff"
+                android:layout_centerHorizontal="true"/>
+
+            <TextView
+                android:id="@+id/txt_new_group_complete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="완료"
+                android:textSize="16sp"
+                android:textColor="#ffffff"
+                android:layout_alignParentRight="true"/>
+
+        </RelativeLayout>
 
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="25dp"
+            android:paddingTop="50dp"
             android:gravity="center">
+
+            <RelativeLayout
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:background="@drawable/oval_5">
+                <TextView
+                    android:layout_width="72dp"
+                    android:layout_height="18dp"
+                    android:background="@drawable/btn_edit_profileimg"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_margin="10dp"/>
+
+            </RelativeLayout>
 
             <ImageView
                 android:id="@+id/img_new_group"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@drawable/user_icon"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
                 android:scaleType="centerCrop"/>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="60dp"
+            android:orientation="vertical"
+            android:layout_marginRight="60dp">
+
+            <RelativeLayout
+                android:id="@+id/relative_group_name"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_horizontal|bottom"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txt_group_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="그룹명"
+                    android:textSize="16sp"
+                    android:layout_alignParentLeft="true"
+                    android:textColor="#ffffff"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="넥스터즈 13기"
+                    android:textColor="#ffffff"
+                    android:textStyle="bold"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="30dp"
+                    android:textSize="20sp"/>
+
+            </RelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#868ae9"
+                android:layout_below="@id/relative_group_name"/>
+
+            <RelativeLayout
+                android:id="@+id/relative_group_explain"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center_horizontal|bottom"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/txt_group_explain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="그룹설명"
+                    android:textSize="16sp"
+                    android:layout_alignParentLeft="true"
+                    android:textColor="#ffffff"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="소로록팀"
+                    android:textColor="#ffffff"
+                    android:textStyle="bold"
+                    android:layout_alignParentRight="true"
+                    android:layout_toRightOf="@id/txt_group_explain"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="20sp"/>
+
+            </RelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#868ae9"
+                android:layout_below="@id/relative_group_explain"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="그룹 코드번호"
+                android:textColor="#ffffff"
+                android:textSize="16sp"
+                android:layout_marginTop="30dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginTop="15dp"
+                android:background="#ffffff">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textColor="#2b2e38"
+                    android:textSize="24sp"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:textStyle="bold"
+                    android:text="10W93F"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="탭하여 코드번호 복사하기"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:textColor="#ffffff"
+                android:textSize="14sp"/>
 
         </LinearLayout>
 
-        <LinearLayout
+        <!--<LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
@@ -163,13 +299,7 @@
                     android:textColor="@android:color/black"
                     android:enabled="false"/>
             </LinearLayout>
-         </LinearLayout>
-    <Button
-        android:id="@+id/btn_new_group_complete"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:text="완료"/>
-
+         </LinearLayout>-->
+    </LinearLayout>
 
 </RelativeLayout>
