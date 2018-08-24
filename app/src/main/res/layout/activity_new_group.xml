@@ -99,6 +99,7 @@
                     android:textColor="#ffffff"/>
 
                 <TextView
+                    android:id="@+id/edit_group_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="넥스터즈 13기"
@@ -132,6 +133,7 @@
                     android:textColor="#ffffff"/>
 
                 <TextView
+                    android:id="@+id/edit_group_explain"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="소로록팀"

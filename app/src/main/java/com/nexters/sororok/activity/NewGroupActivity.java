@@ -9,7 +9,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -32,7 +31,7 @@ public class NewGroupActivity extends AppCompatActivity {
 
     private static final int REQUEST_USER_GALLERY = 1;
     private ImageView imgGroupPhoto;
-    private EditText groupName, groupExplain;
+    private TextView groupName, groupExplain;
     private TextView seekValue;
     private Button completeBtn, backBtn, codeButton;
     private SeekBar totalMemberSeek;
@@ -53,7 +52,7 @@ public class NewGroupActivity extends AppCompatActivity {
                 startActivityForResult(i, REQUEST_USER_GALLERY);
             }
         });
-        seekListener();
+       // seekListener();
     }
 
     public int getTotal_progress() {
@@ -111,9 +110,9 @@ public class NewGroupActivity extends AppCompatActivity {
         groupExplain = findViewById(R.id.edit_group_explain); //그룹 설명
         completeBtn = findViewById(R.id.btn_new_group_complete);
         sendGroupInfo();
-        totalMemberSeek = findViewById(R.id.seek_total_member);
+        /*totalMemberSeek = findViewById(R.id.seek_total_member);
         seekValue = findViewById(R.id.txt_seek_value);
-        codeButton = findViewById(R.id.button_group_code);
+        codeButton = findViewById(R.id.button_group_code);*/
         backBtn = findViewById(R.id.btn_back);
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,7 +125,7 @@ public class NewGroupActivity extends AppCompatActivity {
             imgGroupPhoto.setClipToOutline(true);
         }
     }
-
+/*
     public void seekListener(){
         totalMemberSeek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -146,7 +145,7 @@ public class NewGroupActivity extends AppCompatActivity {
 
             }
         });
-    }
+    }*/
 
     private void getGroupCode() {
         GroupCodeTask groupCodeTask = new GroupCodeTask();

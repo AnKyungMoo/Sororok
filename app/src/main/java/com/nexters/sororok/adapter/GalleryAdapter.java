@@ -70,7 +70,7 @@ public class GalleryAdapter extends BaseAdapter{
        // ImageLoader.getInstance().init(ImageLoaderConfiguration.createDefault(this.context)); //추가
 
         if(position==0)
-            Glide.with(context).load(R.drawable.camera).into(imageView);
+            Glide.with(context).load(R.drawable.default_camera).into(imageView);
             //ImageLoader.getInstance().displayImage("drawable://"+R.drawable.camera, imageView, options);
         else
             Glide.with(context).load("file://" + imageUrls.get(position)).into(imageView);
