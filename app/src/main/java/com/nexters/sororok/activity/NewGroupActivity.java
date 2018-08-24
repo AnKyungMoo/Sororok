@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,6 +18,10 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.nexters.sororok.R;
+import com.nexters.sororok.asynctask.CreateGroupTask;
+import com.nexters.sororok.model.GroupResponseModel;
+
+import java.util.concurrent.ExecutionException;
 
 
 //그룹 생성 화면
@@ -28,9 +33,9 @@ public class NewGroupActivity extends AppCompatActivity {
     private TextView seekValue;
     private Button completeBtn,backBtn;
     private SeekBar totalMemberSeek;
-    private String photoPath;
+    private String photoPath = null;
+    private String groupCode = "a1b2c3";
     private int total_progress=2;
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -74,6 +79,7 @@ public class NewGroupActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(isEmpty()){ //전부 채워져있으면
+                    callRetrofit();
                     Intent intent = new Intent();
                     intent.putExtra("group_name", groupName.getText().toString());
                     intent.putExtra("group_explain", groupExplain.getText().toString());
@@ -135,5 +141,25 @@ public class NewGroupActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void callRetrofit() {
+        CreateGroupTask createGroupTask = new CreateGroupTask();
+
+        createGroupTask.execute(groupName.getText(),
+                groupCode,
+                Integer.valueOf(SplashActivity.localId),
+                groupExplain.getText(),
+                photoPath
+        );
+
+        try {
+            GroupResponseModel groupResponseModel = createGroupTask.get();
+            /* TODO: 뭔가 필요해지면 하자 */
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -380,7 +380,6 @@
 
             </RelativeLayout>
 
-<!--
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/btn_floating"
                 android:layout_width="70dp"
@@ -389,7 +388,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:background="#ffa1be"
-                android:layout_margin="20dp"/>-->
+                android:layout_margin="20dp"/>
 
         </RelativeLayout>
     </FrameLayout>

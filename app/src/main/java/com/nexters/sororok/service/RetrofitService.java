@@ -64,13 +64,24 @@ public interface RetrofitService {
     );
 
     // 필수 요소로 저장소 생성
+    @Multipart
     @PUT("repository/create")
     Call<GroupResponseModel> create(@Part("name") String name,
                                     @Part("code") String code,
                                     @Part("memberId") int memberId,
                                     @Part("extraInfo") String extraInfo
     );
-
+    
     @GET("member/detail")
     Call<MemberResponseModel> listup(@Query("repositoryId") int repositoryId);
+
+    // 이미지 포함 저장소 생성
+    @Multipart
+    @PUT("repository/create")
+    Call<GroupResponseModel> create(@Part("name") String name,
+                                    @Part("code") String code,
+                                    @Part("memberId") int memberId,
+                                    @Part("extraInfo") String extraInfo,
+                                    @Part MultipartBody.Part repositoryImage
+    );
 }
