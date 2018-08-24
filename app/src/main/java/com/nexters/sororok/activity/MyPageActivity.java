@@ -1,6 +1,7 @@
 package com.nexters.sororok.activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
 import android.os.Build;
@@ -16,6 +17,11 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.nexters.sororok.R;
+import com.nexters.sororok.asynctask.DownloadImageTask;
+import com.nexters.sororok.asynctask.MemberInfoTask;
+import com.nexters.sororok.model.MemberInfo;
+
+import java.util.concurrent.ExecutionException;
 
 public class MyPageActivity extends AppCompatActivity {
 
@@ -33,6 +39,7 @@ public class MyPageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_page);
         initComponent();
+        getMemnberInfo();
         imgUserPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -88,6 +95,28 @@ public class MyPageActivity extends AppCompatActivity {
             imgUserPhoto.setClipToOutline(true);
         }*/
 
+    }
+
+    private void getMemnberInfo() {
+        MemberInfoTask memberInfoTask = new MemberInfoTask();
+        memberInfoTask.execute(Integer.valueOf(SplashActivity.localId));
+        try {
+            MemberInfo memberInfo = memberInfoTask.get();
+            userName.setText(memberInfo.getName());
+            userNumber.setText(memberInfo.getPhone());
+            userEmail.setText(memberInfo.getEmail());
+            DownloadImageTask downloadImageTask = new DownloadImageTask();
+
+            downloadImageTask.execute("http://45.63.120.140:40005/sororok/images/" + memberInfo.getImageName());
+
+            Bitmap myBitmap = downloadImageTask.get();
+            imgUserPhoto.setImageBitmap(myBitmap);
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
