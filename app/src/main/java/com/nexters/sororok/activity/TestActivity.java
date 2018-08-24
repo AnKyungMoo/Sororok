@@ -64,9 +64,15 @@ public class TestActivity extends AppCompatActivity
         findViewById();
         setAdapter();
         buttonConnect();
-        getGroupList();
        // appBarLayout.addOnOffsetChangedListener(this);
        // startAlphaAnimation(tvTitleToolBar, 0, View.INVISIBLE);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        getGroupList();
     }
 
     private void findViewById() {
