@@ -223,15 +223,19 @@ public class MemberBanActivity extends AppCompatActivity {
 
                 mAdapter.clearAdapter();
                 listView.clearKeyword();
+                ArrayList<MemberListItem> copyList = new ArrayList<>();
+                ArrayList<String> copyname = new ArrayList<>();
                 int count =0;
                 for(int i=0;i<memberListSort.size();i++){
                     if(listchecked.contains(memberListSort.get(i).getMemberID())){
-                        memberListSort.remove(i);
-                        name.remove(i);
+                        copyList.add(memberListSort.get(i));
+                        copyname.add(name.get(i));
                         count++;
                     }
-                    consonant=listView.setKeywordList(name);
                 }
+                memberListSort.removeAll(copyList);
+                name.removeAll(copyname);
+                consonant=listView.setKeywordList(name);
                 listchecked.clear();
                 setBasic(name,consonant,mAdapter,memberListSort);
                 selectedNumberBtn.setText("0");

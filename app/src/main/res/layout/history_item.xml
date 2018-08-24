@@ -2,15 +2,41 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/txt_history"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="History1"
-        android:layout_margin="30dp"
-        android:textColor="#000000"
-        android:textSize="9pt"/>
+        android:layout_height="128dp"
+        android:layout_margin="20dp">
+        <ImageView
+            android:id="@+id/img_notice_icon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/icn_noti_notice"
+            android:layout_alignParentLeft="true"/>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/img_notice_icon"
+            android:layout_marginLeft="20dp"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/txt_history"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="History1"
+                android:textColor="#2b2e38"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/txy_today_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="#bec2c7"
+                android:text="2018.08.23"/>
+        </LinearLayout>
+
+    </RelativeLayout>
 </RelativeLayout>
