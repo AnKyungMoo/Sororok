@@ -33,7 +33,8 @@ public class NewGroupActivity extends AppCompatActivity {
     private ImageView imgGroupPhoto;
     private TextView groupName, groupExplain;
     private TextView seekValue;
-    private Button completeBtn, backBtn, codeButton;
+    private TextView completeBtn;
+    private Button backBtn, codeButton;
     private SeekBar totalMemberSeek;
     private String photoPath = null;
     private String groupCode;
