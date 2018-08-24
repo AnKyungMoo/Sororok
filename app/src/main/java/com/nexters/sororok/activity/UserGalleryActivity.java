@@ -86,9 +86,13 @@ public class UserGalleryActivity extends AppCompatActivity {
                     }
 
                 }else{
-                    Intent intent = new Intent(getApplicationContext(), CropImageActivity.class);
+                    Intent intent = new Intent();
+                    intent.putExtra("photo_path", galleryAdapter.getItem(i).toString());
+                    setResult(RESULT_OK, intent);
+                    finish();
+                   /* Intent intent = new Intent(getApplicationContext(), CropImageActivity.class);
                     intent.putExtra("crop_image_path", galleryAdapter.getItem(i).toString());
-                    startActivityForResult(intent,100);
+                    startActivityForResult(intent,100);*/
                 }
             }
         });

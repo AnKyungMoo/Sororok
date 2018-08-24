@@ -28,11 +28,8 @@ public class NewGroupActivity extends AppCompatActivity {
 
     private static final int REQUEST_USER_GALLERY = 1;
     private ImageView imgGroupPhoto;
-<<<<<<< HEAD
     private EditText groupName, groupExplain;
-=======
-    private TextView groupName, groupExplain, textGroupCode;
->>>>>>> 77d235e6c13b3add4a4cabf03b02cabac90624aa
+    private TextView textGroupCode;
     private TextView completeBtn;
     private Button backBtn;
     private String photoPath = null;
