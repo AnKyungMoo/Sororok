@@ -97,4 +97,7 @@ public interface RetrofitService {
     // 그룹 폭파
     @POST("repository/destroy")
     Call<DestroyGroupModel> destroy(@Body DestroyRequestModel destroyRequestModel);
+
+    @GET("repository/code")
+    Call<String> code();
 }
