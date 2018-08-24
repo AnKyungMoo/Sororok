@@ -14,8 +14,15 @@ import android.widget.TextView;
 
 import com.nexters.sororok.R;
 import com.nexters.sororok.asynctask.DestroyGroupTask;
+import com.nexters.sororok.asynctask.GroupCodeTask;
+import com.nexters.sororok.asynctask.RefreshCodeTask;
 import com.nexters.sororok.model.DestroyGroupModel;
 import com.nexters.sororok.model.DestroyRequestModel;
+import com.nexters.sororok.model.RefreshCodeModel;
+import com.nexters.sororok.model.UpdateCodeModel;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.concurrent.ExecutionException;
 
@@ -27,11 +34,11 @@ import java.util.concurrent.ExecutionException;
 public class MemberSettingActivity extends AppCompatActivity {
 
     private Button groupShareBtn, changeAdminBtn,groupManageBtn,groupRemoveBtn,groupShareBtn2;
-    private Button backBtn,exitGroupBtn,optionBtn1,optionBtn2,optionBtn3;
+    private Button backBtn,exitGroupBtn,optionBtn1,optionBtn2,optionBtn3, refreshButton;
     private RelativeLayout animLayout,mainLayout;
     private Animation slideUpAnimation, slideDownAnimation;
     private LinearLayout defalutLayout, nextLayout,share,manage,change,boom;
-    private TextView mainTitle,subTitle,groupCode;
+    private TextView mainTitle, subTitle, groupCode;
     private int groupid;
     /* TODO: 앞에서부터 데이터 가져오자 */
     private int repositoryId = 11;
@@ -165,6 +172,13 @@ public class MemberSettingActivity extends AppCompatActivity {
                 startActivity(manageIntent);
             }
         });
+
+        refreshButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                refreshGroupCode();
+            }
+        });
     }
 
     public void initComponent(){
@@ -191,6 +205,22 @@ public class MemberSettingActivity extends AppCompatActivity {
         groupCode = findViewById(R.id.txt_group_code);
         slideUpAnimation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.slide_up_animation);
         slideDownAnimation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.slide_down_animation);
+        refreshButton = findViewById(R.id.button_code_refresh);
     }
 
+    private void refreshGroupCode() {
+        RefreshCodeTask refreshCodeTask = new RefreshCodeTask();
+
+        refreshCodeTask.execute(new UpdateCodeModel(12));
+
+        try {
+            RefreshCodeModel refreshCodeModel = refreshCodeTask.get();
+
+            groupCode.setText(refreshCodeModel.getGroupCode());
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -7,6 +7,8 @@ import com.nexters.sororok.model.GroupResponseModel;
 import com.nexters.sororok.model.LoginRequestModel;
 import com.nexters.sororok.model.LoginResponseModel;
 import com.nexters.sororok.model.MemberResponseModel;
+import com.nexters.sororok.model.RefreshCodeModel;
+import com.nexters.sororok.model.UpdateCodeModel;
 
 import java.util.List;
 
@@ -98,6 +100,11 @@ public interface RetrofitService {
     @POST("repository/destroy")
     Call<DestroyGroupModel> destroy(@Body DestroyRequestModel destroyRequestModel);
 
+    // 저장소 코드 생성
     @GET("repository/code")
     Call<String> code();
+
+    // 저장소 코드 refresh
+    @PUT("repository/update")
+    Call<RefreshCodeModel> update(@Body UpdateCodeModel updateCodeModel);
 }
