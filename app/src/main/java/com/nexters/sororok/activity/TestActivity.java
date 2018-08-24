@@ -1,12 +1,14 @@
 package com.nexters.sororok.activity;
 
 import android.content.Intent;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.OvalShape;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -41,7 +43,7 @@ public class TestActivity extends AppCompatActivity
 
     private TextView tvTitleToolBar;
     private AppBarLayout appBarLayout;
-    private Button settingBtn1, settingBtn2, historyBtn1, historyBtn2;
+    private Button settingBtn1, settingBtn2, historyBtn1, historyBtn2, settingBtn, historyBtn;
     private TextView userName;
     private RecyclerView recyclerView;
     private GroupAdapter groupAdapter;
@@ -57,76 +59,78 @@ public class TestActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity3_main);
+        setContentView(R.layout.main4);
         findViewById();
         setAdapter();
         buttonConnect();
         getGroupList();
-        appBarLayout.addOnOffsetChangedListener(this);
+       // appBarLayout.addOnOffsetChangedListener(this);
        // startAlphaAnimation(tvTitleToolBar, 0, View.INVISIBLE);
     }
 
     private void findViewById() {
-        tvTitleToolBar = findViewById(R.id.tvTitleToolBar);
-        appBarLayout = findViewById(R.id.appBarLayout);
-        userName = findViewById(R.id.txt_user_title);
-        settingBtn2 = findViewById(R.id.btn_setting_2);
+        /*tvTitleToolBar = findViewById(R.id.tvTitleToolBar);
+        appBarLayout = findViewById(R.id.appBarLayout);*/
+        userName = findViewById(R.id.txt_user_name);
+      /*  settingBtn2 = findViewById(R.id.btn_setting_2);
         settingBtn1 = findViewById(R.id.btn_setting_1);
         historyBtn1 = findViewById(R.id.btn_history_1);
-        historyBtn2 = findViewById(R.id.btn_history_2);
+        historyBtn2 = findViewById(R.id.btn_history_2);*/
+        historyBtn = findViewById(R.id.btn_history);
+        settingBtn = findViewById(R.id.btn_setting);
         recyclerView = findViewById(R.id.recyclerview);
         historyListView = findViewById(R.id.list_drawer);
         drawerLayout = findViewById(R.id.layout_drawer);
         relativeLayout = findViewById(R.id.layout_linear);
         floatingActionButton = findViewById(R.id.btn_floating);
-        //userImage = findViewById(R.id.imgAvatar);
-       /* userImage.setBackground(new ShapeDrawable(new OvalShape()));
+        userImage = findViewById(R.id.img_user);
+        userImage.setBackground(new ShapeDrawable(new OvalShape()));
         if(Build.VERSION.SDK_INT >= 21) {
             userImage.setClipToOutline(true);
-        }*/
+        }
     }
 
     public void buttonConnect(){
-        historyBtn1.setOnClickListener(new View.OnClickListener() {
+        historyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 drawerLayout.openDrawer(relativeLayout);
             }
         });
-        historyBtn2.setOnClickListener(new View.OnClickListener() {
+        /*historyBtn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 drawerLayout.openDrawer(relativeLayout);
             }
-        });
-        settingBtn1.setOnClickListener(new View.OnClickListener() {
+        });*/
+        settingBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), SettingActivity.class);
                 startActivityForResult(intent,100);
             }
         });
-        settingBtn2.setOnClickListener(new View.OnClickListener() {
+       /* settingBtn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), SettingActivity.class);
                 startActivityForResult(intent,100);
             }
-        });
+        });*/
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), NewGroupActivity.class);
                 startActivityForResult(intent, 200);
             }
-        });/*
+        });
         userImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MyPageActivity.class);
                 startActivityForResult(intent,300);
             }
-        });*/
+        });
     }
 
     @Override
@@ -163,11 +167,11 @@ public class TestActivity extends AppCompatActivity
         historyAdapter.addHistory("소로록이 새롭게 업데이트가 되었습니다.");
         historyAdapter.addHistory("넥터 13기 그룹이 새롭게 추가 되었습니다.");
 
-        recyclerView.setHasFixedSize(true);
+       /* recyclerView.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        /*TODO: 서버에서 데이터를 받아올 때 까지 사용할 더미 데이터*/
+        *//*TODO: 서버에서 데이터를 받아올 때 까지 사용할 더미 데이터*//*
         groupListItems = new ArrayList<>();
         groupListItems.add(new GroupListItem("가입됨", R.drawable.xbutton,
                 "넥스터즈 13기", R.drawable.xbutton, "1번방"));
@@ -177,8 +181,7 @@ public class TestActivity extends AppCompatActivity
                 "빈방", R.drawable.xbutton, "0번방"));
 
         groupAdapter = new GroupAdapter(groupListItems);
-        recyclerView.setAdapter(groupAdapter);
-
+        recyclerView.setAdapter(groupAdapter);*/
     }
 
     @Override

@@ -66,12 +66,12 @@ public class SplashActivity extends AppCompatActivity {
                 public void run() {
                     if (!localId.equals("-1")) {
                         Log.d("호출", "ㅁ");
-                        Intent intent = new Intent(SplashActivity.this, test.class);
+                        Intent intent = new Intent(SplashActivity.this, TestActivity.class);
                         startActivity(intent);
                         finish();
                     }
                     else {
-                        Intent mainIntent = new Intent(SplashActivity.this, test.class);
+                        Intent mainIntent = new Intent(SplashActivity.this, TestActivity.class);
                         SplashActivity.this.startActivity(mainIntent);
                         SplashActivity.this.finish();
                     }
@@ -99,12 +99,12 @@ public class SplashActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         if (!localId.equals("-1")) {
-                            Intent intent = new Intent(SplashActivity.this, test.class);
+                            Intent intent = new Intent(SplashActivity.this, TestActivity.class);
                             startActivity(intent);
                             finish();
                         }
                         else {
-                            Intent mainIntent = new Intent(SplashActivity.this, test.class);
+                            Intent mainIntent = new Intent(SplashActivity.this, TestActivity.class);
                             SplashActivity.this.startActivity(mainIntent);
                             SplashActivity.this.finish();
                         }

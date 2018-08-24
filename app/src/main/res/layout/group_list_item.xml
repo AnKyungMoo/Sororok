@@ -6,6 +6,7 @@
     android:layout_margin="25dp">
 
     <RelativeLayout
+        android:id="@+id/click_member_list"
         android:layout_width="300dp"
         android:layout_height="80dp"
         android:background="@drawable/bg_list"
