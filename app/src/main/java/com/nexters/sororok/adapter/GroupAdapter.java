@@ -3,6 +3,7 @@ package com.nexters.sororok.adapter;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -18,8 +19,13 @@ import android.widget.Toast;
 
 import com.nexters.sororok.R;
 import com.nexters.sororok.activity.CustomDialog;
+import com.nexters.sororok.activity.MemberListActivity;
+import com.nexters.sororok.activity.SplashActivity;
 import com.nexters.sororok.asynctask.DownloadImageTask;
+import com.nexters.sororok.asynctask.JoinRepositoryTask;
 import com.nexters.sororok.item.GroupListItem;
+import com.nexters.sororok.model.JoinRepositoryRequestModel;
+import com.nexters.sororok.model.JoinRepositoryResponseModel;
 
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
@@ -96,7 +102,10 @@ public class GroupAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
                         // Text 값 받아서 로그 남기기
                         String value = edit.getText().toString();
-                        Toast.makeText(view.getContext(),value,Toast.LENGTH_SHORT).show();
+                        joinGroup(value, position, view);
+
+                        //Toast.makeText(view.getContext(),value,Toast.LENGTH_SHORT).show();
+
                         dialog.dismiss();     //닫기
                         // Event
                     }
@@ -145,6 +154,32 @@ public class GroupAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                 view.getContext().startActivity(intent);*//*
             }
         });*/
+    }
+
+    private void joinGroup(String value, int position, View view) {
+        JoinRepositoryTask joinRepositoryTask = new JoinRepositoryTask();
+        joinRepositoryTask.execute(new JoinRepositoryRequestModel(value,
+                Integer.valueOf(SplashActivity.localId),
+                groupListItems.get(position).groupId)
+        );
+
+        try {
+            JoinRepositoryResponseModel joinRepositoryResponseModel = joinRepositoryTask.get();
+
+            if (joinRepositoryResponseModel.getRepositoryId() < 0) {
+                Toast.makeText(view.getContext(), "올바른 값을 입력하세요",Toast.LENGTH_SHORT).show();
+                return;
+            }
+            else {
+                Intent intent = new Intent (view.getContext(), MemberListActivity.class);
+                intent.putExtra("repositoryId", groupListItems.get(position).groupId);
+                view.getContext().startActivity(intent);
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
