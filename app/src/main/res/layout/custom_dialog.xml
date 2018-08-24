@@ -9,7 +9,7 @@
         android:layout_height="180dp"
         android:orientation="vertical"
         android:layout_centerInParent="true"
-        android:background="#E6E6E6"
+        android:background="#ffffff"
         android:layout_margin="30dp">
 
         <TextView
@@ -18,7 +18,9 @@
             android:layout_height="wrap_content"
             android:text="로그아웃 하시겠습니까?"
             android:gravity="center"
-            android:textSize="8pt"
+            android:textSize="20sp"
+            android:textColor="#2b2e38"
+            android:textStyle="bold"
             android:layout_above="@id/layout_dialog_button"
             android:layout_marginBottom="50dp"
             android:layout_marginTop="30dp"/>
@@ -29,6 +31,7 @@
             android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
+            android:background="@null"
             android:layout_above="@id/layout_dialog_button"
             android:visibility="invisible"
             android:layout_marginBottom="10dp"/>
@@ -45,12 +48,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="취소"
+                android:textSize="14sp"
+                android:textColor="#ffffff"
+                android:background="#d3d5da"
                 android:layout_weight="0.5"/>
             <Button
                 android:id="@+id/btn_dialog_ok"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="확인"
+                android:textSize="14sp"
+                android:textColor="#ffffff"
+                android:background="#4b50df"
                 android:layout_weight="0.5"/>
         </LinearLayout>
     </RelativeLayout>

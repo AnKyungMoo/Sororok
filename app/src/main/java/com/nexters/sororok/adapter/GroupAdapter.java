@@ -2,10 +2,8 @@ package com.nexters.sororok.adapter;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,9 +18,6 @@ import com.nexters.sororok.activity.MemberListActivity;
 import com.nexters.sororok.asynctask.DownloadImageTask;
 import com.nexters.sororok.item.GroupListItem;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
@@ -85,6 +80,7 @@ public class GroupAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
                 Intent intent = new Intent (view.getContext(), MemberListActivity.class);
                 intent.putExtra("repositoryId", groupListItems.get(position).groupId);
+               // if(customDialog.getEditText().getText().toString().length()>0)
                 view.getContext().startActivity(intent);
 
             }
