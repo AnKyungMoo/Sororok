@@ -8,6 +8,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.Button;
@@ -20,9 +21,13 @@ import com.bumptech.glide.Glide;
 import com.nexters.sororok.R;
 import com.nexters.sororok.adapter.GroupAdapter;
 import com.nexters.sororok.adapter.HistoryAdapter;
+import com.nexters.sororok.asynctask.GroupListTask;
 import com.nexters.sororok.item.GroupListItem;
+import com.nexters.sororok.model.GroupList;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class TestActivity extends AppCompatActivity
       implements AppBarLayout.OnOffsetChangedListener {
@@ -56,6 +61,7 @@ public class TestActivity extends AppCompatActivity
         findViewById();
         setAdapter();
         buttonConnect();
+        getGroupList();
         appBarLayout.addOnOffsetChangedListener(this);
        // startAlphaAnimation(tvTitleToolBar, 0, View.INVISIBLE);
     }
@@ -107,13 +113,13 @@ public class TestActivity extends AppCompatActivity
                 startActivityForResult(intent,100);
             }
         });
-        /*floatingActionButton.setOnClickListener(new View.OnClickListener() {
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), NewGroupActivity.class);
                 startActivityForResult(intent, 200);
             }
-        });
+        });/*
         userImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -232,6 +238,24 @@ public class TestActivity extends AppCompatActivity
                 startAlphaAnimation(tvTitleToolBar, ALPHA_ANIMATIONS_DURATION, View.INVISIBLE);
                 mIsTheTitleVisible = false;
             }
+        }
+    }
+
+    private void getGroupList() {
+        GroupListTask groupListTask = new GroupListTask();
+
+        groupListTask.execute(Integer.valueOf(SplashActivity.localId));
+
+        try {
+            List<GroupList> groupList = groupListTask.get();
+
+            for (int i = 0; i < groupList.size(); ++i) {
+                Log.d("AKM", groupList.get(i).getName());
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
         }
     }
 }
