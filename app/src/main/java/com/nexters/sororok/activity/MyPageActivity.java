@@ -90,10 +90,10 @@ public class MyPageActivity extends AppCompatActivity {
         userName = findViewById(R.id.txt_user_name);
         userNumber = findViewById(R.id.txt_user_number);
         userEmail = findViewById(R.id.txt_user_email);
-       /* imgUserPhoto.setBackground(new ShapeDrawable(new OvalShape()));
+        imgUserPhoto.setBackground(new ShapeDrawable(new OvalShape()));
         if(Build.VERSION.SDK_INT >= 21) {
             imgUserPhoto.setClipToOutline(true);
-        }*/
+        }
 
     }
 
