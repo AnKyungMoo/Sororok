@@ -4,6 +4,7 @@ import com.nexters.sororok.model.GroupList;
 import com.nexters.sororok.model.GroupResponseModel;
 import com.nexters.sororok.model.LoginRequestModel;
 import com.nexters.sororok.model.LoginResponseModel;
+import com.nexters.sororok.model.MemberResponseModel;
 
 import java.util.List;
 
@@ -73,6 +74,9 @@ public interface RetrofitService {
                                     @Part("memberId") int memberId,
                                     @Part("extraInfo") String extraInfo
     );
+    
+    @GET("member/detail")
+    Call<MemberResponseModel> listup(@Query("repositoryId") int repositoryId);
 
     // 이미지 포함 저장소 생성
     @Multipart
