@@ -1,5 +1,7 @@
 package com.nexters.sororok.activity;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Intent;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
@@ -11,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +40,7 @@ public class NewGroupActivity extends AppCompatActivity {
     private Button backBtn;
     private String photoPath = null;
     private String groupCode;
+    private LinearLayout linearLayout;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -110,6 +114,18 @@ public class NewGroupActivity extends AppCompatActivity {
         seekValue = findViewById(R.id.txt_seek_value);*/
         textGroupCode = findViewById(R.id.new_group_code);
         backBtn = findViewById(R.id.btn_back);
+        linearLayout = findViewById(R.id.layout_copy_group_code);
+        linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ClipboardManager clipboardManager = (ClipboardManager)getApplicationContext().getSystemService(getApplicationContext().CLIPBOARD_SERVICE);
+                ClipData clipData = ClipData.newPlainText("group_code", textGroupCode.getText().toString());
+                clipboardManager.setPrimaryClip(clipData);
+                Toast.makeText(getApplicationContext(), "그룹코드가 복사되었습니다.",Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getApplicationContext(), getApplicationContext().getString(R.string.toast_text_clipboard_adress), Toast.LENGTH_SHORT).show();
+
+            }
+        });
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

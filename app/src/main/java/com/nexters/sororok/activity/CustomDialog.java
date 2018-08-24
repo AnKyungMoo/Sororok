@@ -24,11 +24,6 @@ public class CustomDialog extends AlertDialog{
         super(context);
     }
 
-    /*public CustomDialog(Context context){
-        super(context);
-    }*/
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,24 +31,6 @@ public class CustomDialog extends AlertDialog{
         getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         setContentView(R.layout.custom_dialog);
         initComponent();
-
-        okBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(getFlag() == 1){
-                    Intent intent = new Intent(view.getContext(), MemberListActivity.class);
-                    view.getContext().startActivity(intent);
-                    //activity.startActivity(intent);
-                }else
-                    dismiss();
-            }
-        });
-        cancelBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dismiss();
-            }
-        });
     }
 
 
@@ -82,5 +59,24 @@ public class CustomDialog extends AlertDialog{
         cancelBtn = findViewById(R.id.btn_dialog_cancel);
         textView = findViewById(R.id.txt_dialog_message);
         editText = findViewById(R.id.edit_dialog_message);
+
+
+        okBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(getFlag() == 1){
+                    Intent intent = new Intent(view.getContext(), MemberListActivity.class);
+                    view.getContext().startActivity(intent);
+                    //activity.startActivity(intent);
+                }else
+                    dismiss();
+            }
+        });
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dismiss();
+            }
+        });
     }
 }
