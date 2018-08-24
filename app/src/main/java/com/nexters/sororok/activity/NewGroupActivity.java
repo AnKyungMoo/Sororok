@@ -33,7 +33,7 @@ public class NewGroupActivity extends AppCompatActivity {
     private TextView seekValue;
     private Button completeBtn,backBtn;
     private SeekBar totalMemberSeek;
-    private String photoPath;
+    private String photoPath = null;
     private String groupCode = "a1b2c3";
     private int total_progress=2;
 
@@ -146,7 +146,12 @@ public class NewGroupActivity extends AppCompatActivity {
     private void callRetrofit() {
         CreateGroupTask createGroupTask = new CreateGroupTask();
 
-        createGroupTask.execute(groupName.getText(), groupCode, Integer.valueOf(SplashActivity.localId), groupExplain.getText());
+        createGroupTask.execute(groupName.getText(),
+                groupCode,
+                Integer.valueOf(SplashActivity.localId),
+                groupExplain.getText(),
+                photoPath
+        );
 
         try {
             GroupResponseModel groupResponseModel = createGroupTask.get();

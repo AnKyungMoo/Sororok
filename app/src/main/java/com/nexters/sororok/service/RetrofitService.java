@@ -68,4 +68,14 @@ public interface RetrofitService {
                                     @Part("memberId") int memberId,
                                     @Part("extraInfo") String extraInfo
     );
+
+    // 이미지 포함 저장소 생성
+    @Multipart
+    @PUT("repository/create")
+    Call<GroupResponseModel> create(@Part("name") String name,
+                                    @Part("code") String code,
+                                    @Part("memberId") int memberId,
+                                    @Part("extraInfo") String extraInfo,
+                                    @Part MultipartBody.Part repositoryImage
+    );
 }
