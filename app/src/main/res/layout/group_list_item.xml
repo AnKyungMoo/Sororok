@@ -9,18 +9,18 @@
 
     <RelativeLayout
         android:id="@+id/click_member_list"
-        android:layout_width="275dp"
-        android:layout_height="80dp"
+        android:layout_width="289dp"
+        android:layout_height="94dp"
         android:background="@drawable/bg_list"
-        android:layout_marginLeft="30dp"
-        android:layout_alignParentBottom="true">
+        android:layout_marginLeft="29dp"
+        android:layout_marginTop="13dp">
 
         <LinearLayout
             android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_gravity="center"
-            android:layout_centerInParent="true"
+            android:layout_marginTop="15dp"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="60dp">
 
