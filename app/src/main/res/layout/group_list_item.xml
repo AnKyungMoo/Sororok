@@ -9,7 +9,7 @@
 
     <RelativeLayout
         android:id="@+id/click_member_list"
-        android:layout_width="289dp"
+        android:layout_width="match_parent"
         android:layout_height="94dp"
         android:background="@drawable/bg_list"
         android:layout_marginLeft="29dp"
