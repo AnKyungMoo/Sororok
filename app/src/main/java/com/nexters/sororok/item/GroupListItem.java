@@ -6,6 +6,7 @@ public class GroupListItem {
     public String groupName;    // 그룹 이름
     public String groupContent; // 그룹 내용
     public int groupId;
+    public int joinFlag;
 
     public GroupListItem(String signInText, String groupImage, String groupName, String groupContent, int groupId) {
         this.signInText = signInText;
@@ -13,5 +14,14 @@ public class GroupListItem {
         this.groupName = groupName;
         this.groupContent = groupContent;
         this.groupId = groupId;
+    }
+
+    public GroupListItem(String signInText, String groupImage, String groupName, String groupContent, int groupId, int joinFlag) {
+        this.signInText = signInText;
+        this.groupImage = groupImage;
+        this.groupName = groupName;
+        this.groupContent = groupContent;
+        this.groupId = groupId;
+        this.joinFlag = joinFlag;
     }
 }

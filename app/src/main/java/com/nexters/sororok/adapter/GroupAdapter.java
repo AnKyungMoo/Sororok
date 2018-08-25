@@ -90,38 +90,42 @@ public class GroupAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 //                customDialog.getEditText().setVisibility(View.VISIBLE);
 //                customDialog.setTitle("그룹코드를 입력해주세요.");
 
+                if (groupListItems.get(position).joinFlag == 1) {
+                    Intent intent = new Intent(view.getContext(), MemberListActivity.class);
+                    intent.putExtra("repositoryId", groupListItems.get(position).groupId);
+                    view.getContext().startActivity(intent);
+                } else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+                    final EditText edit = new EditText(activity);
+                    builder.setView(edit);
+                    builder.setMessage("그룹 코드를 입력해 주세요");
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-                final EditText edit = new EditText(activity);
-                builder.setView(edit);
-                builder.setMessage("그룹 코드를 입력해 주세요");
+                    builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
 
-                builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                            // Text 값 받아서 로그 남기기
+                            String value = edit.getText().toString();
+                            joinGroup(value, position, view);
 
-                        // Text 값 받아서 로그 남기기
-                        String value = edit.getText().toString();
-                        joinGroup(value, position, view);
+                            //Toast.makeText(view.getContext(),value,Toast.LENGTH_SHORT).show();
 
-                        //Toast.makeText(view.getContext(),value,Toast.LENGTH_SHORT).show();
-
-                        dialog.dismiss();     //닫기
-                        // Event
-                    }
-                });
+                            dialog.dismiss();     //닫기
+                            // Event
+                        }
+                    });
 
 // 취소 버튼 설정
-                builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();     //닫기
-                        // Event
-                    }
-                });
+                    builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();     //닫기
+                            // Event
+                        }
+                    });
 
 // 창 띄우기
-                builder.show();
+                    builder.show();
 
                 /*customDialog.getEditText().setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -134,8 +138,9 @@ public class GroupAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
                         customDialog.setTitle("그룹코드를 입력해주세요.");
                     }
                 });*/
-                //customDialog.getEditText().setEnabled(true);
+                    //customDialog.getEditText().setEnabled(true);
 
+                }
             }
         });
 

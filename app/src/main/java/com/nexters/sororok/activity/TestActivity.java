@@ -12,9 +12,11 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -27,9 +29,11 @@ import com.nexters.sororok.adapter.HistoryAdapter;
 import com.nexters.sororok.asynctask.DownloadImageTask;
 import com.nexters.sororok.asynctask.GroupListTask;
 import com.nexters.sororok.asynctask.MemberInfoTask;
+import com.nexters.sororok.asynctask.SearchAsyncTask;
 import com.nexters.sororok.item.GroupListItem;
 import com.nexters.sororok.model.GroupList;
 import com.nexters.sororok.model.MemberInfo;
+import com.nexters.sororok.model.SearchResponseModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,8 +60,9 @@ public class TestActivity extends AppCompatActivity
     private DrawerLayout drawerLayout;
     private RelativeLayout relativeLayout;
     private FloatingActionButton floatingActionButton;
-    private ImageView userImage;
+    private ImageView userImage, searchImage;
     private ArrayList<GroupListItem> groupListItems;
+    private EditText searchEditText;
 
 
     @Override
@@ -94,6 +99,8 @@ public class TestActivity extends AppCompatActivity
         drawerLayout = findViewById(R.id.layout_drawer);
         relativeLayout = findViewById(R.id.layout_linear);
         floatingActionButton = findViewById(R.id.btn_floating);
+        searchEditText = findViewById(R.id.etSearchMember);
+        searchImage = findViewById(R.id.ivSearchButton);
         userImage = findViewById(R.id.img_user);
         userImage.setBackground(new ShapeDrawable(new OvalShape()));
         if(Build.VERSION.SDK_INT >= 21) {
@@ -140,6 +147,13 @@ public class TestActivity extends AppCompatActivity
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MyPageActivity.class);
                 startActivityForResult(intent,300);
+            }
+        });
+
+        searchImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                searchGroupList();
             }
         });
     }
@@ -256,6 +270,34 @@ public class TestActivity extends AppCompatActivity
         }
     }
 
+    private void searchGroupList() {
+        SearchAsyncTask searchAsyncTask = new SearchAsyncTask();
+        searchAsyncTask.execute(searchEditText.getText().toString(),
+                Integer.valueOf(SplashActivity.localId));
+        try {
+            ArrayList<SearchResponseModel> searchResponseModel = searchAsyncTask.get();
+
+            groupListItems.clear();
+            for (int i = 0; i < searchResponseModel.size(); ++i) {
+                Log.d("akm", searchResponseModel.get(i).getName());
+                groupListItems.add(new GroupListItem(searchResponseModel.get(i).getJoinFlag() == 1 ? "가입됨" : "",
+                        searchResponseModel.get(i).getImageName(),
+                        searchResponseModel.get(i).getName(),
+                        searchResponseModel.get(i).getExtra_info(),
+                        searchResponseModel.get(i).getRepositoryId()
+                ));
+            }
+
+            groupAdapter = new GroupAdapter(groupListItems, TestActivity.this);
+            recyclerView.setAdapter(groupAdapter);
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void getMemnberInfo() {
         MemberInfoTask memberInfoTask = new MemberInfoTask();
         memberInfoTask.execute(Integer.valueOf(SplashActivity.localId));
@@ -296,7 +338,8 @@ public class TestActivity extends AppCompatActivity
                         groupList.get(i).getImageName(),
                         groupList.get(i).getName(),
                         groupList.get(i).getExtra_info(),
-                        groupList.get(i).getRepositoryId()
+                        groupList.get(i).getRepositoryId(),
+                        groupList.get(i).getJoinFlag()
                 ));
             }
 

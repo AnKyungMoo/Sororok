@@ -24,7 +24,7 @@ public class MemberResponseModel {
     @Expose
     private String imageName;
 
-    @SerializedName("memberI")
+    @SerializedName("memberId")
     @Expose
     private int memberId;
 
