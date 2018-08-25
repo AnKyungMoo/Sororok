@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 import retrofit2.Call;
 
-public class MemberAsyncTask extends AsyncTask<Integer,Void,ArrayList<MemberResponseModel>> {
+public class MemberAsyncTask extends AsyncTask<Integer, Void, ArrayList<MemberResponseModel>> {
     @Override
     protected ArrayList<MemberResponseModel> doInBackground(Integer... integers) {
         RetrofitService retrofitService = RetrofitService.retrofit.create(RetrofitService.class);

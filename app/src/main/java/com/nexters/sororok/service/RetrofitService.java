@@ -12,6 +12,7 @@ import com.nexters.sororok.model.LoginResponseModel;
 import com.nexters.sororok.model.MemberInfo;
 import com.nexters.sororok.model.MemberResponseModel;
 import com.nexters.sororok.model.RefreshCodeModel;
+import com.nexters.sororok.model.SearchResponseModel;
 import com.nexters.sororok.model.UpdateCodeModel;
 
 import java.util.ArrayList;
@@ -83,8 +84,9 @@ public interface RetrofitService {
                                     @Part("memberId") int memberId,
                                     @Part("extraInfo") String extraInfo
     );
-    
-    @GET("member/detail")
+
+    // 저장소 내에 멤버 체크
+    @GET("repository/detail")
     Call<ArrayList<MemberResponseModel>> listup(@Query("repositoryId") int repositoryId);
 
     // 이미지 포함 저장소 생성
@@ -124,4 +126,10 @@ public interface RetrofitService {
     // 그룹 가입
     @PUT("repository/join")
     Call<JoinRepositoryResponseModel> repositoryJoin(@Body JoinRepositoryRequestModel joinRepositoryRequestModel);
+
+    // 그룹 검색
+    @GET("repository/search")
+    Call<ArrayList<SearchResponseModel>> repositorySearch(@Query("name") String name,
+                                               @Query("memberId") int memberId
+    );
 }

@@ -3,7 +3,7 @@ package com.nexters.sororok.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class GroupList {
+public class SearchResponseModel {
     @SerializedName("extra_info")
     @Expose
     private String extra_info;

@@ -47,7 +47,7 @@ public class CustomDialog extends AlertDialog{
             public void onClick(View view) {
                 if(getFlag() == 1){
 
-                    joinGroup(view);
+                    //joinGroup(view);
 
                 }else
                     dismiss();
@@ -106,30 +106,5 @@ public class CustomDialog extends AlertDialog{
                 dismiss();
             }
         });
-    }
-
-    private void joinGroup(View view) {
-        JoinRepositoryTask joinRepositoryTask = new JoinRepositoryTask();
-        joinRepositoryTask.execute(new JoinRepositoryRequestModel(editText.getText().toString(),
-                Integer.valueOf(SplashActivity.localId),
-                groupId)
-        );
-
-        try {
-            JoinRepositoryResponseModel joinRepositoryResponseModel = joinRepositoryTask.get();
-
-            if (joinRepositoryResponseModel.getRepositoryId() < 0) {
-                return;
-            }
-            else {
-                Intent intent = new Intent (view.getContext(), MemberListActivity.class);
-                intent.putExtra("repositoryId", groupId);
-                view.getContext().startActivity(intent);
-            }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
     }
 }
