@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
@@ -125,6 +126,7 @@ public class LoginInfoActivity extends AppCompatActivity {
         backButton = findViewById(R.id.info_back_button);
         nameEditText = findViewById(R.id.edit_login_name);
         phoneEditText = findViewById(R.id.edit_login_phone);
+        phoneEditText.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
         emailEditText = findViewById(R.id.edit_login_email);
         configButton = findViewById(R.id.login_config_button);
         userImage = findViewById(R.id.login_user_image);

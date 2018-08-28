@@ -8,6 +8,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -39,7 +40,7 @@ public class MyPageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_page);
         initComponent();
-        getMemnberInfo();
+        getMemberInfo();
         imgUserPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -89,6 +90,7 @@ public class MyPageActivity extends AppCompatActivity {
         imgUserPhoto = findViewById(R.id.img_user_photo);
         userName = findViewById(R.id.txt_user_name);
         userNumber = findViewById(R.id.txt_user_number);
+        userNumber.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
         userEmail = findViewById(R.id.txt_user_email);
         imgUserPhoto.setBackground(new ShapeDrawable(new OvalShape()));
         if(Build.VERSION.SDK_INT >= 21) {
@@ -97,7 +99,7 @@ public class MyPageActivity extends AppCompatActivity {
 
     }
 
-    private void getMemnberInfo() {
+    private void getMemberInfo() {
         MemberInfoTask memberInfoTask = new MemberInfoTask();
         memberInfoTask.execute(Integer.valueOf(SplashActivity.localId));
         try {
