@@ -139,12 +139,40 @@
                 android:src="@drawable/btn_comm_search_check_bl" />
 
         </RelativeLayout>
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerview"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_alignParentBottom="true"
-            android:layout_below="@id/relative2"/>
+            android:layout_below="@+id/relative2">
+            <RelativeLayout
+                android:id="@+id/rlEmptyList"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:layout_marginTop="73dp"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="#2b2e38"
+                    android:text="아직 등록된 그룹이 없네요."/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="#9b9fa8"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="101dp"
+                    android:text="검색으로 그룹을 찾아보세요!"/>
+            </RelativeLayout>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+
+        </RelativeLayout>
+
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/btn_floating"

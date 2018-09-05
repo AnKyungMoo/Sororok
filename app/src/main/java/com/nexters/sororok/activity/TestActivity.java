@@ -61,7 +61,7 @@ public class TestActivity extends AppCompatActivity
     private ListView historyListView;
     private HistoryAdapter historyAdapter;
     private DrawerLayout drawerLayout;
-    private RelativeLayout relativeLayout;
+    private RelativeLayout relativeLayout,emptyRelative;
     private FloatingActionButton floatingActionButton;
     private ImageView userImage, searchImage;
     private ArrayList<GroupListItem> groupListItems;
@@ -105,6 +105,7 @@ public class TestActivity extends AppCompatActivity
         searchEditText = findViewById(R.id.etSearchMember);
         searchImage = findViewById(R.id.ivSearchButton);
         userImage = findViewById(R.id.img_user);
+        emptyRelative = findViewById(R.id.rlEmptyList);
         userImage.setBackground(new ShapeDrawable(new OvalShape()));
         if(Build.VERSION.SDK_INT >= 21) {
             userImage.setClipToOutline(true);
@@ -327,6 +328,11 @@ public class TestActivity extends AppCompatActivity
 
             groupAdapter = new GroupAdapter(groupListItems, TestActivity.this);
             recyclerView.setAdapter(groupAdapter);
+            if(groupListItems.size()==0){
+                emptyRelative.setVisibility(View.VISIBLE);
+            } else{
+                emptyRelative.setVisibility(View.GONE);
+            }
 
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -382,6 +388,11 @@ public class TestActivity extends AppCompatActivity
 
             groupAdapter = new GroupAdapter(groupListItems, TestActivity.this);
             recyclerView.setAdapter(groupAdapter);
+            if(groupListItems.size()==0){
+                emptyRelative.setVisibility(View.VISIBLE);
+            }else{
+                emptyRelative.setVisibility(View.GONE);
+            }
 
         } catch (InterruptedException e) {
             e.printStackTrace();
