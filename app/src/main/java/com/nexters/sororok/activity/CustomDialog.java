@@ -3,6 +3,7 @@ package com.nexters.sororok.activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -80,6 +81,13 @@ public class CustomDialog extends AlertDialog{
 
     public void setEditText(EditText editText) {
         this.editText = editText;
+    }
+
+    public boolean logout(SharedPreferences.Editor editor) {
+        editor.putString("id", "-1");
+        editor.apply();
+
+        return true;
     }
 
     public void initComponent(){

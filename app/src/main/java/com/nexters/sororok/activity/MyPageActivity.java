@@ -1,6 +1,7 @@
 package com.nexters.sororok.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
@@ -56,6 +57,15 @@ public class MyPageActivity extends AppCompatActivity {
                 customDialog.getWindow().getAttributes().windowAnimations = R.style.DialogAni;
                 customDialog.show();
                 customDialog.setTitle("로그아웃 하시겠습니까?");
+
+
+                SharedPreferences pref = getSharedPreferences("idPreference", MODE_PRIVATE);
+                SharedPreferences.Editor editor = pref.edit();
+                if (customDialog.logout(editor)) {
+                    Intent intent = new Intent(MyPageActivity.this, SplashActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
             }
         });
 
